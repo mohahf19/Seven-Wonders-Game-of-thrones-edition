@@ -11,8 +11,8 @@ Similar Games
 
 Group Members (Group 3H):octocat:
 -
-* Ezgi - 21700000
-* Khasmamad - 21700000
+* Ezgi - 2170xxxx
+* Khasmamad - 2170xxxx
 * Mohamad Fakhouri - 21701546
 * Muhammad Bilal Bin Khalid - 21701834
 * Muhammad Arham Khan - 21701848
