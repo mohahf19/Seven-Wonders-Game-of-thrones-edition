@@ -19,7 +19,7 @@ Group Members (Group 3H):octocat:
 
 Project Reports
 -
-* [Analysis Report Part 1](link)
+* Analysis Report Part 1 (being prepared..)
 
 Meeting Hours
 -
