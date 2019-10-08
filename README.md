@@ -7,11 +7,8 @@ Description
 -
 7 Wonders is a card drafting game that is played using three decks of cards featuring depictions of ancient civilizations, military conflicts and commercial activity.
 
-Our rendition is a desktop application of the 7 Wonders game called the “Seven Houses” that features the seven houses of the TV series titled “Game of Thrones”. When the game starts, each player randomly receives a banner which depicts their respective house out of the 7 houses. Players should then place cards representing various materials/ structures/ strengths around their banners in order to fulfill the objective of constructing their fortress.
+Our rendition of the 7 Wonders game is a deck card game called the “Seven Houses” that features the seven houses of the TV series titled “Game of Thrones”. When the game starts, each player randomly receives a banner which depicts their respective house out of the 7 houses. Players should then place cards representing various materials/ structures/ strengths around their banners in order to fulfill the objective of constructing their fortress.
 
-
-Detailed Description
--
 The game is played over three ages, known in the game as Ages I, II and III, each using its own decks of cards. In each age, seven cards are randomly dealt to each player. Each player selects a card to play from his or her hand, then passes the remaining cards (face-down) to the next player. This process is repeated until five out of the seven cards have been played. At this point, each player must choose to play one of his remaining two cards and discard the other.
 
 Each age card represents a structure, and playing a card is referred to as building a structure for the house. In order to build a structure the player must pay the construction cost, in terms of coins or the resource types, then lay it down by his or her House banner. A player lacking the resources may pay his direct neighbors to use their resources (if available).
@@ -20,9 +17,27 @@ Instead of building a structure, a player may choose either to discard an Age ca
 
 At the end of each age, military conflicts between neighbors are resolved by comparing the number of shield symbols they have and victory points are awarded accordingly. Once all three decks have been played, players tally their scores in all the different developed areas (civil, scientific, commercial, etc.) The player with the most victory points wins.
 
-Implementation details
+
+
+Extra Features:
 -
-Fakh pls fix
+- Online games (with up to 6 players)
+- Offline games (with up to 6 bots) 
+- Mixed games (with bots and online players)
+- Debts concept (negative money) 
+- Seasons concept (every turn is a season) 
+- House specific restrictions: 
+     - House Lannister must always pay their debt, otherwise they lose points after the age is over
+     - When House Martel loses a military fight, they lose 2x the points
+     - .. and others
+- House specific buffs:
+     - House Lannister starts with more coins than the other houses. 
+     - House Stark’s resource production gets increased in winter.
+     - House Targaryen’s third level buff is the ability to initiate the military battle instantly 
+     - .. and others
+- Crisis cards (red wedding, battle of the bastards..) that affects all the other houses, yet gives negative points for the initiating house
+
+
 
 Similar Games
 -
@@ -32,7 +47,7 @@ Similar Games
 
 Group Members (Group 3H):octocat:
 -
-* Ezgi - 2170xxxx
+* Ezgi - 21703837
 * Khasmamad - 21701333
 * Mohamad Fakhouri - 21701546
 * Muhammad Bilal Bin Khalid - 21701834
