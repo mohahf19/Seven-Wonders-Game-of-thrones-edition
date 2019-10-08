@@ -1,4 +1,4 @@
-# CS319-3H-SW
+# Seven Houses: CS319 Project by Group 3H (CS31-3H-SW)
 
 
 Description
