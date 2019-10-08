@@ -7,7 +7,7 @@ Description
 -
 7 Wonders is a card drafting game that is played using three decks of cards featuring depictions of ancient civilizations, military conflicts and commercial activity.
 
-Our rendition of the 7 Wonders game is a deck card game called the “Seven Houses” that features the seven houses of the TV series titled “Game of Thrones”. When the game starts, each player randomly receives a banner which depicts their respective house out of the 7 houses. Players should then place cards representing various materials/ structures/ strengths around their banners in order to fulfill the objective of constructing their fortress.
+Our rendition is a desktop application of the 7 Wonders game called the “Seven Houses” that features the seven houses of the TV series titled “Game of Thrones”. When the game starts, each player randomly receives a banner which depicts their respective house out of the 7 houses. Players should then place cards representing various materials/ structures/ strengths around their banners in order to fulfill the objective of constructing their fortress.
 
 
 Detailed Description
@@ -20,6 +20,9 @@ Instead of building a structure, a player may choose either to discard an Age ca
 
 At the end of each age, military conflicts between neighbors are resolved by comparing the number of shield symbols they have and victory points are awarded accordingly. Once all three decks have been played, players tally their scores in all the different developed areas (civil, scientific, commercial, etc.) The player with the most victory points wins.
 
+Implementation details
+-
+Fakh pls fix
 
 Similar Games
 -
