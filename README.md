@@ -55,7 +55,7 @@ Group Members (Group 3H):octocat:
 
 Project Reports
 -
-* Analysis Report Part 1 (being prepared..)
+* Meeting logs (https://docs.google.com/document/d/1KHDaEGL2wuBWDOTVSXKjNZrzDGbuNsmYzWiBNqTS7R8/edit)
 
 Meeting Hours
 -
