@@ -48,7 +48,7 @@ Similar Games
 Group Members (Group 3H):octocat:
 -
 * Ezgi Yavuz - 21703837
-* Khasmamad Shabanovi- 21701333
+* Khasmamad Shabanovi - 21701333
 * Mohamad Fakhouri - 21701546
 * Muhammad Bilal Bin Khalid - 21701834
 * Muhammad Arham Khan - 21701848
