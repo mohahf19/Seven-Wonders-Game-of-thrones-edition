@@ -41,21 +41,21 @@ Extra Features:
 
 Similar Games
 -
-**Seven Wonders** https://en.boardgamearena.com/gamepanel?game=sevenwonders
+**Seven Wonders**: https://en.boardgamearena.com/gamepanel?game=sevenwonders
 
-**Seven Wonders App** https://play.google.com/store/apps/details?id=com.rprod.sevenwonders&hl=en
+**Seven Wonders App**: https://play.google.com/store/apps/details?id=com.rprod.sevenwonders&hl=en
 
 Group Members (Group 3H):octocat:
 -
-* Ezgi - 21703837
-* Khasmamad - 21701333
+* Ezgi Yavuz - 21703837
+* Khasmamad Shababovi- 21701333
 * Mohamad Fakhouri - 21701546
 * Muhammad Bilal Bin Khalid - 21701834
 * Muhammad Arham Khan - 21701848
 
 Project Reports
 -
-* Meeting logs (https://docs.google.com/document/d/1KHDaEGL2wuBWDOTVSXKjNZrzDGbuNsmYzWiBNqTS7R8/edit)
+* Meeting logs: https://docs.google.com/document/d/1KHDaEGL2wuBWDOTVSXKjNZrzDGbuNsmYzWiBNqTS7R8/edit
 
 Meeting Hours
 -
