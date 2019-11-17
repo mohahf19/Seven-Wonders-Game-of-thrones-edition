@@ -1,4 +1,4 @@
-package project;
+package backend.controllers;
 
 public class WaitScreenController {
 }
