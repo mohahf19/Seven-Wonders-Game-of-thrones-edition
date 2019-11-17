@@ -1,23 +1,35 @@
 package backend.models;
 
+import backend.app.constants;
+
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
-public class Server {
+public class Server implements Runnable {
 
-    private static LinkedHashMap<String, Client> clientInfo = new LinkedHashMap<String, Client>();
+    private ArrayList<ClientThread> clients = new ArrayList<>();
     private ServerSocket serverSocket;
+
+    private Thread thread;
+    private volatile boolean isRunning = true;
 
     public Server() {
         startServer();
     }
 
     public void startServer() {
-        String port = "1122";
+        thread = new Thread(this);
+        thread.start();
+    }
+
+    public void run() {
+
+        String port = constants.PORT_NO;
 
         try {
 
@@ -28,21 +40,17 @@ public class Server {
             System.out.println(serverSocket.getInetAddress().getHostName() + ":"
                     + serverSocket.getLocalPort());
 
-            while (true) {
+            while (isRunning && true ) {
                 Socket socket = serverSocket.accept();
-//                new Client(socket);
+                clients.add( new ClientThread(socket));
             }
         } catch (IOException e) {
             System.out.println("IO Exception:" + e);
-            System.exit(1);
+            isRunning = false;
         } catch (NumberFormatException e) {
             System.out.println("Number Format Exception:" + e);
-            System.exit(1);
+            isRunning = false;
         }
-    }
-
-    public static HashMap<String, Client> getClientInfo() {
-        return clientInfo;
     }
 
 }
