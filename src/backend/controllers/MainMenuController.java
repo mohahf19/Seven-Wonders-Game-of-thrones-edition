@@ -1,4 +1,4 @@
-package project;
+package backend.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +19,7 @@ public class MainMenuController {
         alert.showAndWait();
 
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("WaitScreen.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/WaitScreen.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
