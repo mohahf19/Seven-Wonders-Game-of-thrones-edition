@@ -13,7 +13,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="menuParent" fx:id="menuParent" maxHeight="1280" maxWidth="800" minHeight="-Infinity" minWidth="-Infinity" styleClass="menuParent" stylesheets="/assets/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="backend.controllers.MainMenuController">
+<AnchorPane id="menuParent" fx:id="menuParent" maxHeight="1280" maxWidth="800" minHeight="-Infinity" minWidth="-Infinity" styleClass="menuParent" stylesheets="/assets/style.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+             fx:controller="backend.controllers.MainMenuController">
 
    <children>
       <ImageView fx:id="backgroundImageView" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
