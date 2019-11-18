@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 import backend.app.fxmlPaths;
 
 
-public class MainMenuController implements Initializable  {
+public class MainScreenController implements Initializable  {
     @FXML
     private TextField IPTextField;
 

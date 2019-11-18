@@ -23,6 +23,7 @@ public class WaitScreenController {
 
     @FXML
     private void exitGame(ActionEvent ae){
+        //add an alert
         try {
             Stage stage = (Stage) ((Node) ae.getSource()).getScene().getWindow();
             Parent page = FXMLLoader.load(getClass().getResource(fxmlPaths.mainMenu));
