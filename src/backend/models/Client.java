@@ -2,6 +2,7 @@ package backend.models;
 
 import backend.app.constants;
 import backend.controllers.WaitScreenController;
+import javafx.application.Platform;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -96,7 +97,13 @@ public class Client {
                     for( String a: temp){
                         houses.add( a);
                     }
-                    WaitScreenController.updateHouses( houses);
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            WaitScreenController.updateHouses( houses);
+                        }
+                    });
+
                 }
                 System.out.println( "Response from server: " + response);
             }

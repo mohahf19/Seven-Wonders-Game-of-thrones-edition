@@ -8,78 +8,78 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="backend.controllers.WaitScreenController">
+<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="backend.controllers.WaitScreenController">
    <children>
       <ImageView AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <Pane layoutX="51.0" layoutY="85.0" prefHeight="420.0" prefWidth="150.0">
          <children>
-            <ImageView fitHeight="361.0" fitWidth="150.0" layoutX="3.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="image0" fitHeight="361.0" fitWidth="150.0" layoutX="3.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@../assets/loadingPlayer.jpg" />
                </image></ImageView>
-            <Label prefHeight="58.0" prefWidth="150.0" text="                Label" />
+            <Label fx:id="house0" contentDisplay="CENTER" prefHeight="58.0" prefWidth="150.0" text="" />
          </children>
       </Pane>
       <HBox layoutX="264.0" layoutY="160.0" prefHeight="344.0" prefWidth="755.0">
          <children>
             <Pane prefHeight="335.0" prefWidth="125.0">
                <children>
-                  <ImageView fitHeight="277.0" fitWidth="125.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="image1" fitHeight="277.0" fitWidth="125.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../assets/loadingPlayerSmall.jpg" />
                      </image>
                   </ImageView>
-                  <Label prefHeight="58.0" prefWidth="125.0" text="                Label" />
+                  <Label fx:id="house1" prefHeight="58.0" prefWidth="125.0" text="" />
                </children>
             </Pane>
             <Pane prefHeight="335.0" prefWidth="125.0">
                <children>
-                  <ImageView fitHeight="277.0" fitWidth="125.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="image2" fitHeight="277.0" fitWidth="125.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../assets/loadingPlayerSmall.jpg" />
                      </image>
                   </ImageView>
-                  <Label fx:id="house1" prefHeight="58.0" prefWidth="125.0" text="                Label" />
+                  <Label fx:id="house2" prefHeight="58.0" prefWidth="125.0" text="" />
                </children>
             </Pane>
             <Pane prefHeight="335.0" prefWidth="125.0">
                <children>
-                  <ImageView fitHeight="277.0" fitWidth="125.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="image3" fitHeight="277.0" fitWidth="125.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../assets/loadingPlayerSmall.jpg" />
                      </image>
                   </ImageView>
-                  <Label prefHeight="58.0" prefWidth="125.0" text="                Label" />
+                  <Label fx:id="house3" prefHeight="58.0" prefWidth="125.0" text="" />
                </children>
             </Pane>
             <Pane prefHeight="335.0" prefWidth="125.0">
                <children>
-                  <ImageView fitHeight="277.0" fitWidth="125.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="image4" fitHeight="277.0" fitWidth="125.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../assets/loadingPlayerSmall.jpg" />
                      </image>
                   </ImageView>
-                  <Label prefHeight="58.0" prefWidth="125.0" text="                Label" />
+                  <Label fx:id="house4" prefHeight="58.0" prefWidth="125.0" text="" />
                </children>
             </Pane>
             <Pane prefHeight="335.0" prefWidth="125.0">
                <children>
-                  <ImageView fitHeight="277.0" fitWidth="125.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="image5" fitHeight="277.0" fitWidth="125.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../assets/loadingPlayerSmall.jpg" />
                      </image>
                   </ImageView>
-                  <Label prefHeight="58.0" prefWidth="125.0" text="                Label" />
+                  <Label fx:id="house5" prefHeight="58.0" prefWidth="125.0" text="" />
                </children>
             </Pane>
             <Pane prefHeight="335.0" prefWidth="125.0">
                <children>
-                  <ImageView fitHeight="314.0" fitWidth="125.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="image6" fitHeight="314.0" fitWidth="125.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../assets/loadingPlayerSmall.jpg" />
                      </image>
                   </ImageView>
-                  <Label prefHeight="58.0" prefWidth="125.0" text="                Label" />
+                  <Label fx:id="house6" prefHeight="58.0" prefWidth="125.0" text="" />
                </children>
             </Pane>
          </children>

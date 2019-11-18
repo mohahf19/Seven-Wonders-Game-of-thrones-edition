@@ -12,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -62,6 +63,7 @@ public class MainScreenController implements Initializable  {
             stage.getScene().setRoot(page);
             stage.sizeToScene();
 
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -78,8 +80,15 @@ public class MainScreenController implements Initializable  {
             String ip = IPTextField.getText();
             Main.game.conn.initClient( ip);
 
-            Alert alert = new Alert(Alert.AlertType.NONE, "JOIN THE GAME!!", ButtonType.CLOSE);
-            alert.showAndWait();
+            try {
+                Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow();
+                Parent page = FXMLLoader.load(getClass().getResource(fxmlPaths.waitMenu));
+                stage.getScene().setRoot(page);
+                stage.sizeToScene();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
 
         }
     }
