@@ -12,6 +12,8 @@ import java.util.TimerTask;
 
 public class Main extends Application {
 
+
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/ui/MainMenu.fxml"));
@@ -19,17 +21,6 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 1280, 800));
         primaryStage.show();
 
-        new Server();
-
-        new Timer().schedule(new TimerTask() {
-            @Override
-            public void run() {
-
-                (new Thread(() -> new Client( "arham", "139.179.206.93"))).start();
-
-                (new Thread(() -> new Client( "mohamad", "139.179.206.93"))).start();
-            }
-        }, 1000);
 
     }
 
@@ -37,4 +28,6 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
+
 }

@@ -1,8 +1,10 @@
 package backend.models;
 
 import backend.app.constants;
+import backend.controllers.ConnectionController;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -10,25 +12,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
-public class Server implements Runnable {
+public class Server {
 
     private ArrayList<ClientThread> clients = new ArrayList<>();
     private ServerSocket serverSocket;
 
-    private Thread thread;
-    private volatile boolean isRunning = true;
+    private String clientName = "";
 
-    public Server() {
+
+    public Server( String clientName) {
+        this.clientName = clientName;
         startServer();
     }
 
     public void startServer() {
-        thread = new Thread(this);
-        thread.start();
-    }
-
-    public void run() {
-
         String port = constants.PORT_NO;
 
         try {
@@ -38,19 +35,28 @@ public class Server implements Runnable {
             System.out.println(serverSocket);
 
             System.out.println(serverSocket.getInetAddress().getHostName() + ":"
-                    + serverSocket.getLocalPort());
+                    + serverSocket.getLocalPort() + " : " + serverSocket.getInetAddress().getHostAddress());
 
-            while (isRunning && true ) {
+            addCurrentClient( clientName, "" + serverSocket.getInetAddress().getHostAddress());
+
+            while (true ) {
                 Socket socket = serverSocket.accept();
-                clients.add( new ClientThread(socket));
+                if( clients.size() < 7)
+                    clients.add( new ClientThread(socket));
+                else {
+                    PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+                    out.println( "Player limit reached");
+                }
             }
         } catch (IOException e) {
             System.out.println("IO Exception:" + e);
-            isRunning = false;
         } catch (NumberFormatException e) {
             System.out.println("Number Format Exception:" + e);
-            isRunning = false;
         }
+    }
+
+    public void addCurrentClient( String uName, String ip) {
+        (new Thread(() -> ConnectionController.client = new Client( uName, ip))).start();
     }
 
 }
