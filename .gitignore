@@ -446,7 +446,5 @@ MigrationBackup/
 .ionide/
 
 
-!/CS319-3H-SW.iml
-CS319-3H-SW.iml
-/CS319-3H-SW.iml
 /.idea/
+/CS319-3H-SW.iml

@@ -1,5 +1,6 @@
 package backend.controllers;
 
+import backend.app.fxmlPaths;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,9 +9,12 @@ import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import backend.app.fxmlPaths;
 
 
 public class MainMenuController implements Initializable  {
@@ -29,7 +33,8 @@ public class MainMenuController implements Initializable  {
         backgroundImageView.fitHeightProperty().bind(menuParent.heightProperty());
     }
 
-    public void startGame(ActionEvent ae){
+    @FXML
+    private void startGame(ActionEvent ae){
         System.out.println("GAME STARTED");
 //        Alert alert = new Alert(Alert.AlertType.NONE, "GAME IS STARTING", ButtonType.CLOSE);
 //        alert.showAndWait();
@@ -47,15 +52,22 @@ public class MainMenuController implements Initializable  {
 
             ConnectionController.initServer( "arham");
 
-
-            //AnchorPane pane = FXMLLoader.load(getClass().getResource("/ui/WaitScreen.fxml"));
+            //AnchorPane pane = FXMLLoader.load(getClass().getResource(fxmlPaths.waitMenu));
             //menuParent.getChildren().setAll(pane);
+
+            //get the stage
+            Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow();
+            Parent page = FXMLLoader.load(getClass().getResource(fxmlPaths.waitMenu));
+            stage.getScene().setRoot(page);
+            stage.sizeToScene();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void joinGame(ActionEvent ae){
+    @FXML
+    private void joinGame(ActionEvent ae){
         if (IPTextField.getText().equals("")) {
             System.out.println("Enter a URL, dummy..");
             Alert alert = new Alert(Alert.AlertType.NONE, "Enter a URL, dummy..", ButtonType.CLOSE);
