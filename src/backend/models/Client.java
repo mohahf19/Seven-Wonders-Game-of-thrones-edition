@@ -1,6 +1,7 @@
 package backend.models;
 
 import backend.app.constants;
+import backend.controllers.WaitScreenController;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,9 +10,9 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.SocketException;
+import java.util.ArrayList;
 
 public class Client {
-    public String userName;
     public String serverAddress;
 
 
@@ -19,13 +20,13 @@ public class Client {
     public BufferedReader in;
     public PrintWriter out;
 
-    public Client( String name, String server) {
-        userName = name;
+    public int id = -1;
+
+    public Client( String server) {
         serverAddress = server;
-
+    }
+    public void startClient(){
         initClient();
-
-
         connectClient();
     }
 
@@ -82,10 +83,21 @@ public class Client {
     public void connectClient() {
         try {
 
-            out.println("" + userName);
+            out.println("*connection requested");
 
             while (true) {
                 String response = in.readLine();
+                if( response.charAt(0) == '*'){
+                    id = Integer.parseInt(response.substring( 1));
+                    out.println("gethouses");
+                } else {
+                    String[] temp = response.split( ",");
+                    ArrayList<String> houses = new ArrayList<>();
+                    for( String a: temp){
+                        houses.add( a);
+                    }
+                    WaitScreenController.updateHouses( houses);
+                }
                 System.out.println( "Response from server: " + response);
             }
         } catch (Exception e) {

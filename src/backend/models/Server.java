@@ -1,5 +1,6 @@
 package backend.models;
 
+import backend.app.Main;
 import backend.app.constants;
 import backend.controllers.ConnectionController;
 
@@ -14,16 +15,15 @@ import java.util.LinkedHashMap;
 
 public class Server {
 
-    private ArrayList<ClientThread> clients = new ArrayList<>();
-    private ServerSocket serverSocket;
-
-    private String clientName = "";
+    public ArrayList<ClientThread> clients;
+    public ServerSocket serverSocket;
 
 
-    public Server( String clientName) {
-        this.clientName = clientName;
-        startServer();
+
+    public Server() {
+        clients = new ArrayList<>();
     }
+
 
     public void startServer() {
         String port = constants.PORT_NO;
@@ -37,12 +37,14 @@ public class Server {
             System.out.println(serverSocket.getInetAddress().getHostName() + ":"
                     + serverSocket.getLocalPort() + " : " + serverSocket.getInetAddress().getHostAddress());
 
-            addCurrentClient( clientName, "" + serverSocket.getInetAddress().getHostAddress());
+            addCurrentClient( "" + serverSocket.getInetAddress().getHostAddress());
 
             while (true ) {
                 Socket socket = serverSocket.accept();
-                if( clients.size() < 7)
-                    clients.add( new ClientThread(socket));
+                if( clients.size() < 7) {
+                    clients.add(new ClientThread(clients.size(), socket));
+                    System.out.println( "clientthread added");
+                }
                 else {
                     PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
                     out.println( "Player limit reached");
@@ -55,8 +57,12 @@ public class Server {
         }
     }
 
-    public void addCurrentClient( String uName, String ip) {
-        (new Thread(() -> ConnectionController.client = new Client( uName, ip))).start();
+    public void addCurrentClient( String ip) {
+        (new Thread(() -> {
+            Main.game.conn.client = new Client( ip);
+            Main.game.conn.client.startClient();
+        })).start();
+        (new Thread(() -> Main.game.conn.client = new Client( ip))).start();
     }
 
 }

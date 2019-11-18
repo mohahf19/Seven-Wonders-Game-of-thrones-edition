@@ -1,5 +1,6 @@
 package backend.controllers;
 
+import backend.app.Main;
 import backend.app.fxmlPaths;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -50,7 +51,7 @@ public class MainScreenController implements Initializable  {
 //        }
         try {
 
-            ConnectionController.initServer( "arham");
+            Main.game.conn.initServer();
 
             //AnchorPane pane = FXMLLoader.load(getClass().getResource(fxmlPaths.waitMenu));
             //menuParent.getChildren().setAll(pane);
@@ -75,7 +76,7 @@ public class MainScreenController implements Initializable  {
             return;
         } else{
             String ip = IPTextField.getText();
-            ConnectionController.initClient( "" + (Math.random() * 999), "" + ip);
+            Main.game.conn.initClient( ip);
 
             Alert alert = new Alert(Alert.AlertType.NONE, "JOIN THE GAME!!", ButtonType.CLOSE);
             alert.showAndWait();
