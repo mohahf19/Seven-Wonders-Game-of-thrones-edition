@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import javafx.scene.image.ImageView;
@@ -45,6 +46,7 @@ public class WaitScreenController implements Initializable {
             for(  int i = 0; i < 7; i++){
                 if( i < houses.size()){
                     labels.get(i).setText( "" + houses.get(i));
+                    images.get(i).setImage( new Image( "/assets/" + houses.get(i) + ".jpg"));
                     images.get(i).setVisible( true);
                 } else {
                     labels.get(i).setText( "");
