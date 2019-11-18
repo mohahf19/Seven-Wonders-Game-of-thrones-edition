@@ -3,6 +3,10 @@ package backend.models;
 import backend.app.Main;
 import backend.app.constants;
 import backend.controllers.ConnectionController;
+import backend.controllers.WaitScreenController;
+import javafx.application.Platform;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -49,7 +53,17 @@ public class Server {
             System.out.println(serverSocket.getInetAddress().getHostName() + ":"
                     + serverSocket.getLocalPort() + " : " + serverSocket.getInetAddress().getHostAddress());
 
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    Alert alert = new Alert(Alert.AlertType.NONE, "Server IP: " + serverSocket.getInetAddress().getHostAddress(), ButtonType.CLOSE);
+                    alert.showAndWait();
+                }
+            });
+
+
             addCurrentClient( "" + serverSocket.getInetAddress().getHostAddress());
+
 
             while (true ) {
                 Socket socket = serverSocket.accept();
