@@ -16,12 +16,24 @@ import java.util.LinkedHashMap;
 public class Server {
 
     public ArrayList<ClientThread> clients;
+    public ArrayList<String> houses;
+    public ArrayList<String> allHouses;
     public ServerSocket serverSocket;
 
 
 
     public Server() {
+        allHouses = new ArrayList<>();
+        allHouses.add("Lannister");
+        allHouses.add("Stark");
+        allHouses.add("White Walker");
+        allHouses.add("Baratheon");
+        allHouses.add("Targaryen");
+        allHouses.add("Greyjoy");
+        allHouses.add("Tyrell");
+
         clients = new ArrayList<>();
+        houses = new ArrayList<>();
     }
 
 
@@ -43,6 +55,9 @@ public class Server {
                 Socket socket = serverSocket.accept();
                 if( clients.size() < 7) {
                     clients.add(new ClientThread(clients.size(), socket));
+                    int index = (int) (Math.random() * allHouses.size());
+                    houses.add( allHouses.get( index));
+                    allHouses.remove( index);
                     System.out.println( "clientthread added");
                 }
                 else {

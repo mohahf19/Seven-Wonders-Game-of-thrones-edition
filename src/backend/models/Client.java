@@ -89,7 +89,7 @@ public class Client {
                 String response = in.readLine();
                 if( response.charAt(0) == '*'){
                     id = Integer.parseInt(response.substring( 1));
-                    out.println("gethouses");
+                    out.println( "" + id + "gethouses");
                 } else {
                     String[] temp = response.split( ",");
                     ArrayList<String> houses = new ArrayList<>();

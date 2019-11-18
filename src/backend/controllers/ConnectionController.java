@@ -30,8 +30,15 @@ public class ConnectionController {
     }
     public void updateHouses(){
         ArrayList<ClientThread> threads = this.server.clients;
-        for( ClientThread th: threads){
-            th.out.println( "Lannister,Khan,Fakhouri");
+
+        for( int i = 0; i < threads.size(); i++){
+            ClientThread cur = threads.get( i);
+            String out = this.server.houses.get(i);
+            for( int j = 0; j < this.server.houses.size(); j++){
+                if( j != i)
+                    out += "," + this.server.houses.get(j);
+            }
+            cur.out.println( "" + out);
         }
     }
 }
