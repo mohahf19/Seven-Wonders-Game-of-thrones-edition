@@ -1,25 +1,25 @@
-
-import backend.models.Client;
-import backend.models.Server;
+import backend.app.fxmlPaths;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class Main extends Application {
 
-
+    public static Stage window;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/ui/MainMenu.fxml"));
+
+        window = primaryStage;
+        //sets up the stage
+        Parent root = FXMLLoader.load(getClass().getResource(fxmlPaths.mainMenu));
         primaryStage.setTitle("Seven Houses");
         primaryStage.setScene(new Scene(root, 1280, 800));
         primaryStage.show();
+
 
 
     }
