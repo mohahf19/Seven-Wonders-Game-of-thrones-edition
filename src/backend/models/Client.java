@@ -1,6 +1,8 @@
 package backend.models;
 
 import backend.app.constants;
+import backend.controllers.WaitScreenController;
+import javafx.application.Platform;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,23 +11,23 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.SocketException;
+import java.util.ArrayList;
 
 public class Client {
-    private String userName;
-    private String serverAddress;
+    public String serverAddress;
 
 
-    private Socket socket;
-    private BufferedReader in;
-    private PrintWriter out;
+    public Socket socket;
+    public BufferedReader in;
+    public PrintWriter out;
 
-    public Client( String name, String server) {
-        userName = name;
+    public int id = -1;
+
+    public Client( String server) {
         serverAddress = server;
-
+    }
+    public void startClient(){
         initClient();
-
-
         connectClient();
     }
 
@@ -57,8 +59,8 @@ public class Client {
         } catch (SocketException e) {
             System.out.println("Socket Exception: " + e);
             return;
-        } catch (IOException e) {
-            System.out.println( "IOException: " + e);
+        } catch (Exception e) {
+            System.out.println( "Exception: " + e);
             return;
         }
     }
@@ -82,13 +84,30 @@ public class Client {
     public void connectClient() {
         try {
 
-            out.println("" + userName);
+            out.println("*connection requested");
 
             while (true) {
                 String response = in.readLine();
+                if( response.charAt(0) == '*'){
+                    id = Integer.parseInt(response.substring( 1));
+                    out.println( "" + id + "gethouses");
+                } else {
+                    String[] temp = response.split( ",");
+                    ArrayList<String> houses = new ArrayList<>();
+                    for( String a: temp){
+                        houses.add( a);
+                    }
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            WaitScreenController.updateHouses( houses);
+                        }
+                    });
+
+                }
                 System.out.println( "Response from server: " + response);
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.out.println("Client is dead...");
         }
     }

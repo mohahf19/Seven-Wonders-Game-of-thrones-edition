@@ -446,3 +446,5 @@ MigrationBackup/
 .ionide/
 
 
+/.idea/
+/CS319-3H-SW.iml
