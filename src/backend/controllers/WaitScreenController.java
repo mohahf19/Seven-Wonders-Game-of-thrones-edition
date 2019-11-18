@@ -10,6 +10,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 public class WaitScreenController{
     @FXML
     private Button exitGameButton;
@@ -23,6 +25,10 @@ public class WaitScreenController{
     @FXML
     private void startGame(ActionEvent ae){
         house1.setText( "ABCDDDDD");
+    }
+
+    public static void updateHouses(ArrayList<String> houses){
+
     }
 
     @FXML

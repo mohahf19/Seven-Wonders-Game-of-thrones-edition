@@ -74,10 +74,9 @@ public class MainScreenController implements Initializable  {
             alert.showAndWait();
             return;
         } else{
+            String ip = IPTextField.getText();
+            ConnectionController.initClient( "" + (Math.random() * 999), "" + ip);
 
-            ConnectionController.initClient( "test", "139.179.202.160");
-
-            System.out.println("JOIN THE GAME!!");
             Alert alert = new Alert(Alert.AlertType.NONE, "JOIN THE GAME!!", ButtonType.CLOSE);
             alert.showAndWait();
 
