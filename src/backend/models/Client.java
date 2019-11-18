@@ -57,8 +57,8 @@ public class Client {
         } catch (SocketException e) {
             System.out.println("Socket Exception: " + e);
             return;
-        } catch (IOException e) {
-            System.out.println( "IOException: " + e);
+        } catch (Exception e) {
+            System.out.println( "Exception: " + e);
             return;
         }
     }
@@ -88,7 +88,7 @@ public class Client {
                 String response = in.readLine();
                 System.out.println( "Response from server: " + response);
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.out.println("Client is dead...");
         }
     }
