@@ -8,11 +8,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-            fx:controller="backend.controllers.WaitScreenController">
+<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="backend.controllers.WaitScreenController">
    <children>
-      <ImageView AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                 AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <ImageView AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <Pane layoutX="51.0" layoutY="85.0" prefHeight="420.0" prefWidth="150.0">
          <children>
             <ImageView fitHeight="361.0" fitWidth="150.0" layoutX="3.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
@@ -41,7 +39,7 @@
                         <Image url="@../assets/loadingPlayerSmall.jpg" />
                      </image>
                   </ImageView>
-                  <Label prefHeight="58.0" prefWidth="125.0" text="                Label" />
+                  <Label fx:id="house1" prefHeight="58.0" prefWidth="125.0" text="                Label" />
                </children>
             </Pane>
             <Pane prefHeight="335.0" prefWidth="125.0">
@@ -88,10 +86,10 @@
       </HBox>
       <AnchorPane layoutY="517.0" prefHeight="265.0" prefWidth="1074.0">
          <children>
-            <Button layoutX="474.0" layoutY="56.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="125.0" text="START GAME" />
-            <Button layoutX="474.0" layoutY="157.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="125.0" text="QUIT" />
+            <Button fx:id="startGameButton" layoutX="474.0" layoutY="56.0" mnemonicParsing="false" onAction="#startGame" prefHeight="47.0" prefWidth="125.0" text="START GAME" />
+            <Button fx:id="exitGameButton" layoutX="474.0" layoutY="157.0" mnemonicParsing="false" onAction="#exitGame" prefHeight="48.0" prefWidth="125.0" text="QUIT" />
          </children>
       </AnchorPane>
-      <Label layoutX="587.0" layoutY="78.0" prefHeight="30.0" prefWidth="109.0" text="Waiting for players" />
+      <Label layoutX="587.0" layoutY="78.0" prefHeight="30.0" prefWidth="109.0" text="Waiting for players" wrapText="true" />
    </children>
 </AnchorPane>
