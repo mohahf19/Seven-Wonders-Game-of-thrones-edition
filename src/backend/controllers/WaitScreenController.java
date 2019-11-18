@@ -1,5 +1,6 @@
 package backend.controllers;
 
+import backend.app.Main;
 import backend.app.fxmlPaths;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -69,6 +70,10 @@ public class WaitScreenController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        if (Main.game.conn.server == null) {
+            startGameButton.setVisible(false);
+        }
+
         WaitScreenController.labels.add( house0);
         WaitScreenController.labels.add( house1);
         WaitScreenController.labels.add( house2);
