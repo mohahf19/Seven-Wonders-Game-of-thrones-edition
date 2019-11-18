@@ -39,7 +39,7 @@
                         <Image url="@../assets/loadingPlayerSmall.jpg" />
                      </image>
                   </ImageView>
-                  <Label prefHeight="58.0" prefWidth="125.0" text="                Label" />
+                  <Label fx:id="house1" prefHeight="58.0" prefWidth="125.0" text="                Label" />
                </children>
             </Pane>
             <Pane prefHeight="335.0" prefWidth="125.0">

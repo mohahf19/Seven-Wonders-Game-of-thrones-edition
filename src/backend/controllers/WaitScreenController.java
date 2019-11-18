@@ -7,9 +7,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-public class WaitScreenController {
+public class WaitScreenController{
     @FXML
     private Button exitGameButton;
 
@@ -17,8 +18,11 @@ public class WaitScreenController {
     private Button startGameButton;
 
     @FXML
+    private Label house1, house2, house3, house4, house5, house6, house7;
+
+    @FXML
     private void startGame(ActionEvent ae){
-        System.out.println("starting dis..");
+        house1.setText( "ABCDDDDD");
     }
 
     @FXML

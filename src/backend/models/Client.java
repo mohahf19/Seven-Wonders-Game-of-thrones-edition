@@ -11,13 +11,13 @@ import java.net.Socket;
 import java.net.SocketException;
 
 public class Client {
-    private String userName;
-    private String serverAddress;
+    public String userName;
+    public String serverAddress;
 
 
-    private Socket socket;
-    private BufferedReader in;
-    private PrintWriter out;
+    public Socket socket;
+    public BufferedReader in;
+    public PrintWriter out;
 
     public Client( String name, String server) {
         userName = name;
