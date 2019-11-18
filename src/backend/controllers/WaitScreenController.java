@@ -37,6 +37,16 @@ public class WaitScreenController implements Initializable {
 
     @FXML
     private void startGame(ActionEvent ae){
+        try{
+            Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow();
+            Parent page = FXMLLoader.load(getClass().getResource(fxmlPaths.playMenu));
+            stage.getScene().setRoot(page);
+            stage.sizeToScene();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
 
     }
 
