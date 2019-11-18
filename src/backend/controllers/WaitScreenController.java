@@ -1,5 +1,6 @@
 package backend.controllers;
 
+import backend.app.Main;
 import backend.app.fxmlPaths;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -39,26 +40,26 @@ public class WaitScreenController implements Initializable {
     }
 
     public static void updateHouses(ArrayList<String> houses){
-        labels.clear();
-        images.clear();
-        labels.add(house0);
-        labels.add(house1);
-        labels.add(house2);
-        labels.add(house3);
-        labels.add(house4);
-        labels.add(house5);
-        labels.add(house6);
-
-        images.add(image0);
-        images.add(image1);
-        images.add(image2);
-        images.add(image3);
-        images.add(image4);
-        images.add(image5);
-        images.add(image6);
-        for(int i = 0; i < houses.size(); i++){
-            labels.get(i).setText(houses.get(i));
-        }
+//        labels.clear();
+//        images.clear();
+//        labels.add(house0);
+//        labels.add(house1);
+//        labels.add(house2);
+//        labels.add(house3);
+//        labels.add(house4);
+//        labels.add(house5);
+//        labels.add(house6);
+//
+//        images.add(image0);
+//        images.add(image1);
+//        images.add(image2);
+//        images.add(image3);
+//        images.add(image4);
+//        images.add(image5);
+//        images.add(image6);
+//        for(int i = 0; i < houses.size(); i++){
+//            labels.get(i).setText(houses.get(i));
+//        }
     }
 
     @FXML
@@ -76,6 +77,8 @@ public class WaitScreenController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        if (Main.game.conn.server == null) {
+            startGameButton.setVisible(false);
+        }
     }
 }
