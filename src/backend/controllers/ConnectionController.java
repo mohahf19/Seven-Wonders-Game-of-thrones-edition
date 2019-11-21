@@ -50,4 +50,13 @@ public class ConnectionController {
             cur.out.println( new Gson().toJson(outOb));
         }
     }
+
+    public void startGameRequest(){
+        ArrayList<ClientThread> threads = this.server.clients;
+        ClientThread cur = threads.get( Main.game.conn.client.id);
+
+        JsonObject outOb = new JsonObject();
+        outOb.addProperty( "op_code", 2);
+        cur.out.println( new Gson().toJson(outOb));
+    }
 }

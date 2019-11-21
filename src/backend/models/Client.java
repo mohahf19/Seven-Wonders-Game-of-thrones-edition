@@ -116,12 +116,7 @@ public class Client {
                         for( String a: temp){
                             houses.add( a);
                         }
-                        Platform.runLater(new Runnable() {
-                            @Override
-                            public void run() {
-                                WaitScreenController.updateHouses( houses);
-                            }
-                        });
+                        WaitScreenController.updateHouses( houses);
                         break;
                     } case 2: { //request game start
                         JsonObject req = new JsonObject();
@@ -131,6 +126,7 @@ public class Client {
                         break;
                     } case 3: { //start game
                         System.out.println( "SERVER SAID: START GAME");
+                        WaitScreenController.showMainScreen();
                         break;
                     }
                     default: {

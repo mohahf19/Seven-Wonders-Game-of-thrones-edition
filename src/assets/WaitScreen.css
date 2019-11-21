@@ -1,0 +1,44 @@
+@font-face {
+    -fx-font-family: 'Calistoga';
+    src: url(https://fonts.googleapis.com/css?family=Calistoga&display=swap);
+}
+
+.label .text {
+    -fx-font: 25px Trajan;
+    -fx-font-family: 'Calistoga', cursive;
+    -fx-text-fill: black;
+    -fx-text-alignment: center;
+    -fx-effect: dropshadow(three-pass-box, black, 50, 0, 0, 0);
+}
+
+#bottomAnchorPane {
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+}
+
+.button {
+    -fx-background-color: transparent;
+}
+
+.button .text {
+    -fx-font: 35px Tahoma;
+    -fx-background-color: transparent;
+    -fx-stroke: black;
+    -fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0);
+    /*-fx-focus-color: white;*/
+}
+
+#startGameButton {
+    -fx-text-fill: #3EE140;
+}
+
+#exitGameButton {
+    -fx-text-fill: white;
+}
+
+#bottomAnchorPane .button:hover .text {
+    -fx-font: 37px Tahoma;
+    -fx-shadow-highlight-color: white;
+    -fx-stroke: black;
+    -fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0);
+    -fx-focus-color: white;
+}
