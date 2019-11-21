@@ -26,6 +26,8 @@ public class Server {
 
     public boolean isReceiving = true;
 
+    public String serverIP="";
+
 
     public Server() {
         allHouses = new ArrayList<>();
@@ -54,14 +56,7 @@ public class Server {
             System.out.println(serverSocket.getInetAddress().getHostName() + ":"
                     + serverSocket.getLocalPort() + " : " + serverSocket.getInetAddress().getHostAddress());
 
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    Alert alert = new Alert(Alert.AlertType.NONE, "Server IP: " + serverSocket.getInetAddress().getHostAddress(), ButtonType.CLOSE);
-                    alert.showAndWait();
-                }
-            });
-
+            serverIP = "" + serverSocket.getInetAddress().getHostAddress();
 
             addCurrentClient( "" + serverSocket.getInetAddress().getHostAddress());
 

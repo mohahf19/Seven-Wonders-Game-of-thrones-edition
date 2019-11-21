@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
@@ -27,10 +28,13 @@ public class WaitScreenController implements Initializable {
     private Button startGameButton;
 
     @FXML
-    private Label house0, house1, house2, house3, house4, house5, house6;
+    private Label house0, house1, house2, house3, house4, house5, house6, ipLabel;
 
     @FXML
     private ImageView image0, image1, image2, image3, image4, image5, image6;
+
+    @FXML
+    private TextField ipText;
 
     public static ArrayList<Label> labels = new ArrayList<>();
 
@@ -100,6 +104,14 @@ public class WaitScreenController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         if (Main.game.conn.server == null) {
             startGameButton.setVisible(false);
+            ipText.setVisible( false);
+            ipLabel.setVisible( false);
+        } else {
+            ipText.setText( "" + Main.game.conn.server.serverIP);
+            ipText.setVisible( true);
+            ipText.setEditable( true);
+            ipText.setDisable( false);
+            ipLabel.setVisible( true);
         }
 
         WaitScreenController.labels.add( house0);

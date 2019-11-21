@@ -1,8 +1,3 @@
-@font-face {
-    -fx-font-family: 'Calistoga';
-    src: url(https://fonts.googleapis.com/css?family=Calistoga&display=swap);
-}
-
 .button {
     -fx-font: 25px Trajan;
     -fx-font-size: 25px;
@@ -19,11 +14,11 @@
 }
 
 .label .text {
-    /*-fx-font: 60px Tahoma;*/
-    -fx-font-family: "Calistoga";
+    -fx-font: 60px Tahoma;
     -fx-font-size: 60px;
     -fx-stroke: black;
     -fx-stroke-type: outside;
+    -fx-font-weight: bolder;
     -fx-effect: dropshadow(three-pass-box, black, 50, 0, 0, 0);
 }
 

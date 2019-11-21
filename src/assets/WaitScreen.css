@@ -1,14 +1,11 @@
-@font-face {
-    -fx-font-family: 'Calistoga';
-    src: url(https://fonts.googleapis.com/css?family=Calistoga&display=swap);
+.label {
+    -fx-font: 20px Tahoma;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow(three-pass-box, black, 50, 0, 0, 10);
 }
 
 .label .text {
-    -fx-font: 25px Trajan;
-    -fx-font-family: 'Calistoga', cursive;
-    -fx-text-fill: black;
     -fx-text-alignment: center;
-    -fx-effect: dropshadow(three-pass-box, black, 50, 0, 0, 0);
 }
 
 #bottomAnchorPane {
@@ -24,6 +21,7 @@
     -fx-background-color: transparent;
     -fx-stroke: black;
     -fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0);
+    -fx-font-weight: bold;
     /*-fx-focus-color: white;*/
 }
 
@@ -41,4 +39,16 @@
     -fx-stroke: black;
     -fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0);
     -fx-focus-color: white;
+    -fx-font-weight: bold;
+}
+
+/*#ipText {*/
+/*    -fx-background-color: transparent;*/
+/*}*/
+
+#ipLabel {
+    -fx-font: 15px Trajan;
+    -fx-font-weight: bolder;
+    -fx-stroke: black;
+    -fx-text-fill: white;
 }
