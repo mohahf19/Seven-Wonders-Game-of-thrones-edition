@@ -72,7 +72,6 @@ public class Server {
                     int index = (int) (Math.random() * allHouses.size());
                     houses.add( allHouses.get( index));
                     allHouses.remove( index);
-                    System.out.println( "clientthread added");
                 }
                 else {
                     PrintWriter out = new PrintWriter(socket.getOutputStream(), true);

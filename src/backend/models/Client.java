@@ -12,6 +12,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.SocketException;
 import java.util.ArrayList;
+import org.json.simple.*;
 
 public class Client {
     public String serverAddress;
@@ -84,7 +85,9 @@ public class Client {
     public void connectClient() {
         try {
 
-            out.println("*connection requested");
+            JSONObject ob = new JSONObject();
+            ob.put( "op_code", 1);
+            out.println( ob.toJSONString());
 
             while (true) {
                 String response = in.readLine();
