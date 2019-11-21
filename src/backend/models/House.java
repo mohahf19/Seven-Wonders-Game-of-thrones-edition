@@ -1,12 +1,18 @@
 package backend.models;
 
 public class House {
-    private int[] resourcesList;
-    private int militaryPoints;
-    private Card[] playedCards;
-    private int gold;
-    private int buff;
-    private int nerf;
+    public int[] resourcesList;
+    public int militaryPoints;
+    public Card[] playedCards;
+    public int gold;
+    public int buff;
+    public int nerf;
+
+    public String name;
+
+    public House( String name){
+        this.name = name;
+    }
 
     public int[] getResourcesList() {
         return resourcesList;

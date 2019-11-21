@@ -2,17 +2,19 @@ package backend.models;
 
 import backend.app.constants;
 import backend.controllers.WaitScreenController;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import javafx.application.Platform;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.SocketException;
 import java.util.ArrayList;
 import org.json.simple.*;
+import org.json.simple.parser.JSONParser;
 
 public class Client {
     public String serverAddress;
@@ -24,8 +26,11 @@ public class Client {
 
     public int id = -1;
 
+    private Gson gson;
+
     public Client( String server) {
         serverAddress = server;
+        gson = new Gson();
     }
     public void startClient(){
         initClient();
@@ -85,33 +90,59 @@ public class Client {
     public void connectClient() {
         try {
 
-            JSONObject ob = new JSONObject();
-            ob.put( "op_code", 1);
-            out.println( ob.toJSONString());
+            JsonObject ob = new JsonObject();
+            ob.addProperty("op_code", 0);
+            out.println( gson.toJson( ob));
 
             while (true) {
                 String response = in.readLine();
-                if( response.charAt(0) == '*'){
-                    id = Integer.parseInt(response.substring( 1));
-                    out.println( "" + id + "gethouses");
-                } else {
-                    String[] temp = response.split( ",");
-                    ArrayList<String> houses = new ArrayList<>();
-                    for( String a: temp){
-                        houses.add( a);
-                    }
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            WaitScreenController.updateHouses( houses);
-                        }
-                    });
+                System.out.println("data received on client: " + response);
 
+                JsonObject res = gson.fromJson( response, JsonObject.class);
+
+                int op = Integer.parseInt( res.get( "op_code").getAsString());
+                switch ( op) {
+                    case 0: { //received player details
+                        Player player = gson.fromJson( "" + res.get( "player").getAsString(), Player.class);
+                        id = player.id;
+                        System.out.println( player.house.name);
+
+                        JsonObject req = new JsonObject();
+                        req.addProperty("op_code", 1);
+                        out.println( gson.toJson( req));
+                        break;
+                    } case 1: { //current id received, request houses
+                        String housesRes = res.get("all_houses").getAsString();
+                        String[] temp = housesRes.split( ",");
+                        ArrayList<String> houses = new ArrayList<>();
+                        for( String a: temp){
+                            houses.add( a);
+                        }
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                WaitScreenController.updateHouses( houses);
+                            }
+                        });
+                        break;
+                    } case 2: { //request game start
+                        JsonObject req = new JsonObject();
+                        req.addProperty("op_code", 2);
+                        out.println( gson.toJson( req));
+
+                        break;
+                    } case 3: { //start game
+                        System.out.println( "SERVER SAID: START GAME");
+                        break;
+                    }
+                    default: {
+                        System.out.println( "Client: Invalid opcode");
+                    }
                 }
-                System.out.println( "Response from server: " + response);
             }
         } catch (Exception e) {
-            System.out.println("Client is dead...");
+            System.out.println("Exception on client");
+            System.out.println( e.getStackTrace()[0].getLineNumber()  + e.toString());
         }
     }
 

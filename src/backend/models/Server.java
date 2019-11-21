@@ -20,10 +20,11 @@ import java.util.LinkedHashMap;
 public class Server {
 
     public ArrayList<ClientThread> clients;
-    public ArrayList<String> houses;
+    public ArrayList<Player> players;
     public ArrayList<String> allHouses;
     public ServerSocket serverSocket;
 
+    public boolean isReceiving = true;
 
 
     public Server() {
@@ -37,7 +38,7 @@ public class Server {
         allHouses.add("Tyrell");
 
         clients = new ArrayList<>();
-        houses = new ArrayList<>();
+        players = new ArrayList<>();
     }
 
 
@@ -65,15 +66,20 @@ public class Server {
             addCurrentClient( "" + serverSocket.getInetAddress().getHostAddress());
 
 
-            while (true ) {
+            while (isReceiving ) {
                 Socket socket = serverSocket.accept();
                 if( clients.size() < 7) {
                     clients.add(new ClientThread(clients.size(), socket));
                     int index = (int) (Math.random() * allHouses.size());
-                    houses.add( allHouses.get( index));
+
+                    Player newPlayer = new Player();
+                    newPlayer.house = new House( allHouses.get( index));
+                    newPlayer.id = players.size();
+                    players.add( newPlayer);
                     allHouses.remove( index);
                 }
                 else {
+                    isReceiving = false;
                     PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
                     out.println( "Player limit reached");
                 }
