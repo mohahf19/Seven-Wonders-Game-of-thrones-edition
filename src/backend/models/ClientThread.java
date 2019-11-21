@@ -11,9 +11,6 @@ import java.util.Map;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 
 public class ClientThread implements Runnable {
@@ -60,12 +57,11 @@ public class ClientThread implements Runnable {
 
                 if( ConnectionController.state == 0){
                     String input = in.readLine();
-                    JSONParser parser = new JSONParser();
-                    JSONObject ob = (JSONObject) parser.parse( input);
-                    System.out.println("data received on server: " + ob.toJSONString());
+                    JsonObject ob =  gson.fromJson( input, JsonObject.class);
+                    System.out.println("data received on server: " + input);
 
 
-                    int op = Integer.parseInt( "" + ob.get( "op_code"));
+                    int op = Integer.parseInt( ob.get( "op_code").getAsString());
                     switch ( op) {
                         case 0: {
                             Player player = Main.game.conn.server.players.get( id);
