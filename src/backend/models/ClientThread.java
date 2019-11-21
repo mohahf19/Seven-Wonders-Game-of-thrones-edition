@@ -63,7 +63,7 @@ public class ClientThread implements Runnable {
 
                     int op = Integer.parseInt( ob.get( "op_code").getAsString());
                     switch ( op) {
-                        case 0: {
+                        case 0: { //client identified
                             Player player = Main.game.conn.server.players.get( id);
                             JsonObject outOb = new JsonObject();
                             outOb.addProperty( "op_code", 0);
@@ -72,10 +72,10 @@ public class ClientThread implements Runnable {
                             out.println( gson.toJson(outOb));
                             break;
                         }
-                        case 1: {
+                        case 1: { //update houses on all clients
                             Main.game.conn.updateHouses();
                             break;
-                        } case 2: {
+                        } case 2: { //start game request
                             Main.game.conn.server.isReceiving = false;
 
                             JsonObject outOb = new JsonObject();
