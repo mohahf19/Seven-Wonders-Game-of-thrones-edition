@@ -13,8 +13,6 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.SocketException;
 import java.util.ArrayList;
-import org.json.simple.*;
-import org.json.simple.parser.JSONParser;
 
 public class Client {
     public String serverAddress;
