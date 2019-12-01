@@ -20,10 +20,13 @@ import java.util.LinkedHashMap;
 public class Server {
 
     public ArrayList<ClientThread> clients;
-    public ArrayList<String> houses;
+    public ArrayList<Player> players;
     public ArrayList<String> allHouses;
     public ServerSocket serverSocket;
 
+    public boolean isReceiving = true;
+
+    public String serverIP="";
 
 
     public Server() {
@@ -37,7 +40,7 @@ public class Server {
         allHouses.add("Tyrell");
 
         clients = new ArrayList<>();
-        houses = new ArrayList<>();
+        players = new ArrayList<>();
     }
 
 
@@ -53,28 +56,25 @@ public class Server {
             System.out.println(serverSocket.getInetAddress().getHostName() + ":"
                     + serverSocket.getLocalPort() + " : " + serverSocket.getInetAddress().getHostAddress());
 
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    Alert alert = new Alert(Alert.AlertType.NONE, "Server IP: " + serverSocket.getInetAddress().getHostAddress(), ButtonType.CLOSE);
-                    alert.showAndWait();
-                }
-            });
-
+            serverIP = "" + serverSocket.getInetAddress().getHostAddress();
 
             addCurrentClient( "" + serverSocket.getInetAddress().getHostAddress());
 
 
-            while (true ) {
+            while (isReceiving ) {
                 Socket socket = serverSocket.accept();
                 if( clients.size() < 7) {
                     clients.add(new ClientThread(clients.size(), socket));
                     int index = (int) (Math.random() * allHouses.size());
-                    houses.add( allHouses.get( index));
+
+                    Player newPlayer = new Player();
+                    newPlayer.house = new House( allHouses.get( index));
+                    newPlayer.id = players.size();
+                    players.add( newPlayer);
                     allHouses.remove( index);
-                    System.out.println( "clientthread added");
                 }
                 else {
+                    isReceiving = false;
                     PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
                     out.println( "Player limit reached");
                 }

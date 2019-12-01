@@ -3,8 +3,12 @@ package backend.controllers;
 import backend.app.Main;
 import backend.models.Client;
 import backend.models.ClientThread;
+import backend.models.House;
 import backend.models.Server;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
+import java.lang.reflect.GenericSignatureFormatError;
 import java.util.ArrayList;
 
 public class ConnectionController {
@@ -33,12 +37,28 @@ public class ConnectionController {
 
         for( int i = 0; i < threads.size(); i++){
             ClientThread cur = threads.get( i);
-            String out = this.server.houses.get(i);
-            for( int j = 0; j < this.server.houses.size(); j++){
+            String out = this.server.players.get(i).house.name;
+            for( int j = 0; j < this.server.players.size(); j++){
                 if( j != i)
-                    out += "," + this.server.houses.get(j);
+                    out += "," + this.server.players.get(j).house.name;
             }
-            cur.out.println( "" + out);
+
+            JsonObject outOb = new JsonObject();
+            outOb.addProperty( "op_code", 1);
+            outOb.addProperty( "all_houses", out);
+
+            cur.out.println( new Gson().toJson(outOb));
+        }
+    }
+
+    public void startGameRequest(){
+        ArrayList<ClientThread> threads = this.server.clients;
+        for( int i = 0; i < threads.size(); i++){
+            ClientThread cur = threads.get( i);
+
+            JsonObject outOb = new JsonObject();
+            outOb.addProperty( "op_code", 2);
+            cur.out.println( new Gson().toJson(outOb));
         }
     }
 }

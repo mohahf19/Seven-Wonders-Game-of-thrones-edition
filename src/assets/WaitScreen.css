@@ -1,0 +1,54 @@
+.label {
+    -fx-font: 20px Tahoma;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow(three-pass-box, black, 50, 0, 0, 10);
+}
+
+.label .text {
+    -fx-text-alignment: center;
+}
+
+#bottomAnchorPane {
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+}
+
+.button {
+    -fx-background-color: transparent;
+}
+
+.button .text {
+    -fx-font: 35px Tahoma;
+    -fx-background-color: transparent;
+    -fx-stroke: black;
+    -fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0);
+    -fx-font-weight: bold;
+    /*-fx-focus-color: white;*/
+}
+
+#startGameButton {
+    -fx-text-fill: #3EE140;
+}
+
+#exitGameButton {
+    -fx-text-fill: white;
+}
+
+#bottomAnchorPane .button:hover .text {
+    -fx-font: 37px Tahoma;
+    -fx-shadow-highlight-color: white;
+    -fx-stroke: black;
+    -fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0);
+    -fx-focus-color: white;
+    -fx-font-weight: bold;
+}
+
+/*#ipText {*/
+/*    -fx-background-color: transparent;*/
+/*}*/
+
+#ipLabel {
+    -fx-font: 15px Trajan;
+    -fx-font-weight: bolder;
+    -fx-stroke: black;
+    -fx-text-fill: white;
+}

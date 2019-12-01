@@ -3,10 +3,12 @@ package backend.models;
 import java.util.ArrayList;
 
 public class Player {
-    private ArrayList<Card> cards;
-    private Card chosenCard;
-    private ArrayList<Player> neighbors;
-    private House house;
+    public int id;
+
+    public ArrayList<Card> cards;
+    public Card chosenCard;
+    public ArrayList<Player> neighbors;
+    public House house;
 
     public int getShieldCount(){
         return house.getMilitaryPoints(); //? do we need shield count in house?

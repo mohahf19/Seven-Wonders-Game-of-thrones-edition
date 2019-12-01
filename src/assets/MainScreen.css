@@ -1,0 +1,28 @@
+.button {
+    -fx-font: 25px Trajan;
+    -fx-font-size: 25px;
+    -fx-text-fill: white;
+    -fx-background-color: transparent;
+    -fx-focus-color: white;
+}
+
+.button:hover .text {
+    -fx-font: 27px Tahoma;
+    -fx-shadow-highlight-color: white;
+    -fx-stroke: white;
+    -fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0);
+}
+
+.label .text {
+    -fx-font: 60px Tahoma;
+    -fx-font-size: 60px;
+    -fx-stroke: black;
+    -fx-stroke-type: outside;
+    -fx-font-weight: bolder;
+    -fx-effect: dropshadow(three-pass-box, black, 50, 0, 0, 0);
+}
+
+.text-field {
+    -fx-border-radius: 100px;
+    /*-fx-background-color: grey;*/
+}

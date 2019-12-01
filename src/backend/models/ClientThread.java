@@ -2,16 +2,17 @@ package backend.models;
 
 import backend.app.Main;
 import backend.controllers.ConnectionController;
-import jdk.nashorn.internal.parser.JSONParser;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
+
 public class ClientThread implements Runnable {
 
 
@@ -23,12 +24,17 @@ public class ClientThread implements Runnable {
 
     private Thread thread;
 
+    private Gson gson;
+
 
     private volatile boolean isRunning = true;
 
 
     public ClientThread( int id, Socket socket) {
         try {
+            gson = new Gson();
+
+
             this.id = id;
             this.socket = socket;
 
@@ -51,21 +57,42 @@ public class ClientThread implements Runnable {
 
                 if( ConnectionController.state == 0){
                     String input = in.readLine();
-                    if( input.charAt( 0) == '*'){
-                        System.out.println("data received on server: " + input);
-                        out.println( "*" + id);
-                    } else {
-                        Main.game.conn.updateHouses();
+                    JsonObject ob =  gson.fromJson( input, JsonObject.class);
+                    System.out.println("data received on server: " + input);
+
+
+                    int op = Integer.parseInt( ob.get( "op_code").getAsString());
+                    switch ( op) {
+                        case 0: { //client identified
+                            Player player = Main.game.conn.server.players.get( id);
+                            JsonObject outOb = new JsonObject();
+                            outOb.addProperty( "op_code", 0);
+                            outOb.addProperty( "player", gson.toJson( player, Player.class));
+
+                            out.println( gson.toJson(outOb));
+                            break;
+                        }
+                        case 1: { //update houses on all clients
+                            Main.game.conn.updateHouses();
+                            break;
+                        } case 2: { //start game request
+                            Main.game.conn.server.isReceiving = false;
+
+                            JsonObject outOb = new JsonObject();
+                            outOb.addProperty( "op_code", 3);
+                            out.println( gson.toJson(outOb));
+                            break;
+                        }
+                        default:
+                            System.out.println( "Invalid opcode");
                     }
                 }
-
-
             }
 
             out.close();
             in.close();
             socket.close();
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
