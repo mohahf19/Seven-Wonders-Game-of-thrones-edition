@@ -4,13 +4,15 @@ import java.util.ArrayList;
 
 public class House {
     public ArrayList<Integer> resourcesList; //1 means no resources
-    public int militaryPoints;
+    public int militaryShields;
     public Card[] playedCards;
     public int coins;
     public int buff;
     public int nerf;
 
     public String name;
+
+
 
     public House(String name){
         this.name = name;
@@ -48,8 +50,6 @@ public class House {
         System.out.println("Printing possible resources:");
         for(int i = 0; i < resourcesList.size(); i++){
             System.out.println("" + i + ": " + factorResources(resourcesList.get(i)));
-
-
         }
         System.out.println();
     }
@@ -70,12 +70,18 @@ public class House {
                 string = string + ", ";
             }
         }
-
         return string;
     }
 
+    private String[] getPlayedStructures(){
+        //TODO Implement this
+        String[] stucts = {"card1", "card2", "card3"};
+        return stucts;
+    }
+
     //returns 0 if can't, 1 if it can be built without trading, 2 if it requires trading
-    public int canBuild(Cost cost){
+    public CostResult canAfford(Cost cost){
+        CostResult result = new CostResult(0,0);
         System.out.println("Required: " + cost.getMoney() + " money and ["
                 + factorResources(cost.getResources()) + "] or " + cost.getPrereq());
 
@@ -83,25 +89,42 @@ public class House {
         boolean canAffordMoney = cost.getMoney() <= coins;
 
         //check cost.getPrereq()
+        String[] availStructs = getPlayedStructures();
+        for(int i = 0; i < availStructs.length; i++){
+            if(cost.getPrereq().equals(availStructs[i])){
+                System.out.println("Can be built because " + availStructs[i] + " is already built.");
+                result.code = 1;
+                return result;
+            }
+        }
+
 
         //checking cost.getResources().
         for(int i = 0; i <resourcesList.size(); i++){
             if (canAffordMoney &&(resourcesList.get(i) % cost.getResources() == 0)){
                 System.out.println("Can build with " + factorResources(resourcesList.get(i)));
-                return 1;
+                pay(cost);
+                result.code = 1;
+                return result;
             } else {
-                //find the remaining wanted resources
+                //TODO find the remaining wanted resources
                 int gcd = gcd(resourcesList.get(i), cost.getResources());
                 int remaining = cost.getResources() / gcd;
 
                 //check if neighbors have it
                 System.out.println("To use [" + factorResources(resourcesList.get(i)) + "], it requires " + countPrimes(remaining)
-                    +" more resource(s) which is/are [" + factorResources(remaining) +"]");
+                    +" more resource(s) which is/are " + remaining +" = [" + factorResources(remaining) +"]");
+                result.set(2, remaining);
+                return result;
             }
         }
 
         //if cant pay, return false
-        return 0;
+        return result;
+    }
+
+    private void pay(Cost cost) {
+        coins = coins - cost.getMoney();
     }
 
     private int countPrimes(int number){
@@ -134,8 +157,8 @@ public class House {
         return resourcesList;
     }
 
-    public int getMilitaryPoints() {
-        return militaryPoints;
+    public int getMilitaryShields() {
+        return militaryShields;
     }
 
     public Card[] getPlayedCards() {
@@ -153,4 +176,6 @@ public class House {
     public int getNerf() {
         return nerf;
     }
+
+
 }

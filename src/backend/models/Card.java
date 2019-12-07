@@ -20,4 +20,8 @@ public class Card {
         for( int i = 0; i < cardFreq.length; i++)
             this.cardFreq[i] = cardFreq[i];
     }
+
+    public Cost getCost() {
+        return cost;
+    }
 }
