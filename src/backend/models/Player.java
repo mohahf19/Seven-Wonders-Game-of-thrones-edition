@@ -2,7 +2,7 @@ package backend.models;
 
 import java.util.ArrayList;
 
-import static jdk.nashorn.internal.objects.Global.print;
+import static backend.app.constants.*;
 
 public class Player {
     public int id;
@@ -28,8 +28,6 @@ public class Player {
         chosenCard = null;
         neighbors = new Neighbors();
         agreements = new TradingAgreements();
-        agreements.right.setCost(17, 10);
-        agreements.right.setCost(13, 5);
     }
 
     //methods
@@ -118,7 +116,7 @@ public class Player {
     private ArrayList<Integer> factorizeResources(int res){
         ArrayList<Integer> result = new ArrayList<>();
 
-        int factors[] = {2, 3, 5, 7, 11, 13, 17};
+        int factors[] = {RES1, RES2, RES3, RES4, RES5, RES6, RES7};
         for(int i = 0; i < factors.length; i++){
             while (res % factors[i] == 0){ //2
                 result.add(factors[i]);

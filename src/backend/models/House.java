@@ -2,6 +2,9 @@ package backend.models;
 
 import java.util.ArrayList;
 
+import static backend.app.constants.*;
+import static backend.models.Numbers.*;
+
 public class House {
     public ArrayList<Integer> resourcesList; //1 means no resources
     public int militaryShields;
@@ -57,13 +60,13 @@ public class House {
     private String factorResources(int res){
         String string = "";
         //7 primes for 7 resources
-        int factors[] = {2, 3, 5, 7, 11, 13, 17};
+        int factors[] = {RES1, RES2, RES3, RES4, RES5, RES6, RES7};
         for(int i = 0; i < factors.length; i++){
             int counter = 0;
-            int tempres = res;
-            while (tempres % factors[i] == 0){
+            //int tempres = res;
+            while (res % factors[i] == 0){
                 counter++;
-                tempres/=factors[i];
+                res/=factors[i];
             }
             string = string + counter;
             if (i != factors.length -1){
@@ -79,7 +82,8 @@ public class House {
         return stucts;
     }
 
-    //returns 0 if can't, 1 if it can be built without trading, 2 if it requires trading
+    //returns 0,- if can't, 1,- if it can be built without trading, 2,remaining
+    // if it requires trading for the remaining resources (using CostResult class)
     public CostResult canAfford(Cost cost){
         CostResult result = new CostResult(0,0);
         System.out.println("Required: " + cost.getMoney() + " money and ["
@@ -107,7 +111,6 @@ public class House {
                 result.code = 1;
                 return result;
             } else {
-                //TODO find the remaining wanted resources
                 int gcd = gcd(resourcesList.get(i), cost.getResources());
                 int remaining = cost.getResources() / gcd;
 
@@ -118,34 +121,11 @@ public class House {
                 return result;
             }
         }
-
-        //if cant pay, return false
         return result;
     }
 
     private void pay(Cost cost) {
         coins = coins - cost.getMoney();
-    }
-
-    private int countPrimes(int number){
-        int counter = 0;
-        int factors[] = {2, 3, 5, 7, 11, 13, 17};
-        for(int i = 0; i < factors.length; i++){
-            while (number % factors[i] == 0){
-                counter++;
-                number/=factors[i];
-            }
-        }
-        return counter;
-    }
-
-    private int gcd(int a, int b){
-        while (b != 0){
-            int temp = b;
-            b = a % b;
-            a = temp;
-        }
-        return a;
     }
 
     public void addCoins(int coins){

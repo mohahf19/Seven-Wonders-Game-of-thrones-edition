@@ -24,4 +24,29 @@ public class Card {
     public Cost getCost() {
         return cost;
     }
+
+    public boolean isResource(){
+        return false;
+    }
+
+    public boolean isMilitary(){
+        return false;
+    }
+
+    public boolean isScience(){
+        return false;
+    }
+
+    public boolean isCivic(){
+        return false;
+    }
+
+    public boolean isCommerce(){
+        return false;
+    }
+
+    public boolean isCrisis(){
+        return false;
+    }
+
 }

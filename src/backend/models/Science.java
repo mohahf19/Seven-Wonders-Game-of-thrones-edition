@@ -12,4 +12,9 @@ public class Science extends Card{
         for(int i = 0; i < type.length; i++)
             this.type[i] = type[i];
     }
+
+    @Override
+    public boolean isScience(){
+        return true;
+    }
 }

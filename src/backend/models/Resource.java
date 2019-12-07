@@ -6,6 +6,7 @@ public class Resource extends Card {
     private int[] resourcesList;
     private String[] type;
 
+
     public Resource(String name, int[] cardFreq, int age, Cost cost,
                     Color color, String imagePath, int[] resourcesList, String[] type){
         super(name, cardFreq, age, cost, color, imagePath);
@@ -17,5 +18,10 @@ public class Resource extends Card {
         this.type = new String[type.length];
         for( int i = 0; i < type.length; i++)
             this.type[i] = type[i];
+    }
+
+    @Override
+    public boolean isResource(){
+        return true;
     }
 }

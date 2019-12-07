@@ -18,4 +18,9 @@ public class Civic extends Card {
     public int getVictoryPoint() {
         return victoryPoint;
     }
+
+    @Override
+    public boolean isCivic(){
+        return true;
+    }
 }

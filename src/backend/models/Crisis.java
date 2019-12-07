@@ -9,4 +9,9 @@ public class Crisis extends Card {
         super(name, cardFreq, age, cost, color, imagePath);
         this.crisisID = crisisID;
     }
+
+    @Override
+    public boolean isCrisis(){
+        return true;
+    }
 }

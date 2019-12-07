@@ -9,4 +9,9 @@ public class Military extends Card{
         super(name, cardFreq, age, cost, color, imagePath);
         this.numberOfShields = numberOfShields;
     }
+
+    @Override
+    public boolean isMilitary(){
+        return true;
+    }
 }
