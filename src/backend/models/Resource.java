@@ -6,7 +6,8 @@ public class Resource extends Card {
     private int[] resourcesList;
     private String[] type;
 
-    public Resource(String name, int[] cardFreq, int age, Cost cost, Color color, String imagePath, int[] resourcesList, String[] type){
+    public Resource(String name, int[] cardFreq, int age, Cost cost,
+                    Color color, String imagePath, int[] resourcesList, String[] type){
         super(name, cardFreq, age, cost, color, imagePath);
 
         this.resourcesList = new int[resourcesList.length];

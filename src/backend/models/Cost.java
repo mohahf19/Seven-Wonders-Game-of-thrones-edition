@@ -2,16 +2,26 @@ package backend.models;
 
 public class Cost {
     private int money;
-    private Card prereq;
-    private int[] resources;
+    private String prereq;
+    //required resource is modeled by a single integer where every integer corresponds to one resource type
+    private int resources;
     
-    public Cost(int money, Card prereq, int[] resources) {
+    public Cost(int money, String prereq, int resources) {
         this.money = money;
         this.prereq = prereq;
 
-        this.resources = new int[resources.length];
-        for( int i = 0; i < resources.length; i++)
-            this.resources[i] = resources[i];
+        this.resources = resources;
     }
 
+    public int getMoney() {
+        return money;
+    }
+
+    public String getPrereq() {
+        return prereq;
+    }
+
+    public int getResources(){
+        return resources;
+    }
 }

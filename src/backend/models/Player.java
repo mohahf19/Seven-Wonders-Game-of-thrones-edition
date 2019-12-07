@@ -13,20 +13,19 @@ public class Player {
     public int getShieldCount(){
         return house.getMilitaryPoints(); //? do we need shield count in house?
     }
-    public int[] getResources(){
+    public ArrayList<Integer> getResources(){
         return house.getResourcesList();
     }
 
     public int getCoins(){
-        return house.getGold();
+        return house.getCoins();
     }
 
     public ArrayList<Card> getPlayedScience(){
         Card[] playedCards = house.getPlayedCards();
         ArrayList<Card> playedScience;
         playedScience = new ArrayList<Card>();
-        for(int i = 0; i < playedCards.length; i++)
-        {
+        for(int i = 0; i < playedCards.length; i++) {
             if( playedCards[i].color.toString() == "green" )
                 playedScience.add(playedCards[i]);
         }

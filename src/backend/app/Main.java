@@ -3,11 +3,15 @@ package backend.app;
 import backend.app.fxmlPaths;
 import backend.controllers.ConnectionController;
 import backend.controllers.GameController;
+import backend.models.Cost;
+import backend.models.House;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
 
 
 public class Main extends Application {
@@ -16,7 +20,7 @@ public class Main extends Application {
     public static GameController game;
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
 
         game = new GameController();
 
@@ -26,7 +30,6 @@ public class Main extends Application {
         primaryStage.setTitle("Seven Houses");
         primaryStage.setScene(new Scene(root, 1080, 760));
         primaryStage.show();
-
 
 
     }
