@@ -24,7 +24,7 @@ public class Main extends Application {
         //sets up the stage
         Parent root = FXMLLoader.load(getClass().getResource(fxmlPaths.mainMenu));
         primaryStage.setTitle("Seven Houses");
-        primaryStage.setScene(new Scene(root, 1280, 900));
+        primaryStage.setScene(new Scene(root, 1440, 900));
         primaryStage.show();
 
     }
