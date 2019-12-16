@@ -4,24 +4,24 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="/assets/PlayScreen.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="backend.controllers.PlayScreenController">
+<AnchorPane fx:id="parentPane" prefHeight="400.0" prefWidth="600.0" stylesheets="/assets/PlayScreen.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="backend.controllers.PlayScreenController">
    <children>
       <ImageView fitHeight="760.0" fitWidth="1080.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../assets/playscreen.jpeg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="120.0" layoutX="145.0" layoutY="582.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="card1" fitHeight="150.0" fitWidth="120.0" layoutX="145.0" layoutY="582.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Lumberyard.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="120.0" layoutX="258.0" layoutY="582.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="card2" fitHeight="150.0" fitWidth="120.0" layoutX="258.0" layoutY="582.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Lumberyard.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="120.0" layoutX="371.0" layoutY="582.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="card3" fitHeight="150.0" fitWidth="120.0" layoutX="371.0" layoutY="582.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Lumberyard.jpg" />
          </image>
