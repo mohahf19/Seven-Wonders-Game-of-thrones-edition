@@ -1,9 +1,7 @@
 package backend.app;
 
-import backend.controllers.GameController;
-import backend.models.Cost;
-import backend.models.House;
-import backend.models.Player;
+import comm.GameEngine;
+import comm.ServerController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,12 +12,13 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     public static Stage window;
-    public static GameController game;
+
+    public static int state = 0; //0 for client, 1 for server;
+    public static ServerController serverController = null;
+    public static GameEngine gameEngine = null;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
-        game = new GameController();
 
         window = primaryStage;
         //sets up the stage
@@ -27,6 +26,20 @@ public class Main extends Application {
         primaryStage.setTitle("Seven Houses");
         primaryStage.setScene(new Scene(root, 1080, 760));
         primaryStage.show();
+
+    }
+
+    public static void initServer(){
+        serverController = new ServerController();
+        gameEngine = new GameEngine();
+        state = 1;
+        serverController.initServer();
+    }
+    public static void initClient( String ip){
+        gameEngine = new GameEngine();
+        serverController = null;
+        state = 0;
+        gameEngine.initClient( "" + ip);
 
     }
 

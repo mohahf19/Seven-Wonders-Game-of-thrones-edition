@@ -1,12 +1,10 @@
-package backend.models;
+package comm;
 
 import backend.app.Main;
 import backend.app.constants;
-import backend.controllers.ConnectionController;
-import backend.controllers.WaitScreenController;
-import javafx.application.Platform;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
+import backend.models.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,39 +12,26 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 
-public class Server {
+public class GameHost {
+    public ServerController serverController;
 
     public ArrayList<ClientThread> clients;
-    public ArrayList<Player> players;
-    public ArrayList<String> allHouses;
     public ServerSocket serverSocket;
-
     public boolean isReceiving = true;
-
     public String serverIP="";
+    private Gson gson;
 
-
-    public Server() {
-        allHouses = new ArrayList<>();
-        allHouses.add("Lannister");
-        allHouses.add("Stark");
-        allHouses.add("White Walker");
-        allHouses.add("Baratheon");
-        allHouses.add("Targaryen");
-        allHouses.add("Greyjoy");
-        allHouses.add("Tyrell");
-
+    public GameHost( ServerController controller){
+        this.serverController = controller;
+        gson = new Gson();
         clients = new ArrayList<>();
-        players = new ArrayList<>();
     }
+
 
 
     public void startServer() {
         String port = constants.PORT_NO;
-
         try {
 
             int portNo = Integer.valueOf(port);
@@ -64,14 +49,10 @@ public class Server {
             while (isReceiving ) {
                 Socket socket = serverSocket.accept();
                 if( clients.size() < 7) {
-                    clients.add(new ClientThread(clients.size(), socket));
-                    int index = (int) (Math.random() * allHouses.size());
+                    clients.add(new ClientThread(clients.size(), socket, this));
 
-                    Player newPlayer = new Player();
-                    newPlayer.house = new House( allHouses.get( index));
-                    newPlayer.id = players.size();
-                    players.add( newPlayer);
-                    allHouses.remove( index);
+                    serverController.initHouse();
+
                 }
                 else {
                     isReceiving = false;
@@ -88,10 +69,47 @@ public class Server {
 
     public void addCurrentClient( String ip) {
         (new Thread(() -> {
-            Main.game.conn.client = new Client( ip);
-            Main.game.conn.client.startClient();
+            Main.gameEngine.client = new GameClient( ip, Main.gameEngine);
+            Main.gameEngine.client.startClient();
         })).start();
-        (new Thread(() -> Main.game.conn.client = new Client( ip))).start();
     }
+
+    public void sendRequest( int id, JsonObject request){
+        this.clients.get( id).sendRequestToClient( request);
+    }
+
+    public void receiveRequest( int id, JsonObject request){
+        int op = Integer.parseInt( request.get( "op_code").getAsString());
+        switch ( op) {
+            case 0: { //client identified
+                Player player = serverController.players.get( id);
+
+
+                JsonObject outOb = new JsonObject();
+                outOb.addProperty( "op_code", 0);
+                outOb.addProperty( "player", gson.toJson( player, Player.class));
+
+                sendRequest( id, outOb);
+
+                break;
+            }
+            case 1: { //update houses on all clients
+                serverController.updateHouses();
+                break;
+            } case 2: { //start game request
+                isReceiving = false;
+
+                JsonObject outOb = new JsonObject();
+                outOb.addProperty( "op_code", 3);
+
+                sendRequest( id, outOb);
+
+                break;
+            }
+            default:
+                System.out.println( "Invalid opcode");
+        }
+    }
+
 
 }

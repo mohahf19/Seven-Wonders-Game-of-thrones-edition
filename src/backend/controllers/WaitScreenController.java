@@ -42,7 +42,7 @@ public class WaitScreenController implements Initializable {
 
     @FXML
     private void startGame(){
-        Main.game.conn.startGameRequest();
+        Main.serverController.startGameRequest();
     }
 
     public static void showMainScreen(){
@@ -102,12 +102,12 @@ public class WaitScreenController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        if (Main.game.conn.server == null) {
+        if (Main.serverController.host == null) {
             startGameButton.setVisible(false);
             ipText.setVisible( false);
             ipLabel.setVisible( false);
         } else {
-            ipText.setText( "" + Main.game.conn.server.serverIP);
+            ipText.setText( "" + Main.serverController.host.serverIP);
             ipText.setVisible( true);
             ipText.setEditable( true);
             ipText.setDisable( false);

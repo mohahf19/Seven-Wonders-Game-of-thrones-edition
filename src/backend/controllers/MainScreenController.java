@@ -52,7 +52,7 @@ public class MainScreenController implements Initializable  {
 //        }
         try {
 
-            Main.game.conn.initServer();
+            Main.initServer();
 
             //AnchorPane pane = FXMLLoader.load(getClass().getResource(fxmlPaths.waitMenu));
             //menuParent.getChildren().setAll(pane);
@@ -78,7 +78,7 @@ public class MainScreenController implements Initializable  {
             return;
         } else{
             String ip = IPTextField.getText();
-            Main.game.conn.initClient( ip);
+            Main.initClient( ip);
 
             try {
                 Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow();
