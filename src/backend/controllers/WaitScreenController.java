@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -57,7 +58,8 @@ public class WaitScreenController implements Initializable {
                 try{
                     Stage stage = (Stage) Main.window;
                     Parent page = FXMLLoader.load(getClass().getResource(fxmlPaths.playMenu));
-                    stage.getScene().setRoot(page);
+                    //stage.getScene().setRoot(page);
+                    stage.setScene(new Scene(Main.window, 1280, 900));
                     stage.sizeToScene();
                 }catch (Exception e){
                     e.printStackTrace();
