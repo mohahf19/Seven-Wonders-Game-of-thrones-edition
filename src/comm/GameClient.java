@@ -1,22 +1,24 @@
-package backend.models;
+package comm;
 
 import backend.app.constants;
 import backend.controllers.WaitScreenController;
+import backend.models.Player;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import javafx.application.Platform;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.SocketException;
 import java.util.ArrayList;
 
-public class Client {
-    public String serverAddress;
+public class GameClient {
+    public GameEngine engine;
 
+    public String serverAddress;
 
     public Socket socket;
     public BufferedReader in;
@@ -26,7 +28,8 @@ public class Client {
 
     private Gson gson;
 
-    public Client( String server) {
+    public GameClient( String server, GameEngine engine) {
+        this.engine = engine;
         serverAddress = server;
         gson = new Gson();
     }
@@ -139,5 +142,4 @@ public class Client {
             System.out.println( e.getStackTrace()[0].getLineNumber()  + e.toString());
         }
     }
-
 }
