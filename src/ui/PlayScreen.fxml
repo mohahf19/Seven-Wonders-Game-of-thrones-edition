@@ -1,82 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 
-<AnchorPane maxHeight="900.0" maxWidth="1280.0" minHeight="900.0" minWidth="1280.0" prefHeight="900.0" prefWidth="1280.0" stylesheets="/assets/PlayScreen.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="backend.controllers.PlayScreenController">
+<AnchorPane fx:id="parentPane" maxHeight="900.0" maxWidth="1280.0" minHeight="900.0" minWidth="1280.0" prefHeight="900.0" prefWidth="1280.0" stylesheets="/assets/PlayScreen.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="backend.controllers.PlayScreenController">
    <children>
-      <AnchorPane fx:id="bottomAnchorPS" layoutY="672.0" prefHeight="231.0" prefWidth="1285.0" visible="false">
-         <children>
-            <AnchorPane layoutY="47.0" prefHeight="144.0" prefWidth="121.0" visible="false">
-               <children>
-                  <ImageView fitHeight="144.0" fitWidth="65.0" layoutX="57.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="77.0" fitWidth="49.0" layoutX="4.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="61.0" fitWidth="49.0" layoutX="4.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true" />
-               </children>
-            </AnchorPane>
-            <ImageView fitHeight="71.0" fitWidth="65.0" layoutX="1016.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true" />
-         </children>
-      </AnchorPane>
       <ImageView fitHeight="760.0" fitWidth="1080.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../assets/playscreen.jpeg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="200.0" layoutX="155.0" layoutY="689.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="card1" fitHeight="200.0" layoutX="155.0" layoutY="689.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Lumberyard.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="200.0" layoutX="310.0" layoutY="688.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="card2" fitHeight="200.0" layoutX="310.0" layoutY="688.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Lumberyard.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="200.0" layoutX="466.0" layoutY="688.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView   fx:id="card3" fitHeight="200.0" layoutX="466.0" layoutY="688.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Lumberyard.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="200.0" layoutX="623.0" layoutY="688.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="150.0" fitWidth="120.0" layoutX="484.0" layoutY="582.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Lumberyard.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="200.0" layoutX="783.0" layoutY="688.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="150.0" fitWidth="120.0" layoutX="597.0" layoutY="582.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Lumberyard.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="200.0" layoutX="940.0" layoutY="688.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="150.0" fitWidth="120.0" layoutX="710.0" layoutY="582.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Lumberyard.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="200.0" layoutX="1100.0" layoutY="688.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="150.0" fitWidth="120.0" layoutX="823.0" layoutY="582.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Lumberyard.jpg" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="72.0" layoutY="495.0" prefHeight="60.0" prefWidth="312.0" />
-      <AnchorPane layoutX="391.0" layoutY="495.0" prefHeight="60.0" prefWidth="312.0" />
-      <AnchorPane layoutX="710.0" layoutY="495.0" prefHeight="60.0" prefWidth="312.0" />
-      <AnchorPane prefHeight="98.0" prefWidth="1080.0">
-         <children>
-            <HBox layoutY="-1.0" prefHeight="101.0" prefWidth="1081.0">
-               <children>
-                  <ImageView fitHeight="100.0" fitWidth="179.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="100.0" fitWidth="179.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="100.0" fitWidth="179.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="100.0" fitWidth="179.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="100.0" fitWidth="179.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="100.0" fitWidth="179.0" pickOnBounds="true" preserveRatio="true" />
-               </children>
-            </HBox>
-         </children>
-      </AnchorPane>
-      <ListView fixedCellSize="10.0" layoutX="81.0" layoutY="125.0" prefHeight="200.0" prefWidth="200.0" />
    </children>
 </AnchorPane>
