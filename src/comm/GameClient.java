@@ -1,8 +1,8 @@
 package comm;
 
 import backend.app.constants;
+import backend.controllers.GameEngine;
 import backend.controllers.WaitScreenController;
-import backend.models.House;
 import backend.models.Player;
 import backend.models.Scoreboard;
 import com.google.gson.Gson;

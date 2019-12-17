@@ -1,8 +1,9 @@
-package comm;
+package backend.controllers;
 
 import backend.controllers.PlayScreenController;
 import backend.models.Player;
 import backend.models.Scoreboard;
+import comm.GameClient;
 
 import java.util.ArrayList;
 
