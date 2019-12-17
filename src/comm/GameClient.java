@@ -6,6 +6,7 @@ import backend.models.Player;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -87,10 +88,18 @@ public class GameClient {
         }
     }
 
+    public void acknowledgeRequest(){
+        JsonObject outOb = new JsonObject();
+        outOb.addProperty( "op_code", -1);
+        outOb.addProperty( "player_id", id);
+        out.println( gson.toJson( outOb));
+    }
+
 
     public void connectClient() {
         try {
 
+            //initiate relation with server
             JsonObject ob = new JsonObject();
             ob.addProperty("op_code", 0);
             out.println( gson.toJson( ob));
@@ -103,15 +112,22 @@ public class GameClient {
 
                 int op = Integer.parseInt( res.get( "op_code").getAsString());
                 switch ( op) {
+                    case -1: { //error from server
+                        String error = res.get("error").getAsString();
+                        JOptionPane.showMessageDialog(null, "" + error, "Error", JOptionPane.INFORMATION_MESSAGE);
+                        break;
+                    }
                     case 0: { //received player details
-                        Player player = gson.fromJson( "" + res.get( "player").getAsString(), Player.class);
-                        id = player.id;
-                        System.out.println( player.house.name);
+                        id = Integer.parseInt( res.get( "player_id").getAsString()); //gson.fromJson( "" + res.get( "player").getAsString(), Player.class);
+                        //id = player.id;
+                        //System.out.println( player.house.name);
 
+                        //request all players
                         JsonObject req = new JsonObject();
                         req.addProperty("op_code", 1);
                         out.println( gson.toJson( req));
                         break;
+
                     } case 1: { //current id received, request houses
                         String housesRes = res.get("all_houses").getAsString();
                         String[] temp = housesRes.split( ",");
@@ -121,15 +137,10 @@ public class GameClient {
                         }
                         WaitScreenController.updateHouses( houses);
                         break;
-                    } case 2: { //request game start
-                        JsonObject req = new JsonObject();
-                        req.addProperty("op_code", 2);
-                        out.println( gson.toJson( req));
-
-                        break;
-                    } case 3: { //start game
+                    } case 2: { //start game
                         System.out.println( "SERVER SAID: START GAME");
                         WaitScreenController.showMainScreen();
+
                         break;
                     }
                     default: {

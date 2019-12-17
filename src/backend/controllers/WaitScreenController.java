@@ -44,7 +44,7 @@ public class WaitScreenController implements Initializable {
 
     @FXML
     private void startGame(){
-        Main.serverController.startGameRequest();
+        Main.serverController.startGame();
     }
 
     public static void showMainScreen(){

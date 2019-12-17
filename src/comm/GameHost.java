@@ -12,6 +12,8 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Queue;
 
 public class GameHost {
     public ServerController serverController;
@@ -21,6 +23,7 @@ public class GameHost {
     public boolean isReceiving = true;
     public String serverIP="";
     private Gson gson;
+
 
     public GameHost( ServerController controller){
         this.serverController = controller;
@@ -57,7 +60,11 @@ public class GameHost {
                 else {
                     isReceiving = false;
                     PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-                    out.println( "Player limit reached");
+
+                    JsonObject outOb = new JsonObject();
+                    outOb.addProperty( "op_code", -1);
+                    outOb.addProperty( "error", "Player limit reached");
+                    out.println( gson.toJson(outOb));
                 }
             }
         } catch (IOException e) {
@@ -74,6 +81,14 @@ public class GameHost {
         })).start();
     }
 
+
+    public void sendError( int id, String error){
+        JsonObject outOb = new JsonObject();
+        outOb.addProperty( "op_code", -1);
+        outOb.addProperty( "error", error);
+        sendRequest( id, outOb);
+    }
+
     public void sendRequest( int id, JsonObject request){
         this.clients.get( id).sendRequestToClient( request);
     }
@@ -81,29 +96,23 @@ public class GameHost {
     public void receiveRequest( int id, JsonObject request){
         int op = Integer.parseInt( request.get( "op_code").getAsString());
         switch ( op) {
+            case -1: {
+                //request acknowledged
+                break;
+            }
             case 0: { //client identified
-                Player player = serverController.players.get( id);
-
+                //Player player = serverController.players.get( id);
 
                 JsonObject outOb = new JsonObject();
                 outOb.addProperty( "op_code", 0);
-                outOb.addProperty( "player", gson.toJson( player, Player.class));
+                outOb.addProperty( "player_id", id);
+                //outOb.addProperty( "player", gson.toJson( player, Player.class));
 
                 sendRequest( id, outOb);
-
                 break;
             }
             case 1: { //update houses on all clients
                 serverController.updateHouses();
-                break;
-            } case 2: { //start game request
-                isReceiving = false;
-
-                JsonObject outOb = new JsonObject();
-                outOb.addProperty( "op_code", 3);
-
-                sendRequest( id, outOb);
-
                 break;
             }
             default:

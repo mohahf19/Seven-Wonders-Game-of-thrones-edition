@@ -48,10 +48,8 @@ public class ServerController {
     }
 
     public void updateHouses(){
-        ArrayList<ClientThread> threads = this.host.clients;
 
-        for( int i = 0; i < threads.size(); i++){
-            ClientThread cur = threads.get( i);
+        for( int i = 0; i < host.clients.size(); i++){
             String out = this.players.get(i).house.name;
             for( int j = 0; j < this.players.size(); j++){
                 if( j != i)
@@ -62,18 +60,18 @@ public class ServerController {
             outOb.addProperty( "op_code", 1);
             outOb.addProperty( "all_houses", out);
 
-            cur.out.println( new Gson().toJson(outOb));
+            host.sendRequest( i, outOb);
         }
     }
 
-    public void startGameRequest(){
-        ArrayList<ClientThread> threads = this.host.clients;
-        for( int i = 0; i < threads.size(); i++){
-            ClientThread cur = threads.get( i);
+    public void startGame(){
+        host.isReceiving = false;
+        for( int i = 0; i < host.clients.size(); i++){
 
             JsonObject outOb = new JsonObject();
             outOb.addProperty( "op_code", 2);
-            cur.out.println( new Gson().toJson(outOb));
+
+            host.sendRequest( i, outOb);
         }
     }
 }
