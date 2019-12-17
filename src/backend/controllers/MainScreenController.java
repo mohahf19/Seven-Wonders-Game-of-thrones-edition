@@ -40,11 +40,6 @@ public class MainScreenController implements Initializable  {
     }
 
     @FXML
-    private void initialize() {
-        soundButton.addEventHandler(MouseEvent.MOUSE_ENTERED, new soundButtonHoverListener());
-    }
-
-    @FXML
     private void startGame(ActionEvent ae){
         System.out.println("GAME STARTED");
 //        Alert alert = new Alert(Alert.AlertType.NONE, "GAME IS STARTING", ButtonType.CLOSE);
@@ -99,25 +94,6 @@ public class MainScreenController implements Initializable  {
             }
 
 
-        }
-    }
-
-    public class soundButtonHoverListener implements EventHandler<MouseEvent> {
-        @Override
-        public void handle(MouseEvent event) {
-
-            event.consume();
-            try {
-                hover();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        public void hover() throws IOException {
-            Image image = new Image("/src/assets/volumeHover.jpg", true);
-            System.out.println("HOVERVVEER");
-            soundButton.setImage(image);
         }
     }
 }

@@ -6,3 +6,8 @@
     -fx-background-color: #0c0d11;
     -border-radius: 10px;
 }
+
+/*#soundButton:hover {*/
+/*    -fx-graphic: "@..\assets/volumeHover";*/
+
+/*}*/

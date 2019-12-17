@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
@@ -27,7 +28,7 @@ import java.util.ResourceBundle;
 
 public class PlayScreenController implements Initializable {
     @FXML
-    private ImageView card1, card2, card3;
+    private ImageView card1, card2, card3, soundButton;
 
     @FXML
     private AnchorPane parentPane;
@@ -63,5 +64,40 @@ public class PlayScreenController implements Initializable {
                 }
             }
         });
+
+        soundButton.addEventHandler(MouseEvent.MOUSE_ENTERED, new soundMouseHoverListener());
+        soundButton.addEventHandler(MouseEvent.MOUSE_EXITED, new soundMouseExitListener());
+    }
+
+    public class soundMouseHoverListener implements EventHandler<MouseEvent> {
+        @Override
+        public void handle(MouseEvent event) {
+            event.consume();
+            try {
+                hover();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        public void hover() throws IOException {
+            Image image = new Image("assets/volumeHover.jpg", true);
+            soundButton.setImage(image);
+        }
+    }
+
+    public class soundMouseExitListener implements EventHandler<MouseEvent> {
+        @Override
+        public void handle(MouseEvent event) {
+            event.consume();
+            try {
+                hover();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        public void hover() throws IOException {
+            Image image = new Image("assets/volume.jpg", true);
+            soundButton.setImage(image);
+        }
     }
 }
