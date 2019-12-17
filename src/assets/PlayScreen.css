@@ -1,3 +1,8 @@
 #bottomAnchorPS {
     -fx-background-color: rgba(0, 0, 0, 0.5);
 }
+
+#leftContainer {
+    -fx-background-color: #0c0d11;
+    -border-radius: 10px;
+}
