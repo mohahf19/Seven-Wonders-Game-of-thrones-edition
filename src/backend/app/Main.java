@@ -1,6 +1,6 @@
 package backend.app;
 
-import comm.GameEngine;
+import backend.controllers.GameEngine;
 import comm.ServerController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

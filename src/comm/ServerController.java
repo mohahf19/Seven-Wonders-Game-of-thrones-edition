@@ -2,8 +2,10 @@ package comm;
 
 import backend.models.House;
 import backend.models.Player;
+import backend.models.Scoreboard;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.google.gson.internal.$Gson$Preconditions;
 
 import java.util.ArrayList;
 
@@ -14,7 +16,12 @@ public class ServerController {
     public ArrayList<Player> players;
     public ArrayList<String> allHouses;
 
+    public Scoreboard scoreboard;
+
+    private Gson gson;
+
     public ServerController(){
+        gson = new Gson();
         initHouses();
     }
 
@@ -47,24 +54,43 @@ public class ServerController {
         allHouses.remove( index);
     }
 
-    public void updateHouses(){
-
+    public void sendHouseJoined(){
         for( int i = 0; i < host.clients.size(); i++){
-            String out = this.players.get(i).house.name;
-            for( int j = 0; j < this.players.size(); j++){
-                if( j != i)
-                    out += "," + this.players.get(j).house.name;
-            }
 
             JsonObject outOb = new JsonObject();
             outOb.addProperty( "op_code", 1);
-            outOb.addProperty( "all_houses", out);
+            outOb.addProperty( "all_players", gson.toJson(this.players));
+
+            host.sendRequest( i, outOb);
+        }
+    }
+
+    public void sendHouses(){
+        for( int i = 0; i < host.clients.size(); i++){
+
+            JsonObject outOb = new JsonObject();
+            outOb.addProperty( "op_code", 3);
+            outOb.addProperty( "all_players", gson.toJson(this.players));
+
+            host.sendRequest( i, outOb);
+        }
+    }
+
+    public void sendScoreboard(){
+        for( int i = 0; i < host.clients.size(); i++){
+
+            JsonObject outOb = new JsonObject();
+            outOb.addProperty( "op_code", 4);
+            outOb.addProperty( "scoreboard", gson.toJson(this.scoreboard));
 
             host.sendRequest( i, outOb);
         }
     }
 
     public void startGame(){
+        if( !host.requestsAcknowledged())
+            return;
+
         host.isReceiving = false;
         for( int i = 0; i < host.clients.size(); i++){
 
