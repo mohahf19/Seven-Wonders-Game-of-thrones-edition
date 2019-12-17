@@ -124,8 +124,8 @@ public class GameHost {
                 sendRequest( id, outOb);
                 break;
             }
-            case 1: { //update houses on all clients
-                serverController.updateHouses();
+            case 1: { //update players on all clients
+                serverController.sendHouseJoined();
                 break;
             }
             default:

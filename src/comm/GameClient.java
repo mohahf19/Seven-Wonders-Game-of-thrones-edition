@@ -2,19 +2,24 @@ package comm;
 
 import backend.app.constants;
 import backend.controllers.WaitScreenController;
+import backend.models.House;
 import backend.models.Player;
+import backend.models.Scoreboard;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 
 import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.lang.reflect.Type;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.SocketException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class GameClient {
     public GameEngine engine;
@@ -120,19 +125,22 @@ public class GameClient {
                         break;
                     }
                     case 0: { //received player details
-                        id = Integer.parseInt( res.get( "player_id").getAsString()); //gson.fromJson( "" + res.get( "player").getAsString(), Player.class);
+                        id = Integer.parseInt( res.get( "player_id").getAsString());
 
                         JsonObject req = new JsonObject();
                         req.addProperty("op_code", 1);
                         out.println( gson.toJson( req));
                         break;
 
-                    } case 1: { //current id received, request houses
-                        String housesRes = res.get("all_houses").getAsString();
-                        String[] temp = housesRes.split( ",");
+                    } case 1: { //receive players first time
+                        Type playersListType = new TypeToken<List<Player>>() {}.getType();
+                        ArrayList<Player> players = gson.fromJson( res.get("all_players").getAsString(), playersListType );
+                        engine.players = players;
+                        System.out.println( "Houses updated: " + players.size());
+
                         ArrayList<String> houses = new ArrayList<>();
-                        for( String a: temp){
-                            houses.add( a);
+                        for( Player a: engine.players){
+                            houses.add( a.house.name);
                         }
                         WaitScreenController.updateHouses( houses);
 
@@ -141,6 +149,19 @@ public class GameClient {
                     } case 2: { //start game
                         System.out.println( "SERVER SAID: START GAME");
                         WaitScreenController.showMainScreen();
+                        acknowledgeRequest();
+                        break;
+                    } case 3: { //update players
+                        Type playersListType = new TypeToken<List<Player>>() {}.getType();
+                        ArrayList<Player> players = gson.fromJson( res.get("all_players").getAsString(), playersListType );
+                        engine.players = players;
+
+                        acknowledgeRequest();
+                        break;
+                    } case 4: {
+                        Scoreboard scoreboard = gson.fromJson( res.get("all_players").getAsString(), Scoreboard.class);
+                        engine.scoreboard = scoreboard;
+
                         acknowledgeRequest();
                         break;
                     }

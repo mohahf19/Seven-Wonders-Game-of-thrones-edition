@@ -1,7 +1,16 @@
 package comm;
 
+import backend.controllers.PlayScreenController;
+import backend.models.Player;
+import backend.models.Scoreboard;
+
+import java.util.ArrayList;
+
 public class GameEngine {
     public GameClient client;
+
+    public ArrayList<Player> players;
+    public Scoreboard scoreboard;
 
 
     public void initClient( String ip){
