@@ -115,14 +115,13 @@ public class GameClient {
                     case -1: { //error from server
                         String error = res.get("error").getAsString();
                         JOptionPane.showMessageDialog(null, "" + error, "Error", JOptionPane.INFORMATION_MESSAGE);
+
+                        acknowledgeRequest();
                         break;
                     }
                     case 0: { //received player details
                         id = Integer.parseInt( res.get( "player_id").getAsString()); //gson.fromJson( "" + res.get( "player").getAsString(), Player.class);
-                        //id = player.id;
-                        //System.out.println( player.house.name);
 
-                        //request all players
                         JsonObject req = new JsonObject();
                         req.addProperty("op_code", 1);
                         out.println( gson.toJson( req));
@@ -136,11 +135,13 @@ public class GameClient {
                             houses.add( a);
                         }
                         WaitScreenController.updateHouses( houses);
+
+                        acknowledgeRequest();
                         break;
                     } case 2: { //start game
                         System.out.println( "SERVER SAID: START GAME");
                         WaitScreenController.showMainScreen();
-
+                        acknowledgeRequest();
                         break;
                     }
                     default: {

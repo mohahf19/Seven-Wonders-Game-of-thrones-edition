@@ -65,6 +65,9 @@ public class ServerController {
     }
 
     public void startGame(){
+        if( !host.requestsAcknowledged())
+            return;
+
         host.isReceiving = false;
         for( int i = 0; i < host.clients.size(); i++){
 

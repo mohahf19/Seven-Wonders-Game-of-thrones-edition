@@ -5,7 +5,9 @@ import backend.app.constants;
 import backend.models.*;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 
+import java.awt.image.ImageProducer;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.InetAddress;
@@ -24,6 +26,7 @@ public class GameHost {
     public String serverIP="";
     private Gson gson;
 
+    private HashMap<Integer, Integer> requests = new HashMap<>();
 
     public GameHost( ServerController controller){
         this.serverController = controller;
@@ -90,14 +93,24 @@ public class GameHost {
     }
 
     public void sendRequest( int id, JsonObject request){
+        requests.put( id, 1);
         this.clients.get( id).sendRequestToClient( request);
     }
 
+    public boolean requestsAcknowledged(){
+        if( requests.isEmpty())
+            return true;
+        return false;
+    }
+
     public void receiveRequest( int id, JsonObject request){
+        if( requests.containsKey( id))
+            requests.remove( id);
+
         int op = Integer.parseInt( request.get( "op_code").getAsString());
         switch ( op) {
             case -1: {
-                //request acknowledged
+                System.out.println( "Request acknowledged");
                 break;
             }
             case 0: { //client identified
