@@ -92,7 +92,7 @@ public class CardView extends Pane {
         chain1Label = new Label(card.chain1);
         chain2Label = new Label(card.chain2);
         prereqHBox = new HBox();
-        fillPreReq(card.cost.getResources(), card.cost.getMoney());
+        fillPreReq(card.cost.getResources(), card.cost.getCoins());
 
         addChildren();
 

@@ -1,20 +1,19 @@
 package backend.models;
 
 public class Cost {
-    private int money;
+    private int coins;
     private String prereq;
     //required resource is modeled by a single integer where every integer corresponds to one resource type
     private int resources;
     
     public Cost(int money, String prereq, int resources) {
-        this.money = money;
+        this.coins = money;
         this.prereq = prereq;
-
         this.resources = resources;
     }
 
-    public int getMoney() {
-        return money;
+    public int getCoins() {
+        return coins;
     }
 
     public String getPrereq() {
