@@ -7,7 +7,7 @@
     -border-radius: 10px;
 }
 
-/*#soundButton:hover {*/
-/*    -fx-graphic: "@..\assets/volumeHover";*/
-
-/*}*/
+#cardHolder.label {
+    -fx-background-color: white;
+    -fx-text-fill: red;
+}
