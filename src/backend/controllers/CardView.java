@@ -89,8 +89,8 @@ public class CardView extends Pane {
 
         prereqCardLabel = new Label(card.cost.getPrereq());
         cardNameLabel = new Label(card.name);
-        chain1Label = new Label("firstChain");
-        chain2Label = new Label("secondChain");
+        chain1Label = new Label(card.chain1);
+        chain2Label = new Label(card.chain2);
         prereqHBox = new HBox();
         fillPreReq(card.cost.getResources(), card.cost.getMoney());
 
@@ -106,11 +106,20 @@ public class CardView extends Pane {
             if (i > -1) {
                 val = res.get(i);
             } else {
-                val= money;
+                val = money;
             }
             Label label = new Label("" + val);
             prereqHBox.getChildren().add(label);
         }
+    }
+
+    public void update(Card card){
+        prereqCardLabel.setText(card.cost.getPrereq());
+        cardNameLabel.setText(card.name);
+        chain1Label.setText(card.chain1);
+        chain2Label.setText(card.chain2);
+        prereqHBox.getChildren().clear(); //clear prereq HBox
+        fillPreReq(card.cost.getResources(), card.cost.getMoney());
     }
 
 

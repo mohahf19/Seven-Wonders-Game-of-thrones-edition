@@ -1,6 +1,8 @@
 package backend.controllers;
 
 import backend.controllers.PlayScreenController;
+import backend.models.Age;
+import backend.models.Card;
 import backend.models.Player;
 import backend.models.Scoreboard;
 import comm.GameClient;
@@ -11,6 +13,8 @@ public class GameEngine {
     public GameClient client;
 
     public ArrayList<Player> players;
+    public int currentSeason;
+    public Age currentAge;
     public Scoreboard scoreboard;
 
 
@@ -20,4 +24,15 @@ public class GameEngine {
             this.client.startClient();
         })).start();
     }
+
+    public Player getCurrentPlayer(){
+        return this.players.get( this.client.id);
+    }
+
+    public void playResource( Card card){}
+    public void playMilitary( Card card){}
+    public void playTrading( Card card){}
+    public void playScience( Card card){}
+    public void playCivic( Card card){}
+    public void playCrisis( Card card){}
 }

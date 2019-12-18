@@ -68,7 +68,13 @@ public class PlayerSummaryView extends Pane {
     }
 
     private void setImages() { //TODO add real images here
-        
+       
+    }
+
+    //updates this view
+    public void update(Player p){
+        coinsLabel.setText(""+ p.house.coins);
+        shieldsLabel.setText(""+p.house.militaryShields);
     }
 
     @Override protected double computeMinWidth(double height){
