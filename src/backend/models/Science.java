@@ -5,7 +5,7 @@ import javafx.scene.paint.Color;
 public class Science extends Card{
     private String[] type;
 
-    public Science(String name, int[] cardFreq, int age, Cost cost, Color color, String imagePath,
+    public Science(String name, int cardFreq, int age, Cost cost, Color color, String imagePath,
                    String iconPath, String backPath, String chain1, String chain2, String[] type){
         super(name, cardFreq, age, cost, color, imagePath, imagePath, backPath, chain1, chain2);
 

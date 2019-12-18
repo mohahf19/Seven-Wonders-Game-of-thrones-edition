@@ -4,7 +4,7 @@ import javafx.scene.paint.Color;
 
 public class Card {
     public String name;
-    protected int[] cardFreq;
+    protected int cardFreq;
     protected int age;
     public Cost cost;
     public Color color;
@@ -13,7 +13,7 @@ public class Card {
     public String backPath;
     public String chain1, chain2;
 
-    public Card(String name, int[] cardFreq, int age, Cost cost, Color color, String imagePath,
+    public Card(String name, int cardFreq, int age, Cost cost, Color color, String imagePath,
                 String iconPath, String backPath, String chain1, String chain2){
         this.name = name;
         this.age= age;
@@ -22,9 +22,7 @@ public class Card {
         this.imagePath = imagePath;
         this.iconPath = iconPath;
         this.backPath = backPath;
-        this.cardFreq = new int[cardFreq.length];
-        for( int i = 0; i < cardFreq.length; i++)
-            this.cardFreq[i] = cardFreq[i];
+        this.cardFreq = cardFreq;
         this.chain1 = chain1;
         this.chain2 = chain2;
     }

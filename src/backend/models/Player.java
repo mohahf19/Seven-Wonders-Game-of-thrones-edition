@@ -62,6 +62,7 @@ public class Player {
 
     public boolean canBuild(Cost cost){ //TODO change this to Card instead of Cost
         //if it was card, just do Cost cost = card.getCost();
+        //TODO Check card name
 
         CostResult result = house.canAfford(cost);
         boolean canBuild = false;
@@ -138,7 +139,7 @@ public class Player {
         return result;
     }
 
-    //private classes
+    //private? classes
     public class Neighbors{
         public Player left;
         public Player right;

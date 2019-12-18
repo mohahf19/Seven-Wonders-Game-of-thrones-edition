@@ -7,7 +7,7 @@ public class Resource extends Card {
     private String[] type;
 
 
-    public Resource(String name, int[] cardFreq, int age, Cost cost,
+    public Resource(String name, int cardFreq, int age, Cost cost,
                     Color color, String imagePath,
                     String iconPath, String backPath, String chain1, String chain2, int[] resourcesList, String[] type){
         super(name, cardFreq, age, cost, color, imagePath, iconPath, backPath, chain1, chain2);
