@@ -42,4 +42,8 @@ public class Numbers {
         return result;
     }
 
+    public static <Integer> int[] arr (int ... els){
+        return els;
+    }
+
 }
