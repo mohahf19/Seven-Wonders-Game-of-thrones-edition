@@ -9,7 +9,7 @@ import javafx.scene.layout.*;
 
 import java.util.ArrayList;
 
-public class CardViewController extends Pane {
+public class CardView extends Pane {
 
     private StackPane topPane;
     private ImageView cardImageView;
@@ -22,7 +22,7 @@ public class CardViewController extends Pane {
     private HBox prereqHBox;
 
 
-    public CardViewController(){
+    public CardView(){
         //top pane
         topPane = new StackPane();
 
@@ -51,13 +51,16 @@ public class CardViewController extends Pane {
         chain2Label = new Label("secondChain");
         prereqHBox = new HBox();
 
+        addChildren();
+    }
+
+    private void addChildren() {
         this.getChildren().addAll(cardImageView, topPane, prereqCardLabel,
                 cardNameLabel, chain1Label, chain2Label, prereqHBox);
     }
 
 
-
-    public CardViewController(Card card){
+    public CardView(Card card){
         //top pane
         topPane = new StackPane();
 
@@ -91,8 +94,8 @@ public class CardViewController extends Pane {
         prereqHBox = new HBox();
         fillPreReq(card.cost.getResources(), card.cost.getMoney());
 
-        this.getChildren().addAll(cardImageView, topPane, prereqCardLabel,
-                cardNameLabel, chain1Label, chain2Label, prereqHBox);
+        addChildren();
+
     }
 
     private void fillPreReq(int resource, int money) {
