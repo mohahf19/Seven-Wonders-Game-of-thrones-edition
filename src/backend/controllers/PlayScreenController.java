@@ -94,7 +94,7 @@ public class PlayScreenController implements Initializable {
                 "file:///C:/Users/Bilal/Desktop/7%20Houses%20Resources/Cards/Card%20Icon/brownTop.jpg");
         CardView cv = new CardView(card);
         cv.update(card);
-        cardHolder.getChildren().addAll(cv, new PlayerSummaryView());
+        cardHolder.getChildren().addAll(cv);
 
         //TESTEND
 
