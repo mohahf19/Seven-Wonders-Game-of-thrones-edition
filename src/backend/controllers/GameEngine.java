@@ -49,8 +49,7 @@ public class GameEngine {
     public void startMilitaryConflict(){}
 
     public void chooseCard( Card card){
-
-
+        this.playCard(card);
         JsonObject req = new JsonObject();
         req.addProperty("op_code", 2);
         req.addProperty("player", gson.toJson( getCurrentPlayer()));
@@ -59,22 +58,22 @@ public class GameEngine {
 
     public void playCard( Card card){
         if (card.isResource()) {
-            playResource(card);
+            this.getCurrentPlayer().playResource((Resource) card);
         }
         else if (card.isMilitary()) {
-            playMilitary(card);
+            this.getCurrentPlayer().playMilitary((Military) card);
         }
         else if (card.isCommerce()) {
-            playCommerce(card);
+            this.getCurrentPlayer().playCommerce((Commerce) card);
         }
         else if (card.isScience()) {
-            playScience(card);
+            this.getCurrentPlayer().playScience((Science) card);
         }
         else if (card.isCivic()) {
-            playCivic(card);
+            this.getCurrentPlayer().playCivic((Civic) card);
         }
         else if (card.isCrisis()) {
-            playCrisis(card);
+            this.getCurrentPlayer().playCrisis((Crisis) card);
         }
         else {
             System.out.println("Failed to determine the type of the card");
@@ -82,18 +81,5 @@ public class GameEngine {
         }
         this.getCurrentPlayer().house.playedCards.add(card);
     }
-    public void playResource( Card card){
-        this.getCurrentPlayer().updateResources(card);
-    }
 
-    public void playMilitary( Card card){
-        this.getCurrentPlayer().updateMilitaryShields(card);
-    }
-    public void playCommerce( Card card){
-        this.getCurrentPlayer().updateResources(card);
-        this.getCurrentPlayer().updateVictoryPoints(card);
-    }
-    public void playScience( Card card){}
-    public void playCivic( Card card){}
-    public void playCrisis( Card card){}
 }

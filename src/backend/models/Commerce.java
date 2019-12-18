@@ -2,11 +2,14 @@ package backend.models;
 
 import javafx.scene.paint.Color;
 
+import java.util.ArrayList;
+
 public class Commerce extends Card {
     private int victoryPoint;
     private int[] resourceList;
     private int coins;
-    private int[] tradingPost;
+    private int[] tradingCostsLeft;
+    private int[] tradingCostsRight;
     private String[] type;
     private int wonderReq;
     private Color cardColorReq;
@@ -26,13 +29,18 @@ public class Commerce extends Card {
         for( int i = 0; i < resourceList.length; i++)
             this.resourceList[i] = resourceList[i];
 
-        this.tradingPost = new int[tradingPost.length];
+        this.tradingCostsLeft = new int[tradingPost.length];
         for( int i = 0; i < tradingPost.length; i++)
-            this.tradingPost[i] = tradingPost[i];
+            this.tradingCostsLeft[i] = tradingPost[i];
+
+        this.tradingCostsRight = new int[tradingPost.length];
+        for( int i = 0; i < tradingPost.length; i++)
+            this.tradingCostsRight[i] = tradingPost[i];
 
         this.type = new String[type.length];
         for( int i = 0; i < type.length; i++)
             this.type[i] = type[i];
+
 
     }
 
@@ -42,5 +50,17 @@ public class Commerce extends Card {
 
     public int getCoins() {
         return coins;
+    }
+
+    public int[] getResourceList() {
+        return resourceList;
+    }
+
+    public int[] getTradingCostsRight() {
+        return tradingCostsRight;
+    }
+
+    public int[] getTradingCostsLeft() {
+        return tradingCostsLeft;
     }
 }

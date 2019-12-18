@@ -31,28 +31,34 @@ public class Player {
     }
 
     //methods
-
-    // play card related methods (updating attributes)
-    public void updateResources(Card card) {
-
+    // play card methods
+    public void playResource( Resource card){
+        this.house.addResource(card.getResourcesList());
     }
 
-    public void updateMilitaryShields(Card card) {
-        this.house.militaryShields += ((Military) card).getNumberOfShields();
+    public void playMilitary( Military card){
+        this.house.militaryShields += card.getNumberOfShields();
     }
+    public void playCommerce( Commerce card){
+        this.house.coins += card.getCoins();
+        this.house.victoryPoints += card.getVictoryPoints();
+        this.house.addResource(card.getResourceList());
+        // trading effetcs
+//        tradingCost
+//        for (int i = 0; i < card.getTradingCostsLeft().length; i++) {
+//            card.get
+//        }
 
-    public void updateVictoryPoints(Card card) {
-        if (card.isCommerce()) {
-            this.house.victoryPoints += ((Commerce) card).getVictoryPoints();
-        }
-        else if (card.isCivic()) {
-            this.house.victoryPoints += ((Civic) card).getVictoryPoints();
-        }
-        else {
-            System.out.println("The card is not commerce or civic, so no vps here");
-            System.exit(1);
-        }
     }
+    public void playScience( Science card){
+
+    }
+    public void playCivic( Civic card){
+        this.house.victoryPoints += card.getVictoryPoints();
+        // TO DO: seasonal effects?
+    }
+    public void playCrisis( Crisis card){}
+
 
     public void setNeighbors(Player left, Player right){
         neighbors.left = left;

@@ -35,4 +35,8 @@ public class Resource extends Card {
     public boolean isResource(){
         return true;
     }
+
+    public int[] getResourcesList() {
+        return resourcesList;
+    }
 }
