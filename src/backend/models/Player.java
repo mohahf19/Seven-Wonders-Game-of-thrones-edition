@@ -139,7 +139,7 @@ public class Player {
     }
 
     //private classes
-    private class Neighbors{
+    public class Neighbors{
         public Player left;
         public Player right;
 
@@ -157,17 +157,9 @@ public class Player {
             left = nbrs.get(0);
             right = nbrs.get(nbrs.size() -1);
         }
-
-        public Player left(){
-            return left;
-        }
-
-        public Player right(){
-            return right;
-        }
     }
 
-    private class TradingAgreements{
+    public class TradingAgreements{
         TradingAgreement left;
         TradingAgreement right;
 
