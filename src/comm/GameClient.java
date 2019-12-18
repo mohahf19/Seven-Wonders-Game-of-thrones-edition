@@ -100,6 +100,10 @@ public class GameClient {
         out.println( gson.toJson( outOb));
     }
 
+    public void sendRequest( JsonObject request){
+        out.println( gson.toJson( request));
+    }
+
 
     public void connectClient() {
         try {

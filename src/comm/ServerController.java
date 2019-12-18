@@ -31,6 +31,8 @@ public class ServerController {
     public int currentAge = -1;
     public int currentSeason;
 
+    public int cardsSelectedCount = 0;
+
     public ServerController(){
         gson = new Gson();
         initData();
@@ -104,6 +106,16 @@ public class ServerController {
         }
     }
 
+    public void playTurn(){
+        cardsSelectedCount = 0;
+        
+        //update houses
+        //update deck
+
+        sendHouses();
+        sendScoreboard();
+    }
+
     public void sendHouseJoined(){
         for( int i = 0; i < host.clients.size(); i++){
 
@@ -135,6 +147,10 @@ public class ServerController {
 
             host.sendRequest( i, outOb);
         }
+    }
+
+    public void updatePlayer( Player player, int id){
+        this.players.set( id, player);
     }
 
     public void startGame(){
