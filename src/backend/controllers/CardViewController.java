@@ -44,13 +44,6 @@ public class CardViewController extends Pane {
         topPane.getChildren().add(backImageView);
         topPane.getChildren().add(iconImageView);
 
-        Image img = new Image("file:///Users/Mohammad/Downloads/Unknown.png");
-        cardImageView.setImage(img);
-        img = new Image("file:///Users/Mohammad/Documents/Bilkent/Year%203/Fall/CS319/CardViewTest/out/production/CardViewTest/sample/Greyjoy.jpg");
-        backImageView.setImage(img);
-        img = new Image("file:///Users/Mohammad/Documents/Bilkent/Year%203/Fall/CS319/CardViewTest/out/production/CardViewTest/sample/pp.jpg");
-        iconImageView.setImage(img);
-
 
         prereqCardLabel = new Label("prereqCards");
         cardNameLabel = new Label("cardName");
