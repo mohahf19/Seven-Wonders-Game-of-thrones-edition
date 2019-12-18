@@ -76,7 +76,6 @@ public class PlayScreenController implements Initializable {
     }
 
     // Headers need to be in an arraylist
-    // does not work with one person
     public void setHeaders(int userID) {
         ArrayList<Player> updatedPlayers = new ArrayList<>();
         Player user, userleft, userright;
