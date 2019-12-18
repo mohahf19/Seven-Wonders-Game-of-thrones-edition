@@ -92,7 +92,7 @@ public class CardView extends Pane {
         chain1Label = new Label(card.chain1);
         chain2Label = new Label(card.chain2);
         prereqHBox = new HBox();
-        fillPreReq(card.cost.getResources(), card.cost.getMoney());
+        fillPreReq(card.cost.getResources(), card.cost.getCoins());
 
         addChildren();
 
@@ -119,7 +119,7 @@ public class CardView extends Pane {
         chain1Label.setText(card.chain1);
         chain2Label.setText(card.chain2);
         prereqHBox.getChildren().clear(); //clear prereq HBox
-        fillPreReq(card.cost.getResources(), card.cost.getMoney());
+        fillPreReq(card.cost.getResources(), card.cost.getCoins());
     }
 
 
@@ -155,8 +155,5 @@ public class CardView extends Pane {
         chain1Label.resizeRelocate(75, 140, 75, 20);
         chain2Label.resizeRelocate(75, 160, 75, 20);
         cardNameLabel.resizeRelocate(0, 180, 150, 20);
-
     }
-
-
 }

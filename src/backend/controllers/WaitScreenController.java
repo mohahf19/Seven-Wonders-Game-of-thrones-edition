@@ -66,7 +66,6 @@ public class WaitScreenController implements Initializable {
                 }
             }
         });
-
     }
 
     public static void updateHouses(ArrayList<String> houses){

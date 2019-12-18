@@ -1,6 +1,7 @@
 package backend.app;
 
 import backend.controllers.GameEngine;
+import backend.models.House;
 import comm.ServerController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import com.google.gson.Gson;
 
 public class Main extends Application {
 
@@ -32,6 +34,10 @@ public class Main extends Application {
     public static void initServer(){
         serverController = new ServerController();
         gameEngine = new GameEngine();
+//        House lannister = gameEngine.initHouse("lannister");
+//        Gson gson = new Gson();
+//        String json = gson.toJson(lannister);
+//        System.out.println(json);
         state = 1;
         serverController.initServer();
     }
@@ -45,6 +51,7 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
+
         launch(args);
     }
 
