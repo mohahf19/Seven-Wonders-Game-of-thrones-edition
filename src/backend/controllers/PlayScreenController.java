@@ -9,6 +9,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
@@ -20,6 +21,7 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import javax.sound.midi.SysexMessage;
@@ -34,6 +36,9 @@ public class PlayScreenController implements Initializable {
 
     @FXML
     private AnchorPane parentPane;
+
+    @FXML
+    private HBox cardHolder;
 
 
 
@@ -69,6 +74,19 @@ public class PlayScreenController implements Initializable {
             }
         });
 
+        //TEST
+        cardHolder.setAlignment(Pos.CENTER);
+        cardHolder.setSpacing(5);
+        for (int i = 0; i < 5; i++) {
+            ImageView cardImg = new ImageView();
+            cardImg.setFitHeight(200);
+            cardImg.setFitWidth(150);
+            Image img = new Image("/assets/Lumberyard.jpg", true);
+            cardImg.setImage(img);
+            cardHolder.getChildren().add(cardImg);
+        }
+
+        //TESTEND
         soundButton.addEventHandler(MouseEvent.MOUSE_ENTERED, new soundMouseHoverListener());
         soundButton.addEventHandler(MouseEvent.MOUSE_EXITED, new soundMouseExitListener());
 
@@ -93,7 +111,6 @@ public class PlayScreenController implements Initializable {
         updatedPlayers.add(userright);
 
         for (int i = 0; i < updatedPlayers.size(); i++) {
-            System.out.println(updatedPlayers.get(i).house.name);
             String houseName = updatedPlayers.get(i).house.name;
             Image image;
             switch (houseName) {

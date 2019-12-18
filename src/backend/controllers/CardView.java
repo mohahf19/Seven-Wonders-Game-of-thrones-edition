@@ -146,8 +146,5 @@ public class CardView extends Pane {
         chain1Label.resizeRelocate(75, 140, 75, 20);
         chain2Label.resizeRelocate(75, 160, 75, 20);
         cardNameLabel.resizeRelocate(0, 180, 150, 20);
-
     }
-
-
 }
