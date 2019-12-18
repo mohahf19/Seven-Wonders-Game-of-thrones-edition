@@ -1,18 +1,24 @@
 package backend.controllers;
 
-import backend.controllers.PlayScreenController;
 import backend.models.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import comm.GameClient;
 
 import java.util.ArrayList;
 
 public class GameEngine {
     public GameClient client;
+    public Gson gson;
 
     public ArrayList<Player> players;
     public int currentSeason;
     public int currentAge;
     public Scoreboard scoreboard;
+
+    public GameEngine(){
+        gson = new Gson();
+    }
 
 
     public void initClient( String ip){
@@ -42,7 +48,14 @@ public class GameEngine {
     }
     public void startMilitaryConflict(){}
 
-    public void chooseCard( Card card){}
+    public void chooseCard( Card card){
+
+
+        JsonObject req = new JsonObject();
+        req.addProperty("op_code", 2);
+        req.addProperty("player", gson.toJson( getCurrentPlayer()));
+        client.sendRequest( req);
+    }
 
     public void playCard( Card card){}
     public void playResource( Card card){}

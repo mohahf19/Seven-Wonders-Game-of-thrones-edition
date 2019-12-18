@@ -114,12 +114,9 @@ public class GameHost {
                 break;
             }
             case 0: { //client identified
-                //Player player = serverController.players.get( id);
-
                 JsonObject outOb = new JsonObject();
                 outOb.addProperty( "op_code", 0);
                 outOb.addProperty( "player_id", id);
-                //outOb.addProperty( "player", gson.toJson( player, Player.class));
 
                 sendRequest( id, outOb);
                 break;
@@ -127,6 +124,13 @@ public class GameHost {
             case 1: { //update players on all clients
                 serverController.sendHouseJoined();
                 break;
+            } case 2: { //card selected
+                serverController.cardsSelectedCount++;
+                Player player = gson.fromJson( request.get("player").getAsString(), Player.class );
+                serverController.updatePlayer( player, id);
+                if( serverController.cardsSelectedCount >= 6){
+                    serverController.playTurn();
+                }
             }
             default:
                 System.out.println( "Invalid opcode");
