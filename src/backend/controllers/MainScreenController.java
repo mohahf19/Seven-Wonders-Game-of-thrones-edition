@@ -3,12 +3,16 @@ package backend.controllers;
 import backend.app.Main;
 import backend.app.fxmlPaths;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.*;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -27,7 +31,7 @@ public class MainScreenController implements Initializable  {
     private AnchorPane menuParent;
 
     @FXML
-    private ImageView backgroundImageView;
+    private ImageView backgroundImageView, soundButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
