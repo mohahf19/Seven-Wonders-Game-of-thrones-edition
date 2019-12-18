@@ -81,6 +81,7 @@ public class Player {
         ArrayList<Card> playedCards = house.getPlayedCards();
         ArrayList<Card> playedScience;
         playedScience = new ArrayList<Card>();
+
         for(int i = 0; i < playedCards.size(); i++) {
             if( playedCards.get(i).isScience() )
                 playedScience.add(playedCards.get(i));

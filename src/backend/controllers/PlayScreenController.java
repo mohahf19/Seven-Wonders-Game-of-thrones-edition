@@ -32,7 +32,7 @@ import java.util.ResourceBundle;
 
 public class PlayScreenController implements Initializable {
     @FXML
-    private ImageView card1, card2, card3, soundButton, header1;
+    private ImageView card1, card2, card3, soundButton, header1, seasonBanner, ageButton;
 
     @FXML
     private AnchorPane parentPane;
@@ -41,6 +41,7 @@ public class PlayScreenController implements Initializable {
     private HBox cardHolder;
 
     CardView sampleCard;
+    public static int currSeason, currAge;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -74,6 +75,63 @@ public class PlayScreenController implements Initializable {
             }
         });
 
+        test();
+        updateSeasonImage();
+        updateAgeImage();
+
+        soundButton.addEventHandler(MouseEvent.MOUSE_ENTERED, new soundMouseHoverListener());
+        soundButton.addEventHandler(MouseEvent.MOUSE_EXITED, new soundMouseExitListener());
+
+        setHeaders(Main.gameEngine.getCurrentPlayer().id);
+    }
+
+    public void updateSeasonImage() {
+        Image image;
+        switch (currSeason) {
+            case 1:
+                image = new Image("assets/seasons/summer.jpg", true);
+                seasonBanner.setImage(image);
+                break;
+            case 2:
+                image = new Image("assets/seasons/autum.jpg", true);
+                seasonBanner.setImage(image);
+                break;
+            case 3:
+                image = new Image("assets/seasons/winter.jpg", true);
+                seasonBanner.setImage(image);
+                break;
+            case 4:
+                image = new Image("assets/seasons/spring.jpg", true);
+                seasonBanner.setImage(image);
+                break;
+        }
+    }
+
+    public void updateAgeImage() {
+        Image image;
+        switch (currSeason) {
+            case 1:
+                image = new Image("assets/ages/age1.jpg", true);
+                ageButton.setImage(image);
+                break;
+            case 2:
+                image = new Image("assets/ages/age2.jpg", true);
+                ageButton.setImage(image);
+                break;
+            case 3:
+                image = new Image("assets/ages/age3.jpg", true);
+                ageButton.setImage(image);
+                break;
+        }
+    }
+
+
+    public static void updateSeason(int season) {
+        currSeason = season;
+    }
+    public static void updateAge(int age) {age = currAge;}
+
+    public void test() {
         //TEST
         cardHolder.setAlignment(Pos.CENTER);
         cardHolder.setSpacing(5);
@@ -81,7 +139,7 @@ public class PlayScreenController implements Initializable {
             ImageView cardImg = new ImageView();
             cardImg.setFitHeight(200);
             cardImg.setFitWidth(150);
-            Image img = new Image("/assets/Lumberyard.jpg", true);
+            Image img = new Image("/assets/Lumberyard", true);
             cardImg.setImage(img);
             cardHolder.getChildren().add(cardImg);
         }
@@ -97,12 +155,6 @@ public class PlayScreenController implements Initializable {
         cardHolder.getChildren().addAll(cv);
 
         //TESTEND
-
-
-        soundButton.addEventHandler(MouseEvent.MOUSE_ENTERED, new soundMouseHoverListener());
-        soundButton.addEventHandler(MouseEvent.MOUSE_EXITED, new soundMouseExitListener());
-
-        setHeaders(Main.gameEngine.getCurrentPlayer().id);
     }
 
     // Headers need to be in an arraylist
