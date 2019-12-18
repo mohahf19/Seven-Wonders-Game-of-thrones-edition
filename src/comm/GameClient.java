@@ -100,6 +100,10 @@ public class GameClient {
         out.println( gson.toJson( outOb));
     }
 
+    public void sendRequest( JsonObject request){
+        out.println( gson.toJson( request));
+    }
+
 
     public void connectClient() {
         try {
@@ -158,12 +162,23 @@ public class GameClient {
 
                         acknowledgeRequest();
                         break;
-                    } case 4: {
-                        Scoreboard scoreboard = gson.fromJson( res.get("all_players").getAsString(), Scoreboard.class);
+                    } case 4: { //update scoreboard
+                        Scoreboard scoreboard = gson.fromJson( res.get("scoreboard").getAsString(), Scoreboard.class);
                         engine.scoreboard = scoreboard;
 
                         acknowledgeRequest();
                         break;
+                    } case 5: { //change season
+                        int season = Integer.parseInt( res.get("season").getAsString());
+                        this.engine.updateSeason( season);
+
+                        acknowledgeRequest();
+                        break;
+                    } case 6: { //change age
+                        int age = Integer.parseInt( res.get("age").getAsString());
+                        this.engine.updateAge( age);
+
+                        acknowledgeRequest();
                     }
                     default: {
                         System.out.println( "Client: Invalid opcode");

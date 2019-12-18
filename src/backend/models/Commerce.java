@@ -3,7 +3,7 @@ package backend.models;
 import javafx.scene.paint.Color;
 
 public class Commerce extends Card {
-    private int victoryPoints;
+    private int victoryPoint;
     private int[] resourceList;
     private int coins;
     private int[] tradingPost;
@@ -12,12 +12,12 @@ public class Commerce extends Card {
     private Color cardColorReq;
 
 
-    public Commerce(String name, int cardFreq, int age, Cost cost, Color color, String imagePath,
+    public Commerce(String name, int cardFreq, int age, Cost cost, String imagePath,
                     String iconPath, String backPath, String chain1, String chain2,
                     int victoryPoint, int[] resourceList, int coins, int[] tradingPost, String[] type, int wonderReq, Color cardColorReq){
 
-        super(name, cardFreq, age, cost, color, imagePath, iconPath, backPath, chain1, chain2);
-        this.victoryPoints = victoryPoint;
+        super(name, cardFreq, age, cost, imagePath, iconPath, backPath, chain1, chain2);
+        this.victoryPoint = victoryPoint;
         this.coins = coins;
         this.wonderReq = wonderReq;
         this.cardColorReq = cardColorReq;
@@ -37,7 +37,7 @@ public class Commerce extends Card {
     }
 
     public int getVictoryPoints() {
-        return victoryPoints;
+        return victoryPoint;
     }
 
     public int getCoins() {

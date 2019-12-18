@@ -7,18 +7,16 @@ public class Card {
     protected int cardFreq;
     protected int age;
     public Cost cost;
-    public Color color;
     public String imagePath;
     public String iconPath;
     public String backPath;
     public String chain1, chain2;
 
-    public Card(String name, int cardFreq, int age, Cost cost, Color color, String imagePath,
+    public Card(String name, int cardFreq, int age, Cost cost, String imagePath,
                 String iconPath, String backPath, String chain1, String chain2){
         this.name = name;
         this.age= age;
         this.cost = cost;
-        this.color = color;
         this.imagePath = imagePath;
         this.iconPath = iconPath;
         this.backPath = backPath;

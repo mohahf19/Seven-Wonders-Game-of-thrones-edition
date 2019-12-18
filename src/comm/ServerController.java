@@ -1,5 +1,6 @@
 package comm;
 
+import backend.models.Age;
 import backend.models.House;
 import backend.models.Player;
 import backend.models.Scoreboard;
@@ -8,6 +9,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 
+import java.awt.geom.AffineTransform;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -19,23 +21,33 @@ import java.util.List;
 public class ServerController {
 
     public GameHost host;
+    private Gson gson;
 
     public ArrayList<Player> players;
     public ArrayList<House> allHouses;
-
     public Scoreboard scoreboard;
 
-    private Gson gson;
+    public ArrayList<Age> ages;
+    public int currentAge = -1;
+    public int currentSeason;
+
+    public int cardsSelectedCount = 0;
 
     public ServerController(){
         gson = new Gson();
-        initHouses();
+        initData();
     }
 
-    public void initHouses(){
-        allHouses = new ArrayList<>();
-        populateHouses();
+    public void initData(){
+        //initialize lists
         players = new ArrayList<>();
+        allHouses = new ArrayList<>();
+        ages = new ArrayList<>();
+
+        //populate houses
+        populateHouses();
+
+        //populate Ages
     }
 
     public void initServer(){
@@ -64,6 +76,44 @@ public class ServerController {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public void incrementAge(){
+        if( currentAge < 2) {
+            currentAge++;
+            for( int i = 0; i < host.clients.size(); i++){
+
+                JsonObject outOb = new JsonObject();
+                outOb.addProperty( "op_code", 6);
+                outOb.addProperty( "age", currentAge + 1);
+
+                host.sendRequest( i, outOb);
+            }
+
+        } else {
+            //game ended
+        }
+    }
+    public void changeSeason(){
+        int season = ((int)(Math.random() * 4)) + 1;
+        for( int i = 0; i < host.clients.size(); i++){
+
+            JsonObject outOb = new JsonObject();
+            outOb.addProperty( "op_code", 5);
+            outOb.addProperty( "season", season);
+
+            host.sendRequest( i, outOb);
+        }
+    }
+
+    public void playTurn(){
+        cardsSelectedCount = 0;
+        
+        //update houses
+        //update deck
+
+        sendHouses();
+        sendScoreboard();
     }
 
     public void sendHouseJoined(){
@@ -99,11 +149,17 @@ public class ServerController {
         }
     }
 
+    public void updatePlayer( Player player, int id){
+        this.players.set( id, player);
+    }
+
     public void startGame(){
         if( !host.requestsAcknowledged())
             return;
-
         host.isReceiving = false;
+
+        incrementAge();
+        changeSeason();
         for( int i = 0; i < host.clients.size(); i++){
 
             JsonObject outOb = new JsonObject();
