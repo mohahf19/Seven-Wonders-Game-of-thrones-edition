@@ -79,8 +79,6 @@ public class PlayScreenController implements Initializable {
         });
 
         test();
-        updateSeasonImage(1);
-        updateAgeImage(1);
 
         soundButton.addEventHandler(MouseEvent.MOUSE_ENTERED, new soundMouseHoverListener());
         soundButton.addEventHandler(MouseEvent.MOUSE_EXITED, new soundMouseExitListener());
@@ -90,42 +88,58 @@ public class PlayScreenController implements Initializable {
 
     public static void updateSeasonImage( int currSeason) {
         Image image;
-        switch (currSeason) {
-            case 1:
-                image = new Image("assets/seasons/summer.jpg", true);
-                seasonBannerSt.setImage(image);
-                break;
-            case 2:
-                image = new Image("assets/seasons/autum.jpg", true);
-                seasonBannerSt.setImage(image);
-                break;
-            case 3:
-                image = new Image("assets/seasons/winter.jpg", true);
-                seasonBannerSt.setImage(image);
-                break;
-            case 4:
-                image = new Image("assets/seasons/spring.jpg", true);
-                seasonBannerSt.setImage(image);
-                break;
+        try{
+            switch (currSeason) {
+                case 1: {
+                    image = new Image("assets/seasons/summer.jpg", true);
+                    seasonBannerSt.setImage(image);
+                    break;
+                }
+                case 2: {
+                    image = new Image("assets/seasons/autum.jpg", true);
+                    seasonBannerSt.setImage(image);
+                    break;
+                }
+                case 3: {
+                    image = new Image("assets/seasons/winter.jpg", true);
+                    seasonBannerSt.setImage(image);
+                    break;
+                }
+                case 4: {
+                    image = new Image("assets/seasons/spring.jpg", true);
+                    seasonBannerSt.setImage(image);
+                    break;
+                }
+            }
+        } catch (Exception e){
+            System.out.println( "CP2" + e.toString() + e.getMessage() + e);
         }
     }
 
     public static void updateAgeImage( int currAge) {
         Image image;
-        switch (currAge) {
-            case 1:
-                image = new Image("assets/ages/age1.jpg", true);
-                ageButtonSt.setImage(image);
-                break;
-            case 2:
-                image = new Image("assets/ages/age2.jpg", true);
-                ageButtonSt.setImage(image);
-                break;
-            case 3:
-                image = new Image("assets/ages/age3.jpg", true);
-                ageButtonSt.setImage(image);
-                break;
+        try {
+            switch (currAge) {
+                case 1: {
+                    image = new Image("assets/ages/age1.jpg", true);
+                    ageButtonSt.setImage(image);
+                    break;
+                }
+                case 2: {
+                    image = new Image("assets/ages/age2.jpg", true);
+                    ageButtonSt.setImage(image);
+                    break;
+                }
+                case 3: {
+                    image = new Image("assets/ages/age3.jpg", true);
+                    ageButtonSt.setImage(image);
+                    break;
+                }
+            }
+        } catch( Exception e){
+            System.out.println("CP1" + e.toString());
         }
+
     }
 
 
