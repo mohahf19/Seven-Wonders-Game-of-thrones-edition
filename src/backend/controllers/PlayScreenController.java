@@ -40,7 +40,7 @@ public class PlayScreenController implements Initializable {
     @FXML
     private HBox cardHolder;
 
-
+    CardView sampleCard;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -77,7 +77,7 @@ public class PlayScreenController implements Initializable {
         //TEST
         cardHolder.setAlignment(Pos.CENTER);
         cardHolder.setSpacing(5);
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 1; i++) {
             ImageView cardImg = new ImageView();
             cardImg.setFitHeight(200);
             cardImg.setFitWidth(150);
@@ -86,11 +86,23 @@ public class PlayScreenController implements Initializable {
             cardHolder.getChildren().add(cardImg);
         }
 
+        backend.models.Cost cost = new backend.models.Cost(10, "I AM PREREQ", 17*2*2*3*5);
+
+        backend.models.Card card = new backend.models.Card("Card Titled",cost,
+                "file:///C:/Users/Bilal/Desktop/7%20Houses%20Resources/Cards/Card%20Icon/brownBG.jpg",
+                "file:///C:/Users/Bilal/Desktop/7%20Houses%20Resources/Game%20Icons/Resources%20Icons/wood.png",
+                "file:///C:/Users/Bilal/Desktop/7%20Houses%20Resources/Cards/Card%20Icon/brownTop.jpg");
+        CardView cv = new CardView(card);
+        cv.update(card);
+        cardHolder.getChildren().addAll(cv, new PlayerSummaryView());
+
         //TESTEND
+
+
         soundButton.addEventHandler(MouseEvent.MOUSE_ENTERED, new soundMouseHoverListener());
         soundButton.addEventHandler(MouseEvent.MOUSE_EXITED, new soundMouseExitListener());
 
-        setHeaders(Main.gameEngine.client.id);
+        setHeaders(Main.gameEngine.getCurrentPlayer().id);
     }
 
     // Headers need to be in an arraylist
