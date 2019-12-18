@@ -13,9 +13,10 @@ public class Commerce extends Card {
 
 
     public Commerce(String name, int[] cardFreq, int age, Cost cost, Color color, String imagePath,
+                    String iconPath, String backPath,
                     int victoryPoint, int[] resourceList, int coins, int[] tradingPost, String[] type, int wonderReq, Color cardColorReq){
 
-        super(name, cardFreq, age, cost, color, imagePath);
+        super(name, cardFreq, age, cost, color, imagePath, iconPath, backPath);
         this.victoryPoint = victoryPoint;
         this.coins = coins;
         this.wonderReq = wonderReq;
