@@ -6,14 +6,14 @@ import static backend.app.constants.*;
 import static backend.models.Numbers.*;
 
 public class House {
+    public String name;
     public ArrayList<Integer> resourcesList; //1 means no resources
+    public ArrayList<Wonder> wonders;
     public int militaryShields;
     public Card[] playedCards;
     public int coins;
     public int buff;
     public int nerf;
-
-    public String name;
 
 
 
@@ -23,6 +23,16 @@ public class House {
         //1 represents no resources
         resourcesList.add(1);
         addCoins(3);
+    }
+
+    public House(String name, ArrayList<Integer> resourcesList, ArrayList<Wonder> wonders, int militaryShields, int buff, int nurf) {
+        this.name = name;
+        this.resourcesList = resourcesList;
+        this.wonders = wonders;
+        this.militaryShields = militaryShields;
+        this.coins = 3;
+        this.buff = buff;
+        this.nerf = nerf;
     }
 
     public void addResource(ArrayList<Integer> newRes){
@@ -86,11 +96,11 @@ public class House {
     // if it requires trading for the remaining resources (using CostResult class)
     public CostResult canAfford(Cost cost){
         CostResult result = new CostResult(0,0);
-        System.out.println("Required: " + cost.getMoney() + " money and ["
+        System.out.println("Required: " + cost.getCoins() + " money and ["
                 + factorResources(cost.getResources()) + "] or " + cost.getPrereq());
 
         //check cost.getMoney()
-        boolean canAffordMoney = cost.getMoney() <= coins;
+        boolean canAffordMoney = cost.getCoins() <= coins;
 
         //check cost.getPrereq()
         String[] availStructs = getPlayedStructures();
@@ -125,7 +135,7 @@ public class House {
     }
 
     private void pay(Cost cost) {
-        coins = coins - cost.getMoney();
+        coins = coins - cost.getCoins();
     }
 
     public void addCoins(int coins){
