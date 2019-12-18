@@ -362,7 +362,80 @@ public class Deck {
                 0
         ));
         //Military Age 1
-        
+        cards1.add(new Military("Stockade",
+                3,
+                1,
+                new Cost(0, "", w),
+                path + "Stockade" + "image",
+                path + "Stockade" + "icon",
+                path + "Stockade" + "back",
+                "",
+                "",
+                1
+
+        ));
+        cards1.add(new Military("Stockade",
+                7,
+                1,
+                new Cost(0, "", w),
+                path + "Stockade" + "image",
+                path + "Stockade" + "icon",
+                path + "Stockade" + "back",
+                "",
+                "",
+                1
+
+        ));
+        cards1.add(new Military("Barracks",
+                3,
+                1,
+                new Cost(0, "", o),
+                path + "Barracks" + "image",
+                path + "Barracks" + "icon",
+                path + "Barracks" + "back",
+                "",
+                "",
+                1
+
+        ));
+        cards1.add(new Military("Barracks",
+                5,
+                1,
+                new Cost(0, "", o),
+                path + "Barracks" + "image",
+                path + "Barracks" + "icon",
+                path + "Barracks" + "back",
+                "",
+                "",
+                1
+
+        ));
+        cards1.add(new Military("Guard Tower",
+                3,
+                1,
+                new Cost(0, "", c),
+                path + "Guard Tower" + "image",
+                path + "Guard Tower" + "icon",
+                path + "Guard Tower" + "back",
+                "",
+                "",
+                1
+
+        ));
+        cards1.add(new Military("Guard Tower",
+                4,
+                1,
+                new Cost(0, "", c),
+                path + "Guard Tower" + "image",
+                path + "Guard Tower" + "icon",
+                path + "Guard Tower" + "back",
+                "",
+                "",
+                1
+
+        ));
+        //Science Age 1
+        //Commerce Age 1
         return cards1;
     }
     private ArrayList<Card> initAge2(){
@@ -620,6 +693,115 @@ public class Deck {
                 4,
                 0
         ));
+        //Military Age 2
+        cards1.add(new Military("Walls",
+                3,
+                2,
+                new Cost(0, "", so*so*so),
+                path + "Walls" + "image",
+                path + "Walls" + "icon",
+                path + "Walls" + "back",
+                "Fortifications",
+                "",
+                2
+
+        ));
+        cards1.add(new Military("Walls",
+                7,
+                2,
+                new Cost(0, "", so*so*so),
+                path + "Walls" + "image",
+                path + "Walls" + "icon",
+                path + "Walls" + "back",
+                "Fortifications",
+                "",
+                2
+
+        ));
+        cards1.add(new Military("Training Ground",
+                4,
+                2,
+                new Cost(0, "", o*o*w),
+                path + "Training Ground" + "image",
+                path + "Training Ground" + "icon",
+                path + "Training Ground" + "back",
+                "Circus",
+                "",
+                2
+
+        ));
+        cards1.add(new Military("Training Ground",
+                6,
+                2,
+                new Cost(0, "", o*o*w),
+                path + "Training Ground" + "image",
+                path + "Training Ground" + "icon",
+                path + "Training Ground" + "back",
+                "Circus",
+                "",
+                2
+
+        ));
+        cards1.add(new Military("Training Ground",
+                7,
+                2,
+                new Cost(0, "", o*o*w),
+                path + "Training Ground" + "image",
+                path + "Training Ground" + "icon",
+                path + "Training Ground" + "back",
+                "Circus",
+                "",
+                2
+
+        ));
+        cards1.add(new Military("Stables",
+                3,
+                2,
+                new Cost(0, "Apothecary", o*c*w),
+                path + "Stables" + "image",
+                path + "Stables" + "icon",
+                path + "Stables" + "back",
+                "",
+                "",
+                2
+
+        ));
+        cards1.add(new Military("Stables",
+                5,
+                2,
+                new Cost(0, "Apothecary", o*c*w),
+                path + "Stables" + "image",
+                path + "Stables" + "icon",
+                path + "Stables" + "back",
+                "",
+                "",
+                2
+
+        ));
+        cards1.add(new Military("Archery Range",
+                3,
+                2,
+                new Cost(0, "Workshop", w*w*o),
+                path + "Archery Range" + "image",
+                path + "Archery Range" + "icon",
+                path + "Archery Range" + "back",
+                "",
+                "",
+                2
+
+        ));
+        cards1.add(new Military("Archery Range",
+                6,
+                2,
+                new Cost(0, "Workshop", o*w*w),
+                path + "Archery Range" + "image",
+                path + "Archery Range" + "icon",
+                path + "Archery Range" + "back",
+                "",
+                "",
+                2
+
+        ));
         return cards1;
     }
     private ArrayList<Card> initAge3() {
@@ -756,6 +938,127 @@ public class Deck {
                 "",
                 6,
                 0
+        ));
+        //Military Age 3
+        cards1.add(new Military("Fortifications",
+                3,
+                3,
+                new Cost(0, "Walls", so*o*o*o),
+                path + "Fortifications" + "image",
+                path + "Fortifications" + "icon",
+                path + "Fortifications" + "back",
+                "",
+                "",
+                3
+
+        ));
+        cards1.add(new Military("Fortifications",
+                7,
+                3,
+                new Cost(0, "Walls", so*o*o*o),
+                path + "Fortifications" + "image",
+                path + "Fortifications" + "icon",
+                path + "Fortifications" + "back",
+                "",
+                "",
+                3
+
+        ));
+        cards1.add(new Military("Circus",
+                4,
+                3,
+                new Cost(0, "Training Grounds", so*so*so*o),
+                path + "Circus" + "image",
+                path + "Circus" + "icon",
+                path + "Circus" + "back",
+                "",
+                "",
+                3
+
+        ));
+        cards1.add(new Military("Circus",
+                5,
+                3,
+                new Cost(0, "Training Grounds", so*so*so*o),
+                path + "Circus" + "image",
+                path + "Circus" + "icon",
+                path + "Circus" + "back",
+                "",
+                "",
+                3
+
+        ));
+        cards1.add(new Military("Circus",
+                6,
+                3,
+                new Cost(0, "Training Grounds", so*so*so*o),
+                path + "Circus" + "image",
+                path + "Circus" + "icon",
+                path + "Circus" + "back",
+                "",
+                "",
+                3
+
+        ));
+        cards1.add(new Military("Arsenal",
+                3,
+                3,
+                new Cost(0, "", o*w*w*si),
+                path + "Arsenal" + "image",
+                path + "Arsenal" + "icon",
+                path + "Arsenal" + "back",
+                "",
+                "",
+                3
+
+        ));
+        cards1.add(new Military("Arsenal",
+                4,
+                3,
+                new Cost(0, "", o*w*w*si),
+                path + "Arsenal" + "image",
+                path + "Arsenal" + "icon",
+                path + "Arsenal" + "back",
+                "",
+                "",
+                3
+
+        ));
+        cards1.add(new Military("Arsenal",
+                7,
+                3,
+                new Cost(0, "", o*w*w*si),
+                path + "Arsenal" + "image",
+                path + "Arsenal" + "icon",
+                path + "Arsenal" + "back",
+                "",
+                "",
+                3
+
+        ));
+        cards1.add(new Military("Siege Workshop",
+                3,
+                3,
+                new Cost(0, "Laboratory", w*c*c*c*c),
+                path + "Siege Workshop" + "image",
+                path + "Siege Workshop" + "icon",
+                path + "Siege Workshop" + "back",
+                "",
+                "",
+                3
+
+        ));
+        cards1.add(new Military("Siege Workshop",
+                5,
+                3,
+                new Cost(0, "Laboratory", w*c*c*c*c),
+                path + "Siege Workshop" + "image",
+                path + "Siege Workshop" + "icon",
+                path + "Siege Workshop" + "back",
+                "",
+                "",
+                3
+
         ));
         return cards1;
     }
