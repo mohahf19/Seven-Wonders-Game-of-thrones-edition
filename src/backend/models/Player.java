@@ -54,7 +54,7 @@ public class Player {
         ArrayList<Card> playedScience;
         playedScience = new ArrayList<Card>();
         for(int i = 0; i < playedCards.length; i++) {
-            if( playedCards[i].color.toString() == "green" )
+            if( playedCards[i].isScience() )
                 playedScience.add(playedCards[i]);
         }
         return playedScience;

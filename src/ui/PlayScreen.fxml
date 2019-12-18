@@ -16,17 +16,13 @@
          <children>
             <AnchorPane fx:id="leftContainer" layoutY="47.0" maxHeight="400.0" prefHeight="211.0" prefWidth="151.0">
                <children>
-                  <ImageView fitHeight="200.0" fitWidth="65.0" layoutX="76.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="seasonBanner" fitHeight="200.0" fitWidth="65.0" layoutX="76.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="soundButton" fitHeight="95.0" fitWidth="65.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../assets/volume.jpg" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="95.0" fitWidth="65.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../assets/age1.jpg" />
-                     </image>
-                  </ImageView>
+                  <ImageView fx:id="ageButton" fitHeight="95.0" fitWidth="65.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <ImageView fitHeight="90.0" fitWidth="90.0" layoutX="1353.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
@@ -38,7 +34,7 @@
                <children>
                   <ImageView fx:id="card1" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../assets/Lumberyard.jpg" />
+                        <Image url="@../assets/Lumberyard" />
                      </image>
                   </ImageView>
                </children>
