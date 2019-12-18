@@ -5,27 +5,23 @@ import backend.models.Player;
 import backend.models.Scoreboard;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.google.gson.internal.$Gson$Preconditions;
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import com.google.gson.reflect.TypeToken;
 
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ServerController {
 
     public GameHost host;
 
     public ArrayList<Player> players;
-    public ArrayList<String> allHouses;
-    public JSONArray jsonHouses;
+    public ArrayList<House> allHouses;
 
     public Scoreboard scoreboard;
 
@@ -33,20 +29,12 @@ public class ServerController {
 
     public ServerController(){
         gson = new Gson();
-        readHousesFromJson();
         initHouses();
     }
 
     public void initHouses(){
         allHouses = new ArrayList<>();
-        allHouses.add("Lannister");
-        allHouses.add("Stark");
-        allHouses.add("White Walker");
-        allHouses.add("Baratheon");
-        allHouses.add("Targaryen");
-        allHouses.add("Greyjoy");
-        allHouses.add("Tyrell");
-
+        populateHouses();
         players = new ArrayList<>();
     }
 
@@ -60,22 +48,20 @@ public class ServerController {
     public void initHouse(){
         int index = (int) (Math.random() * allHouses.size());
         Player newPlayer = new Player();
-        // this is to read from the json file
-        //newPlayer.house = gson.fromJson(jsonHouses.get(index).toString(), House.class);
-        newPlayer.house = new House(allHouses.get(index));
+        newPlayer.house = allHouses.get(index);
         newPlayer.id = players.size();
         players.add( newPlayer);
         allHouses.remove( index);
     }
 
-    public void readHousesFromJson() {
+    public void populateHouses() {
+
+        Type houseListType = new TypeToken<List<House>>() {}.getType();
         try {
-            jsonHouses = (JSONArray) new JSONParser().parse(new BufferedReader(new FileReader("src\\assets\\houses.json")));
+            ArrayList<House> houses = gson.fromJson( new BufferedReader(new FileReader("src\\assets\\houses.json")) , houseListType );
+            System.out.println( "Houses found " + houses.size());
+            allHouses = houses;
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
             e.printStackTrace();
         }
     }
