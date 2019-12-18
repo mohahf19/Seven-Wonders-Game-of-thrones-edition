@@ -157,6 +157,14 @@ public class Player {
             left = nbrs.get(0);
             right = nbrs.get(nbrs.size() -1);
         }
+
+        public Player left(){
+            return left;
+        }
+
+        public Player right(){
+            return right;
+        }
     }
 
     private class TradingAgreements{
