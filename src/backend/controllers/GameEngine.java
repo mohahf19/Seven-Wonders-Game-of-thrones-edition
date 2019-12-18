@@ -30,6 +30,12 @@ public class GameEngine {
         return 1;
     }
 
+    public void updateSeason( int season){
+        this.currentSeason = season;
+    }
+    public void updateAge( int age){
+        this.currentAge = age;
+    }
     public void playTurn(){}
     public void playAge( int age ){
         this.currentAge = age;
