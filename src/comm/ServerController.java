@@ -17,6 +17,8 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class ServerController {
 
@@ -108,7 +110,7 @@ public class ServerController {
 
     public void playTurn(){
         cardsSelectedCount = 0;
-        
+
         //update houses
         //update deck
 
@@ -167,5 +169,13 @@ public class ServerController {
 
             host.sendRequest( i, outOb);
         }
+
+        class UpdateSeason extends TimerTask {
+            public void run() {
+                changeSeason();
+            }
+        }
+        Timer timer = new Timer();
+        timer.schedule(new UpdateSeason(), 0, 3000);
     }
 }

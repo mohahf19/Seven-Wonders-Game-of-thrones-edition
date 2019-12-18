@@ -38,7 +38,7 @@ public class GameEngine {
 
     public void updateSeason( int season){
         this.currentSeason = season;
-        PlayScreenController.updateSeason(season);
+        PlayScreenController.updateSeasonImage( season);
     }
     public void updateAge( int age){
         this.currentAge = age;
