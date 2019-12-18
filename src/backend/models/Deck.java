@@ -435,6 +435,72 @@ public class Deck {
 
         ));
         //Science Age 1
+        cards1.add(new Science("Apothecary",
+                3,
+                1,
+                new Cost(0, "", si),
+                path + "Apothecary" + "image",
+                path + "Apothecary" + "icon",
+                path + "Apothecary" + "back",
+                "Stables",
+                "Dispensary",
+                "Ruler"
+        ));
+        cards1.add(new Science("Apothecary",
+                5,
+                1,
+                new Cost(0, "", si),
+                path + "Apothecary" + "image",
+                path + "Apothecary" + "icon",
+                path + "Apothecary" + "back",
+                "Stables",
+                "Dispensary",
+                "Ruler"
+        ));
+        cards1.add(new Science("Workshop",
+                3,
+                1,
+                new Cost(0, "", d),
+                path + "Workshop" + "image",
+                path + "Workshop" + "icon",
+                path + "Workshop" + "back",
+                "Archery Range",
+                "Laboratory",
+                "Gear"
+        ));
+        cards1.add(new Science("Workshop",
+                7,
+                1,
+                new Cost(0, "", d),
+                path + "Workshop" + "image",
+                path + "Workshop" + "icon",
+                path + "Workshop" + "back",
+                "Archery Range",
+                "Laboratory",
+                "Gear"
+        ));
+        cards1.add(new Science("Scriptorium",
+                3,
+                1,
+                new Cost(0, "", p),
+                path + "Scriptorium" + "image",
+                path + "Scriptorium" + "icon",
+                path + "Scriptorium" + "back",
+                "Courthouse",
+                "Library",
+                "Tablet"
+        ));
+        cards1.add(new Science("Scriptorium",
+                4,
+                1,
+                new Cost(0, "", p),
+                path + "Scriptorium" + "image",
+                path + "Scriptorium" + "icon",
+                path + "Scriptorium" + "back",
+                "Courthouse",
+                "Library",
+                "Tablet"
+        ));
         //Commerce Age 1
         return cards1;
     }
@@ -565,7 +631,7 @@ public class Deck {
         ));
         cards1.add(new Resource("Glassworks",
                 5,
-                1,
+                2,
                 new Cost(0,"",1),
                 path + "Glassworks" + "image",
                 path + "Glassworks" + "icon",
@@ -576,7 +642,7 @@ public class Deck {
         ));
         cards1.add(new Resource("Press",
                 3,
-                1,
+                2,
                 new Cost(0,"",1),
                 path + "Press" + "image",
                 path + "Press" + "icon",
@@ -587,7 +653,7 @@ public class Deck {
         ));
         cards1.add(new Resource("Press",
                 5,
-                1,
+                2,
                 new Cost(0,"",1),
                 path + "Press" + "image",
                 path + "Press" + "icon",
@@ -801,6 +867,95 @@ public class Deck {
                 "",
                 2
 
+        ));
+        //Science Age 2
+        cards1.add(new Science("Dispensary",
+                3,
+                2,
+                new Cost(0, "Apothecary", o*o*d),
+                path + "Dispensary" + "image",
+                path + "Dispensary" + "icon",
+                path + "Dispensary" + "back",
+                "Arena",
+                "Lodge",
+                "Ruler"
+        ));
+        cards1.add(new Science("Dispensary",
+                4,
+                2,
+                new Cost(0, "Apothecary", o*o*d),
+                path + "Dispensary" + "image",
+                path + "Dispensary" + "icon",
+                path + "Dispensary" + "back",
+                "Arena",
+                "Lodge",
+                "Ruler"
+        ));
+        cards1.add(new Science("Laboratory",
+                3,
+                2,
+                new Cost(0, "Workshop", c*c*p),
+                path + "Laboratory" + "image",
+                path + "Laboratory" + "icon",
+                path + "Laboratory" + "back",
+                "Siege Workshop",
+                "Observatory",
+                "Gear"
+        ));
+        cards1.add(new Science("Laboratory",
+                5,
+                2,
+                new Cost(0, "Workshop", c*c*p),
+                path + "Laboratory" + "image",
+                path + "Laboratory" + "icon",
+                path + "Laboratory" + "back",
+                "Siege Workshop",
+                "Observatory",
+                "Gear"
+        ));
+        cards1.add(new Science("Library",
+                3,
+                2,
+                new Cost(0, "Scriptorium", so*so*si),
+                path + "Library" + "image",
+                path + "Library" + "icon",
+                path + "Library" + "back",
+                "Senate",
+                "University",
+                "Tablet"
+        ));
+        cards1.add(new Science("Library",
+                6,
+                2,
+                new Cost(0, "Scriptorium", so*so*si),
+                path + "Library" + "image",
+                path + "Library" + "icon",
+                path + "Library" + "back",
+                "Senate",
+                "University",
+                "Tablet"
+        ));
+        cards1.add(new Science("School",
+                3,
+                2,
+                new Cost(0, "", w*p),
+                path + "School" + "image",
+                path + "School" + "icon",
+                path + "School" + "back",
+                "Academy",
+                "Study",
+                "Tablet"
+        ));
+        cards1.add(new Science("School",
+                7,
+                2,
+                new Cost(0, "", w*p),
+                path + "School" + "image",
+                path + "School" + "icon",
+                path + "School" + "back",
+                "Academy",
+                "Study",
+                "Tablet"
         ));
         return cards1;
     }
@@ -1060,6 +1215,119 @@ public class Deck {
                 3
 
         ));
+        //Science Age 3
+        cards1.add(new Science("Lodge",
+                3,
+                3,
+                new Cost(0, "Dispensary", c*c*si*p),
+                path + "Lodge" + "image",
+                path + "Lodge" + "icon",
+                path + "Lodge" + "back",
+                "",
+                "",
+                "Ruler"
+        ));
+        cards1.add(new Science("Lodge",
+                6,
+                3,
+                new Cost(0, "Dispensary", c*c*si*p),
+                path + "Lodge" + "image",
+                path + "Lodge" + "icon",
+                path + "Lodge" + "back",
+                "",
+                "",
+                "Ruler"
+        ));
+        cards1.add(new Science("Observatory",
+                3,
+                3,
+                new Cost(0, "Laboratory", o*o*d*si),
+                path + "Observatory" + "image",
+                path + "Observatory" + "icon",
+                path + "Observatory" + "back",
+                "",
+                "",
+                "Gear"
+        ));
+        cards1.add(new Science("Observatory",
+                7,
+                3,
+                new Cost(0, "Laboratory", o*o*d*si),
+                path + "Observatory" + "image",
+                path + "Observatory" + "icon",
+                path + "Observatory" + "back",
+                "",
+                "",
+                "Gear"
+        ));
+        cards1.add(new Science("Study",
+                3,
+                3,
+                new Cost(0, "School", w*p*si),
+                path + "Study" + "image",
+                path + "Study" + "icon",
+                path + "Study" + "back",
+                "",
+                "",
+                "Gear"
+        ));
+        cards1.add(new Science("Study",
+                5,
+                3,
+                new Cost(0, "School", w*p*si),
+                path + "Study" + "image",
+                path + "Study" + "icon",
+                path + "Study" + "back",
+                "",
+                "",
+                "Gear"
+        ));
+        cards1.add(new Science("Academy",
+                3,
+                3,
+                new Cost(0, "School", so*so*so*d),
+                path + "Academy" + "image",
+                path + "Academy" + "icon",
+                path + "Academy" + "back",
+                "",
+                "",
+                "Ruler"
+        ));
+        cards1.add(new Science("Academy",
+                7,
+                3,
+                new Cost(0, "School", so*so*so*d),
+                path + "Academy" + "image",
+                path + "Academy" + "icon",
+                path + "Academy" + "back",
+                "",
+                "",
+                "Ruler"
+        ));
+        cards1.add(new Science("University",
+                3,
+                3,
+                new Cost(0, "Library", w*w*d*si),
+                path + "University" + "image",
+                path + "University" + "icon",
+                path + "University" + "back",
+                "",
+                "",
+                "Tablet"
+        ));
+        cards1.add(new Science("University",
+                4,
+                3,
+                new Cost(0, "Library", w*w*d*si),
+                path + "University" + "image",
+                path + "University" + "icon",
+                path + "University" + "back",
+                "",
+                "",
+                "Tablet"
+        ));
+        //Crisis Age 3
+        //Commerce Age 3
         return cards1;
     }
 }
