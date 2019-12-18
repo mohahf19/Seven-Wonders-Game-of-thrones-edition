@@ -1,10 +1,7 @@
 package backend.controllers;
 
 import backend.controllers.PlayScreenController;
-import backend.models.Age;
-import backend.models.Card;
-import backend.models.Player;
-import backend.models.Scoreboard;
+import backend.models.*;
 import comm.GameClient;
 
 import java.util.ArrayList;
@@ -14,7 +11,7 @@ public class GameEngine {
 
     public ArrayList<Player> players;
     public int currentSeason;
-    public Age currentAge;
+    public int currentAge;
     public Scoreboard scoreboard;
 
 
@@ -29,6 +26,19 @@ public class GameEngine {
         return this.players.get( this.client.id);
     }
 
+    public int checkCardRequirements( Card card){
+        return 1;
+    }
+
+    public void playTurn(){}
+    public void playAge( int age ){
+        this.currentAge = age;
+    }
+    public void startMilitaryConflict(){}
+
+    public void chooseCard( Card card){}
+
+    public void playCard( Card card){}
     public void playResource( Card card){}
     public void playMilitary( Card card){}
     public void playTrading( Card card){}
