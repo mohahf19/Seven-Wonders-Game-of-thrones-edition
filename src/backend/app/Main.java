@@ -34,10 +34,10 @@ public class Main extends Application {
     public static void initServer(){
         serverController = new ServerController();
         gameEngine = new GameEngine();
-        House lannister = gameEngine.initHouse("lannister");
-        Gson gson = new Gson();
-        String json = gson.toJson(lannister);
-        System.out.println(json);
+//        House lannister = gameEngine.initHouse("lannister");
+//        Gson gson = new Gson();
+//        String json = gson.toJson(lannister);
+//        System.out.println(json);
         state = 1;
         serverController.initServer();
     }

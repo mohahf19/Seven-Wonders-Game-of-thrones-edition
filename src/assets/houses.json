@@ -1,4 +1,4 @@
-{ "houses" : [
+[
     {
         "name": "Lannister",
         "resourcesList": [13],
@@ -321,5 +321,4 @@
         "buff": 6,
         "nerf": 6
     }
-
-]}
+]
