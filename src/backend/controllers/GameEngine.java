@@ -38,10 +38,42 @@ public class GameEngine {
 
     public void chooseCard( Card card){}
 
-    public void playCard( Card card){}
-    public void playResource( Card card){}
-    public void playMilitary( Card card){}
-    public void playTrading( Card card){}
+    public void playCard( Card card){
+        if (card.isResource()) {
+            playResource(card);
+        }
+        else if (card.isMilitary()) {
+            playMilitary(card);
+        }
+        else if (card.isCommerce()) {
+            playCommerce(card);
+        }
+        else if (card.isScience()) {
+            playScience(card);
+        }
+        else if (card.isCivic()) {
+            playCivic(card);
+        }
+        else if (card.isCrisis()) {
+            playCrisis(card);
+        }
+        else {
+            System.out.println("Failed to determine the type of the card");
+            System.exit(1);
+        }
+        this.getCurrentPlayer().house.playedCards.add(card);
+    }
+    public void playResource( Card card){
+        this.getCurrentPlayer().updateResources(card);
+    }
+
+    public void playMilitary( Card card){
+        this.getCurrentPlayer().updateMilitaryShields(card);
+    }
+    public void playCommerce( Card card){
+        this.getCurrentPlayer().updateResources(card);
+        this.getCurrentPlayer().updateVictoryPoints(card);
+    }
     public void playScience( Card card){}
     public void playCivic( Card card){}
     public void playCrisis( Card card){}

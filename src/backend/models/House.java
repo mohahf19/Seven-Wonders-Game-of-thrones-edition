@@ -10,10 +10,11 @@ public class House {
     public ArrayList<Integer> resourcesList; //1 means no resources
     public ArrayList<Wonder> wonders;
     public int militaryShields;
-    public Card[] playedCards;
+    public ArrayList<Card> playedCards;
     public int coins;
     public int buff;
     public int nerf;
+    public int victoryPoints;
 
 
 
@@ -33,6 +34,7 @@ public class House {
         this.coins = 3;
         this.buff = buff;
         this.nerf = nerf;
+        this.victoryPoints = 0;
     }
 
     public void addResource(ArrayList<Integer> newRes){
@@ -151,7 +153,7 @@ public class House {
         return militaryShields;
     }
 
-    public Card[] getPlayedCards() {
+    public ArrayList<Card> getPlayedCards() {
         return playedCards;
     }
 

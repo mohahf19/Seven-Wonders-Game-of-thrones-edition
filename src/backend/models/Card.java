@@ -41,9 +41,7 @@ public class Card {
         return cost;
     }
 
-    public boolean isResource(){
-        return false;
-    }
+    public boolean isResource(){ return false; }
 
     public boolean isMilitary(){
         return false;

@@ -15,4 +15,8 @@ public class Military extends Card{
     public boolean isMilitary(){
         return true;
     }
+
+    public int getNumberOfShields() {
+        return numberOfShields;
+    }
 }

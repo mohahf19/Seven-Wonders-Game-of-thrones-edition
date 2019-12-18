@@ -32,6 +32,28 @@ public class Player {
 
     //methods
 
+    // play card related methods (updating attributes)
+    public void updateResources(Card card) {
+
+    }
+
+    public void updateMilitaryShields(Card card) {
+        this.house.militaryShields += ((Military) card).getNumberOfShields();
+    }
+
+    public void updateVictoryPoints(Card card) {
+        if (card.isCommerce()) {
+            this.house.victoryPoints += ((Commerce) card).getVictoryPoints();
+        }
+        else if (card.isCivic()) {
+            this.house.victoryPoints += ((Civic) card).getVictoryPoints();
+        }
+        else {
+            System.out.println("The card is not commerce or civic, so no vps here");
+            System.exit(1);
+        }
+    }
+
     public void setNeighbors(Player left, Player right){
         neighbors.left = left;
         neighbors.right = right;
@@ -50,12 +72,12 @@ public class Player {
     }
 
     public ArrayList<Card> getPlayedScience(){
-        Card[] playedCards = house.getPlayedCards();
+        ArrayList<Card> playedCards = house.getPlayedCards();
         ArrayList<Card> playedScience;
         playedScience = new ArrayList<Card>();
-        for(int i = 0; i < playedCards.length; i++) {
-            if( playedCards[i].color.toString() == "green" )
-                playedScience.add(playedCards[i]);
+        for(int i = 0; i < playedCards.size(); i++) {
+            if( playedCards.get(i).isScience() )
+                playedScience.add(playedCards.get(i));
         }
         return playedScience;
     }
