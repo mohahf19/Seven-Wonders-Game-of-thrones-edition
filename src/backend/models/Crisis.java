@@ -7,7 +7,7 @@ public class Crisis extends Card {
 
     public Crisis(String name, int[] cardFreq, int age, Cost cost, Color color, String imagePath,
                   String iconPath, String backPath, int crisisID){
-        super(name, cardFreq, age, cost, color, imagePath, iconPath, backPath);
+        super(name, cardFreq, age, cost, color, imagePath, iconPath, backPath, "","");
         this.crisisID = crisisID;
     }
 

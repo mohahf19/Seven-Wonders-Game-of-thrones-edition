@@ -9,8 +9,8 @@ public class Resource extends Card {
 
     public Resource(String name, int[] cardFreq, int age, Cost cost,
                     Color color, String imagePath,
-                    String iconPath, String backPath, int[] resourcesList, String[] type){
-        super(name, cardFreq, age, cost, color, imagePath, iconPath, backPath);
+                    String iconPath, String backPath, String chain1, String chain2, int[] resourcesList, String[] type){
+        super(name, cardFreq, age, cost, color, imagePath, iconPath, backPath, chain1, chain2);
 
         this.resourcesList = new int[resourcesList.length];
         for( int i = 0; i < resourcesList.length; i++)

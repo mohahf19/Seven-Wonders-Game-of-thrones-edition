@@ -11,9 +11,10 @@ public class Card {
     public String imagePath;
     public String iconPath;
     public String backPath;
+    public String chain1, chain2;
 
     public Card(String name, int[] cardFreq, int age, Cost cost, Color color, String imagePath,
-                String iconPath, String backPath){
+                String iconPath, String backPath, String chain1, String chain2){
         this.name = name;
         this.age= age;
         this.cost = cost;
@@ -24,9 +25,11 @@ public class Card {
         this.cardFreq = new int[cardFreq.length];
         for( int i = 0; i < cardFreq.length; i++)
             this.cardFreq[i] = cardFreq[i];
+        this.chain1 = chain1;
+        this.chain2 = chain2;
     }
 
-    //this initializer is for ui tesintg
+    //this initializer is for ui testing
     public Card(String name, Cost cost, String imagePath,
                 String iconPath, String backPath){
         this.name = name;
