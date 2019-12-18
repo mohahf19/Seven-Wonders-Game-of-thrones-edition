@@ -31,6 +31,7 @@ public class Deck {
     private ArrayList<Card> initAge1(){
         String path = "" ;
         ArrayList<Card> cards1 = new ArrayList<Card>();
+        //Resources Age 1
         cards1.add(new Resource("Lumber Yard",
                 3,
                 1,
@@ -40,7 +41,7 @@ public class Deck {
                 path + "Lumber Yard" + "back",
                 "",
                 "",
-                arr(3)
+                arr(w)
                 ));
         cards1.add(new Resource("Lumber Yard",
                 4,
@@ -51,8 +52,207 @@ public class Deck {
                 path + "Lumber Yard" + "back",
                 "",
                 "",
-                arr(3)
+                arr(w)
         ));
+        cards1.add(new Resource("Stone Pit",
+                3,
+                1,
+                new Cost(0,"",1),
+                path + "Stone Pit" + "image",
+                path + "Stone Pit" + "icon",
+                path + "Stone Pit" + "back",
+                "",
+                "",
+                arr(so)
+        ));
+        cards1.add(new Resource("Stone Pit",
+                5,
+                1,
+                new Cost(0,"",1),
+                path + "Stone Pit" + "image",
+                path + "Stone Pit" + "icon",
+                path + "Stone Pit" + "back",
+                "",
+                "",
+                arr(so)
+        ));
+        cards1.add(new Resource("Clay Pool",
+                3,
+                1,
+                new Cost(0,"",1),
+                path + "Clay Pool" + "image",
+                path + "Clay Pool" + "icon",
+                path + "Clay Pool" + "back",
+                "",
+                "",
+                arr(c)
+        ));
+        cards1.add(new Resource("Clay Pool",
+                5,
+                1,
+                new Cost(0,"",1),
+                path + "Clay Pool" + "image",
+                path + "Clay Pool" + "icon",
+                path + "Clay Pool" + "back",
+                "",
+                "",
+                arr(c)
+        ));
+        cards1.add(new Resource("Ore Vein",
+                3,
+                1,
+                new Cost(0,"",1),
+                path + "Ore Vein" + "image",
+                path + "Ore Vein" + "icon",
+                path + "Ore Vein" + "back",
+                "",
+                "",
+                arr(o)
+        ));
+        cards1.add(new Resource("Ore Vein",
+                4,
+                1,
+                new Cost(0,"",1),
+                path + "Ore Vein" + "image",
+                path + "Ore Vein" + "icon",
+                path + "Ore Vein" + "back",
+                "",
+                "",
+                arr(o)
+        ));
+        cards1.add(new Resource("Tree Farm",
+                6,
+                1,
+                new Cost(1,"",1),
+                path + "Tree Farm" + "image",
+                path + "Tree Farm" + "icon",
+                path + "Tree Farm" + "back",
+                "",
+                "",
+                arr(w,c)
+        ));
+        cards1.add(new Resource("Excavation",
+                4,
+                1,
+                new Cost(1,"",1),
+                path + "Excavation" + "image",
+                path + "Excavation" + "icon",
+                path + "Excavation" + "back",
+                "",
+                "",
+                arr(so,c)
+        ));
+        cards1.add(new Resource("Clay Pit",
+                3,
+                1,
+                new Cost(1,"",1),
+                path + "Clay Pit" + "image",
+                path + "Clay Pit" + "icon",
+                path + "Clay Pit" + "back",
+                "",
+                "",
+                arr(o,c)
+        ));
+        cards1.add(new Resource("Timber Yard",
+                3,
+                1,
+                new Cost(1,"",1),
+                path + "Timber Yard" + "image",
+                path + "Timber Yard" + "icon",
+                path + "Timber Yard" + "back",
+                "",
+                "",
+                arr(so,w)
+        ));
+        cards1.add(new Resource("Forest Cave",
+                5,
+                1,
+                new Cost(1,"",1),
+                path + "Forest Cave" + "image",
+                path + "Forest Cave" + "icon",
+                path + "Forest Cave" + "back",
+                "",
+                "",
+                arr(o,w)
+        ));
+        cards1.add(new Resource("Mine",
+                6,
+                1,
+                new Cost(1,"",1),
+                path + "Mine" + "image",
+                path + "Mine" + "icon",
+                path + "Mine" + "back",
+                "",
+                "",
+                arr(so,o)
+        ));
+        cards1.add(new Resource("Loom",
+                3,
+                1,
+                new Cost(0,"",1),
+                path + "Loom" + "image",
+                path + "Loom" + "icon",
+                path + "Loom" + "back",
+                "",
+                "",
+                arr(si)
+        ));
+        cards1.add(new Resource("Loom",
+                6,
+                1,
+                new Cost(0,"",1),
+                path + "Loom" + "image",
+                path + "Loom" + "icon",
+                path + "Loom" + "back",
+                "",
+                "",
+                arr(si)
+        ));
+        cards1.add(new Resource("Glassworks",
+                3,
+                1,
+                new Cost(0,"",1),
+                path + "Glassworks" + "image",
+                path + "Glassworks" + "icon",
+                path + "Glassworks" + "back",
+                "",
+                "",
+                arr(d)
+        ));
+        cards1.add(new Resource("Glassworks",
+                6,
+                1,
+                new Cost(0,"",1),
+                path + "Glassworks" + "image",
+                path + "Glassworks" + "icon",
+                path + "Glassworks" + "back",
+                "",
+                "",
+                arr(d)
+        ));
+        cards1.add(new Resource("Press",
+                3,
+                1,
+                new Cost(0,"",1),
+                path + "Press" + "image",
+                path + "Press" + "icon",
+                path + "Press" + "back",
+                "",
+                "",
+                arr(p)
+        ));
+        cards1.add(new Resource("Press",
+                6,
+                1,
+                new Cost(0,"",1),
+                path + "Press" + "image",
+                path + "Press" + "icon",
+                path + "Press" + "back",
+                "",
+                "",
+                arr(p)
+        ));
+        //Civics Age 1
         cards1.add(new Civic("Pawnshop",
                 4,
                 1,
@@ -161,11 +361,308 @@ public class Deck {
                 2,
                 0
         ));
+        //Military Age 1
+        cards1.add(new Military("Stockade",
+                3,
+                1,
+                new Cost(0, "", w),
+                path + "Stockade" + "image",
+                path + "Stockade" + "icon",
+                path + "Stockade" + "back",
+                "",
+                "",
+                1
+
+        ));
+        cards1.add(new Military("Stockade",
+                7,
+                1,
+                new Cost(0, "", w),
+                path + "Stockade" + "image",
+                path + "Stockade" + "icon",
+                path + "Stockade" + "back",
+                "",
+                "",
+                1
+
+        ));
+        cards1.add(new Military("Barracks",
+                3,
+                1,
+                new Cost(0, "", o),
+                path + "Barracks" + "image",
+                path + "Barracks" + "icon",
+                path + "Barracks" + "back",
+                "",
+                "",
+                1
+
+        ));
+        cards1.add(new Military("Barracks",
+                5,
+                1,
+                new Cost(0, "", o),
+                path + "Barracks" + "image",
+                path + "Barracks" + "icon",
+                path + "Barracks" + "back",
+                "",
+                "",
+                1
+
+        ));
+        cards1.add(new Military("Guard Tower",
+                3,
+                1,
+                new Cost(0, "", c),
+                path + "Guard Tower" + "image",
+                path + "Guard Tower" + "icon",
+                path + "Guard Tower" + "back",
+                "",
+                "",
+                1
+
+        ));
+        cards1.add(new Military("Guard Tower",
+                4,
+                1,
+                new Cost(0, "", c),
+                path + "Guard Tower" + "image",
+                path + "Guard Tower" + "icon",
+                path + "Guard Tower" + "back",
+                "",
+                "",
+                1
+
+        ));
+        //Science Age 1
+        cards1.add(new Science("Apothecary",
+                3,
+                1,
+                new Cost(0, "", si),
+                path + "Apothecary" + "image",
+                path + "Apothecary" + "icon",
+                path + "Apothecary" + "back",
+                "Stables",
+                "Dispensary",
+                "Ruler"
+        ));
+        cards1.add(new Science("Apothecary",
+                5,
+                1,
+                new Cost(0, "", si),
+                path + "Apothecary" + "image",
+                path + "Apothecary" + "icon",
+                path + "Apothecary" + "back",
+                "Stables",
+                "Dispensary",
+                "Ruler"
+        ));
+        cards1.add(new Science("Workshop",
+                3,
+                1,
+                new Cost(0, "", d),
+                path + "Workshop" + "image",
+                path + "Workshop" + "icon",
+                path + "Workshop" + "back",
+                "Archery Range",
+                "Laboratory",
+                "Gear"
+        ));
+        cards1.add(new Science("Workshop",
+                7,
+                1,
+                new Cost(0, "", d),
+                path + "Workshop" + "image",
+                path + "Workshop" + "icon",
+                path + "Workshop" + "back",
+                "Archery Range",
+                "Laboratory",
+                "Gear"
+        ));
+        cards1.add(new Science("Scriptorium",
+                3,
+                1,
+                new Cost(0, "", p),
+                path + "Scriptorium" + "image",
+                path + "Scriptorium" + "icon",
+                path + "Scriptorium" + "back",
+                "Courthouse",
+                "Library",
+                "Tablet"
+        ));
+        cards1.add(new Science("Scriptorium",
+                4,
+                1,
+                new Cost(0, "", p),
+                path + "Scriptorium" + "image",
+                path + "Scriptorium" + "icon",
+                path + "Scriptorium" + "back",
+                "Courthouse",
+                "Library",
+                "Tablet"
+        ));
+        //Commerce Age 1
         return cards1;
     }
     private ArrayList<Card> initAge2(){
         String path = "" ;
         ArrayList<Card> cards1 = new ArrayList<Card>();
+        //Resources Age 2
+        cards1.add(new Resource("Sawmill",
+                3,
+                2,
+                new Cost(1,"",1),
+                path + "Sawmill" + "image",
+                path + "Sawmill" + "icon",
+                path + "Sawmill" + "back",
+                "",
+                "",
+                arr(w*w)
+        ));
+        cards1.add(new Resource("Sawmill",
+                4,
+                2,
+                new Cost(1,"",1),
+                path + "Sawmill" + "image",
+                path + "Sawmill" + "icon",
+                path + "Sawmill" + "back",
+                "",
+                "",
+                arr(w*w)
+        ));
+        cards1.add(new Resource("Quarry",
+                3,
+                1,
+                new Cost(1,"",1),
+                path + "Quarry" + "image",
+                path + "Quarry" + "icon",
+                path + "Quarry" + "back",
+                "",
+                "",
+                arr(so*so)
+        ));
+        cards1.add(new Resource("Quarry",
+                4,
+                2,
+                new Cost(1,"",1),
+                path + "Quarry" + "image",
+                path + "Quarry" + "icon",
+                path + "Quarry" + "back",
+                "",
+                "",
+                arr(so*so)
+        ));
+        cards1.add(new Resource("Brickyard",
+                3,
+                2,
+                new Cost(1,"",1),
+                path + "Brickyard" + "image",
+                path + "Brickyard" + "icon",
+                path + "Brickyard" + "back",
+                "",
+                "",
+                arr(c*c)
+        ));
+        cards1.add(new Resource("Brickyard",
+                4,
+                2,
+                new Cost(1,"",1),
+                path + "Brickyard" + "image",
+                path + "Brickyard" + "icon",
+                path + "Brickyard" + "back",
+                "",
+                "",
+                arr(c*c)
+        ));
+        cards1.add(new Resource("Foundry",
+                3,
+                2,
+                new Cost(1,"",1),
+                path + "Foundry" + "image",
+                path + "Foundry" + "icon",
+                path + "Foundry" + "back",
+                "",
+                "",
+                arr(c*c)
+        ));
+        cards1.add(new Resource("Foundry",
+                4,
+                2,
+                new Cost(1,"",1),
+                path + "Foundry" + "image",
+                path + "Foundry" + "icon",
+                path + "Foundry" + "back",
+                "",
+                "",
+                arr(c*c)
+        ));
+        cards1.add(new Resource("Loom",
+                3,
+                2,
+                new Cost(0,"",1),
+                path + "Loom" + "image",
+                path + "Loom" + "icon",
+                path + "Loom" + "back",
+                "",
+                "",
+                arr(si)
+        ));
+        cards1.add(new Resource("Loom",
+                5,
+                2,
+                new Cost(0,"",1),
+                path + "Loom" + "image",
+                path + "Loom" + "icon",
+                path + "Loom" + "back",
+                "",
+                "",
+                arr(si)
+        ));
+        cards1.add(new Resource("Glassworks",
+                3,
+                2,
+                new Cost(0,"",1),
+                path + "Glassworks" + "image",
+                path + "Glassworks" + "icon",
+                path + "Glassworks" + "back",
+                "",
+                "",
+                arr(d)
+        ));
+        cards1.add(new Resource("Glassworks",
+                5,
+                2,
+                new Cost(0,"",1),
+                path + "Glassworks" + "image",
+                path + "Glassworks" + "icon",
+                path + "Glassworks" + "back",
+                "",
+                "",
+                arr(d)
+        ));
+        cards1.add(new Resource("Press",
+                3,
+                2,
+                new Cost(0,"",1),
+                path + "Press" + "image",
+                path + "Press" + "icon",
+                path + "Press" + "back",
+                "",
+                "",
+                arr(p)
+        ));
+        cards1.add(new Resource("Press",
+                5,
+                2,
+                new Cost(0,"",1),
+                path + "Press" + "image",
+                path + "Press" + "icon",
+                path + "Press" + "back",
+                "",
+                "",
+                arr(p)
+        ));
+        //Civics Age 2
         cards1.add(new Civic("Aquaduct",
                 3,
                 2,
@@ -261,6 +758,204 @@ public class Deck {
                 "",
                 4,
                 0
+        ));
+        //Military Age 2
+        cards1.add(new Military("Walls",
+                3,
+                2,
+                new Cost(0, "", so*so*so),
+                path + "Walls" + "image",
+                path + "Walls" + "icon",
+                path + "Walls" + "back",
+                "Fortifications",
+                "",
+                2
+
+        ));
+        cards1.add(new Military("Walls",
+                7,
+                2,
+                new Cost(0, "", so*so*so),
+                path + "Walls" + "image",
+                path + "Walls" + "icon",
+                path + "Walls" + "back",
+                "Fortifications",
+                "",
+                2
+
+        ));
+        cards1.add(new Military("Training Ground",
+                4,
+                2,
+                new Cost(0, "", o*o*w),
+                path + "Training Ground" + "image",
+                path + "Training Ground" + "icon",
+                path + "Training Ground" + "back",
+                "Circus",
+                "",
+                2
+
+        ));
+        cards1.add(new Military("Training Ground",
+                6,
+                2,
+                new Cost(0, "", o*o*w),
+                path + "Training Ground" + "image",
+                path + "Training Ground" + "icon",
+                path + "Training Ground" + "back",
+                "Circus",
+                "",
+                2
+
+        ));
+        cards1.add(new Military("Training Ground",
+                7,
+                2,
+                new Cost(0, "", o*o*w),
+                path + "Training Ground" + "image",
+                path + "Training Ground" + "icon",
+                path + "Training Ground" + "back",
+                "Circus",
+                "",
+                2
+
+        ));
+        cards1.add(new Military("Stables",
+                3,
+                2,
+                new Cost(0, "Apothecary", o*c*w),
+                path + "Stables" + "image",
+                path + "Stables" + "icon",
+                path + "Stables" + "back",
+                "",
+                "",
+                2
+
+        ));
+        cards1.add(new Military("Stables",
+                5,
+                2,
+                new Cost(0, "Apothecary", o*c*w),
+                path + "Stables" + "image",
+                path + "Stables" + "icon",
+                path + "Stables" + "back",
+                "",
+                "",
+                2
+
+        ));
+        cards1.add(new Military("Archery Range",
+                3,
+                2,
+                new Cost(0, "Workshop", w*w*o),
+                path + "Archery Range" + "image",
+                path + "Archery Range" + "icon",
+                path + "Archery Range" + "back",
+                "",
+                "",
+                2
+
+        ));
+        cards1.add(new Military("Archery Range",
+                6,
+                2,
+                new Cost(0, "Workshop", o*w*w),
+                path + "Archery Range" + "image",
+                path + "Archery Range" + "icon",
+                path + "Archery Range" + "back",
+                "",
+                "",
+                2
+
+        ));
+        //Science Age 2
+        cards1.add(new Science("Dispensary",
+                3,
+                2,
+                new Cost(0, "Apothecary", o*o*d),
+                path + "Dispensary" + "image",
+                path + "Dispensary" + "icon",
+                path + "Dispensary" + "back",
+                "Arena",
+                "Lodge",
+                "Ruler"
+        ));
+        cards1.add(new Science("Dispensary",
+                4,
+                2,
+                new Cost(0, "Apothecary", o*o*d),
+                path + "Dispensary" + "image",
+                path + "Dispensary" + "icon",
+                path + "Dispensary" + "back",
+                "Arena",
+                "Lodge",
+                "Ruler"
+        ));
+        cards1.add(new Science("Laboratory",
+                3,
+                2,
+                new Cost(0, "Workshop", c*c*p),
+                path + "Laboratory" + "image",
+                path + "Laboratory" + "icon",
+                path + "Laboratory" + "back",
+                "Siege Workshop",
+                "Observatory",
+                "Gear"
+        ));
+        cards1.add(new Science("Laboratory",
+                5,
+                2,
+                new Cost(0, "Workshop", c*c*p),
+                path + "Laboratory" + "image",
+                path + "Laboratory" + "icon",
+                path + "Laboratory" + "back",
+                "Siege Workshop",
+                "Observatory",
+                "Gear"
+        ));
+        cards1.add(new Science("Library",
+                3,
+                2,
+                new Cost(0, "Scriptorium", so*so*si),
+                path + "Library" + "image",
+                path + "Library" + "icon",
+                path + "Library" + "back",
+                "Senate",
+                "University",
+                "Tablet"
+        ));
+        cards1.add(new Science("Library",
+                6,
+                2,
+                new Cost(0, "Scriptorium", so*so*si),
+                path + "Library" + "image",
+                path + "Library" + "icon",
+                path + "Library" + "back",
+                "Senate",
+                "University",
+                "Tablet"
+        ));
+        cards1.add(new Science("School",
+                3,
+                2,
+                new Cost(0, "", w*p),
+                path + "School" + "image",
+                path + "School" + "icon",
+                path + "School" + "back",
+                "Academy",
+                "Study",
+                "Tablet"
+        ));
+        cards1.add(new Science("School",
+                7,
+                2,
+                new Cost(0, "", w*p),
+                path + "School" + "image",
+                path + "School" + "icon",
+                path + "School" + "back",
+                "Academy",
+                "Study",
+                "Tablet"
         ));
         return cards1;
     }
@@ -363,6 +1058,276 @@ public class Deck {
                 8,
                 0
         ));
+        cards1.add(new Civic("Palace",
+                7,
+                3,
+                new Cost(0, "", d*o*so*p*si*c*w),
+                path + "Palace" + "image",
+                path + "Palace" + "icon",
+                path + "Palace" + "back",
+                "",
+                "",
+                8,
+                0
+        ));
+        cards1.add(new Civic("Senate",
+                3,
+                3,
+                new Cost(0, "Library", o*so*w*w),
+                path + "Senate" + "image",
+                path + "Senate" + "icon",
+                path + "Senate" + "back",
+                "",
+                "",
+                6,
+                0
+        ));
+        cards1.add(new Civic("Senate",
+                5,
+                3,
+                new Cost(0, "Library", d*o*so*p*si*c*w),
+                path + "Senate" + "image",
+                path + "Senate" + "icon",
+                path + "Senate" + "back",
+                "",
+                "",
+                6,
+                0
+        ));
+        //Military Age 3
+        cards1.add(new Military("Fortifications",
+                3,
+                3,
+                new Cost(0, "Walls", so*o*o*o),
+                path + "Fortifications" + "image",
+                path + "Fortifications" + "icon",
+                path + "Fortifications" + "back",
+                "",
+                "",
+                3
+
+        ));
+        cards1.add(new Military("Fortifications",
+                7,
+                3,
+                new Cost(0, "Walls", so*o*o*o),
+                path + "Fortifications" + "image",
+                path + "Fortifications" + "icon",
+                path + "Fortifications" + "back",
+                "",
+                "",
+                3
+
+        ));
+        cards1.add(new Military("Circus",
+                4,
+                3,
+                new Cost(0, "Training Grounds", so*so*so*o),
+                path + "Circus" + "image",
+                path + "Circus" + "icon",
+                path + "Circus" + "back",
+                "",
+                "",
+                3
+
+        ));
+        cards1.add(new Military("Circus",
+                5,
+                3,
+                new Cost(0, "Training Grounds", so*so*so*o),
+                path + "Circus" + "image",
+                path + "Circus" + "icon",
+                path + "Circus" + "back",
+                "",
+                "",
+                3
+
+        ));
+        cards1.add(new Military("Circus",
+                6,
+                3,
+                new Cost(0, "Training Grounds", so*so*so*o),
+                path + "Circus" + "image",
+                path + "Circus" + "icon",
+                path + "Circus" + "back",
+                "",
+                "",
+                3
+
+        ));
+        cards1.add(new Military("Arsenal",
+                3,
+                3,
+                new Cost(0, "", o*w*w*si),
+                path + "Arsenal" + "image",
+                path + "Arsenal" + "icon",
+                path + "Arsenal" + "back",
+                "",
+                "",
+                3
+
+        ));
+        cards1.add(new Military("Arsenal",
+                4,
+                3,
+                new Cost(0, "", o*w*w*si),
+                path + "Arsenal" + "image",
+                path + "Arsenal" + "icon",
+                path + "Arsenal" + "back",
+                "",
+                "",
+                3
+
+        ));
+        cards1.add(new Military("Arsenal",
+                7,
+                3,
+                new Cost(0, "", o*w*w*si),
+                path + "Arsenal" + "image",
+                path + "Arsenal" + "icon",
+                path + "Arsenal" + "back",
+                "",
+                "",
+                3
+
+        ));
+        cards1.add(new Military("Siege Workshop",
+                3,
+                3,
+                new Cost(0, "Laboratory", w*c*c*c*c),
+                path + "Siege Workshop" + "image",
+                path + "Siege Workshop" + "icon",
+                path + "Siege Workshop" + "back",
+                "",
+                "",
+                3
+
+        ));
+        cards1.add(new Military("Siege Workshop",
+                5,
+                3,
+                new Cost(0, "Laboratory", w*c*c*c*c),
+                path + "Siege Workshop" + "image",
+                path + "Siege Workshop" + "icon",
+                path + "Siege Workshop" + "back",
+                "",
+                "",
+                3
+
+        ));
+        //Science Age 3
+        cards1.add(new Science("Lodge",
+                3,
+                3,
+                new Cost(0, "Dispensary", c*c*si*p),
+                path + "Lodge" + "image",
+                path + "Lodge" + "icon",
+                path + "Lodge" + "back",
+                "",
+                "",
+                "Ruler"
+        ));
+        cards1.add(new Science("Lodge",
+                6,
+                3,
+                new Cost(0, "Dispensary", c*c*si*p),
+                path + "Lodge" + "image",
+                path + "Lodge" + "icon",
+                path + "Lodge" + "back",
+                "",
+                "",
+                "Ruler"
+        ));
+        cards1.add(new Science("Observatory",
+                3,
+                3,
+                new Cost(0, "Laboratory", o*o*d*si),
+                path + "Observatory" + "image",
+                path + "Observatory" + "icon",
+                path + "Observatory" + "back",
+                "",
+                "",
+                "Gear"
+        ));
+        cards1.add(new Science("Observatory",
+                7,
+                3,
+                new Cost(0, "Laboratory", o*o*d*si),
+                path + "Observatory" + "image",
+                path + "Observatory" + "icon",
+                path + "Observatory" + "back",
+                "",
+                "",
+                "Gear"
+        ));
+        cards1.add(new Science("Study",
+                3,
+                3,
+                new Cost(0, "School", w*p*si),
+                path + "Study" + "image",
+                path + "Study" + "icon",
+                path + "Study" + "back",
+                "",
+                "",
+                "Gear"
+        ));
+        cards1.add(new Science("Study",
+                5,
+                3,
+                new Cost(0, "School", w*p*si),
+                path + "Study" + "image",
+                path + "Study" + "icon",
+                path + "Study" + "back",
+                "",
+                "",
+                "Gear"
+        ));
+        cards1.add(new Science("Academy",
+                3,
+                3,
+                new Cost(0, "School", so*so*so*d),
+                path + "Academy" + "image",
+                path + "Academy" + "icon",
+                path + "Academy" + "back",
+                "",
+                "",
+                "Ruler"
+        ));
+        cards1.add(new Science("Academy",
+                7,
+                3,
+                new Cost(0, "School", so*so*so*d),
+                path + "Academy" + "image",
+                path + "Academy" + "icon",
+                path + "Academy" + "back",
+                "",
+                "",
+                "Ruler"
+        ));
+        cards1.add(new Science("University",
+                3,
+                3,
+                new Cost(0, "Library", w*w*d*si),
+                path + "University" + "image",
+                path + "University" + "icon",
+                path + "University" + "back",
+                "",
+                "",
+                "Tablet"
+        ));
+        cards1.add(new Science("University",
+                4,
+                3,
+                new Cost(0, "Library", w*w*d*si),
+                path + "University" + "image",
+                path + "University" + "icon",
+                path + "University" + "back",
+                "",
+                "",
+                "Tablet"
+        ));
+        //Crisis Age 3
+        //Commerce Age 3
         return cards1;
     }
 }
