@@ -135,19 +135,21 @@ public class Player {
         return playedScience;
     }
 
-    public boolean canBuild(Cost cost){ //TODO change this to Card instead of Cost
+    public int canBuild(Cost cost){ //TODO change this to Card instead of Cost
         //if it was card, just do Cost cost = card.getCost();
         //TODO Check card name
 
         CostResult result = house.canAfford(cost);
-        boolean canBuild = false;
+        // boolean canBuild = false;
 
         switch(result.code) {
             case 0:
                 System.out.println("cannot build.");
+                return 0;
             case 1:
                 System.out.println("can build without trading.");
-                canBuild = true;
+                // canBuild = true;
+                return 1;
             case 2:
                 System.out.println("can build if trading works.");
                 int remaining = result.remaining;
@@ -158,22 +160,23 @@ public class Player {
                 if (left.code == 1){
                     System.out.println("Can trade with left!");
                     pay(neighbors.left, agreements.left, remaining);
-                    canBuild = true;
+                    // canBuild = true;
                 } else{
                     TradingResult right = attemptTrade(neighbors.right, remaining);
                     if (right.code == 1){
                         System.out.println("Can trade with right!");
                         pay(neighbors.right, agreements.right , remaining);
-                        canBuild = true;
+                        // canBuild = true;
                     } else{
 
                         System.out.println("Trading did not work:(");
 
                     }
                 }
+                return 2;
 
         }
-        return canBuild;
+        return -1; // if something goes wrong
 
     }
 
