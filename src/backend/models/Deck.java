@@ -12,18 +12,39 @@ public class Deck {
     int d = 11;
     int p = 13;
     int si = 17;
-    final int[] crisisFreq = {5,6,7,8,9};
-    private boolean direction;
+    private boolean direction; //true for cw, false for ccw
     private ArrayList<Card> cards;
 
+
     public Deck(int noOfPlayers, int age) {
-        //ArrayList<Card> currAgeCards;
-        //TODO ?= init Cards(age);
-        /*for(int i = 0; i < currAgeCards.size(); i++)
-        {
-            if( currAgeCards.get(i).cardFreq <= noOfPlayers)
-                cards.add(currAgeCards.get(i));
-        }*/
+        ArrayList<Card> currAgeCards;
+        cards = new ArrayList<Card>();
+        if ( age == 1) {
+            currAgeCards = this.initAge1();
+            for (int i = 0; i < currAgeCards.size(); i++) {
+                if (currAgeCards.get(i).cardFreq <= noOfPlayers)
+                    cards.add(currAgeCards.get(i));
+            }
+            direction = true;
+        }
+        else if (age == 2) {
+            currAgeCards = this.initAge2();
+
+            for (int i = 0; i < currAgeCards.size(); i++) {
+                if (currAgeCards.get(i).cardFreq <= noOfPlayers)
+                    cards.add(currAgeCards.get(i));
+            }
+            direction = false;
+        }
+        else {
+            currAgeCards = this.initAge3();
+            for (int i = 0; i < currAgeCards.size(); i++) {
+                if (currAgeCards.get(i).cardFreq <= noOfPlayers)
+                    cards.add(currAgeCards.get(i));
+            }
+            cards.addAll(initAndRandomizeCrisis(noOfPlayers));
+            direction = true;
+        }
     }
 
     public ArrayList<Card> getCards() {
@@ -1258,7 +1279,7 @@ public class Deck {
                 "",
                 "",
                 0,
-                arr(),
+                arr(1),
                 1, //TODO coin calculation algorithm works this way?
                 0,
                 true,
@@ -1277,7 +1298,7 @@ public class Deck {
                 "",
                 "",
                 0,
-                arr(),
+                arr(1),
                 1,
                 0,
                 true,
@@ -1296,7 +1317,7 @@ public class Deck {
                 "",
                 "",
                 0,
-                arr(),
+                arr(1),
                 2,
                 0,
                 true,
@@ -1315,7 +1336,7 @@ public class Deck {
                 "",
                 "",
                 0,
-                arr(),
+                arr(1),
                 2,
                 0,
                 true,
@@ -1707,7 +1728,7 @@ public class Deck {
                 "",
                 "",
                 1,
-                arr(),
+                arr(1),
                 1,
                 0,
                 false,
@@ -1726,7 +1747,7 @@ public class Deck {
                 "",
                 "",
                 1,
-                arr(),
+                arr(1),
                 1,
                 0,
                 false,
@@ -1745,7 +1766,7 @@ public class Deck {
                 "",
                 "",
                 1,
-                arr(),
+                arr(1),
                 1,
                 0,
                 false,
@@ -1764,7 +1785,7 @@ public class Deck {
                 "",
                 "",
                 1,
-                arr(),
+                arr(1),
                 1,
                 0,
                 false,
@@ -1783,7 +1804,7 @@ public class Deck {
                 "",
                 "",
                 2,
-                arr(),
+                arr(1),
                 2,
                 0,
                 false,
@@ -1802,7 +1823,7 @@ public class Deck {
                 "",
                 "",
                 2,
-                arr(),
+                arr(1),
                 2,
                 0,
                 false,
@@ -1821,7 +1842,7 @@ public class Deck {
                 "",
                 "",
                 1,
-                arr(),
+                arr(1),
                 3,
                 0,
                 false,
@@ -1840,7 +1861,7 @@ public class Deck {
                 "",
                 "",
                 1,
-                arr(),
+                arr(1),
                 3,
                 0,
                 false,
@@ -1859,7 +1880,7 @@ public class Deck {
                 "",
                 "",
                 1,
-                arr(),
+                arr(1),
                 3,
                 0,
                 false,
@@ -1868,14 +1889,96 @@ public class Deck {
                 true,
                 "Commerce"
         ));
-        //Crisis Age 3
-        cards1.add(new Crisis("Arena",
-                new Cost(0, "Dispensary", o*so*so),
-                path + "Arena" + "image",
-                path + "Arena" + "icon",
-                path + "Arena" + "back",
-                0
-        ));
+
         return cards1;
     }
+    private ArrayList<Card> initAndRandomizeCrisis(int noOfPlayers) {
+        //CrisisCards Initialization
+        ArrayList<Card> crisis = new ArrayList<>();
+        String path= "";
+
+        crisis.add(new Crisis("Ned Stark's Execution",
+                new Cost(0, "", p*si*d),
+                path + "Ned Stark's Execution" + "image",
+                path + "Ned Stark's Execution" + "icon",
+                path + "Ned Stark's Execution" + "back",
+                1
+        ));
+        crisis.add(new Crisis("Battle of Winterfell",
+                new Cost(0, "", o*o*c*so*w),
+                path + "Battle of Winterfell" + "image",
+                path + "Battle of Winterfell" + "icon",
+                path + "Battle of Winterfell" + "back",
+                2
+        ));
+        crisis.add(new Crisis("Battle of the Blackwater",
+                new Cost(0, "", o*o*so*so),
+                path + "Battle of the Blackwater" + "image",
+                path + "Battle of the Blackwater" + "icon",
+                path + "Battle of the Blackwater" + "back",
+                3
+        ));
+        crisis.add(new Crisis("Fall of King’s Landing",
+                new Cost(0, "", c*c*c*si*p),
+                path + "Fall of King’s Landing" + "image",
+                path + "Fall of King’s Landing" + "icon",
+                path + "Fall of King’s Landing" + "back",
+                4
+        ));
+        crisis.add(new Crisis("Battle of Castle Black",
+                new Cost(0, "", c*c*c*d),
+                path + "Battle of Castle Black" + "image",
+                path + "Battle of Castle Black" + "icon",
+                path + "Battle of Castle Black" + "back",
+                5
+        ));
+        crisis.add(new Crisis("Massacre at Hardhome",
+                new Cost(0, "", o*o*so*si),
+                path + "Massacre at Hardhome" + "image",
+                path + "Massacre at Hardhome" + "icon",
+                path + "Massacre at Hardhome" + "back",
+                6
+        ));
+        crisis.add(new Crisis("Blackwater Rush",
+                new Cost(0, "", w*w*w*p*d),
+                path + "Blackwater Rush" + "image",
+                path + "Blackwater Rush" + "icon",
+                path + "Blackwater Rush" + "back",
+                7
+        ));
+        crisis.add(new Crisis("Frozen Lake Battle",
+                new Cost(0, "", w*w*o*o*p),
+                path + "Frozen Lake Battle" + "image",
+                path + "Frozen Lake Battle" + "icon",
+                path + "Frozen Lake Battle" + "back",
+                8
+        ));
+        crisis.add(new Crisis("Jon's Resurrection",
+                new Cost(0, "", w*w*w*so*si),
+                path + "Jon's Resurrection" + "image",
+                path + "Jon's Resurrection" + "icon",
+                path + "Jon's Resurrection" + "back",
+                9
+        ));
+        crisis.add(new Crisis("Daenerys' death",
+                new Cost(0, "", so*so*c*c*d),
+                path + "Daenerys' death" + "image",
+                path + "Daenerys' death" + "icon",
+                path + "Daenerys' death" + "back",
+                10
+        ));
+
+        int max = 10;
+        int min = 1;
+        int range = max - min + 1;
+
+        for (int i = 0; i < max - (noOfPlayers + 2); i++) {
+            int rand = (int) (Math.random() * range) + min;
+            crisis.remove(rand);
+        }
+        return crisis;
+    }
+
+
+
 }
