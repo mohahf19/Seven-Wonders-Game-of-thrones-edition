@@ -1,9 +1,7 @@
 package comm;
 
-import backend.models.Age;
-import backend.models.House;
-import backend.models.Player;
-import backend.models.Scoreboard;
+import backend.controllers.PlayScreenController;
+import backend.models.*;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
@@ -19,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import static backend.models.Numbers.arr;
 
 public class ServerController {
 
@@ -111,11 +111,57 @@ public class ServerController {
 
     public void playTurn(){
         cardsSelectedCount = 0;
+        changeSeason();
+
+        //update deck
+        int o = 2;
+        int w = 3;
+        int c = 5;
+        int so = 7;
+        int d = 11;
+        int p = 13;
+        int si = 17;
+        String path = "/assets/cards/";
+        ArrayList<Card> cards = new ArrayList<>();
+        cards.add(new Resource("Lumber Yard",
+                3,
+                1,
+                new Cost(0, "", 1),
+                path + "Lumber Yard" + "image",
+                path + "Lumber Yard" + "icon",
+                path + "Lumber Yard" + "back",
+                "",
+                "",
+                arr(w)
+        ));
+        cards.add(new Resource("Stone Pit",
+                3,
+                1,
+                new Cost(0, "", 1),
+                path + "Stone Pit" + "image",
+                path + "Stone Pit" + "icon",
+                path + "Stone Pit" + "back",
+                "",
+                "",
+                arr(so)
+        ));
+        cards.add(new Resource("Clay Pool",
+                3,
+                1,
+                new Cost(0, "", 1),
+                path + "Clay Pool" + "image",
+                path + "Clay Pool" + "icon",
+                path + "Clay Pool" + "back",
+                "",
+                "",
+                arr(c)
+        ));
+        for(Player player: players){
+            player.cards = cards;
+        }
 
         //update houses
-        //update deck
-
-        changeSeason();
+        sendHouses();
 
         //sendHouses();
         //sendScoreboard();
