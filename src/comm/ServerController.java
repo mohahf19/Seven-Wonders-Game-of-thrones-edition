@@ -81,15 +81,19 @@ public class ServerController {
     public void populateAges(){
 
         try{
-            Deck deck1 = new Deck( players.size(), 1);
-            Deck deck2= new Deck( players.size(), 2);
-            Deck deck3 = new Deck( players.size(), 3);
+//            Deck deck1 = new Deck( players.size(), 1);
+//            Deck deck2= new Deck( players.size(), 2);
+//            Deck deck3 = new Deck( players.size(), 3);
+
+            Deck deck1 = new Deck( 3, 1);
+            Deck deck2= new Deck( 3, 2);
+            Deck deck3 = new Deck( 3, 3);
 
             ages.add( new Age( deck1));
             ages.add( new Age( deck2));
             ages.add( new Age( deck3));
         } catch ( Exception e){
-            System.out.println( "EXCEPTION::::" + e.toString());
+            System.out.println( "EXCEPTION::::" + e.toString() + e.getStackTrace());
         }
 
     }
@@ -123,67 +127,21 @@ public class ServerController {
         }
     }
 
+    public void shuffleCards(){
+        ArrayList<Card> cards = ages.get( currentAge).getDeck().getCards();
+        int start = 0;
+        for( int i = 0; i < players.size(); i++){
+            players.get( i).cards = new ArrayList<>( cards.subList( start, start + 7));
+            start += 7;
+        }
+    }
+
     public void playTurn(){
         cardsSelectedCount = 0;
         changeSeason();
 
-        //update deck
-        int o = 2;
-        int w = 3;
-        int c = 5;
-        int so = 7;
-        int d = 11;
-        int p = 13;
-        int si = 17;
-        String path = "/assets/cards/";
-        ArrayList<Card> cards = new ArrayList<>();
-        cards.add(new Resource("Lumber Yard",
-                3,
-                1,
-                new Cost(0, "", 1),
-                path + "raw.jpg",
-                path + "Lumber Yard" + "icon.png",
-                path + "brownTop.jpg",
-                "",
-                "",
-                arr(w)
-        ));
-        cards.add(new Resource("Stone Pit",
-                3,
-                1,
-                new Cost(0, "", 1),
-                path + "raw.jpg",
-                path + "Stone Pit" + "icon.png",
-                path + "brownTop.jpg",
-                "",
-                "",
-                arr(so)
-        ));
-        cards.add(new Resource("Clay Pool",
-                3,
-                1,
-                new Cost(0, "", 1),
-                path + "raw.jpg",
-                path + "Clay Pool" + "icon.png",
-                path + "brownTop.jpg",
-                "",
-                "",
-                arr(c)
-        ));
-        cards.add(new Resource("Clay Pool",
-                3,
-                1,
-                new Cost(0, "", 1),
-                path + "raw.jpg",
-                path + "Clay Pool" + "icon.png",
-                path + "brownTop.jpg",
-                "",
-                "",
-                arr(c)
-        ));
-        for(Player player: players){
-            player.cards = cards;
-        }
+        //shuffle cards around
+        shuffleCards();
 
         //update houses
         sendHouses();
@@ -247,7 +205,7 @@ public class ServerController {
         cardsSelectedCount++;
         if (cardsSelectedCount >= players.size() - 1){
             cardsSelectedCount = 0;
-            //populateAges();
+            populateAges();
             incrementAge();
         }
     }
