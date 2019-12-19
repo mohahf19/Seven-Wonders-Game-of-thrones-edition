@@ -1,7 +1,5 @@
 package backend.models;
 
-import javafx.scene.paint.Color;
-
 public class Resource extends Card {
     private int[] resourcesList;
     private String[] type;
@@ -9,7 +7,7 @@ public class Resource extends Card {
 
     public Resource(String name, int cardFreq, int age, Cost cost, String imagePath,
                     String iconPath, String backPath, String chain1, String chain2, int[] resourcesList, String[] type){
-        super(name, cardFreq, age, cost, imagePath, iconPath, backPath, chain1, chain2);
+        super(name, cardFreq, age, cost, "resource.jpg", iconPath, "brown.jpg", chain1, chain2);
 
         this.resourcesList = new int[resourcesList.length];
         for( int i = 0; i < resourcesList.length; i++)
