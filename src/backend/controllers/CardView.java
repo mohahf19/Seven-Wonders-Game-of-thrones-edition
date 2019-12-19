@@ -2,11 +2,13 @@ package backend.controllers;
 
 import backend.models.Card;
 import backend.models.Numbers;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 
 import java.util.ArrayList;
 
@@ -101,16 +103,27 @@ public class CardView extends Pane {
 
     private void fillPreReq(int resource, int money) {
         ArrayList<Integer> res = Numbers.factorizeResources(resource);
+        String path = "/assets/cards/";
+        prereqHBox.getChildren().clear();
 
         for(int i = -1; i < res.size(); i++){
+            ImageView imgView = new ImageView();
+            imgView.setFitHeight(20);
+            imgView.setFitWidth(20);
             int val;
             if (i > -1) {
                 val = res.get(i);
+                imgView.setImage(new Image(path + val + ".png"));
+                prereqHBox.getChildren().add(imgView);
             } else {
-                val = money;
+                imgView.setImage(new Image(path + "smallcoin.png"));
+                StackPane st = new StackPane();
+                Label label = new Label("" + money);
+                label.setAlignment(Pos.CENTER);
+                st.getChildren().add(imgView);
+                st.getChildren().add(label);
+                prereqHBox.getChildren().add(st);
             }
-            Label label = new Label("" + val);
-            prereqHBox.getChildren().add(label);
         }
     }
 
