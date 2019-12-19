@@ -5,6 +5,7 @@ import backend.app.fxmlPaths;
 import backend.models.Card;
 import backend.models.Player;
 import com.google.gson.JsonObject;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -102,59 +103,68 @@ public class PlayScreenController implements Initializable {
     }
 
     public static void updateSeasonImage( int currSeason) {
-        Image image;
-        try{
-            switch (currSeason) {
-                case 1: {
-                    image = new Image("assets/seasons/summer.jpg", true);
-                    seasonBannerSt.setImage(image);
-                    break;
-                }
-                case 2: {
-                    image = new Image("assets/seasons/autum.jpg", true);
-                    seasonBannerSt.setImage(image);
-                    break;
-                }
-                case 3: {
-                    image = new Image("assets/seasons/winter.jpg", true);
-                    seasonBannerSt.setImage(image);
-                    break;
-                }
-                case 4: {
-                    image = new Image("assets/seasons/spring.jpg", true);
-                    seasonBannerSt.setImage(image);
-                    break;
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                Image image;
+                try{
+                    switch (currSeason) {
+                        case 1: {
+                            image = new Image("assets/seasons/summer.jpg", true);
+                            seasonBannerSt.setImage(image);
+                            break;
+                        }
+                        case 2: {
+                            image = new Image("assets/seasons/autum.jpg", true);
+                            seasonBannerSt.setImage(image);
+                            break;
+                        }
+                        case 3: {
+                            image = new Image("assets/seasons/winter.jpg", true);
+                            seasonBannerSt.setImage(image);
+                            break;
+                        }
+                        case 4: {
+                            image = new Image("assets/seasons/spring.jpg", true);
+                            seasonBannerSt.setImage(image);
+                            break;
+                        }
+                    }
+                } catch (Exception e){
+                    System.out.println( "CP2" + e.toString() + e.getMessage() + e);
                 }
             }
-        } catch (Exception e){
-            System.out.println( "CP2" + e.toString() + e.getMessage() + e);
-        }
+        });
     }
 
     public static void updateAgeImage( int currAge) {
-        Image image;
-        try {
-            switch (currAge) {
-                case 1: {
-                    image = new Image("assets/ages/age1.jpg", true);
-                    ageButtonSt.setImage(image);
-                    break;
-                }
-                case 2: {
-                    image = new Image("assets/ages/age2.jpg", true);
-                    ageButtonSt.setImage(image);
-                    break;
-                }
-                case 3: {
-                    image = new Image("assets/ages/age3.jpg", true);
-                    ageButtonSt.setImage(image);
-                    break;
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                Image image;
+                try {
+                    switch (currAge) {
+                        case 1: {
+                            image = new Image("assets/ages/age1.jpg", true);
+                            ageButtonSt.setImage(image);
+                            break;
+                        }
+                        case 2: {
+                            image = new Image("assets/ages/age2.jpg", true);
+                            ageButtonSt.setImage(image);
+                            break;
+                        }
+                        case 3: {
+                            image = new Image("assets/ages/age3.jpg", true);
+                            ageButtonSt.setImage(image);
+                            break;
+                        }
+                    }
+                } catch( Exception e){
+                    System.out.println("CP1" + e.toString());
                 }
             }
-        } catch( Exception e){
-            System.out.println("CP1" + e.toString());
-        }
-
+        });
     }
 
 

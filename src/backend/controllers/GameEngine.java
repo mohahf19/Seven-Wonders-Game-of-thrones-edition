@@ -42,6 +42,7 @@ public class GameEngine {
     }
     public void updateAge( int age){
         this.currentAge = age;
+        PlayScreenController.updateAgeImage( age);
     }
     public void playTurn(){}
     public void playAge( int age ){
