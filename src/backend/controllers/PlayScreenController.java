@@ -2,6 +2,7 @@ package backend.controllers;
 
 import backend.app.Main;
 import backend.app.fxmlPaths;
+import backend.models.Card;
 import backend.models.Player;
 import com.google.gson.JsonObject;
 import javafx.event.ActionEvent;
@@ -94,6 +95,10 @@ public class PlayScreenController implements Initializable {
 
         //don't change anything below
         notifyViewLoaded();
+    }
+    public static void updateDeck( ArrayList<Card> cards){
+        //write something
+        System.out.println( "Cards geldi");
     }
 
     public static void updateSeasonImage( int currSeason) {
