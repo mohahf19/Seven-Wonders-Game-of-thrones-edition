@@ -3,6 +3,7 @@ package backend.controllers;
 import backend.app.Main;
 import backend.app.fxmlPaths;
 import backend.models.Player;
+import com.google.gson.JsonObject;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -42,6 +43,12 @@ public class PlayScreenController implements Initializable {
     private HBox cardHolder;
 
     CardView sampleCard;
+
+    public void notifyViewLoaded(){
+        JsonObject req = new JsonObject();
+        req.addProperty("op_code", 3);
+        Main.gameEngine.client.sendRequest( req);
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -84,6 +91,9 @@ public class PlayScreenController implements Initializable {
         soundButton.addEventHandler(MouseEvent.MOUSE_EXITED, new soundMouseExitListener());
 
         setHeaders(Main.gameEngine.getCurrentPlayer().id);
+
+        //don't change anything below
+        notifyViewLoaded();
     }
 
     public static void updateSeasonImage( int currSeason) {

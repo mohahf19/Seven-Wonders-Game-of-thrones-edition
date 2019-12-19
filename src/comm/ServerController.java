@@ -91,6 +91,7 @@ public class ServerController {
 
                 host.sendRequest( i, outOb);
             }
+            playTurn();
 
         } else {
             //game ended
@@ -114,8 +115,10 @@ public class ServerController {
         //update houses
         //update deck
 
-        sendHouses();
-        sendScoreboard();
+        changeSeason();
+
+        //sendHouses();
+        //sendScoreboard();
     }
 
     public void sendHouseJoined(){
@@ -156,12 +159,10 @@ public class ServerController {
     }
 
     public void startGame(){
-        if( !host.requestsAcknowledged())
-            return;
+//        if( !host.requestsAcknowledged())
+//            return;
         host.isReceiving = false;
 
-        incrementAge();
-        changeSeason();
         for( int i = 0; i < host.clients.size(); i++){
 
             JsonObject outOb = new JsonObject();
@@ -169,13 +170,21 @@ public class ServerController {
 
             host.sendRequest( i, outOb);
         }
+    }
 
-        class UpdateSeason extends TimerTask {
-            public void run() {
-                changeSeason();
-            }
+    public void viewInitialized(){
+        cardsSelectedCount++;
+        if (cardsSelectedCount >= players.size() - 1){
+            cardsSelectedCount = 0;
+            incrementAge();
         }
-        Timer timer = new Timer();
-        timer.schedule(new UpdateSeason(), 0, 3000);
     }
 }
+
+//        class UpdateSeason extends TimerTask {
+//            public void run() {
+//                changeSeason();
+//            }
+//        }
+//        Timer timer = new Timer();
+//        timer.schedule(new UpdateSeason(), 0, 3000);

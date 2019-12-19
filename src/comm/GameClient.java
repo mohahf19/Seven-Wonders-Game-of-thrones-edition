@@ -179,6 +179,7 @@ public class GameClient {
                         this.engine.updateAge( age);
 
                         acknowledgeRequest();
+                        break;
                     }
                     default: {
                         System.out.println( "Client: Invalid opcode");
