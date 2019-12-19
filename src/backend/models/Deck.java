@@ -55,7 +55,7 @@ public class Deck {
     }
 
     private ArrayList<Card> initAge1() {
-        String path = "";
+        String path = "/assets/cards/";
         ArrayList<Card> cards1 = new ArrayList<Card>();
         //Resources Age 1
         cards1.add(new Resource("Lumber Yard",
@@ -694,7 +694,7 @@ public class Deck {
     }
 
     private ArrayList<Card> initAge2() {
-        String path = "";
+        String path = "/assets/cards/";
         ArrayList<Card> cards1 = new ArrayList<Card>();
         //Resources Age 2
         cards1.add(new Resource("Sawmill",
@@ -1342,7 +1342,7 @@ public class Deck {
     }
 
     private ArrayList<Card> initAge3() {
-        String path = "";
+        String path = "/assets/cards/";
         ArrayList<Card> cards1 = new ArrayList<Card>();
         cards1.add(new Civic("Pantheon",
                 3,
@@ -1887,7 +1887,7 @@ public class Deck {
     private ArrayList<Card> initAndRandomizeCrisis(int noOfPlayers) {
         //CrisisCards Initialization
         ArrayList<Card> crisis = new ArrayList<>();
-        String path= "";
+        String path= "/assets/cards/";
 
         crisis.add(new Crisis("Ned Stark's Execution",
                 new Cost(0, "", p*si*d),
