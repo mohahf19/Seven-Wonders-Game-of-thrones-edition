@@ -5,6 +5,7 @@ import backend.app.fxmlPaths;
 import backend.models.Card;
 import backend.models.Player;
 import com.google.gson.JsonObject;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -42,6 +43,7 @@ public class PlayScreenController implements Initializable {
 
     @FXML
     private HBox cardHolder;
+    private static HBox cardHolderSt;
 
     CardView sampleCard;
 
@@ -55,6 +57,7 @@ public class PlayScreenController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         seasonBannerSt = seasonBanner;
         ageButtonSt = ageButton;
+        cardHolderSt = cardHolder;
 
         card1.setOnMouseDragged(new EventHandler() {
             public void handle(Event e) {
@@ -86,7 +89,7 @@ public class PlayScreenController implements Initializable {
             }
         });
 
-        test();
+//        test();
 
         soundButton.addEventHandler(MouseEvent.MOUSE_ENTERED, new soundMouseHoverListener());
         soundButton.addEventHandler(MouseEvent.MOUSE_EXITED, new soundMouseExitListener());
@@ -98,7 +101,27 @@ public class PlayScreenController implements Initializable {
     }
     public static void updateDeck( ArrayList<Card> cards){
         //write something
-        System.out.println( "Cards geldi");
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                cardHolderSt.setAlignment(Pos.CENTER);
+                cardHolderSt.setSpacing(5);
+
+
+
+                System.out.println( "Cards geldi");
+
+                for (int i = 0; i < cards.size(); i++) {
+                    CardView cv = new CardView(cards.get(i));
+                    cv.update(cards.get(i));
+                    System.out.println(cards.get(i).name);
+                    cardHolderSt.getChildren().addAll(cv);
+                }
+            }
+        });
+
+
     }
 
     public static void updateSeasonImage( int currSeason) {
@@ -158,31 +181,31 @@ public class PlayScreenController implements Initializable {
     }
 
 
-    public void test() {
-        //TEST
-        cardHolder.setAlignment(Pos.CENTER);
-        cardHolder.setSpacing(5);
-        for (int i = 0; i < 1; i++) {
-            ImageView cardImg = new ImageView();
-            cardImg.setFitHeight(200);
-            cardImg.setFitWidth(150);
-            Image img = new Image("/assets/Lumberyard", true);
-            cardImg.setImage(img);
-            cardHolder.getChildren().add(cardImg);
-        }
-
-        backend.models.Cost cost = new backend.models.Cost(10, "I AM PREREQ", 17*2*2*3*5);
-
-        backend.models.Card card = new backend.models.Card("Card Titled",cost,
-                "file:///C:/Users/Bilal/Desktop/7%20Houses%20Resources/Cards/Card%20Icon/brownBG.jpg",
-                "file:///C:/Users/Bilal/Desktop/7%20Houses%20Resources/Game%20Icons/Resources%20Icons/wood.png",
-                "file:///C:/Users/Bilal/Desktop/7%20Houses%20Resources/Cards/Card%20Icon/brownTop.jpg");
-        CardView cv = new CardView(card);
-        cv.update(card);
-        cardHolder.getChildren().addAll(cv);
-
-        //TESTEND
-    }
+//    public void test() {
+//        //TEST
+//        cardHolder.setAlignment(Pos.CENTER);
+//        cardHolder.setSpacing(5);
+//        for (int i = 0; i < 1; i++) {
+//            ImageView cardImg = new ImageView();
+//            cardImg.setFitHeight(200);
+//            cardImg.setFitWidth(150);
+//            Image img = new Image("/assets/Lumberyard", true);
+//            cardImg.setImage(img);
+//            cardHolder.getChildren().add(cardImg);
+//        }
+//
+//        backend.models.Cost cost = new backend.models.Cost(10, "I AM PREREQ", 17*2*2*3*5);
+//
+//        backend.models.Card card = new backend.models.Card("Card Titled",cost,
+//                "file:///C:/Users/Bilal/Desktop/7%20Houses%20Resources/Cards/Card%20Icon/brownBG.jpg",
+//                "file:///C:/Users/Bilal/Desktop/7%20Houses%20Resources/Game%20Icons/Resources%20Icons/wood.png",
+//                "file:///C:/Users/Bilal/Desktop/7%20Houses%20Resources/Cards/Card%20Icon/brownTop.jpg");
+//        CardView cv = new CardView(card);
+//        cv.update(card);
+//        cardHolder.getChildren().addAll(cv);
+//
+//        //TESTEND
+//    }
 
     // Headers need to be in an arraylist
     public void setHeaders(int userID) {

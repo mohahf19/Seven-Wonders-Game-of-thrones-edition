@@ -72,7 +72,7 @@ public class CardView extends Pane {
 
         //icon
         iconImageView = new ImageView();
-        iconImageView.setFitWidth(50);
+        iconImageView.setFitWidth(150);
         iconImageView.setFitHeight(50);
 
         //background
