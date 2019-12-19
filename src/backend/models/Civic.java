@@ -1,7 +1,5 @@
 package backend.models;
 
-import javafx.scene.paint.Color;
-
 public class Civic extends Card {
     private int victoryPoint;
     private int seasonalEffect;
