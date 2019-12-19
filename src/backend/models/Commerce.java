@@ -57,12 +57,17 @@ public class Commerce extends Card {
         return factorizeResources(tradeRes);
     }
 
-    public boolean canTradeWithLeft(){
+    public boolean includesLeft(){
         return left;
     }
 
-    public boolean canTradeWithRight(){ return right; }
+    public boolean includesRight(){ return right; }
+
+    public boolean includesSelf() {return self;}
 
     public boolean isWonderCard() {return wonderCard;}
 
+    public String getCardReq() {
+        return cardReq;
+    }
 }

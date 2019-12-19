@@ -1,7 +1,7 @@
 package backend.models;
 
-import java.nio.charset.IllegalCharsetNameException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static backend.app.constants.*;
 
@@ -40,24 +40,64 @@ public class Player {
     public void playMilitary( Military card){
         this.house.militaryShields += card.getNumberOfShields();
     }
+
     public void playCommerce( Commerce card){
+        // wonder card
         if (card.isWonderCard()) {
-            this.house.coins += card.getCoins();
-            this.house.victoryPoints += card.getVictoryPoints();
+            for (Wonder wonder : this.house.getWonders()) {
+                if (wonder.isBuilt()) {
+                    this.house.coins += card.getCoins();
+                    this.house.victoryPoints += card.getVictoryPoints();
+                }
+            }
         }
-        this.house.coins += card.getCoins();
-        this.house.victoryPoints += card.getVictoryPoints();
+
+        // commerce with cardReq
+        String cardReq = card.getCardReq();
+        if (cardReq != "") {
+            int count = 0;
+            if (card.includesLeft()) {
+                for (Card c : this.neighbors.left.house.getPlayedCards()) {
+                    if ((cardReq == "Resource" && c.isResource()) || (cardReq == "Commerce" && c.isCommerce())) {
+                        count++;
+                    }
+                }
+            }
+            if (card.includesRight()) {
+                for (Card c : this.neighbors.right.house.getPlayedCards()) {
+                    if ((cardReq == "Resource" && c.isResource()) || (cardReq == "Commerce" && c.isCommerce())) {
+                        count++;
+                    }
+                }
+            }
+            if (card.includesSelf()) {
+                for (Card c : this.house.getPlayedCards()) {
+                    if ((cardReq == "Resource" && c.isResource()) || (cardReq == "Commerce" && c.isCommerce())) {
+                        count++;
+                    }
+                }
+            }
+            this.house.coins += count * card.getCoins();
+            this.house.victoryPoints += count * card.getVictoryPoints();
+        }
+
+        // resources
         this.house.addResource(card.getResourceList());
-        // trading effects
+
+        // coins if none of the above
+        if (!card.isWonderCard() && cardReq == "")
+            this.house.coins += card.getCoins();
+
+        // trading effetcs
         ArrayList<Integer> tradeRes = card.getTradeRes();
         for (Integer res : tradeRes) {
-            if (card.canTradeWithLeft()) agreements.left.setCost(res, 1);
-            if (card.canTradeWithRight()) agreements.right.setCost(res, 1);
+            if (card.includesLeft()) agreements.left.setCost(res, 1);
+            if (card.includesRight()) agreements.right.setCost(res, 1);
         }
 
     }
     public void playScience( Science card){
-
+        // nothing to be done here
     }
     public void playCivic( Civic card){
         this.house.victoryPoints += card.getVictoryPoints();
