@@ -35,6 +35,8 @@ public class ServerController {
 
     public int cardsSelectedCount = 0;
 
+    public boolean firstTurnOfAge = false;
+
     public ServerController(){
         gson = new Gson();
         initData();
@@ -109,6 +111,7 @@ public class ServerController {
 
                 host.sendRequest( i, outOb);
             }
+            firstTurnOfAge = true;
             playTurn();
 
         } else {
@@ -128,12 +131,35 @@ public class ServerController {
     }
 
     public void shuffleCards(){
-        ArrayList<Card> cards = ages.get( currentAge).getDeck().getCards();
-        int start = 0;
-        for( int i = 0; i < players.size(); i++){
-            players.get( i).cards = new ArrayList<>( cards.subList( start, start + 7));
-            start += 7;
+        if( firstTurnOfAge){
+            ArrayList<Card> cards = ages.get( currentAge).getDeck().getCards();
+            int start = 0;
+            for( int i = 0; i < players.size(); i++){
+                players.get( i).cards = new ArrayList<>( cards.subList( start, start + 7));
+                start += 7;
+            }
+        } else {
+            if( ages.get( currentAge).getDeck().getDirection()){
+                ArrayList<Card> cardsTemp = players.get( 0).cards;
+                ArrayList<Card> cardsTemp2 = null;
+                for( int i = 1; i < players.size(); i++){
+                    cardsTemp2 = players.get( i).cards;
+                    players.get( i).cards = cardsTemp;
+                    cardsTemp = cardsTemp2;
+                }
+                players.get( 0).cards = cardsTemp;
+            } else {
+                ArrayList<Card> cardsTemp = players.get( players.size() - 1).cards;
+                ArrayList<Card> cardsTemp2 = null;
+                for( int i = players.size() - 2; i >= 0; i--){
+                    cardsTemp2 = players.get( i).cards;
+                    players.get( i).cards = cardsTemp;
+                    cardsTemp = cardsTemp2;
+                }
+                players.get( players.size() - 1).cards = cardsTemp;
+            }
         }
+
     }
 
     public void playTurn(){
@@ -146,8 +172,8 @@ public class ServerController {
         //update houses
         sendHouses();
 
-        //sendHouses();
-        //sendScoreboard();
+        sendScoreboard();
+        firstTurnOfAge = false;
     }
 
     public void sendHouseJoined(){

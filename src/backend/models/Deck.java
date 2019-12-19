@@ -16,6 +16,9 @@ public class Deck {
     private ArrayList<Card> cards;
 
 
+    public boolean getDirection(){
+        return this.direction;
+    }
     public Deck(int noOfPlayers, int age) {
         ArrayList<Card> currAgeCards;
         cards = new ArrayList<Card>();
