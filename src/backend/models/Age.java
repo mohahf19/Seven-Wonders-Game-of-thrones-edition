@@ -7,8 +7,7 @@ public class Age {
     public Age( Deck deck){
         this.deck = deck;
     }
-    public Deck getDeck(int noOfPlayers, int age){
-
+    public Deck getDeck(){
         return deck;
     }
 }
