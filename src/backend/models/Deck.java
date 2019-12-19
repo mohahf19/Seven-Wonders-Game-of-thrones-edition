@@ -1960,20 +1960,18 @@ public class Deck {
                 path + "Jon's Resurrection" + "back",
                 9
         ));
-        crisis.add(new Crisis("Daenerys' death",
+        crisis.add(new Crisis("Daenerys's death",
                 new Cost(0, "", so*so*c*c*d),
-                path + "Daenerys' death" + "image",
-                path + "Daenerys' death" + "icon",
-                path + "Daenerys' death" + "back",
+                path + "Daenerys's death" + "image",
+                path + "Daenerys's death" + "icon",
+                path + "Daenerys's death" + "back",
                 10
         ));
 
-        int max = 10;
-        int min = 1;
-        int range = max - min + 1;
 
-        for (int i = 0; i < max - (noOfPlayers + 2); i++) {
-            int rand = (int) (Math.random() * range) + min;
+
+        for (int i = 0; i < 10 - (noOfPlayers + 2); i++) {
+            int rand = (int) (Math.random() * crisis.size()) ;
             crisis.remove(rand);
         }
         return crisis;
