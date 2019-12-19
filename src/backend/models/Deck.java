@@ -375,18 +375,7 @@ public class Deck {
                 2,
                 0
         ));
-        cards1.add(new Civic("Theater",
-                6,
-                1,
-                new Cost(0, "", 1),
-                path + "Theater" + "image",
-                path + "Theater" + "icon.png",
-                path + "Theater" + "back",
-                "Statue",
-                "",
-                2,
-                0
-        ));
+
         //Military Age 1
         cards1.add(new Military("Stockade",
                 3,
