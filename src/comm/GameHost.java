@@ -2,6 +2,7 @@ package comm;
 
 import backend.app.Main;
 import backend.app.constants;
+import backend.controllers.GameEngine;
 import backend.models.*;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -82,6 +83,19 @@ public class GameHost {
             Main.gameEngine.client = new GameClient( ip, Main.gameEngine);
             Main.gameEngine.client.startClient();
         })).start();
+
+        addSampleClients( ip);
+    }
+
+    public void addSampleClients( String ip){
+        (new Thread(() -> {
+            GameClient client = new GameClient( ip, new GameEngine());
+            client.startClient();
+        })).start();
+        (new Thread(() -> {
+            GameClient client = new GameClient( ip, new GameEngine());
+            client.startClient();
+        })).start();
     }
 
 
@@ -128,9 +142,12 @@ public class GameHost {
                 serverController.cardsSelectedCount++;
                 Player player = gson.fromJson( request.get("player").getAsString(), Player.class );
                 serverController.updatePlayer( player, id);
-                if( serverController.cardsSelectedCount >= 6){
+                if( serverController.cardsSelectedCount >= clients.size() - 1){
                     serverController.playTurn();
                 }
+            } case 3: {
+                serverController.viewInitialized();
+                break;
             }
             default:
                 System.out.println( "Invalid opcode");
