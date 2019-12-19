@@ -156,6 +156,17 @@ public class ServerController {
                 "",
                 arr(c)
         ));
+        cards.add(new Resource("Clay Pool",
+                3,
+                1,
+                new Cost(0, "", 1),
+                path + "Clay Pool" + "image",
+                path + "Clay Pool" + "icon",
+                path + "Clay Pool" + "back",
+                "",
+                "",
+                arr(c)
+        ));
         for(Player player: players){
             player.cards = cards;
         }

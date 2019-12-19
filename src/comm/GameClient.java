@@ -2,6 +2,7 @@ package comm;
 
 import backend.app.constants;
 import backend.controllers.GameEngine;
+import backend.controllers.PlayScreenController;
 import backend.controllers.WaitScreenController;
 import backend.models.Player;
 import backend.models.Scoreboard;
@@ -159,6 +160,9 @@ public class GameClient {
                         Type playersListType = new TypeToken<List<Player>>() {}.getType();
                         ArrayList<Player> players = gson.fromJson( res.get("all_players").getAsString(), playersListType );
                         engine.players = players;
+
+                        // call something to update all cards, all player reaources etc.
+                        PlayScreenController.updateDeck( engine.getCurrentPlayer().cards);
 
                         acknowledgeRequest();
                         break;
