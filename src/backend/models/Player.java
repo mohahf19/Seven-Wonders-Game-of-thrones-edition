@@ -1,5 +1,6 @@
 package backend.models;
 
+import java.nio.charset.IllegalCharsetNameException;
 import java.util.ArrayList;
 
 import static backend.app.constants.*;
@@ -40,14 +41,19 @@ public class Player {
         this.house.militaryShields += card.getNumberOfShields();
     }
     public void playCommerce( Commerce card){
+        if (card.isWonderCard()) {
+            this.house.coins += card.getCoins();
+            this.house.victoryPoints += card.getVictoryPoints();
+        }
         this.house.coins += card.getCoins();
         this.house.victoryPoints += card.getVictoryPoints();
         this.house.addResource(card.getResourceList());
         // trading effetcs
-//        tradingCost
-//        for (int i = 0; i < card.getTradingCostsLeft().length; i++) {
-//            card.get
-//        }
+        ArrayList<Integer> tradeRes = card.getTradeRes();
+        for (Integer res : tradeRes) {
+            if (card.canTradeWithLeft()) agreements.left.setCost(res, 1);
+            if (card.canTradeWithRight()) agreements.right.setCost(res, 1);
+        }
 
     }
     public void playScience( Science card){

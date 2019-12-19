@@ -28,7 +28,6 @@ public class Commerce extends Card {
         this.tradeRes = tradeRes;
         this.left = left;
         this.right = right;
-        this.wonderCard = wonderCard;
         this.cardReq = cardReq;
 
         this.resourceList = new int[resourceList.length];
@@ -63,4 +62,7 @@ public class Commerce extends Card {
     public boolean canTradeWithRight(){
         return right;
     }
+
+    public boolean isWonderCard() {return wonderCard;}
+
 }
