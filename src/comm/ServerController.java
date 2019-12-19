@@ -172,7 +172,9 @@ public class ServerController {
         //update houses
         sendHouses();
 
-        sendScoreboard();
+        //update the scoreboard and send it to clients
+        updateScoreboard();
+
         firstTurnOfAge = false;
     }
 
@@ -213,6 +215,21 @@ public class ServerController {
         this.players.set( id, player);
     }
 
+    public void updateScoreboard(){
+        for( int i = 0; i < players.size(); i++){
+            Player currPlayer = players.get( i);
+
+            scoreboard.scores.get( i).set( scoreboard.MILITARY_POINTS_INDEX, currPlayer.currentMilitaryPoints);
+            scoreboard.scores.get( i).set( scoreboard.COIN_POINTS_INDEX, currPlayer.calculateCoinPoints());
+            scoreboard.scores.get( i).set( scoreboard.WONDER_POINTS_INDEX, currPlayer.calculateWonderPoints());
+            scoreboard.scores.get( i).set( scoreboard.CIVIC_POINTS_INDEX, currPlayer.calculateCivicPoints());
+            scoreboard.scores.get( i).set( scoreboard.COMMERCE_POINTS_INDEX, currPlayer.calculateCommercePoints());
+            scoreboard.scores.get( i).set( scoreboard.SCIENCE_POINTS_INDEX, currPlayer.calculateSciencePoints());
+            scoreboard.scores.get( i).set( scoreboard.VICTORY_POINTS_INDEX, currPlayer.calculateVictoryPoints());
+        }
+        sendScoreboard();
+    }
+
     public void startGame(){
 //        if( !host.requestsAcknowledged())
 //            return;
@@ -232,6 +249,7 @@ public class ServerController {
         if (cardsSelectedCount >= players.size() - 1){
             cardsSelectedCount = 0;
             populateAges();
+            scoreboard = new Scoreboard( players.size());
             incrementAge();
         }
     }
