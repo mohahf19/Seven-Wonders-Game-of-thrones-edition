@@ -1,7 +1,6 @@
 package backend.models;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static backend.app.constants.*;
 
@@ -135,19 +134,20 @@ public class Player {
         return playedScience;
     }
 
-    public boolean canBuild(Cost cost){ //TODO change this to Card instead of Cost
+    //return 0 if can't build, 1 if can without trading, 2 if trading is required
+    public int canBuild(Cost cost){ //TODO change this to Card instead of Cost
         //if it was card, just do Cost cost = card.getCost();
         //TODO Check card name
 
         CostResult result = house.canAfford(cost);
-        boolean canBuild = false;
+        int canBuild = 0;
 
         switch(result.code) {
             case 0:
                 System.out.println("cannot build.");
             case 1:
                 System.out.println("can build without trading.");
-                canBuild = true;
+                canBuild = 1;
             case 2:
                 System.out.println("can build if trading works.");
                 int remaining = result.remaining;
@@ -157,18 +157,17 @@ public class Player {
                 TradingResult left = attemptTrade(neighbors.left, remaining);
                 if (left.code == 1){
                     System.out.println("Can trade with left!");
-                    pay(neighbors.left, agreements.left, remaining);
-                    canBuild = true;
+                    pay(neighbors.left, agreements.left, remaining); //server needs to do
+                    canBuild = 2;
                 } else{
                     TradingResult right = attemptTrade(neighbors.right, remaining);
                     if (right.code == 1){
                         System.out.println("Can trade with right!");
-                        pay(neighbors.right, agreements.right , remaining);
-                        canBuild = true;
+                        pay(neighbors.right, agreements.right, remaining);
+                        canBuild = 2;
                     } else{
-
+                        canBuild = 0;
                         System.out.println("Trading did not work:(");
-
                     }
                 }
 
