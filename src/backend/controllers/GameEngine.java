@@ -48,7 +48,7 @@ public class GameEngine {
     public void startMilitaryConflict(){}
 
     public void chooseCard( Card card){
-        // if card is used to build a structure
+        // if card is played directly
         this.playCard(card);
         // if card is used to build a wonder
         // this.getCurrentPlayer().house.buildWonder(wonderId);
