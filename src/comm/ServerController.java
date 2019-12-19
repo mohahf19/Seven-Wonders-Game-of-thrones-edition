@@ -48,8 +48,6 @@ public class ServerController {
 
         //populate houses
         populateHouses();
-
-        //populate Ages
     }
 
     public void initServer(){
@@ -78,6 +76,22 @@ public class ServerController {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public void populateAges(){
+
+        try{
+            Deck deck1 = new Deck( players.size(), 1);
+            Deck deck2= new Deck( players.size(), 2);
+            Deck deck3 = new Deck( players.size(), 3);
+
+            ages.add( new Age( deck1));
+            ages.add( new Age( deck2));
+            ages.add( new Age( deck3));
+        } catch ( Exception e){
+            System.out.println( "EXCEPTION::::" + e.toString());
+        }
+
     }
 
     public void incrementAge(){
@@ -233,6 +247,7 @@ public class ServerController {
         cardsSelectedCount++;
         if (cardsSelectedCount >= players.size() - 1){
             cardsSelectedCount = 0;
+            //populateAges();
             incrementAge();
         }
     }
