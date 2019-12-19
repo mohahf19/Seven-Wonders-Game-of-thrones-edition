@@ -54,25 +54,25 @@ public class Player {
 
         // commerce with cardReq
         String cardReq = card.getCardReq();
-        if (cardReq != "") {
+        if (!cardReq.equals("")) {
             int count = 0;
             if (card.includesLeft()) {
                 for (Card c : this.neighbors.left.house.getPlayedCards()) {
-                    if ((cardReq == "Resource" && c.isResource()) || (cardReq == "Commerce" && c.isCommerce())) {
+                    if ((cardReq.equals("Resource") && c.isResource()) || (cardReq.equals("Commerce") && c.isCommerce())) {
                         count++;
                     }
                 }
             }
             if (card.includesRight()) {
                 for (Card c : this.neighbors.right.house.getPlayedCards()) {
-                    if ((cardReq == "Resource" && c.isResource()) || (cardReq == "Commerce" && c.isCommerce())) {
+                    if ((cardReq.equals("Resource") && c.isResource()) || (cardReq.equals("Commerce") && c.isCommerce())) {
                         count++;
                     }
                 }
             }
             if (card.includesSelf()) {
                 for (Card c : this.house.getPlayedCards()) {
-                    if ((cardReq == "Resource" && c.isResource()) || (cardReq == "Commerce" && c.isCommerce())) {
+                    if ((cardReq.equals("Resource") && c.isResource()) || (cardReq.equals("Commerce") && c.isCommerce())) {
                         count++;
                     }
                 }
@@ -85,7 +85,7 @@ public class Player {
         this.house.addResource(card.getResourceList());
 
         // coins if none of the above
-        if (!card.isWonderCard() && cardReq == "")
+        if (!card.isWonderCard() && cardReq.equals(""))
             this.house.coins += card.getCoins();
 
         // trading effetcs
