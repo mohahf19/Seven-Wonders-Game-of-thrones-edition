@@ -22,7 +22,7 @@ public class Commerce extends Card {
                     int victoryPoint, int[] resourceList, int coins, int tradeRes, boolean left, boolean right, boolean self,
                     boolean wonderCard, String cardReq){
 
-        super(name, cardFreq, age, cost, imagePath, iconPath, backPath, chain1, chain2);
+        super(name, cardFreq, age, cost, "commerce.jpg", iconPath, "yellow.jpg", chain1, chain2);
         this.victoryPoint = victoryPoint;
         this.coins = coins;
         this.wonderCard = wonderCard;

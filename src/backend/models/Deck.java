@@ -1899,72 +1899,72 @@ public class Deck {
 
         crisis.add(new Crisis("Ned Stark's Execution",
                 new Cost(0, "", p*si*d),
-                path + "Ned Stark's Execution" + "image",
-                path + "Ned Stark's Execution" + "icon.png",
-                path + "Ned Stark's Execution" + "back",
+                path + "Ned Stark's Execution.jpg",
+                path + "skull.png",
+                path + "crisis.jpg",
                 1
         ));
         crisis.add(new Crisis("Battle of Winterfell",
                 new Cost(0, "", o*o*c*so*w),
-                path + "Battle of Winterfell" + "image",
-                path + "Battle of Winterfell" + "icon.png",
-                path + "Battle of Winterfell" + "back",
+                path + "Battle of Winterfell.jpg",
+                path + "skull.png",
+                path + "crisis.jpg",
                 2
         ));
         crisis.add(new Crisis("Battle of the Blackwater",
                 new Cost(0, "", o*o*so*so),
-                path + "Battle of the Blackwater" + "image",
-                path + "Battle of the Blackwater" + "icon.png",
-                path + "Battle of the Blackwater" + "back",
+                path + "Battle of the Blackwater.jpg",
+                path + "skull.png",
+                path + "crisis.jpg",
                 3
         ));
         crisis.add(new Crisis("Fall of King’s Landing",
                 new Cost(0, "", c*c*c*si*p),
-                path + "Fall of King’s Landing" + "image",
-                path + "Fall of King’s Landing" + "icon.png",
-                path + "Fall of King’s Landing" + "back",
+                path + "Fall of King’s Landing.jpg",
+                path + "skull.png",
+                path + "crisis.jpg",
                 4
         ));
         crisis.add(new Crisis("Battle of Castle Black",
                 new Cost(0, "", c*c*c*d),
-                path + "Battle of Castle Black" + "image",
-                path + "Battle of Castle Black" + "icon.png",
-                path + "Battle of Castle Black" + "back",
+                path + "Battle of Castle Black.jpg",
+                path + "skull.png",
+                path + "crisis.jpg",
                 5
         ));
         crisis.add(new Crisis("Massacre at Hardhome",
                 new Cost(0, "", o*o*so*si),
-                path + "Massacre at Hardhome" + "image",
-                path + "Massacre at Hardhome" + "icon.png",
-                path + "Massacre at Hardhome" + "back",
+                path + "Massacre at Hardhome.jpg",
+                path + "skull.png",
+                path + "crisis.jpg",
                 6
         ));
         crisis.add(new Crisis("Blackwater Rush",
                 new Cost(0, "", w*w*w*p*d),
-                path + "Blackwater Rush" + "image",
-                path + "Blackwater Rush" + "icon.png",
-                path + "Blackwater Rush" + "back",
+                path + "Blackwater Rush.jpg",
+                path + "skull.png",
+                path + "crisis.jpg",
                 7
         ));
         crisis.add(new Crisis("Frozen Lake Battle",
                 new Cost(0, "", w*w*o*o*p),
-                path + "Frozen Lake Battle" + "image",
-                path + "Frozen Lake Battle" + "icon.png",
-                path + "Frozen Lake Battle" + "back",
+                path + "Frozen Lake Battle.jpg",
+                path + "skull.png",
+                path + "crisis.jpg",
                 8
         ));
         crisis.add(new Crisis("Jon's Resurrection",
                 new Cost(0, "", w*w*w*so*si),
-                path + "Jon's Resurrection" + "image",
-                path + "Jon's Resurrection" + "icon.png",
-                path + "Jon's Resurrection" + "back",
+                path + "Jon's Resurrection.jpg",
+                path + "skull.png",
+                path + "crisis.jpg",
                 9
         ));
-        crisis.add(new Crisis("Daenerys's death",
+        crisis.add(new Crisis("Daenerys's Death",
                 new Cost(0, "", so*so*c*c*d),
-                path + "Daenerys's death" + "image",
-                path + "Daenerys's death" + "icon.png",
-                path + "Daenerys's death" + "back",
+                path + "Daenerys's Death.jpg",
+                path + "skull.png",
+                path + "crisis.jpg",
                 10
         ));
 
