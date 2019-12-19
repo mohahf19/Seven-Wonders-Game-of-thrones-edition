@@ -44,19 +44,22 @@ public class GameEngine {
         this.currentAge = age;
         PlayScreenController.updateAgeImage( age);
     }
-    public void playTurn(){}
-    public void playAge( int age ){
-        this.currentAge = age;
-    }
+
     public void startMilitaryConflict(){}
 
     public void chooseCard( Card card){
+        // if card is used to build a structure
         this.playCard(card);
+        // if card is used to build a wonder
+        // this.getCurrentPlayer().house.buildWonder(wonderId);
+        // if the card is discarded
+        // this.getCurrentPlayer().house.coins += 2; // was it 3?
         JsonObject req = new JsonObject();
         req.addProperty("op_code", 2);
         req.addProperty("player", gson.toJson( getCurrentPlayer()));
         client.sendRequest( req);
     }
+
 
     public void playCard( Card card){
         if (card.isResource()) {
