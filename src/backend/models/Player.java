@@ -41,13 +41,25 @@ public class Player {
         this.house.militaryShields += card.getNumberOfShields();
     }
     public void playCommerce( Commerce card){
+        // wonder card
         if (card.isWonderCard()) {
-            this.house.coins += card.getCoins();
-            this.house.victoryPoints += card.getVictoryPoints();
+            for (Wonder wonder : this.house.getWonders()) {
+                if (wonder.isBuilt()) {
+                    this.house.coins += card.getCoins();
+                    this.house.victoryPoints += card.getVictoryPoints();
+                }
+            }
         }
-        this.house.coins += card.getCoins();
-        this.house.victoryPoints += card.getVictoryPoints();
+
+        // resources
         this.house.addResource(card.getResourceList());
+
+        // cardReq
+        // TO DO
+
+        // coins if none of the above
+        // this.house.coins += card.getCoins();
+
         // trading effetcs
         ArrayList<Integer> tradeRes = card.getTradeRes();
         for (Integer res : tradeRes) {
@@ -57,7 +69,7 @@ public class Player {
 
     }
     public void playScience( Science card){
-
+        // nothing to be done here
     }
     public void playCivic( Civic card){
         this.house.victoryPoints += card.getVictoryPoints();

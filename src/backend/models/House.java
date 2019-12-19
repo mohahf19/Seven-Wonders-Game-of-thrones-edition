@@ -169,5 +169,7 @@ public class House {
         return nerf;
     }
 
-
+    public ArrayList<Wonder> getWonders() {
+        return wonders;
+    }
 }
