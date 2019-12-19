@@ -14,6 +14,8 @@ public class Player {
     public House house;
     public TradingAgreements agreements;
 
+    public int currentMilitaryPoints;
+
     //constructors
     public Player(){
         id = 0;
@@ -21,17 +23,30 @@ public class Player {
         neighbors = null;
         house = null;
         agreements = null;
-    }
-    public Player(House house){
-        this.house = house;
-        id = 0;
-        cards = null;
-        chosenCard = null;
-        neighbors = new Neighbors();
-        agreements = new TradingAgreements();
+        currentMilitaryPoints = 0;
     }
 
     //methods
+    public int calculateCoinPoints(){
+        int coins = this.house.coins;
+        return coins/3;
+    }
+    public int calculateWonderPoints(){
+        return 0;
+    }
+    public int calculateCivicPoints(){
+        return 0;
+    }
+    public int calculateCommercePoints(){
+        return 0;
+    }
+    public int calculateSciencePoints(){
+        return 0;
+    }
+    public int calculateVictoryPoints(){
+        return 0;
+    }
+
     // play card methods
     public void playResource( Resource card){
         this.house.addResource(card.getResourcesList());

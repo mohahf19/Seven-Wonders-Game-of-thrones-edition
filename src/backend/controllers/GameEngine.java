@@ -44,10 +44,7 @@ public class GameEngine {
         this.currentAge = age;
         PlayScreenController.updateAgeImage( age);
     }
-    public void playTurn(){}
-    public void playAge( int age ){
-        this.currentAge = age;
-    }
+
     public void startMilitaryConflict(){}
 
     public void chooseCard( Card card){
