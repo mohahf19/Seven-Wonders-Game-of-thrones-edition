@@ -1,45 +1,41 @@
 package backend.models;
 
-import javafx.scene.paint.Color;
-
 import java.util.ArrayList;
+
+import static backend.models.Numbers.factorizeResources;
 
 public class Commerce extends Card {
     private int victoryPoint;
     private int[] resourceList;
     private int coins;
-    private int[] tradingCostsLeft;
-    private int[] tradingCostsRight;
+    private int tradeRes;
+    private boolean left;
+    private boolean right;
     private String[] type;
-    private int wonderReq;
-    private Color cardColorReq;
+    private boolean wonderCard;
+    private String cardReq;
 
 
     public Commerce(String name, int cardFreq, int age, Cost cost, String imagePath,
                     String iconPath, String backPath, String chain1, String chain2,
-                    int victoryPoint, int[] resourceList, int coins, int[] tradingPost, String[] type, int wonderReq, Color cardColorReq){
+                    int victoryPoint, int[] resourceList, int coins, int tradeRes, boolean left, boolean right,
+                    boolean wonderCard, String cardReq){
 
         super(name, cardFreq, age, cost, imagePath, iconPath, backPath, chain1, chain2);
         this.victoryPoint = victoryPoint;
         this.coins = coins;
-        this.wonderReq = wonderReq;
-        this.cardColorReq = cardColorReq;
+        this.wonderCard = wonderCard;
+        this.tradeRes = tradeRes;
+        this.left = left;
+        this.right = right;
+        this.wonderCard = wonderCard;
+        this.cardReq = cardReq;
 
         this.resourceList = new int[resourceList.length];
         for( int i = 0; i < resourceList.length; i++)
             this.resourceList[i] = resourceList[i];
 
-        this.tradingCostsLeft = new int[tradingPost.length];
-        for( int i = 0; i < tradingPost.length; i++)
-            this.tradingCostsLeft[i] = tradingPost[i];
-
-        this.tradingCostsRight = new int[tradingPost.length];
-        for( int i = 0; i < tradingPost.length; i++)
-            this.tradingCostsRight[i] = tradingPost[i];
-
-        this.type = new String[type.length];
-        for( int i = 0; i < type.length; i++)
-            this.type[i] = type[i];
+        this.type = null; //not needed really now, leave for later
 
 
     }
@@ -56,11 +52,15 @@ public class Commerce extends Card {
         return resourceList;
     }
 
-    public int[] getTradingCostsRight() {
-        return tradingCostsRight;
+    public ArrayList<Integer> getTradeRes() {
+        return factorizeResources(tradeRes);
     }
 
-    public int[] getTradingCostsLeft() {
-        return tradingCostsLeft;
+    public boolean canTradeWithLeft(){
+        return left;
+    }
+
+    public boolean canTradeWithRight(){
+        return right;
     }
 }

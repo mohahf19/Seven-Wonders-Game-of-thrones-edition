@@ -502,6 +502,45 @@ public class Deck {
                 "Tablet"
         ));
         //Commerce Age 1
+        //hi, this is the template for commerce cards:
+
+
+        cards1.add(new Commerce("Marketplace",
+                5,
+                1,
+                new Cost(0, "", 1),
+                path + "Marketplace" + "image",
+                path + "Marketplace" + "icon",
+                path + "Marketplace" + "back",
+                "Caravansery",
+                "",
+                0,
+                arr(1),
+                0,
+                d*si*p,
+                true,
+                true,
+                false,
+                ""
+                ));
+        cards1.add(new Commerce("Marketplace",
+                6,
+                1,
+                new Cost(0, "", 1),
+                path + "Marketplace" + "image",
+                path + "Marketplace" + "icon",
+                path + "Marketplace" + "back",
+                "Caravansery",
+                "",
+                0,
+                arr(1),
+                0,
+                d*si*p,
+                true,
+                true,
+                false,
+                ""
+        ));
         return cards1;
     }
     private ArrayList<Card> initAge2(){
