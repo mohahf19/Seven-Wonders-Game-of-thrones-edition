@@ -140,6 +140,7 @@ public class Player {
         //TODO Check card name
 
         CostResult result = house.canAfford(cost);
+        
         int canBuild = 0;
 
         switch(result.code) {
