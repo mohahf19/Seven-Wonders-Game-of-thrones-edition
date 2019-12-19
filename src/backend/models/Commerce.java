@@ -11,6 +11,7 @@ public class Commerce extends Card {
     private int tradeRes;
     private boolean left;
     private boolean right;
+    private boolean self;
     private String[] type;
     private boolean wonderCard;
     private String cardReq;
@@ -18,7 +19,7 @@ public class Commerce extends Card {
 
     public Commerce(String name, int cardFreq, int age, Cost cost, String imagePath,
                     String iconPath, String backPath, String chain1, String chain2,
-                    int victoryPoint, int[] resourceList, int coins, int tradeRes, boolean left, boolean right,
+                    int victoryPoint, int[] resourceList, int coins, int tradeRes, boolean left, boolean right, boolean self,
                     boolean wonderCard, String cardReq){
 
         super(name, cardFreq, age, cost, imagePath, iconPath, backPath, chain1, chain2);
@@ -28,6 +29,7 @@ public class Commerce extends Card {
         this.tradeRes = tradeRes;
         this.left = left;
         this.right = right;
+        this.self = self;
         this.cardReq = cardReq;
 
         this.resourceList = new int[resourceList.length];
@@ -59,9 +61,7 @@ public class Commerce extends Card {
         return left;
     }
 
-    public boolean canTradeWithRight(){
-        return right;
-    }
+    public boolean canTradeWithRight(){ return right; }
 
     public boolean isWonderCard() {return wonderCard;}
 

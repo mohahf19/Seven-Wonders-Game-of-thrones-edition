@@ -48,7 +48,7 @@ public class Player {
         this.house.coins += card.getCoins();
         this.house.victoryPoints += card.getVictoryPoints();
         this.house.addResource(card.getResourceList());
-        // trading effetcs
+        // trading effects
         ArrayList<Integer> tradeRes = card.getTradeRes();
         for (Integer res : tradeRes) {
             if (card.canTradeWithLeft()) agreements.left.setCost(res, 1);
