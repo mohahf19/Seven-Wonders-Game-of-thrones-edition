@@ -41,10 +41,6 @@ public class Player {
         this.house.militaryShields += card.getNumberOfShields();
     }
 
-    public void commerceCardReqAux(Commerce card) {
-
-    }
-
     public void playCommerce( Commerce card){
         // wonder card
         if (card.isWonderCard()) {
