@@ -35,6 +35,8 @@ public class ServerController {
 
     public int cardsSelectedCount = 0;
 
+    public boolean firstTurnOfAge = false;
+
     public ServerController(){
         gson = new Gson();
         initData();
@@ -81,15 +83,19 @@ public class ServerController {
     public void populateAges(){
 
         try{
-            Deck deck1 = new Deck( players.size(), 1);
-            Deck deck2= new Deck( players.size(), 2);
-            Deck deck3 = new Deck( players.size(), 3);
+//            Deck deck1 = new Deck( players.size(), 1);
+//            Deck deck2= new Deck( players.size(), 2);
+//            Deck deck3 = new Deck( players.size(), 3);
+
+            Deck deck1 = new Deck( 3, 1);
+            Deck deck2= new Deck( 3, 2);
+            Deck deck3 = new Deck( 3, 3);
 
             ages.add( new Age( deck1));
             ages.add( new Age( deck2));
             ages.add( new Age( deck3));
         } catch ( Exception e){
-            System.out.println( "EXCEPTION::::" + e.toString());
+            System.out.println( "EXCEPTION::::" + e.toString() + e.getStackTrace());
         }
 
     }
@@ -105,6 +111,7 @@ public class ServerController {
 
                 host.sendRequest( i, outOb);
             }
+            firstTurnOfAge = true;
             playTurn();
 
         } else {
@@ -123,73 +130,52 @@ public class ServerController {
         }
     }
 
+    public void shuffleCards(){
+        if( firstTurnOfAge){
+            ArrayList<Card> cards = ages.get( currentAge).getDeck().getCards();
+            int start = 0;
+            for( int i = 0; i < players.size(); i++){
+                players.get( i).cards = new ArrayList<>( cards.subList( start, start + 7));
+                start += 7;
+            }
+        } else {
+            if( ages.get( currentAge).getDeck().getDirection()){
+                ArrayList<Card> cardsTemp = players.get( 0).cards;
+                ArrayList<Card> cardsTemp2 = null;
+                for( int i = 1; i < players.size(); i++){
+                    cardsTemp2 = players.get( i).cards;
+                    players.get( i).cards = cardsTemp;
+                    cardsTemp = cardsTemp2;
+                }
+                players.get( 0).cards = cardsTemp;
+            } else {
+                ArrayList<Card> cardsTemp = players.get( players.size() - 1).cards;
+                ArrayList<Card> cardsTemp2 = null;
+                for( int i = players.size() - 2; i >= 0; i--){
+                    cardsTemp2 = players.get( i).cards;
+                    players.get( i).cards = cardsTemp;
+                    cardsTemp = cardsTemp2;
+                }
+                players.get( players.size() - 1).cards = cardsTemp;
+            }
+        }
+
+    }
+
     public void playTurn(){
         cardsSelectedCount = 0;
         changeSeason();
 
-        //update deck
-        int o = 2;
-        int w = 3;
-        int c = 5;
-        int so = 7;
-        int d = 11;
-        int p = 13;
-        int si = 17;
-        String path = "/assets/cards/";
-        ArrayList<Card> cards = new ArrayList<>();
-        cards.add(new Resource("Lumber Yard",
-                3,
-                1,
-                new Cost(0, "", 1),
-                path + "raw.jpg",
-                path + "Lumber Yard" + "icon.png",
-                path + "brownTop.jpg",
-                "",
-                "",
-                arr(w)
-        ));
-        cards.add(new Resource("Stone Pit",
-                3,
-                1,
-                new Cost(0, "", 1),
-                path + "raw.jpg",
-                path + "Stone Pit" + "icon.png",
-                path + "brownTop.jpg",
-                "",
-                "",
-                arr(so)
-        ));
-        cards.add(new Resource("Clay Pool",
-                3,
-                1,
-                new Cost(0, "", 1),
-                path + "raw.jpg",
-                path + "Clay Pool" + "icon.png",
-                path + "brownTop.jpg",
-                "",
-                "",
-                arr(c)
-        ));
-        cards.add(new Resource("Clay Pool",
-                3,
-                1,
-                new Cost(0, "", 1),
-                path + "raw.jpg",
-                path + "Clay Pool" + "icon.png",
-                path + "brownTop.jpg",
-                "",
-                "",
-                arr(c)
-        ));
-        for(Player player: players){
-            player.cards = cards;
-        }
+        //shuffle cards around
+        shuffleCards();
 
         //update houses
         sendHouses();
 
-        //sendHouses();
-        //sendScoreboard();
+        //update the scoreboard and send it to clients
+        updateScoreboard();
+
+        firstTurnOfAge = false;
     }
 
     public void sendHouseJoined(){
@@ -229,6 +215,21 @@ public class ServerController {
         this.players.set( id, player);
     }
 
+    public void updateScoreboard(){
+        for( int i = 0; i < players.size(); i++){
+            Player currPlayer = players.get( i);
+
+            scoreboard.scores.get( i).set( scoreboard.MILITARY_POINTS_INDEX, currPlayer.currentMilitaryPoints);
+            scoreboard.scores.get( i).set( scoreboard.COIN_POINTS_INDEX, currPlayer.calculateCoinPoints());
+            scoreboard.scores.get( i).set( scoreboard.WONDER_POINTS_INDEX, currPlayer.calculateWonderPoints());
+            scoreboard.scores.get( i).set( scoreboard.CIVIC_POINTS_INDEX, currPlayer.calculateCivicPoints());
+            scoreboard.scores.get( i).set( scoreboard.COMMERCE_POINTS_INDEX, currPlayer.calculateCommercePoints());
+            scoreboard.scores.get( i).set( scoreboard.SCIENCE_POINTS_INDEX, currPlayer.calculateSciencePoints());
+            scoreboard.scores.get( i).set( scoreboard.VICTORY_POINTS_INDEX, currPlayer.calculateVictoryPoints());
+        }
+        sendScoreboard();
+    }
+
     public void startGame(){
 //        if( !host.requestsAcknowledged())
 //            return;
@@ -247,7 +248,8 @@ public class ServerController {
         cardsSelectedCount++;
         if (cardsSelectedCount >= players.size() - 1){
             cardsSelectedCount = 0;
-            //populateAges();
+            populateAges();
+            scoreboard = new Scoreboard( players.size());
             incrementAge();
         }
     }

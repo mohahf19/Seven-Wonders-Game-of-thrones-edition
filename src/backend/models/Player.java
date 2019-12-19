@@ -1,7 +1,6 @@
 package backend.models;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static backend.app.constants.*;
 
@@ -14,6 +13,8 @@ public class Player {
     public House house;
     public TradingAgreements agreements;
 
+    public int currentMilitaryPoints;
+
     //constructors
     public Player(){
         id = 0;
@@ -21,17 +22,30 @@ public class Player {
         neighbors = null;
         house = null;
         agreements = null;
-    }
-    public Player(House house){
-        this.house = house;
-        id = 0;
-        cards = null;
-        chosenCard = null;
-        neighbors = new Neighbors();
-        agreements = new TradingAgreements();
+        currentMilitaryPoints = 0;
     }
 
     //methods
+    public int calculateCoinPoints(){
+        int coins = this.house.coins;
+        return coins/3;
+    }
+    public int calculateWonderPoints(){
+        return 0;
+    }
+    public int calculateCivicPoints(){
+        return 0;
+    }
+    public int calculateCommercePoints(){
+        return 0;
+    }
+    public int calculateSciencePoints(){
+        return 0;
+    }
+    public int calculateVictoryPoints(){
+        return 0;
+    }
+
     // play card methods
     public void playResource( Resource card){
         this.house.addResource(card.getResourcesList());
@@ -54,25 +68,25 @@ public class Player {
 
         // commerce with cardReq
         String cardReq = card.getCardReq();
-        if (cardReq != "") {
+        if (!cardReq.equals("")) {
             int count = 0;
             if (card.includesLeft()) {
                 for (Card c : this.neighbors.left.house.getPlayedCards()) {
-                    if ((cardReq == "Resource" && c.isResource()) || (cardReq == "Commerce" && c.isCommerce())) {
+                    if ((cardReq.equals("Resource") && c.isResource()) || (cardReq.equals("Commerce") && c.isCommerce())) {
                         count++;
                     }
                 }
             }
             if (card.includesRight()) {
                 for (Card c : this.neighbors.right.house.getPlayedCards()) {
-                    if ((cardReq == "Resource" && c.isResource()) || (cardReq == "Commerce" && c.isCommerce())) {
+                    if ((cardReq.equals("Resource") && c.isResource()) || (cardReq.equals("Commerce") && c.isCommerce())) {
                         count++;
                     }
                 }
             }
             if (card.includesSelf()) {
                 for (Card c : this.house.getPlayedCards()) {
-                    if ((cardReq == "Resource" && c.isResource()) || (cardReq == "Commerce" && c.isCommerce())) {
+                    if ((cardReq.equals("Resource") && c.isResource()) || (cardReq.equals("Commerce") && c.isCommerce())) {
                         count++;
                     }
                 }
@@ -85,7 +99,7 @@ public class Player {
         this.house.addResource(card.getResourceList());
 
         // coins if none of the above
-        if (!card.isWonderCard() && cardReq == "")
+        if (!card.isWonderCard() && cardReq.equals(""))
             this.house.coins += card.getCoins();
 
         // trading effetcs
@@ -135,19 +149,21 @@ public class Player {
         return playedScience;
     }
 
-    public boolean canBuild(Cost cost){ //TODO change this to Card instead of Cost
+    //return 0 if can't build, 1 if can without trading, 2 if trading is required
+    public int canBuild(Cost cost){ //TODO change this to Card instead of Cost
         //if it was card, just do Cost cost = card.getCost();
         //TODO Check card name
 
         CostResult result = house.canAfford(cost);
-        boolean canBuild = false;
+        
+        int canBuild = 0;
 
         switch(result.code) {
             case 0:
                 System.out.println("cannot build.");
             case 1:
                 System.out.println("can build without trading.");
-                canBuild = true;
+                canBuild = 1;
             case 2:
                 System.out.println("can build if trading works.");
                 int remaining = result.remaining;
@@ -157,18 +173,17 @@ public class Player {
                 TradingResult left = attemptTrade(neighbors.left, remaining);
                 if (left.code == 1){
                     System.out.println("Can trade with left!");
-                    pay(neighbors.left, agreements.left, remaining);
-                    canBuild = true;
+                    pay(neighbors.left, agreements.left, remaining); //server needs to do
+                    canBuild = 2;
                 } else{
                     TradingResult right = attemptTrade(neighbors.right, remaining);
                     if (right.code == 1){
                         System.out.println("Can trade with right!");
-                        pay(neighbors.right, agreements.right , remaining);
-                        canBuild = true;
+                        pay(neighbors.right, agreements.right, remaining);
+                        canBuild = 2;
                     } else{
-
+                        canBuild = 0;
                         System.out.println("Trading did not work:(");
-
                     }
                 }
 

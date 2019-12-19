@@ -135,7 +135,7 @@ public class GameHost {
                 sendRequest( id, outOb);
                 break;
             }
-            case 1: { //update players on all clients
+            case 1: { //update players on all clients during wait
                 serverController.sendHouseJoined();
                 break;
             } case 2: { //card selected
