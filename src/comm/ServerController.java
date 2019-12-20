@@ -114,10 +114,18 @@ public class ServerController {
                 host.sendRequest( i, outOb);
             }
             firstTurnOfAge = true;
+
+            for( int i = 0; i < players.size(); i++){
+                host.sendError( i, "New Age");
+            }
+
             playTurn();
 
         } else {
             //game ended
+            for( int i = 0; i < players.size(); i++){
+                host.sendError( i, "Game Ended");
+            }
         }
     }
     public void changeSeason(){
