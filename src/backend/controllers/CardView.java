@@ -194,10 +194,10 @@ public class CardView extends Pane {
     }
 
     public void update(Card card){
-        prereqCardLabel.setText(card.cost.getPrereq());
-        cardNameLabel.setText(card.name);
-        chain1Label.setText(card.chain1);
-        chain2Label.setText(card.chain2);
+        prereqCardLabel.setText(" "+ card.cost.getPrereq());
+        cardNameLabel.setText(" " + card.name);
+        chain1Label.setText(card.chain1 + "  ");
+        chain2Label.setText(card.chain2 + "  ");
         prereqHBox.getChildren().clear(); //clear prereq HBox
         fillPreReq(card.cost.getResources(), card.cost.getCoins());
     }
