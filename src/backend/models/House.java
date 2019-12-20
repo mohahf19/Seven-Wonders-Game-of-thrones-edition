@@ -23,6 +23,7 @@ public class House {
         resourcesList = new ArrayList<>();
         //1 represents no resources
         resourcesList.add(1);
+        playedCards = new ArrayList<>();
         addCoins(3);
     }
 
@@ -167,6 +168,8 @@ public class House {
     }
 
     public ArrayList<Card> getPlayedCards() {
+        if( playedCards == null)
+            return new ArrayList<>();
         return playedCards;
     }
 

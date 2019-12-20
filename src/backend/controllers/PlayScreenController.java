@@ -220,15 +220,15 @@ public class PlayScreenController implements Initializable {
                 cardHolderSt.setAlignment(Pos.CENTER);
                 cardHolderSt.setSpacing(5);
 
-                Deck d = new Deck(7, 3);
+                System.out.println( "Cards geldi" + cards.size());
 
-
-                System.out.println( "Cards geldi");
+                //remove all cards
+                cardHolderSt.getChildren().clear();
 
                 for (int i = 0; i < cards.size(); i++) {
                     CardView cv = new CardView(cards.get(i));
                     cv.update(cards.get(i));
-                    System.out.println(cards.get(i).name);
+                    //System.out.println(cards.get(i).name);
                     cardHolderSt.getChildren().addAll(cv);
                 }
             }
@@ -333,6 +333,7 @@ public class PlayScreenController implements Initializable {
             try {
                 hover();
             } catch (IOException e) {
+                System.out.println( "IOException");
                 e.printStackTrace();
             }
         }
@@ -349,6 +350,7 @@ public class PlayScreenController implements Initializable {
             try {
                 hover();
             } catch (IOException e) {
+                System.out.println( "IOException");
                 e.printStackTrace();
             }
         }
@@ -365,6 +367,7 @@ public class PlayScreenController implements Initializable {
             try {
                 click();
             } catch (IOException e) {
+                System.out.println("IOException");
                 e.printStackTrace();
             }
         }

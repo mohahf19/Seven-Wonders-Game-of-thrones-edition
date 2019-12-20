@@ -69,6 +69,7 @@ public class MainScreenController implements Initializable  {
 
 
         } catch (Exception e) {
+            System.out.println( "Exception");
             e.printStackTrace();
         }
     }
@@ -90,6 +91,7 @@ public class MainScreenController implements Initializable  {
                 stage.getScene().setRoot(page);
                 stage.sizeToScene();
             } catch (IOException e) {
+                System.out.println("IOException");
                 e.printStackTrace();
             }
 
