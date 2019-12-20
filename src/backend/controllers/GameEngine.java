@@ -59,7 +59,8 @@ public class GameEngine {
         this.cardPlayed(cardIndex);
     }
 
-    public void playCard( Card card, int cardIndex){
+    public void playCard( int cardIndex){
+        Card card = getCurrentPlayer().cards.get( cardIndex);
         if( card == null)
             return;
 
