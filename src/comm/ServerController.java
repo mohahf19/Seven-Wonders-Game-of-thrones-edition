@@ -90,9 +90,9 @@ public class ServerController {
 
             Collections.shuffle(deck3.getCards());
 
-            ages.add( new Age( deck3));
-            ages.add( new Age( deck2));
             ages.add( new Age( deck1));
+            ages.add( new Age( deck2));
+            ages.add( new Age( deck3));
         } catch ( Exception e){
             System.out.println( "EXCEPTION::::" + e.toString() + e.getStackTrace());
         }
