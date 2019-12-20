@@ -93,15 +93,76 @@ public class CardView extends Pane {
         iconImageView.setImage(new Image(card.iconPath));
 
 
-        prereqCardLabel = new Label(card.cost.getPrereq());
-        cardNameLabel = new Label(card.name);
-        chain1Label = new Label(card.chain1);
-        chain2Label = new Label(card.chain2);
+        prereqCardLabel = new Label(" " + card.cost.getPrereq());
+        cardNameLabel = new Label(" " + card.name);
+
+        chain1Label = new Label(card.chain1 + "  ");
+
+        chain2Label = new Label(card.chain2 + "  ");
+
+        styleLabels(card.cost.getPrereq(), card.chain1, card.chain2);
         prereqHBox = new HBox();
         fillPreReq(card.cost.getResources(), card.cost.getCoins());
 
         addChildren();
 
+    }
+
+    private void styleLabels(String pre, String c1, String c2) {
+        if(!pre.equals((""))) {
+            prereqCardLabel.setStyle("" +
+                    "-fx-background-image: url(\"/assets/prereqLabel.png\");"
+            );
+        }
+
+        cardNameLabel.setStyle("" +
+                "-fx-background-image: url(\"/assets/nameLabel.png\");"
+        );
+
+        if(!c1.equals("")) {
+            String img = chooseBorder(c1);
+            chain1Label.setAlignment(Pos.CENTER_RIGHT);
+            chain1Label.setStyle("" +
+                    "-fx-background-image: url(" + img + ");"
+            );
+        }
+
+        if(!c2.equals("")) {
+            String img = chooseBorder(c2);
+            chain2Label.setAlignment(Pos.CENTER_RIGHT);
+            chain2Label.setStyle("" +
+                    "-fx-background-image: url(" + img + ");"
+            );
+        }
+    }
+
+    private String chooseBorder(String c1) {
+        String[] civic = {"aqueduct", "temple", "statue", "pantheon", "gardens", "courthouse", "senate"};
+        String[] commerce = {"forum", "caravansery", "haven", "arena"};
+        String[] mil = {"walls", "training ground", "fortifications", "circus", "stables", "archery range",
+                "siege workshop"};
+        String[] science = {"dispensary", "laboratory", "observatory", "lodge", "library", "university",
+                "academy", "study"};
+        for(int i = 0; i < civic.length; i++){
+            if (c1.equalsIgnoreCase(civic[i]))
+                return "\"/assets/chainLabelBlue.png\"";
+        }
+
+        for(int i = 0; i < commerce.length; i++){
+            if (c1.equalsIgnoreCase(commerce[i]))
+                return "\"/assets/chainLabelYellow.png\"";
+        }
+
+        for(int i = 0; i < mil.length; i++){
+            if (c1.equalsIgnoreCase(mil[i]))
+                return "\"/assets/chainLabelRed.png\"";
+        }
+
+        for(int i = 0; i < science.length; i++){
+            if (c1.equalsIgnoreCase(science[i]))
+                return "\"/assets/chainLabelGreen.png\"";
+        }
+        return "\"/assets/chainLabelNormal.png\"";
     }
 
     private void fillPreReq(int resource, int money) {
@@ -170,9 +231,9 @@ public class CardView extends Pane {
         topPane.resizeRelocate(0, 0, 150, 50);
         cardImageView.resizeRelocate(0, 50, 150, 150);
         prereqHBox.resizeRelocate(0, 50, 150, 20);
-        prereqCardLabel.resizeRelocate(0, 70, 75, 20);
-        chain1Label.resizeRelocate(75, 140, 75, 20);
-        chain2Label.resizeRelocate(75, 160, 75, 20);
-        cardNameLabel.resizeRelocate(0, 180, 150, 20);
+        prereqCardLabel.resizeRelocate(0, 75, 104, 20);
+        chain1Label.resizeRelocate(60, 127, 90, 20);
+        chain2Label.resizeRelocate(60, 150, 90, 20);
+        cardNameLabel.resizeRelocate(0, 175, 150, 20);
     }
 }
