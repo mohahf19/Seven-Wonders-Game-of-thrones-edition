@@ -57,6 +57,7 @@ public class GameEngine {
         JsonObject req = new JsonObject();
         req.addProperty("op_code", 2);
         req.addProperty("player", gson.toJson( getCurrentPlayer()));
+        System.out.println("SENT");
         client.sendRequest( req);
     }
 

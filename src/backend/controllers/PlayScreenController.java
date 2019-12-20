@@ -92,6 +92,7 @@ public class PlayScreenController implements Initializable {
 
         soundButton.addEventHandler(MouseEvent.MOUSE_ENTERED, new soundMouseHoverListener());
         soundButton.addEventHandler(MouseEvent.MOUSE_EXITED, new soundMouseExitListener());
+        soundButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new soundMouseClickListener());
 
         setHeaders(Main.gameEngine.getCurrentPlayer().id);
 
@@ -121,10 +122,7 @@ public class PlayScreenController implements Initializable {
             }
         });
     }
-    @FXML
-    public void cardSelected(){
-        Main.gameEngine.chooseCard( null);
-    }
+
 
     public static void updateSeasonImage( int currSeason) {
         Platform.runLater(new Runnable() {
@@ -249,5 +247,21 @@ public class PlayScreenController implements Initializable {
         }
     }
 
+    public class soundMouseClickListener implements EventHandler<MouseEvent> {
+        @Override
+        public void handle(MouseEvent event) {
+            event.consume();
+            try {
+                click();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        public void click() throws IOException {
+            System.out.println("CLICKED");
+            Main.gameEngine.chooseCard( null);
+
+        }
+    }
 
 }
