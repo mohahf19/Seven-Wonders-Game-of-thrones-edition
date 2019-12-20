@@ -5,6 +5,7 @@ import backend.app.fxmlPaths;
 import backend.models.Card;
 import backend.models.Deck;
 import backend.models.Player;
+import backend.models.Scoreboard;
 import com.google.gson.JsonObject;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -276,6 +277,9 @@ public class PlayScreenController implements Initializable {
                 }
             }
         });
+    }
+    public static void updateScoreboard(Scoreboard scoreboard){
+        System.out.println( "Scoreboard to be updated");
     }
 
     public static void updateAgeImage( int currAge) {

@@ -45,6 +45,10 @@ public class GameEngine {
         this.currentAge = age;
         PlayScreenController.updateAgeImage( age);
     }
+    public void updateScoreboard( Scoreboard scoreboard){
+        this.scoreboard = scoreboard;
+        PlayScreenController.updateScoreboard( scoreboard);
+    }
 
     public void sendWarStarted(){
         // TO DO: fill this
