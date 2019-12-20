@@ -116,7 +116,7 @@ public class PlayScreenController implements Initializable {
                 for (int i = 0; i < cards.size(); i++) {
                     CardView cv = new CardView(cards.get(i));
                     cv.update(cards.get(i));
-                    System.out.println(cards.get(i).name);
+                    //System.out.println(cards.get(i).name);
                     cardHolderSt.getChildren().addAll(cv);
                 }
             }
@@ -222,6 +222,7 @@ public class PlayScreenController implements Initializable {
             try {
                 hover();
             } catch (IOException e) {
+                System.out.println( "IOException");
                 e.printStackTrace();
             }
         }
@@ -238,6 +239,7 @@ public class PlayScreenController implements Initializable {
             try {
                 hover();
             } catch (IOException e) {
+                System.out.println( "IOException");
                 e.printStackTrace();
             }
         }
@@ -254,6 +256,7 @@ public class PlayScreenController implements Initializable {
             try {
                 click();
             } catch (IOException e) {
+                System.out.println("IOException");
                 e.printStackTrace();
             }
         }

@@ -1,5 +1,6 @@
 package backend.controllers;
 
+import backend.app.Main;
 import backend.models.*;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -86,6 +87,8 @@ public class GameEngine {
             System.out.println("Failed to determine the type of the card");
             // do something
         }
+        if( this.getCurrentPlayer().house.playedCards == null)
+            this.getCurrentPlayer().house.playedCards = new ArrayList<>();
         this.getCurrentPlayer().house.playedCards.add(card);
         this.cardPlayed(cardIndex);
     }
@@ -95,7 +98,7 @@ public class GameEngine {
         JsonObject req = new JsonObject();
         req.addProperty("op_code", 2);
         req.addProperty("player", gson.toJson( getCurrentPlayer()));
-        client.sendRequest( req);
+        Main.gameEngine.client.sendRequest( req);
     }
 
 }

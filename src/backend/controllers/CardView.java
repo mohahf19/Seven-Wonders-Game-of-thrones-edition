@@ -85,11 +85,11 @@ public class CardView extends Pane {
         topPane.getChildren().add(backImageView);
         topPane.getChildren().add(iconImageView);
 
-        System.out.println(card.imagePath);
+        //System.out.println(card.imagePath);
         cardImageView.setImage(new Image(card.imagePath));
-        System.out.println(card.backPath);
+        //System.out.println(card.backPath);
         backImageView.setImage(new Image(card.backPath));
-        System.out.println(card.iconPath);
+        //System.out.println(card.iconPath);
         iconImageView.setImage(new Image(card.iconPath));
 
 

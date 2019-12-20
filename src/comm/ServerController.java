@@ -73,6 +73,7 @@ public class ServerController {
             System.out.println( "Houses found " + houses.size());
             allHouses = houses;
         } catch (FileNotFoundException e) {
+            System.out.println("File not found exception");
             e.printStackTrace();
         }
     }
@@ -242,10 +243,21 @@ public class ServerController {
             scoreboard.scores.get( i).set( scoreboard.MILITARY_POINTS_INDEX, currPlayer.currentMilitaryPoints);
             scoreboard.scores.get( i).set( scoreboard.COIN_POINTS_INDEX, currPlayer.calculateCoinPoints());
             scoreboard.scores.get( i).set( scoreboard.WONDER_POINTS_INDEX, currPlayer.calculateWonderPoints());
-            scoreboard.scores.get( i).set( scoreboard.CIVIC_POINTS_INDEX, currPlayer.calculateCivicPoints());
+
+
             scoreboard.scores.get( i).set( scoreboard.COMMERCE_POINTS_INDEX, currPlayer.calculateCommercePoints());
-            scoreboard.scores.get( i).set( scoreboard.SCIENCE_POINTS_INDEX, currPlayer.calculateSciencePoints());
-            scoreboard.scores.get( i).set( scoreboard.VICTORY_POINTS_INDEX, currPlayer.calculateVictoryPoints());
+
+
+            try{
+
+                scoreboard.scores.get( i).set( scoreboard.SCIENCE_POINTS_INDEX, currPlayer.calculateSciencePoints());
+                scoreboard.scores.get( i).set( scoreboard.CIVIC_POINTS_INDEX, currPlayer.calculateCivicPoints());
+                scoreboard.scores.get( i).set( scoreboard.VICTORY_POINTS_INDEX, currPlayer.calculateVictoryPoints());
+
+
+            } catch ( Exception e){
+                System.out.println("_______________________: " + e.getStackTrace()[0].getLineNumber());
+            }
         }
         sendScoreboard();
     }
