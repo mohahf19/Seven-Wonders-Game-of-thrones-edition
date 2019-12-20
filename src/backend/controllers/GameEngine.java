@@ -55,7 +55,7 @@ public class GameEngine {
     }
 
     public void discardCard(int cardIndex) {
-        this.getCurrentPlayer().house.coins += 2; // was it 3?
+        this.getCurrentPlayer().house.coins += 3;
         this.cardPlayed(cardIndex);
     }
 
