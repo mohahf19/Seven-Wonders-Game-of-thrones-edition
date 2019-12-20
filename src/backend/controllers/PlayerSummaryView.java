@@ -6,6 +6,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
 
 public class PlayerSummaryView extends Pane {
     private ImageView backImageView;
@@ -14,6 +16,8 @@ public class PlayerSummaryView extends Pane {
     private Label nameLabel;
     private Label coinsLabel;
     private Label shieldsLabel;
+    private StackPane s1;
+    private StackPane s2;
 
     public PlayerSummaryView(){
         initComponents();
@@ -25,8 +29,8 @@ public class PlayerSummaryView extends Pane {
         initComponents();
 
         nameLabel.setText(p.house.name);
-        coinsLabel.setText("" + p.house.coins);
-        shieldsLabel.setText("" + p.house.militaryShields);
+        coinsLabel.setText("" + 22);
+        shieldsLabel.setText("" + 22);
 
         // Initializing images
         Image image;
@@ -70,9 +74,11 @@ public class PlayerSummaryView extends Pane {
 
     private void addChildren() {
         this.getChildren().add(backImageView);
-        this.getChildren().add(coinsImageView);
-        this.getChildren().add(shieldsImageView);
-        this.getChildren().addAll(nameLabel, coinsLabel, shieldsLabel);
+        //this.getChildren().add(coinsImageView);
+        //this.getChildren().add(shieldsImageView);
+        //this.getChildren().addAll(nameLabel, coinsLabel, shieldsLabel);
+        this.getChildren().addAll(nameLabel, s1, s2);
+
     }
 
     private void initComponents() {
@@ -98,13 +104,23 @@ public class PlayerSummaryView extends Pane {
         nameLabel.setAlignment(Pos.CENTER);
         coinsLabel.setAlignment(Pos.CENTER);
         shieldsLabel.setAlignment(Pos.CENTER);
+        coinsLabel.setStyle("-fx-text-fill: white; -fx-font-size: 40px;");
+        shieldsLabel.setStyle("-fx-text-fill: white; -fx-font-size: 40px;");
+
+        s1 = new StackPane();
+        s1.getChildren().add(coinsImageView);
+        s1.getChildren().add(coinsLabel);
+
+        s2 = new StackPane();
+        s2.getChildren().add(shieldsImageView);
+        s2.getChildren().add(shieldsLabel);
 
     }
 
     //updates this view
     public void update(Player p){
-        coinsLabel.setText(""+ p.house.coins);
-        shieldsLabel.setText(""+p.house.militaryShields);
+        coinsLabel.setText(""+ 22);
+        shieldsLabel.setText(""+22);
     }
 
     @Override protected double computeMinWidth(double height){
@@ -133,10 +149,12 @@ public class PlayerSummaryView extends Pane {
 
     @Override protected void layoutChildren(){
         backImageView.resizeRelocate(0,0, 240, 100);
-        coinsImageView.resizeRelocate(50, 40, 50, 50);
-        shieldsImageView.resizeRelocate(140, 40, 50, 50);
+        //coinsImageView.resizeRelocate(50, 40, 50, 50);
+        //shieldsImageView.resizeRelocate(140, 40, 50, 50);
         nameLabel.resizeRelocate(0,0, 240, 30);
-        coinsLabel.resizeRelocate(50,40, 50, 50);
-        shieldsLabel.resizeRelocate(140, 40, 50, 50);
+        //coinsLabel.resizeRelocate(50,40, 50, 50);
+        //shieldsLabel.resizeRelocate(140, 40, 50, 50);
+        s1.resizeRelocate(50, 40, 50, 50);
+        s2.resizeRelocate(140, 40, 50, 50);
     }
 }
