@@ -41,9 +41,7 @@
             </HBox>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="201.0" layoutY="549.0" prefHeight="70.0" prefWidth="350.0" />
-      <AnchorPane layoutX="565.0" layoutY="549.0" prefHeight="70.0" prefWidth="350.0" />
-      <AnchorPane layoutX="930.0" layoutY="549.0" prefHeight="70.0" prefWidth="350.0" />
       <HBox fx:id="headerHolder" prefHeight="101.0" prefWidth="1440.0" />
+      <HBox fx:id="wonderHolder" layoutX="240.0" layoutY="551.0" prefHeight="75.0" prefWidth="960.0" />
    </children>
 </AnchorPane>
