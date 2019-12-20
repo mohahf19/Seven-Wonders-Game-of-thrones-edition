@@ -136,17 +136,19 @@ public class House {
         return result;
     }
 
-    public void buildWonder(int wonderId) {
-        Wonder wonder = wonders.get(wonderId);
-        // safety check
-        if (!wonders.get(wonderId).isBuilt()) {
-            this.addResource(wonder.getResources());
-            this.militaryShields += wonder.getMilitaryShields();
-            this.victoryPoints += wonder.getVictoryPoints();
-            this.coins += wonder.getCoins();
-            wonder.build();
+    public void buildWonder() {
+        for (Wonder wonder : wonders) {
+            if (!wonder.isBuilt()) {
+                this.addResource(wonder.getResources());
+                this.militaryShields += wonder.getMilitaryShields();
+                this.victoryPoints += wonder.getVictoryPoints();
+                this.coins += wonder.getCoins();
+                wonder.build();
+                break;
+            }
         }
     }
+
     private void pay(Cost cost) {
         coins = coins - cost.getCoins();
     }
