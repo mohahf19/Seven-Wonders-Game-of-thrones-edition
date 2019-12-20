@@ -1272,7 +1272,7 @@ public class Deck {
                 "",
                 0,
                 arr(1),
-                1, //TODO coin calculation algorithm works this way?
+                1,
                 0,
                 true,
                 true,

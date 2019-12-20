@@ -72,4 +72,5 @@ public class Commerce extends Card {
     public String getCardReq() {
         return cardReq;
     }
+
 }

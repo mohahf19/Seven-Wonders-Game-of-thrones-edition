@@ -15,4 +15,6 @@ public class Science extends Card{
     public boolean isScience(){
         return true;
     }
+
+    public String getType(){ return type;}
 }

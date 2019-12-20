@@ -1,8 +1,10 @@
 package backend.models;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static backend.app.constants.*;
+import static java.lang.Math.*;
 
 public class Player {
     public int id;
@@ -31,17 +33,87 @@ public class Player {
         return coins/3;
     }
     public int calculateWonderPoints(){
-        return 0;
+        int wonderVictory = 0;
+        ArrayList<Wonder> wonders = this.house.getWonders();
+        for(Wonder w: wonders)
+            wonderVictory += w.getVictoryPoints();
+        return wonderVictory;
     }
     public int calculateCivicPoints(){
-        return 0;
+        ArrayList<Card> playedCards = this.house.getPlayedCards();
+        int civicPoints = 0;
+        for(Card c: playedCards)
+        {
+            if(c.isCivic())
+                civicPoints += ((Civic) c).getVictoryPoints();
+        }
+        return civicPoints;
     }
     public int calculateCommercePoints(){
-        return 0;
+        ArrayList<Card> playedCards = this.house.getPlayedCards();
+        int commercePoints = 0;
+        int resourceCount = countResCards();
+        int commerceCount = countComCards();
+        for(Card c: playedCards)
+        {
+            if( c.isCommerce())
+            {
+                if( ((Commerce) c).isWonderCard())
+                    commercePoints += this.house.getWonders().size()*((Commerce)c).getVictoryPoints();
+                else if(((Commerce)c).getCardReq().equalsIgnoreCase("resource"))
+                    commercePoints += resourceCount * ((Commerce)c).getVictoryPoints();
+                else if(((Commerce)c).getCardReq().equalsIgnoreCase("commerce"))
+                    commercePoints += commerceCount * ((Commerce)c).getVictoryPoints();
+            }
+        }
+
+        return commercePoints;
     }
     public int calculateSciencePoints(){
-        return 0;
+        ArrayList<Card> playedCards = this.house.getPlayedCards();
+        int sciencePoints;
+        int gearCount = 0 ;
+        int tabletCount = 0;
+        int rulerCount = 0;
+        for(Card c: playedCards)
+        {
+            if(c.isScience()) {
+                if(((Science) c).getType().equalsIgnoreCase("ruler"))
+                    rulerCount++;
+                else if(((Science) c).getType().equalsIgnoreCase("tablet"))
+                    tabletCount++;
+                else
+                    gearCount++;
+            }
+        }
+        sciencePoints = min(rulerCount, min(gearCount, tabletCount)) * 7 +
+                ((rulerCount * rulerCount)+(gearCount * gearCount)+(tabletCount * tabletCount));
+        return sciencePoints;
     }
+
+    //to calculate number of commerce and resource cards played
+    private int countResCards()
+    {
+        ArrayList<Card> playedCards = this.house.getPlayedCards();
+        int count = 0;
+        for( Card c: playedCards)
+        {
+            if( c.isResource())
+                count++;
+        }
+        return count;
+    }
+    private int countComCards(){
+        ArrayList<Card> playedCards = this.house.getPlayedCards();
+        int count = 0;
+        for( Card c: playedCards)
+        {
+            if( c.isCommerce())
+                count++;
+        }
+        return count;
+    }
+    
     public int calculateVictoryPoints(){
         return 0;
     }
