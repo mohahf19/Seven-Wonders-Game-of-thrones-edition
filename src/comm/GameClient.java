@@ -103,6 +103,7 @@ public class GameClient {
 
     public void sendRequest( JsonObject request){
         out.println( gson.toJson( request));
+        System.out.println( "Sent from client" + gson.toJson( request));
     }
 
 

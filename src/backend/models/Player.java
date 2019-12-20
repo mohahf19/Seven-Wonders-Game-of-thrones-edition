@@ -175,7 +175,6 @@ public class Player {
         this.house.victoryPoints += card.getVictoryPoints();
         // TO DO: seasonal effects?
     }
-    public void playCrisis( Crisis card){}
 
 
     public void setNeighbors(Player left, Player right){
@@ -285,6 +284,10 @@ public class Player {
             }
         }
         return result;
+    }
+
+    public ArrayList<Card> getCardsInHand(){
+        return this.cards;
     }
 
     //private? classes

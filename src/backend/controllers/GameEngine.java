@@ -45,26 +45,24 @@ public class GameEngine {
         PlayScreenController.updateAgeImage( age);
     }
 
-    public void startMilitaryConflict(){}
-
-    public void chooseCard( Card card){
-        // if card is played directly
-        this.playCard(card);
-        // if card is used to build a wonder
-        // this.getCurrentPlayer().house.buildWonder(wonderId);
-        // if the card is discarded
-        // this.getCurrentPlayer().house.coins += 2; // was it 3?
-        JsonObject req = new JsonObject();
-        req.addProperty("op_code", 2);
-        req.addProperty("player", gson.toJson( getCurrentPlayer()));
-        System.out.println("SENT");
-        client.sendRequest( req);
+    public void sendWarStarted(){
+        // TO DO: fill this
     }
 
+    public void discardCard(int cardIndex) {
+        this.getCurrentPlayer().house.coins += 2; // was it 3?
+        this.cardPlayed(cardIndex);
+    }
 
-    public void playCard( Card card){
+    public void buildWonder(int cardIndex) {
+        this.getCurrentPlayer().house.buildWonder();
+        this.cardPlayed(cardIndex);
+    }
+
+    public void playCard( Card card, int cardIndex){
         if( card == null)
             return;
+
         if (card.isResource()) {
             this.getCurrentPlayer().playResource((Resource) card);
         }
@@ -81,13 +79,22 @@ public class GameEngine {
             this.getCurrentPlayer().playCivic((Civic) card);
         }
         else if (card.isCrisis()) {
-            this.getCurrentPlayer().playCrisis((Crisis) card);
+            this.sendWarStarted();
         }
         else {
             System.out.println("Failed to determine the type of the card");
-            System.exit(1);
+            // do something
         }
         this.getCurrentPlayer().house.playedCards.add(card);
+        this.cardPlayed(cardIndex);
+    }
+
+    public void cardPlayed(int cardIndex) {
+        this.getCurrentPlayer().getCardsInHand().remove(cardIndex);
+        JsonObject req = new JsonObject();
+        req.addProperty("op_code", 2);
+        req.addProperty("player", gson.toJson( getCurrentPlayer()));
+        client.sendRequest( req);
     }
 
 }
