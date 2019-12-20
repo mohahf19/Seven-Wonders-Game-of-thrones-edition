@@ -49,6 +49,7 @@ public class PlayScreenController implements Initializable {
 
     @FXML
     private Label waitLabel;
+    private static Label waitLabelSt;
 
     CardView sampleCard;
 
@@ -63,6 +64,7 @@ public class PlayScreenController implements Initializable {
         seasonBannerSt = seasonBanner;
         ageButtonSt = ageButton;
         cardHolderSt = cardHolder;
+        waitLabelSt = waitLabel;
 
         card1.setOnMouseDragged(new EventHandler() {
             public void handle(Event e) {
@@ -221,6 +223,8 @@ public class PlayScreenController implements Initializable {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
+                waitLabelSt.setVisible( false);
+
                 cardHolderSt.setAlignment(Pos.CENTER);
                 cardHolderSt.setSpacing(5);
 
@@ -280,6 +284,7 @@ public class PlayScreenController implements Initializable {
             public void run() {
                 Image image;
                 try {
+                    waitLabelSt.setVisible( false);
                     switch (currAge) {
                         case 1: {
                             image = new Image("assets/ages/age1.jpg", true);
@@ -376,7 +381,7 @@ public class PlayScreenController implements Initializable {
             }
         }
         public void click() throws IOException {
-            System.out.println("CLICKED");
+            waitLabelSt.setVisible( true);
             Main.gameEngine.playCard( 0);
 
         }
