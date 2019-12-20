@@ -27,7 +27,43 @@ public class PlayerSummaryView extends Pane {
         nameLabel.setText(p.house.name);
         coinsLabel.setText("" + p.house.coins);
         shieldsLabel.setText("" + p.house.militaryShields);
-        //TODO set the house image here based on the path
+
+        // Initializing images
+        Image image;
+        image = new Image("assets/Headers/coin.png", true);
+        coinsImageView.setImage(image);
+        image = new Image("assets/Headers/militaryShield.png", true);
+        shieldsImageView.setImage(image);
+        switch (p.house.name) {
+            case "Stark":
+                image = new Image("assets/Headers/starkTop.jpg", true);
+                backImageView.setImage(image);
+                break;
+            case "Baratheon":
+                image = new Image("assets/Headers/baratheonTop.jpg", true);
+                backImageView.setImage(image);
+                break;
+            case "Greyjoy":
+                image = new Image("assets/Headers/greyjoyTop.jpg", true);
+                backImageView.setImage(image);
+                break;
+            case "Lannister":
+                image = new Image("assets/Headers/lannisterTop.jpg", true);
+                backImageView.setImage(image);
+                break;
+            case "Targaryen":
+                image = new Image("assets/Headers/targaryenTop.jpg", true);
+                backImageView.setImage(image);
+                break;
+            case "Tyrell":
+                image = new Image("assets/Headers/tyrellTop.jpg", true);
+                backImageView.setImage(image);
+                break;
+            case "White Walkers":
+                image = new Image("assets/Headers/whiteTop.jpg", true);
+                backImageView.setImage(image);
+                break;
+        }
 
         addChildren();
     }
@@ -63,12 +99,6 @@ public class PlayerSummaryView extends Pane {
         coinsLabel.setAlignment(Pos.CENTER);
         shieldsLabel.setAlignment(Pos.CENTER);
 
-        setImages();
-
-    }
-
-    private void setImages() { //TODO add real images here
-       
     }
 
     //updates this view

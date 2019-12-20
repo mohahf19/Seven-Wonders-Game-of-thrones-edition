@@ -44,19 +44,6 @@
       <AnchorPane layoutX="201.0" layoutY="549.0" prefHeight="70.0" prefWidth="350.0" />
       <AnchorPane layoutX="565.0" layoutY="549.0" prefHeight="70.0" prefWidth="350.0" />
       <AnchorPane layoutX="930.0" layoutY="549.0" prefHeight="70.0" prefWidth="350.0" />
-      <AnchorPane prefHeight="98.0" prefWidth="1440.0">
-         <children>
-            <HBox layoutY="-1.0" prefHeight="101.0" prefWidth="1081.0">
-               <children>
-                  <ImageView fx:id="header1" fitHeight="100.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="100.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="100.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="100.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="100.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="100.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true" />
-               </children>
-            </HBox>
-         </children>
-      </AnchorPane>
+      <HBox fx:id="headerHolder" prefHeight="101.0" prefWidth="1440.0" />
    </children>
 </AnchorPane>

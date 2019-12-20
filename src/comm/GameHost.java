@@ -84,7 +84,7 @@ public class GameHost {
             Main.gameEngine.client.startClient();
         })).start();
 
-        //addSampleClients( ip);
+//        addSampleClients( ip);
     }
 
     public void addSampleClients( String ip){

@@ -36,14 +36,14 @@ import java.util.ResourceBundle;
 
 public class PlayScreenController implements Initializable {
     @FXML
-    private ImageView card1, card2, card3, soundButton, header1, seasonBanner, ageButton;
+    private ImageView card1, card2, card3, soundButton, seasonBanner, ageButton;
     private static ImageView seasonBannerSt, ageButtonSt;
 
     @FXML
     private AnchorPane parentPane;
 
     @FXML
-    private HBox cardHolder;
+    private HBox cardHolder, headerHolder;
     private static HBox cardHolderSt;
 
     CardView sampleCard;
@@ -89,8 +89,6 @@ public class PlayScreenController implements Initializable {
                 }
             }
         });
-
-//        test();
 
         soundButton.addEventHandler(MouseEvent.MOUSE_ENTERED, new soundMouseHoverListener());
         soundButton.addEventHandler(MouseEvent.MOUSE_EXITED, new soundMouseExitListener());
@@ -191,41 +189,16 @@ public class PlayScreenController implements Initializable {
         });
     }
 
-
-//    public void test() {
-//        //TEST
-//        cardHolder.setAlignment(Pos.CENTER);
-//        cardHolder.setSpacing(5);
-//        for (int i = 0; i < 1; i++) {
-//            ImageView cardImg = new ImageView();
-//            cardImg.setFitHeight(200);
-//            cardImg.setFitWidth(150);
-//            Image img = new Image("/assets/Lumberyard", true);
-//            cardImg.setImage(img);
-//            cardHolder.getChildren().add(cardImg);
-//        }
-//
-//        backend.models.Cost cost = new backend.models.Cost(10, "I AM PREREQ", 17*2*2*3*5);
-//
-//        backend.models.Card card = new backend.models.Card("Card Titled",cost,
-//                "file:///C:/Users/Bilal/Desktop/7%20Houses%20Resources/Cards/Card%20Icon/brownBG.jpg",
-//                "file:///C:/Users/Bilal/Desktop/7%20Houses%20Resources/Game%20Icons/Resources%20Icons/wood.png",
-//                "file:///C:/Users/Bilal/Desktop/7%20Houses%20Resources/Cards/Card%20Icon/brownTop.jpg");
-//        CardView cv = new CardView(card);
-//        cv.update(card);
-//        cardHolder.getChildren().addAll(cv);
-//
-//        //TESTEND
-//    }
-
     // Headers need to be in an arraylist
     public void setHeaders(int userID) {
+        headerHolder.setAlignment(Pos.CENTER);
+
         ArrayList<Player> updatedPlayers = new ArrayList<>();
         Player user, userleft, userright;
         user = Main.gameEngine.players.get(userID);
 
-        userleft = Main.gameEngine.players.get( (((userID - 1) % Main.gameEngine.players.size()) +  Main.gameEngine.players.size()) %  Main.gameEngine.players.size());
-        userright = Main.gameEngine.players.get( (userID + 1) % Main.gameEngine.players.size());
+        userleft = Main.gameEngine.players.get((((userID - 1) % Main.gameEngine.players.size()) + Main.gameEngine.players.size()) % Main.gameEngine.players.size());
+        userright = Main.gameEngine.players.get((userID + 1) % Main.gameEngine.players.size());
 
         updatedPlayers.add(userleft);
         for (int i = 0; i < Main.gameEngine.players.size(); i++) {
@@ -236,38 +209,9 @@ public class PlayScreenController implements Initializable {
         updatedPlayers.add(userright);
 
         for (int i = 0; i < updatedPlayers.size(); i++) {
-            String houseName = updatedPlayers.get(i).house.name;
-            Image image;
-            switch (houseName) {
-                case "Stark":
-                    image = new Image("assets/Headers/starkTop.jpg", true);
-                    header1.setImage(image);
-                    break;
-                case "Baratheon":
-                    image = new Image("assets/Headers/baratheonTop.jpg", true);
-                    header1.setImage(image);
-                    break;
-                case "Greyjoy":
-                    image = new Image("assets/Headers/greyjoyTop.jpg", true);
-                    header1.setImage(image);
-                    break;
-                case "Lannister":
-                    image = new Image("assets/Headers/lannisterTop.jpg", true);
-                    header1.setImage(image);
-                    break;
-                case "Targaryen":
-                    image = new Image("assets/Headers/targaryenTop.jpg", true);
-                    header1.setImage(image);
-                    break;
-                case "Tyrell":
-                    image = new Image("assets/Headers/tyrellTop.jpg", true);
-                    header1.setImage(image);
-                    break;
-                case "White Walkers":
-                    image = new Image("assets/Headers/whiteTop.jpg", true);
-                    header1.setImage(image);
-                    break;
-            }
+            PlayerSummaryView psv = new PlayerSummaryView(updatedPlayers.get(i));
+            psv.update(updatedPlayers.get(i));
+            headerHolder.getChildren().addAll(psv);
         }
     }
 
