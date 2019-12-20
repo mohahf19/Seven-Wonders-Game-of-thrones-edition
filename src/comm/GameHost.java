@@ -141,16 +141,12 @@ public class GameHost {
                 serverController.sendHouseJoined();
                 break;
             } case 2: { //card selected
-                System.out.println( "Plus");
                 serverController.cardsSelectedCount++;
                 Player player = gson.fromJson( request.get("player").getAsString(), Player.class );
-                System.out.println( "Plus");
                 serverController.updatePlayer( player, id);
-                if( serverController.cardsSelectedCount >= (clients.size() - 1)){
-                    System.out.println( "Play next turn");
+                if( serverController.cardsSelectedCount >= (clients.size())) {
+                    System.out.println("Play next turn");
                     serverController.playTurn();
-                } else {
-                    System.out.println( "" + serverController.cardsSelectedCount + "<" + (clients.size() - 1));
                 }
                 break;
             } case 3: {

@@ -14,7 +14,7 @@ public class GameEngine {
 
     public ArrayList<Player> players;
     public int currentSeason;
-    public int currentAge;
+    public int currentAge = 1;
     public Scoreboard scoreboard;
 
     public GameEngine(){
