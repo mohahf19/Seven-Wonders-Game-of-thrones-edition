@@ -13,10 +13,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 import static backend.models.Numbers.arr;
 
@@ -91,9 +88,11 @@ public class ServerController {
             Deck deck2= new Deck( 3, 2);
             Deck deck3 = new Deck( 3, 3);
 
-            ages.add( new Age( deck1));
-            ages.add( new Age( deck2));
+            Collections.shuffle(deck3.getCards());
+
             ages.add( new Age( deck3));
+            ages.add( new Age( deck2));
+            ages.add( new Age( deck1));
         } catch ( Exception e){
             System.out.println( "EXCEPTION::::" + e.toString() + e.getStackTrace());
         }

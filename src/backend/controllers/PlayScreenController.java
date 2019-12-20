@@ -3,6 +3,7 @@ package backend.controllers;
 import backend.app.Main;
 import backend.app.fxmlPaths;
 import backend.models.Card;
+import backend.models.Deck;
 import backend.models.Player;
 import com.google.gson.JsonObject;
 import javafx.application.Platform;
@@ -108,6 +109,7 @@ public class PlayScreenController implements Initializable {
                 cardHolderSt.setAlignment(Pos.CENTER);
                 cardHolderSt.setSpacing(5);
 
+                Deck d = new Deck(7, 3);
 
 
                 System.out.println( "Cards geldi");

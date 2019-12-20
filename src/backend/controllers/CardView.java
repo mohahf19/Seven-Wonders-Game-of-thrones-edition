@@ -85,8 +85,11 @@ public class CardView extends Pane {
         topPane.getChildren().add(backImageView);
         topPane.getChildren().add(iconImageView);
 
+        System.out.println(card.imagePath);
         cardImageView.setImage(new Image(card.imagePath));
+        System.out.println(card.backPath);
         backImageView.setImage(new Image(card.backPath));
+        System.out.println(card.iconPath);
         iconImageView.setImage(new Image(card.iconPath));
 
 
@@ -116,13 +119,15 @@ public class CardView extends Pane {
                 imgView.setImage(new Image(path + val + ".png"));
                 prereqHBox.getChildren().add(imgView);
             } else {
-                imgView.setImage(new Image(path + "smallcoin.png"));
-                StackPane st = new StackPane();
-                Label label = new Label("" + money);
-                label.setAlignment(Pos.CENTER);
-                st.getChildren().add(imgView);
-                st.getChildren().add(label);
-                prereqHBox.getChildren().add(st);
+                if (money > 0) {
+                    imgView.setImage(new Image(path + "smallcoin.png"));
+                    StackPane st = new StackPane();
+                    Label label = new Label("" + money);
+                    label.setAlignment(Pos.CENTER);
+                    st.getChildren().add(imgView);
+                    st.getChildren().add(label);
+                    prereqHBox.getChildren().add(st);
+                }
             }
         }
     }
