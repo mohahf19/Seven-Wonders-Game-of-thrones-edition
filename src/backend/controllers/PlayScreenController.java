@@ -259,7 +259,7 @@ public class PlayScreenController implements Initializable {
         }
         public void click() throws IOException {
             System.out.println("CLICKED");
-            Main.gameEngine.chooseCard( null);
+            Main.gameEngine.playCard( 0);
 
         }
     }
