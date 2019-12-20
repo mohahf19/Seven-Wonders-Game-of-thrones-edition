@@ -45,8 +45,6 @@ public class GameEngine {
         PlayScreenController.updateAgeImage( age);
     }
 
-    public void startMilitaryConflict(){}
-
     public void sendWarStarted(){
         // TO DO: fill this
     }
