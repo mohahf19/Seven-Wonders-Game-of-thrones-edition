@@ -52,8 +52,17 @@ public class Player {
     public int calculateCommercePoints(){
         ArrayList<Card> playedCards = this.house.getPlayedCards();
         int commercePoints = 0;
-        int resourceCount = countResCards();
-        int commerceCount = countComCards();
+        int resourceCount = 0;
+        int commerceCount = 0;
+
+        for(Card c: playedCards)
+        {
+            if (c.isCommerce())
+                commerceCount++;
+            else if( c.isResource())
+                resourceCount++;
+        }
+
         for(Card c: playedCards)
         {
             if( c.isCommerce())
@@ -91,29 +100,6 @@ public class Player {
         return sciencePoints;
     }
 
-    //to calculate number of commerce and resource cards played
-    private int countResCards()
-    {
-        ArrayList<Card> playedCards = this.house.getPlayedCards();
-        int count = 0;
-        for( Card c: playedCards)
-        {
-            if( c.isResource())
-                count++;
-        }
-        return count;
-    }
-    private int countComCards(){
-        ArrayList<Card> playedCards = this.house.getPlayedCards();
-        int count = 0;
-        for( Card c: playedCards)
-        {
-            if( c.isCommerce())
-                count++;
-        }
-        return count;
-    }
-    
     public int calculateVictoryPoints(){
         return 0;
     }
