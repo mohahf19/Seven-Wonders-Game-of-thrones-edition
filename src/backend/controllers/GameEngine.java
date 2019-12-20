@@ -64,6 +64,7 @@ public class GameEngine {
     public void playCard( Card card){
         if( card == null)
             return;
+
         if (card.isResource()) {
             this.getCurrentPlayer().playResource((Resource) card);
         }
@@ -84,7 +85,6 @@ public class GameEngine {
         }
         else {
             System.out.println("Failed to determine the type of the card");
-            System.exit(1);
         }
         this.getCurrentPlayer().house.playedCards.add(card);
     }
