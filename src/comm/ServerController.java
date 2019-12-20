@@ -89,6 +89,8 @@ public class ServerController {
             Deck deck3 = new Deck( 3, 3);
 
             Collections.shuffle(deck1.getCards());
+            Collections.shuffle(deck2.getCards());
+            Collections.shuffle(deck3.getCards());
 
             ages.add( new Age( deck1));
             ages.add( new Age( deck2));

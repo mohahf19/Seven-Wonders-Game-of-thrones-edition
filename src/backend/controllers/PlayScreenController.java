@@ -120,8 +120,10 @@ public class PlayScreenController implements Initializable {
                 }
             }
         });
-
-
+    }
+    @FXML
+    public void cardSelected(){
+        Main.gameEngine.chooseCard( null);
     }
 
     public static void updateSeasonImage( int currSeason) {

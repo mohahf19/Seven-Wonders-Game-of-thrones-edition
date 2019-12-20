@@ -62,6 +62,8 @@ public class GameEngine {
     }
 
     public void playCard( Card card, int cardIndex){
+        if( card == null)
+            return;
         if (card.isResource()) {
             this.getCurrentPlayer().playResource((Resource) card);
         }
