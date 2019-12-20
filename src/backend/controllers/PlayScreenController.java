@@ -43,7 +43,7 @@ public class PlayScreenController implements Initializable {
     private AnchorPane parentPane;
 
     @FXML
-    private HBox cardHolder, headerHolder;
+    private HBox cardHolder, headerHolder, wonderHolder;
     private static HBox cardHolderSt;
 
     CardView sampleCard;
@@ -90,15 +90,127 @@ public class PlayScreenController implements Initializable {
             }
         });
 
+        // Event listeners for sound button
         soundButton.addEventHandler(MouseEvent.MOUSE_ENTERED, new soundMouseHoverListener());
         soundButton.addEventHandler(MouseEvent.MOUSE_EXITED, new soundMouseExitListener());
         soundButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new soundMouseClickListener());
 
         setHeaders(Main.gameEngine.getCurrentPlayer().id);
 
+        //wonder test
+        displayWonder();
+
         //don't change anything below
         notifyViewLoaded();
     }
+
+    public void displayWonder() {
+        wonderHolder.setAlignment(Pos.CENTER);
+        wonderHolder.setSpacing(30);
+        Image image;
+        ImageView iv;
+        switch (Main.gameEngine.players.get(0).house.name) {
+            case "Stark":
+                image = new Image("assets/wonders/starkWonder1.png");
+                iv = new ImageView();
+                iv.setImage(image);
+                wonderHolder.getChildren().addAll(iv);
+                image = new Image("assets/wonders/starkWonder2.png");
+                iv = new ImageView();
+                iv.setImage(image);
+                wonderHolder.getChildren().addAll(iv);
+                image = new Image("assets/wonders/starkWonder3.png");
+                iv = new ImageView();
+                iv.setImage(image);
+                wonderHolder.getChildren().addAll(iv);
+                break;
+            case "Baratheon":
+                image = new Image("assets/wonders/baratheonWonder1.png");
+                iv = new ImageView();
+                iv.setImage(image);
+                wonderHolder.getChildren().addAll(iv);
+                image = new Image("assets/wonders/baratheonWonder2.png");
+                iv = new ImageView();
+                iv.setImage(image);
+                wonderHolder.getChildren().addAll(iv);
+                image = new Image("assets/wonders/baratheonWonder3.png");
+                iv = new ImageView();
+                iv.setImage(image);
+                wonderHolder.getChildren().addAll(iv);
+                break;
+            case "Greyjoy":
+                image = new Image("assets/wonders/greyjoyWonder1.png");
+                iv = new ImageView();
+                iv.setImage(image);
+                wonderHolder.getChildren().addAll(iv);
+                image = new Image("assets/wonders/greyjoyWonder2.png");
+                iv = new ImageView();
+                iv.setImage(image);
+                wonderHolder.getChildren().addAll(iv);
+                image = new Image("assets/wonders/greyjoyWonder3.png");
+                iv = new ImageView();
+                iv.setImage(image);
+                wonderHolder.getChildren().addAll(iv);
+                break;
+            case "Lannister":
+                image = new Image("assets/wonders/lannisterWonder1.png");
+                iv = new ImageView();
+                iv.setImage(image);
+                wonderHolder.getChildren().addAll(iv);
+                image = new Image("assets/wonders/lannisterWonder2.png");
+                iv = new ImageView();
+                iv.setImage(image);
+                wonderHolder.getChildren().addAll(iv);
+                image = new Image("assets/wonders/lannisterWonder3.png");
+                iv = new ImageView();
+                iv.setImage(image);
+                wonderHolder.getChildren().addAll(iv);;
+                break;
+            case "Targaryen":
+                image = new Image("assets/wonders/targaryenWonder1.png");
+                iv = new ImageView();
+                iv.setImage(image);
+                wonderHolder.getChildren().addAll(iv);
+                image = new Image("assets/wonders/targaryenWonder2.png");
+                iv = new ImageView();
+                iv.setImage(image);
+                wonderHolder.getChildren().addAll(iv);
+                image = new Image("assets/wonders/targaryenWonder3.png");
+                iv = new ImageView();
+                iv.setImage(image);
+                wonderHolder.getChildren().addAll(iv);
+                break;
+            case "Tyrell":
+                image = new Image("assets/wonders/tyrellWonder1.png");
+                iv = new ImageView();
+                iv.setImage(image);
+                wonderHolder.getChildren().addAll(iv);
+                image = new Image("assets/wonders/tyrellWonder2.png");
+                iv = new ImageView();
+                iv.setImage(image);
+                wonderHolder.getChildren().addAll(iv);
+                image = new Image("assets/wonders/tyrellWonder3.png");
+                iv = new ImageView();
+                iv.setImage(image);
+                wonderHolder.getChildren().addAll(iv);
+                break;
+            case "White Walkers":
+                image = new Image("assets/wonders/whitewalkersWonder1.png");
+                iv = new ImageView();
+                iv.setImage(image);
+                wonderHolder.getChildren().addAll(iv);
+                image = new Image("assets/wonders/whitewalkersWonder2.png");
+                iv = new ImageView();
+                iv.setImage(image);
+                wonderHolder.getChildren().addAll(iv);
+                image = new Image("assets/wonders/whitewalkersWonder3.png");
+                iv = new ImageView();
+                iv.setImage(image);
+                wonderHolder.getChildren().addAll(iv);
+                break;
+        }
+    }
+
     public static void updateDeck( ArrayList<Card> cards){
         //write something
 
@@ -122,7 +234,6 @@ public class PlayScreenController implements Initializable {
             }
         });
     }
-
 
     public static void updateSeasonImage( int currSeason) {
         Platform.runLater(new Runnable() {
@@ -189,7 +300,7 @@ public class PlayScreenController implements Initializable {
         });
     }
 
-    // Headers need to be in an arraylist
+    // Adds PlayerViewSummaryView to the screen and arranges the neighbour of the player
     public void setHeaders(int userID) {
         headerHolder.setAlignment(Pos.CENTER);
 
