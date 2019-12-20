@@ -296,7 +296,7 @@ public class ServerController {
 
     public void viewInitialized(){
         cardsSelectedCount++;
-        if (cardsSelectedCount >= players.size() - 1){
+        if (cardsSelectedCount >= players.size()){
             cardsSelectedCount = 0;
             populateAges();
             scoreboard = new Scoreboard( players.size());
