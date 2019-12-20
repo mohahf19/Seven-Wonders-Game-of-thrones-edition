@@ -18,6 +18,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -45,6 +46,9 @@ public class PlayScreenController implements Initializable {
     @FXML
     private HBox cardHolder, headerHolder, wonderHolder;
     private static HBox cardHolderSt;
+
+    @FXML
+    private Label waitLabel;
 
     CardView sampleCard;
 

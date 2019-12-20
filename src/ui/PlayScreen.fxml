@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -39,6 +40,7 @@
                   </ImageView>
                </children>
             </HBox>
+            <Label fx:id="waitLabel" layoutX="1346.0" layoutY="141.0" prefHeight="22.0" prefWidth="90.0" text="Label" />
          </children>
       </AnchorPane>
       <HBox fx:id="headerHolder" prefHeight="101.0" prefWidth="1440.0" />
