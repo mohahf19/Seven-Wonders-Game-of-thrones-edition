@@ -10,4 +10,5 @@ public class constants {
     public static int RES5 = 11; //dragonglass
     public static int RES6 = 13; //papyrus
     public static int RES7 = 17; //silk
+    public static String path = "/assets/cards/";
 }
