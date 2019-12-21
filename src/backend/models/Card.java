@@ -4,8 +4,8 @@ import javafx.scene.paint.Color;
 
 public class Card {
     public String name;
-    protected int cardFreq;
-    protected int age;
+    public int cardFreq;
+    public int age;
     public Cost cost;
     public String imagePath;
     public String iconPath;

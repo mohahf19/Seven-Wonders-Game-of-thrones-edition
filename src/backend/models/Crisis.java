@@ -1,7 +1,7 @@
 package backend.models;
 
 public class Crisis extends Card {
-    private int crisisID;
+    public int crisisID;
 
     public Crisis(String name, Cost cost, String imagePath,
                   String iconPath, String backPath, int crisisID){

@@ -12,8 +12,8 @@ public class Deck {
     int d = 11;
     int p = 13;
     int si = 17;
-    private boolean direction; //true for cw, false for ccw
-    private ArrayList<Card> cards;
+    public boolean direction; //true for cw, false for ccw
+    public ArrayList<Card> cards;
 
 
     public boolean getDirection(){

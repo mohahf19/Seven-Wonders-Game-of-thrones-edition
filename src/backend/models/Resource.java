@@ -3,8 +3,8 @@ package backend.models;
 import backend.app.constants;
 
 public class Resource extends Card {
-    private int[] resourcesList;
-    private String[] type;
+    public int[] resourcesList;
+    public String[] type;
 
 
     public Resource(String name, int cardFreq, int age, Cost cost, String imagePath,

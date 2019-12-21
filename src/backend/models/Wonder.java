@@ -3,12 +3,12 @@ package backend.models;
 import java.util.ArrayList;
 
 public class Wonder {
-    private Cost cost;
-    private ArrayList<Integer> resources;
-    private int coins;
-    private int militaryShields;
-    private int victoryPoints;
-    private boolean built;
+    public Cost cost;
+    public ArrayList<Integer> resources;
+    public int coins;
+    public int militaryShields;
+    public int victoryPoints;
+    public boolean built;
 
     public Wonder(Cost cost, ArrayList<Integer> resources, int coins, int militaryShields, int victoryPoints) {
         this.cost = cost;

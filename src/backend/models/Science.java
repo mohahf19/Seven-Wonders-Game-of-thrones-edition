@@ -2,7 +2,7 @@ package backend.models;
 
 import backend.app.constants;
 public class Science extends Card{
-    private String type;
+    public String type;
 
     public Science(String name, int cardFreq, int age, Cost cost, String imagePath,
                    String iconPath, String backPath, String chain1, String chain2, String type){
