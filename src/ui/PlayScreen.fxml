@@ -25,6 +25,23 @@
             </ImageView>
          </children>
       </AnchorPane>
+      <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="38.0" layoutY="551.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/screenIcons/userCoins.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="136.0" layoutY="551.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/screenIcons/userShields.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="75.0" fitWidth="91.0" layoutX="1280.0" layoutY="551.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/screenIcons/discardCard.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="38.0" layoutY="551.0" prefHeight="0.0" prefWidth="75.0" style="-fx-alignment: center; -fx-font-size: 50; -fx-text-fill: black;" text="0" />
+      <Label layoutX="136.0" layoutY="552.0" prefHeight="0.0" prefWidth="75.0" style="-fx-alignment: center; -fx-font-size: 50; -fx-text-fill: black;" text="0" />
       <AnchorPane fx:id="bottomAnchorPS" layoutX="-1.0" layoutY="640.0" prefHeight="257.0" prefWidth="1442.0">
          <children>
             <AnchorPane fx:id="leftContainer" layoutY="47.0" maxHeight="400.0" prefHeight="211.0" prefWidth="151.0">
