@@ -63,7 +63,6 @@ public class PlayScreenController implements Initializable {
             public void run() {
                 int count = 0;
                 for (Node v : scoreboardHolderSt.getChildren()) {
-                    ScoreboardView view = (ScoreboardView) v;
                     ((ScoreboardView) v).updateView(scoreboard.scores.get(count));
                     count++;
                 }

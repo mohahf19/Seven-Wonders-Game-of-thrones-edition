@@ -113,10 +113,6 @@ public class ServerController {
             }
             firstTurnOfAge = true;
 
-            for( int i = 0; i < players.size(); i++){
-                host.sendError( i, "New Age");
-            }
-
             playTurn();
 
         } else {
