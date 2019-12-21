@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
 
 public class PlayScreenController implements Initializable {
     @FXML
-    private ImageView soundButton, scoreboardButton, seasonBanner, ageButton;
+    private ImageView soundButton, scoreboardButton, seasonBanner, ageButton, waitingAnimation;
     private static ImageView seasonBannerSt, ageButtonSt;
 
     @FXML

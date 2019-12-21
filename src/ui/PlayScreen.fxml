@@ -65,5 +65,6 @@
          </children>
       </AnchorPane>
       <VBox fx:id="scoreboardHolder" layoutX="249.0" layoutY="100.0" prefHeight="700.0" prefWidth="940.0" visible="false" />
+      <ImageView fx:id="waitingAnimation" fitHeight="900.0" fitWidth="1440.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true" visible="false" />
    </children>
 </AnchorPane>
