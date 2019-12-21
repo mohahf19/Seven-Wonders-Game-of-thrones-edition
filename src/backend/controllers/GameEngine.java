@@ -13,7 +13,7 @@ public class GameEngine {
     public Gson gson;
 
     public ArrayList<Player> players;
-    public int currentSeason;
+    public int currentSeason; //1=Summer, 2=Autumn, 3=Winter, 4=Spring
     public int currentAge = 1;
     public Scoreboard scoreboard;
 
@@ -51,7 +51,7 @@ public class GameEngine {
     }
 
     public void sendWarStarted(){
-        // TO DO: fill this
+        // TODO: fill this
     }
 
     public void discardCard(int cardIndex) {
@@ -103,6 +103,28 @@ public class GameEngine {
         req.addProperty("op_code", 2);
         req.addProperty("player", gson.toJson( getCurrentPlayer()));
         Main.gameEngine.client.sendRequest( req);
+    }
+
+    public void summerInEffect(){ //1
+        /*for(Player p: players) {
+            if (p.house.name.equalsIgnoreCase("stark"))
+                //halve resources
+        }*/
+    }
+
+    public void springInEffect(){ //4
+        /*for(Player p: players) {
+            if (p.house.name.equalsIgnoreCase("tyrell"))
+            //trading change
+        }*/
+    }
+
+    public void winterInEffect(){ //3
+
+    }
+
+    public void autumnInEffect(){ //2
+
     }
 
 }

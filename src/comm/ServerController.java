@@ -249,16 +249,34 @@ public class ServerController {
 
         for( int i = 0; i < players.size(); i++){
             int currentMil = 0;
+            int shieldChange = 0;
             int prevIndex = (i - 1) >= 0 ? (i - 1) : (players.size() - 1);
             int nextIndex = (i + 1) < players.size() ? (i + 1) : 0;
 
             if( players.get( i).house.militaryShields > players.get( nextIndex).house.militaryShields){
                 currentMil += additionPoint;
+                if( players.get(i).house.name.equalsIgnoreCase("white walkers"))
+                    shieldChange++;
+            }
+            else if( players.get( i).house.militaryShields < players.get( nextIndex).house.militaryShields)
+            {
+                currentMil --;
+                if (players.get( i).house.name.equalsIgnoreCase("white walkers") || players.get( i).house.name.equalsIgnoreCase("baratheon"))
+                    shieldChange--;
             }
             if( players.get( i).house.militaryShields > players.get( prevIndex).house.militaryShields){
                 currentMil += additionPoint;
+                if( players.get(i).house.name.equalsIgnoreCase("white walkers"))
+                    shieldChange++;
+            }
+            else if( players.get( i).house.militaryShields < players.get( prevIndex).house.militaryShields)
+            {
+                currentMil--;
+                if (players.get( i).house.name.equalsIgnoreCase("white walkers") || players.get( i).house.name.equalsIgnoreCase("baratheon"))
+                    shieldChange--;
             }
             players.get( i).currentMilitaryPoints += currentMil;
+            players.get( i).house.militaryShields += shieldChange; //baratheon and white walkers buff and nerfs
         }
         updateScoreboard();
     }

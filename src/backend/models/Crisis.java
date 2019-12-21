@@ -1,7 +1,5 @@
 package backend.models;
 
-import javafx.scene.paint.Color;
-
 public class Crisis extends Card {
     private int crisisID;
 
