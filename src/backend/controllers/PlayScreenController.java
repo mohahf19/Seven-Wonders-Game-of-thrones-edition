@@ -286,7 +286,6 @@ public class PlayScreenController implements Initializable {
                         e.consume();
                     });
                     cv.update(cards.get(i));
-                    System.out.println(cards.get(i).name);
                     cardHolderSt.getChildren().addAll(cv);
                 }
             }
