@@ -7,16 +7,16 @@ import java.util.ArrayList;
 import static backend.models.Numbers.factorizeResources;
 
 public class Commerce extends Card {
-    private int victoryPoint;
-    private int[] resourceList;
-    private int coins;
-    private int tradeRes;
-    private boolean left;
-    private boolean right;
-    private boolean self;
-    private String[] type;
-    private boolean wonderCard;
-    private String cardReq;
+    public int victoryPoint;
+    public int[] resourceList;
+    public int coins;
+    public int tradeRes;
+    public boolean left;
+    public boolean right;
+    public boolean self;
+    public String[] type;
+    public boolean wonderCard;
+    public String cardReq;
 
 
     public Commerce(String name, int cardFreq, int age, Cost cost, String imagePath,

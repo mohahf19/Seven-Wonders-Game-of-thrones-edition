@@ -3,7 +3,7 @@ package backend.models;
 import backend.app.constants;
 
 public class Military extends Card{
-    private int numberOfShields;
+    public int numberOfShields;
 
     public Military(String name, int cardFreq, int age, Cost cost, String imagePath,
                     String iconPath, String backPath, String chain1, String chain2, int numberOfShields){

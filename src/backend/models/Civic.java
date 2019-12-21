@@ -3,8 +3,8 @@ package backend.models;
 import backend.app.constants;
 
 public class Civic extends Card {
-    private int victoryPoint;
-    private int seasonalEffect;
+    public int victoryPoint;
+    public int seasonalEffect;
 
     public Civic(String name, int cardFreq, int age, Cost cost, String imagePath,
                  String iconPath, String backPath, String chain1, String chain2, int victoryPoint, int seasonalEffect){
