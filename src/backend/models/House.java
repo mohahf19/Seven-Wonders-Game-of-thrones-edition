@@ -24,7 +24,14 @@ public class House {
         //1 represents no resources
         resourcesList.add(1);
         playedCards = new ArrayList<>();
+        militaryShields = 0;
         addCoins(3);
+
+        if(name.equalsIgnoreCase("lannister")) //House buff lannister
+            addCoins(3);
+
+        if(name.equalsIgnoreCase("targaryen")) //House buff targaryen
+            militaryShields++;
     }
 
     public House(String name, ArrayList<Integer> resourcesList, ArrayList<Wonder> wonders, int militaryShields, int buff, int nurf) {
@@ -166,6 +173,8 @@ public class House {
     public int getMilitaryShields() {
         return militaryShields;
     }
+
+
 
     public ArrayList<Card> getPlayedCards() {
         if( playedCards == null)
