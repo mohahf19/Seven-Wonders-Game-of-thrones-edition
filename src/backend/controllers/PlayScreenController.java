@@ -253,7 +253,8 @@ public class PlayScreenController implements Initializable {
 
                 System.out.println( "Cards geldi");
 
-                for (int i = 0; i < cards.size(); i++) {
+                for (int a = 0; a < cards.size(); a++) {
+                    final int i = a;
                     CardView cv = new CardView(cards.get(i), i);
 //                    int res = Main.gameEngine.getCurrentPlayer().canBuild(cards.get(i).cost);
 //                    cv.setDisable(res == 0);
@@ -314,6 +315,7 @@ public class PlayScreenController implements Initializable {
                             case 2:
                                 System.out.println("playing card!");
                                 cardHolderSt.getChildren().remove(cv);
+                                Main.gameEngine.playCard( i);
                                 //TODO play card here
                                 break;
                             case 3:
@@ -324,7 +326,8 @@ public class PlayScreenController implements Initializable {
                             case 4:
                                 System.out.println("discarding card!");
                                 cardHolderSt.getChildren().remove(cv);
-                                //TODO discard card for coin here
+
+                                Main.gameEngine.getCurrentPlayer().house.coins += 3;
                                 break;
                         }
                         System.out.println("e.getSceneX():" + e.getSceneX() + "\te.getSceneY():" +  e.getSceneY());
