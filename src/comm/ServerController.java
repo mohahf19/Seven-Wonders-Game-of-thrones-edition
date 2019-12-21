@@ -1,21 +1,18 @@
 package comm;
 
-import backend.controllers.PlayScreenController;
 import backend.models.*;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
-
-import java.awt.geom.AffineTransform;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.lang.reflect.Type;
-import java.util.*;
-
-import static backend.models.Numbers.arr;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class ServerController {
 
@@ -69,7 +66,8 @@ public class ServerController {
 
         Type houseListType = new TypeToken<List<House>>() {}.getType();
         try {
-            ArrayList<House> houses = gson.fromJson( new BufferedReader(new FileReader("src\\assets\\houses.json")) , houseListType );
+            FileReader fr = new FileReader(new File("src/assets/houses.json"));
+            ArrayList<House> houses = gson.fromJson( new BufferedReader(fr) , houseListType );
             System.out.println( "Houses found " + houses.size());
             allHouses = houses;
         } catch (FileNotFoundException e) {
