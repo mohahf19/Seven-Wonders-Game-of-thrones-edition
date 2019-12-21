@@ -1,34 +1,22 @@
 package backend.controllers;
 import javafx.scene.Cursor;
 
-        import backend.app.Main;
-        import backend.app.fxmlPaths;
-        import backend.models.Card;
-        import backend.models.Deck;
-        import backend.models.Player;
-        import com.google.gson.JsonObject;
-        import javafx.application.Platform;
-        import javafx.event.ActionEvent;
-        import javafx.event.Event;
-        import javafx.event.EventHandler;
-        import javafx.fxml.FXML;
-        import javafx.fxml.FXMLLoader;
-        import javafx.fxml.Initializable;
-        import javafx.geometry.Pos;
-        import javafx.scene.Node;
-        import javafx.scene.Parent;
-        import javafx.scene.control.Alert;
-        import javafx.scene.control.ButtonType;
-        import javafx.scene.control.Label;
-        import javafx.scene.control.TextField;
-        import javafx.scene.image.Image;
-        import javafx.scene.image.ImageView;
-        import javafx.scene.input.DragEvent;
-        import javafx.scene.input.MouseEvent;
-        import javafx.scene.input.TransferMode;
-        import javafx.scene.layout.AnchorPane;
-        import javafx.scene.layout.HBox;
-        import javafx.stage.Stage;
+import backend.app.Main;
+import backend.models.Card;
+import backend.models.Deck;
+import backend.models.Player;
+import com.google.gson.JsonObject;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.Cursor;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 
         import javax.sound.midi.SysexMessage;
         import java.io.IOException;
@@ -60,6 +48,9 @@ public class PlayScreenController implements Initializable {
 
 
     CardView sampleCard;
+
+    public static void updateScoreboard(Scoreboard scoreboard) {
+    }
 
     public void notifyViewLoaded(){
         JsonObject req = new JsonObject();
