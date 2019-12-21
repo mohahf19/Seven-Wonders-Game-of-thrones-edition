@@ -13,6 +13,18 @@
             <Image url="@../assets/playscreen.jpg" />
          </image>
       </ImageView>
+      <HBox fx:id="headerHolder" prefHeight="101.0" prefWidth="1440.0" />
+      <HBox fx:id="wonderHolder" layoutX="240.0" layoutY="551.0" prefHeight="75.0" prefWidth="960.0" />
+      <AnchorPane fx:id="waitLabel" layoutX="194.0" layoutY="164.0" prefHeight="555.0" prefWidth="1051.0" style="-fx-border-radius: 50;">
+         <children>
+            <Label fx:id="waitingText" layoutX="325.0" layoutY="240.0" prefHeight="75.0" prefWidth="477.0" text="Waiting for other players..." />
+            <ImageView fitHeight="75.0" fitWidth="76.0" layoutX="249.0" layoutY="240.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/animations/eclipseLoad.gif" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
       <AnchorPane fx:id="bottomAnchorPS" layoutX="-1.0" layoutY="640.0" prefHeight="257.0" prefWidth="1442.0">
          <children>
             <AnchorPane fx:id="leftContainer" layoutY="47.0" maxHeight="400.0" prefHeight="211.0" prefWidth="151.0">
@@ -31,27 +43,7 @@
                   <Image url="@../assets/award.jpg" />
                </image>
             </ImageView>
-            <HBox fx:id="cardHolder" layoutX="188.0" layoutY="28.0" prefHeight="202.0" prefWidth="1124.0">
-               <children>
-                  <ImageView fx:id="card1" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../assets/Lumberyard" />
-                     </image>
-                  </ImageView>
-               </children>
-            </HBox>
-         </children>
-      </AnchorPane>
-      <HBox fx:id="headerHolder" prefHeight="101.0" prefWidth="1440.0" />
-      <HBox fx:id="wonderHolder" layoutX="240.0" layoutY="551.0" prefHeight="75.0" prefWidth="960.0" />
-      <AnchorPane fx:id="waitLabel" layoutX="194.0" layoutY="164.0" prefHeight="555.0" prefWidth="1051.0" style="-fx-border-radius: 50;">
-         <children>
-            <Label fx:id="waitingText" layoutX="325.0" layoutY="240.0" prefHeight="75.0" prefWidth="477.0" text="Waiting for other players..." />
-            <ImageView fitHeight="75.0" fitWidth="76.0" layoutX="249.0" layoutY="240.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/animations/eclipseLoad.gif" />
-               </image>
-            </ImageView>
+            <HBox fx:id="cardHolder" layoutX="188.0" layoutY="28.0" prefHeight="202.0" prefWidth="1124.0" />
          </children>
       </AnchorPane>
    </children>

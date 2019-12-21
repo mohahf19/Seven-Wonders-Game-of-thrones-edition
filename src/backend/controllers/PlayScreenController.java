@@ -28,7 +28,7 @@ import javafx.scene.layout.HBox;
 
 public class PlayScreenController implements Initializable {
     @FXML
-    private ImageView card1, card2, card3, soundButton, seasonBanner, ageButton;
+    private ImageView soundButton, seasonBanner, ageButton;
     private static ImageView seasonBannerSt, ageButtonSt;
 
     @FXML
