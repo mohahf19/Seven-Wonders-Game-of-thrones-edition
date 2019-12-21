@@ -113,7 +113,9 @@ public class PlayScreenController implements Initializable {
                 ScoreboardView c = new ScoreboardView("Tyrell");
                 ScoreboardView d = new ScoreboardView("Baratheon");
                 ScoreboardView e = new ScoreboardView("Targaryen");
-                scoreboardHolderSt.getChildren().addAll( a, b, c, d, e);
+                ScoreboardView f = new ScoreboardView("White Walkers");
+                ScoreboardView g = new ScoreboardView("Lannister");
+                scoreboardHolderSt.getChildren().addAll( a, b, c, d, e, f,g);
             }});
     }
 
