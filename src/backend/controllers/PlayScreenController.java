@@ -104,6 +104,10 @@ public class PlayScreenController implements Initializable {
                 scoreboardHolder.getChildren().add(sv);
                 sv = new ScoreboardView("Targaryen");
                 scoreboardHolder.getChildren().add(sv);
+                sv = new ScoreboardView("Targaryen");
+                scoreboardHolder.getChildren().add(sv);
+                sv = new ScoreboardView("Targaryen");
+                scoreboardHolder.getChildren().add(sv);
             }});
     }
 
