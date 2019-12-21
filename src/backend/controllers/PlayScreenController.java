@@ -11,7 +11,9 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.CacheHint;
 import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -20,8 +22,11 @@ import javafx.scene.layout.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class PlayScreenController implements Initializable {
     @FXML
@@ -37,6 +42,8 @@ public class PlayScreenController implements Initializable {
 
     @FXML
     private VBox scoreboardHolder;
+    private static VBox scoreboardHolderSt;
+
     @FXML
     private AnchorPane waitLabel;
     private static AnchorPane waitLabelSt;
@@ -51,6 +58,15 @@ public class PlayScreenController implements Initializable {
     CardView sampleCard;
 
     public static void updateScoreboard(Scoreboard scoreboard) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                int count = 0;
+                for (Node v : scoreboardHolderSt.getChildren()) {
+                    ((ScoreboardView) v).updateView(scoreboard.scores.get(count));
+                    count++;
+                }
+            }});
     }
 
     public void notifyViewLoaded(){
@@ -65,12 +81,16 @@ public class PlayScreenController implements Initializable {
         ageButtonSt = ageButton;
         cardHolderSt = cardHolder;
         waitLabelSt = waitLabel;
+        scoreboardHolderSt = scoreboardHolder;
 
         Image backgroundImage = new Image ("assets/scoreboardBackground.png");
         scoreboardHolder.setBackground(new Background(new BackgroundImage(backgroundImage,BackgroundRepeat.REPEAT,
                 BackgroundRepeat.REPEAT,
                 BackgroundPosition.DEFAULT,
                 BackgroundSize.DEFAULT)));
+        scoreboardHolderSt.setCache(true);
+        scoreboardHolderSt.setCacheShape(true);
+        scoreboardHolderSt.setCacheHint(CacheHint.SPEED);
 
         waitLabel.setStyle("-fx-background-color: #580303; -fx-border-radius: 20;");
         waitingText.setStyle("-fx-font-size: 35px; -fx-text-fill: white");
@@ -79,35 +99,33 @@ public class PlayScreenController implements Initializable {
         soundButton.addEventHandler(MouseEvent.MOUSE_ENTERED, new soundMouseHoverListener());
         soundButton.addEventHandler(MouseEvent.MOUSE_EXITED, new soundMouseExitListener());
         soundButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new soundMouseClickListener());
-        scoreboardButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new scoreboardMouseClickListener());
+        //scoreboardButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new scoreboardMouseClickListener());
 
         setHeaders(Main.gameEngine.getCurrentPlayer().id);
         displayWonder();
 
         //scoreboard test
-        dummy();
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                initScoreboard();
+            }
+        },1000);
+
+
         //don't change anything below
         notifyViewLoaded();
     }
 
-    public void dummy() {
+    public void initScoreboard() {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                ScoreboardView sv = new ScoreboardView("Stark");
-                scoreboardHolder.getChildren().add(sv);
-                sv = new ScoreboardView("Greyjoy");
-                scoreboardHolder.getChildren().add(sv);
-                sv = new ScoreboardView("Tyrell");
-                scoreboardHolder.getChildren().add(sv);
-                sv = new ScoreboardView("Baratheon");
-                scoreboardHolder.getChildren().add(sv);
-                sv = new ScoreboardView("Targaryen");
-                scoreboardHolder.getChildren().add(sv);
-                sv = new ScoreboardView("Targaryen");
-                scoreboardHolder.getChildren().add(sv);
-                sv = new ScoreboardView("Targaryen");
-                scoreboardHolder.getChildren().add(sv);
+                scoreboardHolderSt.getChildren().clear();
+                for( Player p: Main.gameEngine.players){
+                    ScoreboardView a = new ScoreboardView("" + p.house.name);
+                    scoreboardHolderSt.getChildren().add( a);
+                }
             }});
     }
 
@@ -487,23 +505,38 @@ public class PlayScreenController implements Initializable {
         }
     }
 
-    public class scoreboardMouseClickListener implements  EventHandler<MouseEvent> {
-        @Override
-        public void handle(MouseEvent event) {
-            event.consume();
-            try {
-                click();
-            } catch (IOException e) {
-                System.out.println("IOException");
-                e.printStackTrace();
+    @FXML
+    public void showScoreboard(){
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+
+                if (scoreboardHolderSt.isVisible()) {
+                    scoreboardHolderSt.setVisible(false);
+                }
+                else {
+                    scoreboardHolderSt.setVisible(true);
+                }
             }
-        }
-        public void click() throws IOException {
-            if (scoreboardHolder.isVisible()) {
-                scoreboardHolder.setVisible(false);
-            }
-            else
-                scoreboardHolder.setVisible(true);
-        }
+        });
     }
+//    public class scoreboardMouseClickListener implements  EventHandler<MouseEvent> {
+//        @Override
+//        public void handle(MouseEvent event) {
+//            event.consume();
+//            try {
+//                click();
+//            } catch (IOException e) {
+//                System.out.println("IOException");
+//                e.printStackTrace();
+//            }
+//        }
+//        public void click() throws IOException {
+//            if (scoreboardHolder.isVisible()) {
+//                scoreboardHolder.setVisible(false);
+//            }
+//            else
+//                scoreboardHolder.setVisible(true);
+//        }
+//    }
 }
