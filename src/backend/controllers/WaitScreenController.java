@@ -2,6 +2,7 @@ package backend.controllers;
 
 import backend.app.Main;
 import backend.app.fxmlPaths;
+import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -62,6 +63,7 @@ public class WaitScreenController implements Initializable {
                     stage.getScene().setRoot(page);
                     stage.sizeToScene();
                 }catch (Exception e){
+                    System.out.println("Exception");
                     e.printStackTrace();
                 }
             }
@@ -98,6 +100,7 @@ public class WaitScreenController implements Initializable {
             stage.getScene().setRoot(page);
             stage.sizeToScene();
         } catch (Exception e){
+            System.out.println("Exception");
             e.printStackTrace();
         }
     }

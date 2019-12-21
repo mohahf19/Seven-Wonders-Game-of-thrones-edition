@@ -102,8 +102,13 @@ public class GameClient {
     }
 
     public void sendRequest( JsonObject request){
-        out.println( gson.toJson( request));
-        System.out.println( "Sent from client" + gson.toJson( request));
+        try{
+            out.println( gson.toJson( request));
+            System.out.println( "Sent from client" + gson.toJson( request));
+        } catch (Exception e) {
+            System.out.println("Exception on client");
+            System.out.println( e.getStackTrace()[0].getLineNumber()  + e.toString());
+        }
     }
 
 
@@ -169,7 +174,7 @@ public class GameClient {
                         break;
                     } case 4: { //update scoreboard
                         Scoreboard scoreboard = gson.fromJson( res.get("scoreboard").getAsString(), Scoreboard.class);
-                        engine.scoreboard = scoreboard;
+                        this.engine.updateScoreboard( scoreboard);
 
                         acknowledgeRequest();
                         break;

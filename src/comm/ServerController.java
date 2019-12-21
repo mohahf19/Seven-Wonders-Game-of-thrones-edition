@@ -71,6 +71,7 @@ public class ServerController {
             System.out.println( "Houses found " + houses.size());
             allHouses = houses;
         } catch (FileNotFoundException e) {
+            System.out.println("File not found exception");
             e.printStackTrace();
         }
     }
@@ -111,10 +112,18 @@ public class ServerController {
                 host.sendRequest( i, outOb);
             }
             firstTurnOfAge = true;
+
+            for( int i = 0; i < players.size(); i++){
+                host.sendError( i, "New Age");
+            }
+
             playTurn();
 
         } else {
             //game ended
+            for( int i = 0; i < players.size(); i++){
+                host.sendError( i, "Game Ended");
+            }
         }
     }
     public void changeSeason(){
@@ -129,7 +138,7 @@ public class ServerController {
         }
     }
 
-    public void shuffleCards(){
+    public boolean shuffleCards(){
         if( firstTurnOfAge){
             ArrayList<Card> cards = ages.get( currentAge).getDeck().getCards();
             int start = 0;
@@ -137,9 +146,15 @@ public class ServerController {
                 players.get( i).cards = new ArrayList<>( cards.subList( start, start + 7));
                 start += 7;
             }
+            return true;
         } else {
             if( ages.get( currentAge).getDeck().getDirection()){
                 ArrayList<Card> cardsTemp = players.get( 0).cards;
+
+                //proceed to next age
+                if( cardsTemp.size() == 0)
+                    return false;
+
                 ArrayList<Card> cardsTemp2 = null;
                 for( int i = 1; i < players.size(); i++){
                     cardsTemp2 = players.get( i).cards;
@@ -147,8 +162,14 @@ public class ServerController {
                     cardsTemp = cardsTemp2;
                 }
                 players.get( 0).cards = cardsTemp;
+                return true;
             } else {
                 ArrayList<Card> cardsTemp = players.get( players.size() - 1).cards;
+
+                //proceed to next age
+                if( cardsTemp.size() == 0)
+                    return false;
+
                 ArrayList<Card> cardsTemp2 = null;
                 for( int i = players.size() - 2; i >= 0; i--){
                     cardsTemp2 = players.get( i).cards;
@@ -156,25 +177,34 @@ public class ServerController {
                     cardsTemp = cardsTemp2;
                 }
                 players.get( players.size() - 1).cards = cardsTemp;
+                return true;
             }
         }
 
     }
 
     public void playTurn(){
-        cardsSelectedCount = 0;
-        changeSeason();
+
 
         //shuffle cards around
-        shuffleCards();
+        boolean cont = shuffleCards();
+        if( cont){
+            //go to next turn
+            cardsSelectedCount = 0;
+            changeSeason();
 
-        //update houses
-        sendHouses();
+            //update houses
+            sendHouses();
 
-        //update the scoreboard and send it to clients
-        updateScoreboard();
+            //update the scoreboard and send it to clients
+            updateScoreboard();
 
-        firstTurnOfAge = false;
+            firstTurnOfAge = false;
+        } else {
+            //go to next age
+            incrementAge();
+        }
+
     }
 
     public void sendHouseJoined(){
@@ -240,9 +270,9 @@ public class ServerController {
             scoreboard.scores.get( i).set( scoreboard.MILITARY_POINTS_INDEX, currPlayer.currentMilitaryPoints);
             scoreboard.scores.get( i).set( scoreboard.COIN_POINTS_INDEX, currPlayer.calculateCoinPoints());
             scoreboard.scores.get( i).set( scoreboard.WONDER_POINTS_INDEX, currPlayer.calculateWonderPoints());
-            scoreboard.scores.get( i).set( scoreboard.CIVIC_POINTS_INDEX, currPlayer.calculateCivicPoints());
             scoreboard.scores.get( i).set( scoreboard.COMMERCE_POINTS_INDEX, currPlayer.calculateCommercePoints());
             scoreboard.scores.get( i).set( scoreboard.SCIENCE_POINTS_INDEX, currPlayer.calculateSciencePoints());
+            scoreboard.scores.get( i).set( scoreboard.CIVIC_POINTS_INDEX, currPlayer.calculateCivicPoints());
             scoreboard.scores.get( i).set( scoreboard.VICTORY_POINTS_INDEX, currPlayer.calculateVictoryPoints());
         }
         sendScoreboard();
@@ -264,7 +294,7 @@ public class ServerController {
 
     public void viewInitialized(){
         cardsSelectedCount++;
-        if (cardsSelectedCount >= players.size() - 1){
+        if (cardsSelectedCount >= players.size()){
             cardsSelectedCount = 0;
             populateAges();
             scoreboard = new Scoreboard( players.size());

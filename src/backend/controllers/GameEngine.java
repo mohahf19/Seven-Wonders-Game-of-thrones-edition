@@ -1,5 +1,6 @@
 package backend.controllers;
 
+import backend.app.Main;
 import backend.models.*;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -13,7 +14,7 @@ public class GameEngine {
 
     public ArrayList<Player> players;
     public int currentSeason;
-    public int currentAge;
+    public int currentAge = 1;
     public Scoreboard scoreboard;
 
     public GameEngine(){
@@ -44,13 +45,17 @@ public class GameEngine {
         this.currentAge = age;
         PlayScreenController.updateAgeImage( age);
     }
+    public void updateScoreboard( Scoreboard scoreboard){
+        this.scoreboard = scoreboard;
+        PlayScreenController.updateScoreboard( scoreboard);
+    }
 
     public void sendWarStarted(){
         // TO DO: fill this
     }
 
     public void discardCard(int cardIndex) {
-        this.getCurrentPlayer().house.coins += 2; // was it 3?
+        this.getCurrentPlayer().house.coins += 3;
         this.cardPlayed(cardIndex);
     }
 
@@ -86,6 +91,8 @@ public class GameEngine {
             System.out.println("Failed to determine the type of the card");
             // do something
         }
+        if( this.getCurrentPlayer().house.playedCards == null)
+            this.getCurrentPlayer().house.playedCards = new ArrayList<>();
         this.getCurrentPlayer().house.playedCards.add(card);
         this.cardPlayed(cardIndex);
     }
@@ -95,7 +102,7 @@ public class GameEngine {
         JsonObject req = new JsonObject();
         req.addProperty("op_code", 2);
         req.addProperty("player", gson.toJson( getCurrentPlayer()));
-        client.sendRequest( req);
+        Main.gameEngine.client.sendRequest( req);
     }
 
 }

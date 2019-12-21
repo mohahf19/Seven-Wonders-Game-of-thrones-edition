@@ -27,12 +27,13 @@ public class GameHost {
     public String serverIP="";
     private Gson gson;
 
-    private HashMap<Integer, Integer> requests = new HashMap<>();
+    private HashMap<Integer, Integer> requests;
 
     public GameHost( ServerController controller){
         this.serverController = controller;
         gson = new Gson();
         clients = new ArrayList<>();
+        requests = new HashMap<>();
     }
 
 
@@ -118,6 +119,7 @@ public class GameHost {
     }
 
     public void receiveRequest( int id, JsonObject request){
+
         if( requests.containsKey( id))
             requests.remove( id);
 
@@ -142,9 +144,11 @@ public class GameHost {
                 serverController.cardsSelectedCount++;
                 Player player = gson.fromJson( request.get("player").getAsString(), Player.class );
                 serverController.updatePlayer( player, id);
-                if( serverController.cardsSelectedCount >= clients.size() - 1){
+                if( serverController.cardsSelectedCount >= (clients.size())) {
+                    System.out.println("Play next turn");
                     serverController.playTurn();
                 }
+                break;
             } case 3: {
                 serverController.viewInitialized();
                 break;

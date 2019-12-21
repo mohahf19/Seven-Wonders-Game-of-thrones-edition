@@ -99,6 +99,7 @@ public class PlayerSummaryView extends Pane {
 
         //labels
         nameLabel = new Label("nameHere");
+        nameLabel.setStyle("-fx-text-fill: white; -fx-font-size: 25px;");
         coinsLabel = new Label("0");
         shieldsLabel = new Label("0");
         nameLabel.setAlignment(Pos.CENTER);

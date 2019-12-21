@@ -41,6 +41,7 @@ public class ClientThread implements Runnable {
             thread.start();
 
         } catch (IOException e) {
+            System.out.println("IOException");
             System.out.println(e);
         }
     }
@@ -59,7 +60,6 @@ public class ClientThread implements Runnable {
                     String input = in.readLine();
                     JsonObject ob =  gson.fromJson( input, JsonObject.class);
                     System.out.println("data received on server: " + input);
-
                     host.receiveRequest( id, ob);
                 }
             }
@@ -68,7 +68,9 @@ public class ClientThread implements Runnable {
             in.close();
             socket.close();
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.print("Exception in thread: ");
+            System.out.print(" | line: " + e.getLocalizedMessage());
+            System.out.println(e.toString());
         }
     }
 }
