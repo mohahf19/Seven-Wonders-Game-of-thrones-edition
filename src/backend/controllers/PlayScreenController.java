@@ -31,7 +31,7 @@ import java.util.TimerTask;
 public class PlayScreenController implements Initializable {
     @FXML
     private ImageView soundButton, scoreboardButton, seasonBanner, ageButton, waitingAnimation;
-    private static ImageView seasonBannerSt, ageButtonSt;
+    private static ImageView seasonBannerSt, ageButtonSt, waitingAnimationSt;
 
     @FXML
     private AnchorPane parentPane;
@@ -82,6 +82,7 @@ public class PlayScreenController implements Initializable {
         cardHolderSt = cardHolder;
         waitLabelSt = waitLabel;
         scoreboardHolderSt = scoreboardHolder;
+        waitingAnimationSt = waitingAnimation;
 
         Image backgroundImage = new Image ("assets/scoreboardBackground.png");
         scoreboardHolder.setBackground(new Background(new BackgroundImage(backgroundImage,BackgroundRepeat.REPEAT,
@@ -112,16 +113,10 @@ public class PlayScreenController implements Initializable {
             }
         },1000);
 
-      //waitscreen
-        dummy();
         //don't change anything below
         notifyViewLoaded();
     }
 
-    public void dummy() {
-        Image image = new Image("assets/ages/age1Load.gif");
-        waitingAnimation.setImage(image);
-    }
 
     public void initScoreboard() {
         Platform.runLater(new Runnable() {
@@ -412,16 +407,46 @@ public class PlayScreenController implements Initializable {
                         case 1: {
                             image = new Image("assets/ages/age1.jpg", true);
                             ageButtonSt.setImage(image);
+
+                            waitingAnimationSt.setVisible( true);
+                            image = new Image("assets/ages/age1Load.gif");
+                            waitingAnimationSt.setImage(image);
+                            new Timer().schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    waitingAnimationSt.setVisible( false);
+                                }
+                            }, 2500);
                             break;
                         }
                         case 2: {
                             image = new Image("assets/ages/age2.jpg", true);
                             ageButtonSt.setImage(image);
+
+                            waitingAnimationSt.setVisible( true);
+                            image = new Image("assets/ages/age2Load.gif");
+                            waitingAnimationSt.setImage(image);
+                            new Timer().schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    waitingAnimationSt.setVisible( false);
+                                }
+                            }, 2500);
                             break;
                         }
                         case 3: {
                             image = new Image("assets/ages/age3.jpg", true);
                             ageButtonSt.setImage(image);
+
+                            waitingAnimationSt.setVisible( true);
+                            image = new Image("assets/ages/age3Load.gif");
+                            waitingAnimationSt.setImage(image);
+                            new Timer().schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    waitingAnimationSt.setVisible( false);
+                                }
+                            }, 2500);
                             break;
                         }
                     }
