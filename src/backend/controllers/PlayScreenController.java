@@ -200,8 +200,8 @@ public class PlayScreenController implements Initializable {
                 cardHolderSt.setAlignment(Pos.CENTER);
                 cardHolderSt.setSpacing(5);
 
-                Deck d = new Deck(7, 3);
-
+                //clear previous cards
+                cardHolderSt.getChildren().clear();
 
                 System.out.println( "Cards geldi");
 
