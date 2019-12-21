@@ -16,8 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,7 +25,7 @@ import java.util.ResourceBundle;
 
 public class PlayScreenController implements Initializable {
     @FXML
-    private ImageView soundButton, seasonBanner, ageButton;
+    private ImageView soundButton, scoreboardButton, seasonBanner, ageButton;
     private static ImageView seasonBannerSt, ageButtonSt;
 
     @FXML
@@ -37,11 +36,13 @@ public class PlayScreenController implements Initializable {
     private static HBox cardHolderSt;
 
     @FXML
+    private VBox scoreboardHolder;
+    @FXML
     private AnchorPane waitLabel;
     private static AnchorPane waitLabelSt;
 
     @FXML
-    private Label waitingText;
+    private Label waitingText, coinLabel, militaryLabel;
 
     //for dragging
     private static double orgSceneX, orgSceneY, orgX, orgY, orgTranslateX, orgTranslateY;
@@ -65,6 +66,12 @@ public class PlayScreenController implements Initializable {
         cardHolderSt = cardHolder;
         waitLabelSt = waitLabel;
 
+        Image backgroundImage = new Image ("assets/scoreboardBackground.png");
+        scoreboardHolder.setBackground(new Background(new BackgroundImage(backgroundImage,BackgroundRepeat.REPEAT,
+                BackgroundRepeat.REPEAT,
+                BackgroundPosition.DEFAULT,
+                BackgroundSize.DEFAULT)));
+
         waitLabel.setStyle("-fx-background-color: #580303; -fx-border-radius: 20;");
         waitingText.setStyle("-fx-font-size: 35px; -fx-text-fill: white");
 
@@ -72,14 +79,32 @@ public class PlayScreenController implements Initializable {
         soundButton.addEventHandler(MouseEvent.MOUSE_ENTERED, new soundMouseHoverListener());
         soundButton.addEventHandler(MouseEvent.MOUSE_EXITED, new soundMouseExitListener());
         soundButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new soundMouseClickListener());
+        scoreboardButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new scoreboardMouseClickListener());
 
         setHeaders(Main.gameEngine.getCurrentPlayer().id);
-
-        //wonder test
         displayWonder();
 
+        //scoreboard test
+        dummy();
         //don't change anything below
         notifyViewLoaded();
+    }
+
+    public void dummy() {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                ScoreboardView sv = new ScoreboardView("Stark");
+                scoreboardHolder.getChildren().add(sv);
+                sv = new ScoreboardView("Greyjoy");
+                scoreboardHolder.getChildren().add(sv);
+                sv = new ScoreboardView("Tyrell");
+                scoreboardHolder.getChildren().add(sv);
+                sv = new ScoreboardView("Baratheon");
+                scoreboardHolder.getChildren().add(sv);
+                sv = new ScoreboardView("Targaryen");
+                scoreboardHolder.getChildren().add(sv);
+            }});
     }
 
     public void displayWonder() {
@@ -458,4 +483,23 @@ public class PlayScreenController implements Initializable {
         }
     }
 
+    public class scoreboardMouseClickListener implements  EventHandler<MouseEvent> {
+        @Override
+        public void handle(MouseEvent event) {
+            event.consume();
+            try {
+                click();
+            } catch (IOException e) {
+                System.out.println("IOException");
+                e.printStackTrace();
+            }
+        }
+        public void click() throws IOException {
+            if (scoreboardHolder.isVisible()) {
+                scoreboardHolder.setVisible(false);
+            }
+            else
+                scoreboardHolder.setVisible(true);
+        }
+    }
 }

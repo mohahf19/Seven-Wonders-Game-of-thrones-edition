@@ -21,7 +21,6 @@ public class PlayerSummaryView extends Pane {
 
     public PlayerSummaryView(){
         initComponents();
-
         addChildren();
     }
 

@@ -150,7 +150,7 @@ public class CardView extends Pane {
     }
 
     private String chooseBorder(String c1) {
-        String[] civic = {"aqueduct", "temple", "statue", "pantheon", "gardens", "courthouse", "senate"};
+        String[] civic = {"aquaduct", "temple", "statue", "pantheon", "gardens", "courthouse", "senate"};
         String[] commerce = {"forum", "caravansery", "haven", "arena", "lighthouse"};
         String[] mil = {"fortifications", "circus", "stables", "archery range",
                 "siege workshop"};
