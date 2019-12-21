@@ -103,9 +103,15 @@ public class ScoreboardView extends Pane {
 
     }
 
-    public void update(Player p){
-        militaryPointsLabel.setText(""+ 22);
-        coinPointsLabel.setText(""+22);
+    public void updateView(ArrayList<Integer> data){
+        militaryPointsLabel.setText(""+ data.get(0));
+        coinPointsLabel.setText(""+ data.get(1));
+        wonderPointsLabel.setText(""+ data.get(2));
+        civicPointsLabel.setText(""+ data.get(3));
+        commercePointsLabel.setText(""+ data.get(4));
+        sciencePointsLabel.setText(""+ data.get(5));
+        victoryPointsLabel.setText(""+ data.get(6));
+
     }
 
     @Override protected double computeMinWidth(double height){

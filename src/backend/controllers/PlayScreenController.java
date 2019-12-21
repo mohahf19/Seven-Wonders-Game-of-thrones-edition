@@ -11,7 +11,9 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.CacheHint;
 import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -40,7 +42,7 @@ public class PlayScreenController implements Initializable {
 
     @FXML
     private VBox scoreboardHolder;
-    private VBox scoreboardHolderSt;
+    private static VBox scoreboardHolderSt;
 
     @FXML
     private AnchorPane waitLabel;
@@ -56,6 +58,16 @@ public class PlayScreenController implements Initializable {
     CardView sampleCard;
 
     public static void updateScoreboard(Scoreboard scoreboard) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                int count = 0;
+                for (Node v : scoreboardHolderSt.getChildren()) {
+                    ScoreboardView view = (ScoreboardView) v;
+                    ((ScoreboardView) v).updateView(scoreboard.scores.get(count));
+                    count++;
+                }
+            }});
     }
 
     public void notifyViewLoaded(){
@@ -77,6 +89,9 @@ public class PlayScreenController implements Initializable {
                 BackgroundRepeat.REPEAT,
                 BackgroundPosition.DEFAULT,
                 BackgroundSize.DEFAULT)));
+        scoreboardHolderSt.setCache(true);
+        scoreboardHolderSt.setCacheShape(true);
+        scoreboardHolderSt.setCacheHint(CacheHint.SPEED);
 
         waitLabel.setStyle("-fx-background-color: #580303; -fx-border-radius: 20;");
         waitingText.setStyle("-fx-font-size: 35px; -fx-text-fill: white");
@@ -94,28 +109,24 @@ public class PlayScreenController implements Initializable {
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
-                dummy();
+                initScoreboard();
             }
-        },100);
+        },1000);
 
 
         //don't change anything below
         notifyViewLoaded();
     }
 
-    public void dummy() {
+    public void initScoreboard() {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
                 scoreboardHolderSt.getChildren().clear();
-                ScoreboardView a = new ScoreboardView("Stark");
-                ScoreboardView b = new ScoreboardView("Greyjoy");
-                ScoreboardView c = new ScoreboardView("Tyrell");
-                ScoreboardView d = new ScoreboardView("Baratheon");
-                ScoreboardView e = new ScoreboardView("Targaryen");
-                ScoreboardView f = new ScoreboardView("White Walkers");
-                ScoreboardView g = new ScoreboardView("Lannister");
-                scoreboardHolderSt.getChildren().addAll( a, b, c, d, e, f,g);
+                for( Player p: Main.gameEngine.players){
+                    ScoreboardView a = new ScoreboardView("" + p.house.name);
+                    scoreboardHolderSt.getChildren().add( a);
+                }
             }});
     }
 
