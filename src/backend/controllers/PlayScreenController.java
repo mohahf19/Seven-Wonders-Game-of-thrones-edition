@@ -1,11 +1,10 @@
 package backend.controllers;
-import backend.models.Scoreboard;
-import javafx.scene.Cursor;
 
 import backend.app.Main;
 import backend.models.Card;
 import backend.models.Deck;
 import backend.models.Player;
+import backend.models.Scoreboard;
 import com.google.gson.JsonObject;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -20,11 +19,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
-        import javax.sound.midi.SysexMessage;
-        import java.io.IOException;
-        import java.net.URL;
-        import java.util.ArrayList;
-        import java.util.ResourceBundle;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 public class PlayScreenController implements Initializable {
     @FXML
@@ -209,9 +207,10 @@ public class PlayScreenController implements Initializable {
 
                 for (int i = 0; i < cards.size(); i++) {
                     CardView cv = new CardView(cards.get(i), i);
-                    //int res = Main.gameEngine.getCurrentPlayer().canBuild(cards.get(i).cost);
-                    //cv.setDisable(res == 0);
-                    //System.out.println("can build " + cards.get(i).name + ": " + res);
+//                    int res = Main.gameEngine.getCurrentPlayer().canBuild(cards.get(i).cost);
+//                    cv.setDisable(res == 0);
+//                    System.out.println("can build " + cards.get(i).name + ": " + res);
+
                     cv.setCursor(Cursor.HAND);
                     cv.setOnMousePressed(e ->{
                         orgX = e.getX();
@@ -223,14 +222,68 @@ public class PlayScreenController implements Initializable {
                         e.consume();
                     });
                     cv.setOnMouseDragged(e->{
+                        int region = decideRegion(e.getSceneX(), e.getSceneY());
+                        switch (region){
+                            case -1:
+                                cv.reset(); //do nothing
+                                break;
+                            case 0:
+                                cv.tradingLeft();
+                                break;
+                            case 1:
+                                cv.tradingRight();
+                                break;
+                            case 2:
+                                cv.playingCard();
+                                break;
+                            case 3:
+                                cv.playingWonder();
+                                break;
+                            case 4:
+                                cv.discardingCard();
+                                break;
+                        }
                         cv.setTranslateX(orgTranslateX + e.getSceneX() - orgSceneX);
                         cv.setTranslateY(orgTranslateY + e.getSceneY() - orgSceneY);
+                        e.consume();
                     });
                     cv.setOnMouseReleased(e->{
+                        int region = decideRegion(e.getSceneX(), e.getSceneY());
+                        switch (region){
+                            case -1:
+                                System.out.println("dropped nowhere important..");
+                                break;
+                            case 0:
+                                //TODO trade left
+                                System.out.println("left trading!");
+                                cardHolderSt.getChildren().remove(cv);
+                                break;
+                            case 1:
+                                System.out.println("right trading!");
+                                cardHolderSt.getChildren().remove(cv);
+                                //TODO trade right
+                                break;
+                            case 2:
+                                System.out.println("playing card!");
+                                cardHolderSt.getChildren().remove(cv);
+                                //TODO play card here
+                                break;
+                            case 3:
+                                System.out.println("building wonder!");
+                                cardHolderSt.getChildren().remove(cv);
+                                //TODO play wonder here
+                                break;
+                            case 4:
+                                System.out.println("discarding card!");
+                                cardHolderSt.getChildren().remove(cv);
+                                //TODO discard card for coin here
+                                break;
+                        }
                         System.out.println("e.getSceneX():" + e.getSceneX() + "\te.getSceneY():" +  e.getSceneY());
                         cv.relocate(orgSceneX - orgX, orgSceneY - orgY);
                         cv.setTranslateX(0);
                         cv.setTranslateY(0);
+                        e.consume();
                     });
                     cv.update(cards.get(i));
                     System.out.println(cards.get(i).name);
@@ -238,6 +291,27 @@ public class PlayScreenController implements Initializable {
                 }
             }
         });
+    }
+
+
+    //@param x x coordinate, y y coordinate
+    //returns -1 if in no region, 0 if in left trading
+    //1 if in right trading, 2 if in playing card
+    //3 if in wonder playing, 4 if card discard
+    private static int decideRegion(double x, double y) {
+        if( 0 <= x && x <240 && 100<=y && y<550){
+            return 0;
+        } else if ( 1200 <= x && x <=1440 && 100<=y && y<550){
+            return 1;
+        } else if (240 <= x && x <1200 && 100<=y && y<550){
+            return 2;
+        } else if (240 <= x && x <1200 && 550<=y && y<625){
+            return 3;
+        }else if (1200 <= x && x <=1440 && 550<=y && y<640){
+            return 4;
+        } else {
+            return -1;
+        }
     }
 
     public static void updateSeasonImage( int currSeason) {

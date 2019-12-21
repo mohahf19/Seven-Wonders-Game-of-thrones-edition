@@ -1,5 +1,6 @@
 package backend.controllers;
 
+import backend.app.constants;
 import backend.models.Card;
 import backend.models.Numbers;
 import javafx.geometry.Pos;
@@ -18,11 +19,14 @@ public class CardView extends Pane {
     private ImageView cardImageView;
     private ImageView iconImageView;
     private ImageView backImageView;
+    private ImageView statusImageView;
     private Label prereqCardLabel;
     private Label cardNameLabel;
     private Label chain1Label;
     private Label chain2Label;
     private HBox prereqHBox;
+
+    private int status;
     public int id;
 
 
@@ -60,7 +64,7 @@ public class CardView extends Pane {
 
     private void addChildren() {
         this.getChildren().addAll(cardImageView, topPane, prereqCardLabel,
-                cardNameLabel, chain1Label, chain2Label, prereqHBox);
+                cardNameLabel, chain1Label, chain2Label, prereqHBox, statusImageView);
     }
 
 
@@ -83,6 +87,13 @@ public class CardView extends Pane {
         backImageView = new ImageView();
         backImageView.setFitHeight(50);
         backImageView.setFitWidth(150);
+
+        //status indicators
+        statusImageView = new ImageView();
+        statusImageView.setImage(new Image(constants.path + "empty.png"));
+        statusImageView.setFitWidth(150);
+        statusImageView.setFitHeight(200);
+        status = -1;
 
         topPane.getChildren().add(backImageView);
         topPane.getChildren().add(iconImageView);
@@ -237,5 +248,47 @@ public class CardView extends Pane {
         chain1Label.resizeRelocate(60, 127, 90, 20);
         chain2Label.resizeRelocate(60, 150, 90, 20);
         cardNameLabel.resizeRelocate(0, 175, 150, 20);
+    }
+
+    public void reset() {
+        if(status != -1) {
+            status = -1;
+            statusImageView.setImage(new Image(constants.path + "empty.png"));
+        }
+    }
+
+    public void tradingLeft(){
+        if(status != 0){
+            status = 0;
+            statusImageView.setImage(new Image(constants.path + "leftTrade.png"));
+        }
+    }
+
+    public void tradingRight(){
+        if(status != 1){
+            status = 1;
+            statusImageView.setImage(new Image(constants.path + "rightTrade.png"));
+        }
+    }
+
+    public void playingCard(){
+        if (status != 2){
+            status = 2;
+            statusImageView.setImage(new Image(constants.path + "playCard.png"));
+        }
+    }
+
+    public void playingWonder(){
+        if (status != 3){
+            status = 3;
+            statusImageView.setImage(new Image(constants.path + "playWonder.png"));
+        }
+    }
+
+    public void discardingCard(){
+        if (status != 4){
+            status = 4;
+            statusImageView.setImage(new Image(constants.path + "discardCard.png"));
+        }
     }
 }
