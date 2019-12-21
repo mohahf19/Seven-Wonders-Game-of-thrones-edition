@@ -40,10 +40,19 @@
                   </ImageView>
                </children>
             </HBox>
-            <Label fx:id="waitLabel" layoutX="1346.0" layoutY="141.0" prefHeight="22.0" prefWidth="90.0" text="Label" />
          </children>
       </AnchorPane>
       <HBox fx:id="headerHolder" prefHeight="101.0" prefWidth="1440.0" />
       <HBox fx:id="wonderHolder" layoutX="240.0" layoutY="551.0" prefHeight="75.0" prefWidth="960.0" />
+      <AnchorPane fx:id="waitLabel" layoutX="194.0" layoutY="164.0" prefHeight="555.0" prefWidth="1051.0" style="-fx-border-radius: 50;">
+         <children>
+            <Label fx:id="waitingText" layoutX="325.0" layoutY="240.0" prefHeight="75.0" prefWidth="477.0" text="Waiting for other players..." />
+            <ImageView fitHeight="75.0" fitWidth="76.0" layoutX="249.0" layoutY="240.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/animations/eclipseLoad.gif" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

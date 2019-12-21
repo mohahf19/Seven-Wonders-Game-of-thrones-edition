@@ -48,8 +48,11 @@ public class PlayScreenController implements Initializable {
     private static HBox cardHolderSt;
 
     @FXML
-    private Label waitLabel;
-    private static Label waitLabelSt;
+    private AnchorPane waitLabel;
+    private static AnchorPane waitLabelSt;
+
+    @FXML
+    private Label waitingText;
 
     CardView sampleCard;
 
@@ -65,6 +68,9 @@ public class PlayScreenController implements Initializable {
         ageButtonSt = ageButton;
         cardHolderSt = cardHolder;
         waitLabelSt = waitLabel;
+
+        waitLabel.setStyle("-fx-background-color: #580303; -fx-border-radius: 20;");
+        waitingText.setStyle("-fx-font-size: 35px; -fx-text-fill: white");
 
         card1.setOnMouseDragged(new EventHandler() {
             public void handle(Event e) {
