@@ -112,9 +112,15 @@ public class PlayScreenController implements Initializable {
             }
         },1000);
 
-
+      //waitscreen
+        dummy();
         //don't change anything below
         notifyViewLoaded();
+    }
+
+    public void dummy() {
+        Image image = new Image("assets/ages/age1Load.gif");
+        waitingAnimation.setImage(image);
     }
 
     public void initScoreboard() {
