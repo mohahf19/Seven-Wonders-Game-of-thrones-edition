@@ -1,6 +1,7 @@
 package backend.controllers;
 
 import backend.models.Player;
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -26,8 +27,8 @@ public class ScoreboardView extends Pane {
 
     public ScoreboardView(String name){
         initComponents();
+        addChildren();
 
-        // Initializing images
         Image image;
         switch (name) {
             case "Stark":
@@ -59,8 +60,6 @@ public class ScoreboardView extends Pane {
                 playerBanner.setImage(image);
                 break;
         }
-
-        addChildren();
     }
 
     private void addChildren() {
@@ -75,32 +74,33 @@ public class ScoreboardView extends Pane {
 
         // initialise labels
         militaryPointsLabel = new Label("0");
-        militaryPointsLabel.setAlignment(Pos.CENTER);
-        militaryPointsLabel.setStyle("-fx-text-fill: white; -fx-font-size: 50px; -fx-background-color: red");
+//        militaryPointsLabel.setAlignment(Pos.CENTER);
+//        militaryPointsLabel.setStyle("-fx-text-fill: white; -fx-font-size: 50px; -fx-background-color: red");
 
         coinPointsLabel = new Label("0");
-        coinPointsLabel.setStyle("-fx-text-fill: white; -fx-font-size: 50px; -fx-background-color: gold");
-        coinPointsLabel.setAlignment(Pos.CENTER);
+//        coinPointsLabel.setStyle("-fx-text-fill: white; -fx-font-size: 50px; -fx-background-color: gold");
+//        coinPointsLabel.setAlignment(Pos.CENTER);
 
         wonderPointsLabel = new Label("0");
-        wonderPointsLabel.setStyle("-fx-text-fill: white; -fx-font-size: 50px; -fx-background-color: yellow");
-        wonderPointsLabel.setAlignment(Pos.CENTER);
+//        wonderPointsLabel.setStyle("-fx-text-fill: white; -fx-font-size: 50px; -fx-background-color: yellow");
+//        wonderPointsLabel.setAlignment(Pos.CENTER);
 
         civicPointsLabel = new Label("0");
-        civicPointsLabel.setStyle("-fx-text-fill: white; -fx-font-size: 50px; -fx-background-color: blue");
-        civicPointsLabel.setAlignment(Pos.CENTER);
+//        civicPointsLabel.setStyle("-fx-text-fill: white; -fx-font-size: 50px; -fx-background-color: blue");
+//        civicPointsLabel.setAlignment(Pos.CENTER);
 
         commercePointsLabel = new Label("0");
-        commercePointsLabel.setStyle("-fx-text-fill: white; -fx-font-size: 50px; -fx-background-color: brown");
-        commercePointsLabel.setAlignment(Pos.CENTER);
+//        commercePointsLabel.setStyle("-fx-text-fill: white; -fx-font-size: 50px; -fx-background-color: brown");
+//        commercePointsLabel.setAlignment(Pos.CENTER);
 
         sciencePointsLabel = new Label("0");
-        sciencePointsLabel.setStyle("-fx-text-fill: white; -fx-font-size: 50px; -fx-background-color: green");
-        sciencePointsLabel.setAlignment(Pos.CENTER);
+//        sciencePointsLabel.setStyle("-fx-text-fill: white; -fx-font-size: 50px; -fx-background-color: green");
+//        sciencePointsLabel.setAlignment(Pos.CENTER);
 
         victoryPointsLabel = new Label("0");
-        victoryPointsLabel.setStyle("-fx-text-fill: white; -fx-font-size: 50px; -fx-background-color: white");
-        victoryPointsLabel.setAlignment(Pos.CENTER);
+//        victoryPointsLabel.setStyle("-fx-text-fill: white; -fx-font-size: 50px; -fx-background-color: white");
+//        victoryPointsLabel.setAlignment(Pos.CENTER);
+
     }
 
     public void update(Player p){
