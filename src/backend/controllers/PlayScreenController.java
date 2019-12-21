@@ -1,4 +1,5 @@
 package backend.controllers;
+import backend.models.Scoreboard;
 import javafx.scene.Cursor;
 
 import backend.app.Main;
@@ -12,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;

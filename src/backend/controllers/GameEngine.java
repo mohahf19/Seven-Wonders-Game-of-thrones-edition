@@ -47,7 +47,7 @@ public class GameEngine {
     }
     public void updateScoreboard( Scoreboard scoreboard){
         this.scoreboard = scoreboard;
-        PlayScreenController.updateScoreboard( scoreboard);
+        PlayScreenController.updateScoreboard(scoreboard);
     }
 
     public void sendWarStarted(){
