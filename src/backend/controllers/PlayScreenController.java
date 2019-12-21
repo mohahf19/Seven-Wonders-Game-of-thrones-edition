@@ -551,23 +551,9 @@ public class PlayScreenController implements Initializable {
             }
         });
     }
-//    public class scoreboardMouseClickListener implements  EventHandler<MouseEvent> {
-//        @Override
-//        public void handle(MouseEvent event) {
-//            event.consume();
-//            try {
-//                click();
-//            } catch (IOException e) {
-//                System.out.println("IOException");
-//                e.printStackTrace();
-//            }
-//        }
-//        public void click() throws IOException {
-//            if (scoreboardHolder.isVisible()) {
-//                scoreboardHolder.setVisible(false);
-//            }
-//            else
-//                scoreboardHolder.setVisible(true);
-//        }
-//    }
+
+    public static void endGame(){
+        waitLabelSt.setVisible( false);
+        scoreboardHolderSt.setVisible( true);
+    }
 }

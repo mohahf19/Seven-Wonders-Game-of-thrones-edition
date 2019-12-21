@@ -117,8 +117,13 @@ public class ServerController {
 
         } else {
             //game ended
-            for( int i = 0; i < players.size(); i++){
-                host.sendError( i, "Game Ended");
+            updateScoreboard();
+            for( int i = 0; i < host.clients.size(); i++){
+
+                JsonObject outOb = new JsonObject();
+                outOb.addProperty( "op_code", 7);
+
+                host.sendRequest( i, outOb);
             }
         }
     }

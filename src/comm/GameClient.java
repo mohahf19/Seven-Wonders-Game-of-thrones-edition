@@ -190,6 +190,9 @@ public class GameClient {
 
                         acknowledgeRequest();
                         break;
+                    } case 7: { //game ended
+                        this.engine.endGame();
+                        break;
                     }
                     default: {
                         System.out.println( "Client: Invalid opcode");
