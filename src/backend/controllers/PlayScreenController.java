@@ -1,39 +1,40 @@
 package backend.controllers;
+import javafx.scene.Cursor;
 
-import backend.app.Main;
-import backend.app.fxmlPaths;
-import backend.models.Card;
-import backend.models.Deck;
-import backend.models.Player;
-import com.google.gson.JsonObject;
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.input.TransferMode;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
+        import backend.app.Main;
+        import backend.app.fxmlPaths;
+        import backend.models.Card;
+        import backend.models.Deck;
+        import backend.models.Player;
+        import com.google.gson.JsonObject;
+        import javafx.application.Platform;
+        import javafx.event.ActionEvent;
+        import javafx.event.Event;
+        import javafx.event.EventHandler;
+        import javafx.fxml.FXML;
+        import javafx.fxml.FXMLLoader;
+        import javafx.fxml.Initializable;
+        import javafx.geometry.Pos;
+        import javafx.scene.Node;
+        import javafx.scene.Parent;
+        import javafx.scene.control.Alert;
+        import javafx.scene.control.ButtonType;
+        import javafx.scene.control.Label;
+        import javafx.scene.control.TextField;
+        import javafx.scene.image.Image;
+        import javafx.scene.image.ImageView;
+        import javafx.scene.input.DragEvent;
+        import javafx.scene.input.MouseEvent;
+        import javafx.scene.input.TransferMode;
+        import javafx.scene.layout.AnchorPane;
+        import javafx.scene.layout.HBox;
+        import javafx.stage.Stage;
 
-import javax.sound.midi.SysexMessage;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
+        import javax.sound.midi.SysexMessage;
+        import java.io.IOException;
+        import java.net.URL;
+        import java.util.ArrayList;
+        import java.util.ResourceBundle;
 
 public class PlayScreenController implements Initializable {
     @FXML
@@ -54,6 +55,10 @@ public class PlayScreenController implements Initializable {
     @FXML
     private Label waitingText;
 
+    //for dragging
+    private static double orgSceneX, orgSceneY, orgX, orgY, orgTranslateX, orgTranslateY;
+
+
     CardView sampleCard;
 
     public void notifyViewLoaded(){
@@ -71,36 +76,6 @@ public class PlayScreenController implements Initializable {
 
         waitLabel.setStyle("-fx-background-color: #580303; -fx-border-radius: 20;");
         waitingText.setStyle("-fx-font-size: 35px; -fx-text-fill: white");
-
-        card1.setOnMouseDragged(new EventHandler() {
-            public void handle(Event e) {
-                MouseEvent event = ( MouseEvent) e;
-
-                card1.setManaged(false);
-                card1.setTranslateX(event.getX() + card1.getTranslateX() - 50);
-                card1.setTranslateY(event.getY() + card1.getTranslateY() - 50);
-                if( card1.getBoundsInParent().intersects( card3.getBoundsInParent())){
-                    card1.setDisable(true);
-                }
-                event.consume();
-            }
-        });
-        card1.setOnMouseReleased(new EventHandler() {
-            public void handle(Event e) {
-                MouseEvent event = ( MouseEvent) e;
-                if( card1.isDisable()){
-                    card1.setManaged(false);
-                    card1.setTranslateX(200.0);
-                    card1.setTranslateY(-200.0);
-                    event.consume();
-                } else {
-                    card1.setManaged(false);
-                    card1.setTranslateX(0.0);
-                    card1.setTranslateY(0.0);
-                    event.consume();
-                }
-            }
-        });
 
         // Event listeners for sound button
         soundButton.addEventHandler(MouseEvent.MOUSE_ENTERED, new soundMouseHoverListener());
@@ -234,15 +209,38 @@ public class PlayScreenController implements Initializable {
                 cardHolderSt.setAlignment(Pos.CENTER);
                 cardHolderSt.setSpacing(5);
 
-                System.out.println( "Cards geldi" + cards.size());
+                Deck d = new Deck(7, 3);
 
-                //remove all cards
-                cardHolderSt.getChildren().clear();
+
+                System.out.println( "Cards geldi");
 
                 for (int i = 0; i < cards.size(); i++) {
-                    CardView cv = new CardView(cards.get(i));
+                    CardView cv = new CardView(cards.get(i), i);
+                    //int res = Main.gameEngine.getCurrentPlayer().canBuild(cards.get(i).cost);
+                    //cv.setDisable(res == 0);
+                    //System.out.println("can build " + cards.get(i).name + ": " + res);
+                    cv.setCursor(Cursor.HAND);
+                    cv.setOnMousePressed(e ->{
+                        orgX = e.getX();
+                        orgY = e.getY();
+                        orgSceneX = e.getSceneX();
+                        orgSceneY = e.getSceneY();
+                        orgTranslateX = cv.getTranslateX();
+                        orgTranslateY = cv.getTranslateY();
+                        e.consume();
+                    });
+                    cv.setOnMouseDragged(e->{
+                        cv.setTranslateX(orgTranslateX + e.getSceneX() - orgSceneX);
+                        cv.setTranslateY(orgTranslateY + e.getSceneY() - orgSceneY);
+                    });
+                    cv.setOnMouseReleased(e->{
+                        System.out.println("e.getSceneX():" + e.getSceneX() + "\te.getSceneY():" +  e.getSceneY());
+                        cv.relocate(orgSceneX - orgX, orgSceneY - orgY);
+                        cv.setTranslateX(0);
+                        cv.setTranslateY(0);
+                    });
                     cv.update(cards.get(i));
-                    //System.out.println(cards.get(i).name);
+                    System.out.println(cards.get(i).name);
                     cardHolderSt.getChildren().addAll(cv);
                 }
             }
@@ -323,7 +321,8 @@ public class PlayScreenController implements Initializable {
         Player user, userleft, userright;
         user = Main.gameEngine.players.get(userID);
 
-        userleft = Main.gameEngine.players.get((((userID - 1) % Main.gameEngine.players.size()) + Main.gameEngine.players.size()) % Main.gameEngine.players.size());
+        userleft = Main.gameEngine.players.get((((userID - 1) % Main.gameEngine.players.size()) +
+                Main.gameEngine.players.size()) % Main.gameEngine.players.size());
         userright = Main.gameEngine.players.get((userID + 1) % Main.gameEngine.players.size());
 
         updatedPlayers.add(userleft);

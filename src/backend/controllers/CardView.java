@@ -23,6 +23,7 @@ public class CardView extends Pane {
     private Label chain1Label;
     private Label chain2Label;
     private HBox prereqHBox;
+    public int id;
 
 
     public CardView(){
@@ -63,7 +64,8 @@ public class CardView extends Pane {
     }
 
 
-    public CardView(Card card){
+    public CardView(Card card, int id){
+        this.id = id;
         //top pane
         topPane = new StackPane();
 

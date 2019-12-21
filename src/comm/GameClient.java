@@ -174,7 +174,7 @@ public class GameClient {
                         break;
                     } case 4: { //update scoreboard
                         Scoreboard scoreboard = gson.fromJson( res.get("scoreboard").getAsString(), Scoreboard.class);
-                        engine.scoreboard = scoreboard;
+                        this.engine.updateScoreboard( scoreboard);
 
                         acknowledgeRequest();
                         break;

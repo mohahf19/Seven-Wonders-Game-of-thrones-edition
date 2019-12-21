@@ -45,13 +45,17 @@ public class GameEngine {
         this.currentAge = age;
         PlayScreenController.updateAgeImage( age);
     }
+    public void updateScoreboard( Scoreboard scoreboard){
+        this.scoreboard = scoreboard;
+        PlayScreenController.updateScoreboard( scoreboard);
+    }
 
     public void sendWarStarted(){
         // TO DO: fill this
     }
 
     public void discardCard(int cardIndex) {
-        this.getCurrentPlayer().house.coins += 2; // was it 3?
+        this.getCurrentPlayer().house.coins += 3;
         this.cardPlayed(cardIndex);
     }
 
