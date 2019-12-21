@@ -50,6 +50,10 @@ public class GameEngine {
         PlayScreenController.updateScoreboard(scoreboard);
     }
 
+    public void endGame(){
+        PlayScreenController.endGame();
+    }
+
     public void sendWarStarted(){
         // TODO: fill this
     }
