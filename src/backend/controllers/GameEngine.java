@@ -125,7 +125,7 @@ public class GameEngine {
         this.getCurrentPlayer().getCardsInHand().remove(cardIndex);
         JsonObject req = new JsonObject();
         req.addProperty("op_code", 2);
-        req.addProperty("player", playerGson.toJson( getCurrentPlayer()));
+        req.addProperty("player", gson.toJson( getCurrentPlayer()));
         Main.gameEngine.client.sendRequest( req);
     }
 
