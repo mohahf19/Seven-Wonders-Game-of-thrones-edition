@@ -14,6 +14,7 @@ public class Player {
     public Neighbors neighbors;
     public House house;
     public TradingAgreements agreements;
+    public ArrayList<Card> playedCards;
 
     public int currentMilitaryPoints;
 
@@ -40,7 +41,7 @@ public class Player {
         return wonderVictory;
     }
     public int calculateCivicPoints(){
-        ArrayList<Card> playedCards = this.house.getPlayedCards();
+        ArrayList<Card> playedCards = this.getPlayedCards();
         int civicPoints = 0;
         for(Card c: playedCards)
         {
@@ -50,7 +51,7 @@ public class Player {
         return civicPoints;
     }
     public int calculateCommercePoints(){
-        ArrayList<Card> playedCards = this.house.getPlayedCards();
+        ArrayList<Card> playedCards = this.getPlayedCards();
         int commercePoints = 0;
         int resourceCount = 0;
         int commerceCount = 0;
@@ -79,7 +80,7 @@ public class Player {
         return commercePoints;
     }
     public int calculateSciencePoints(){
-        ArrayList<Card> playedCards = this.house.getPlayedCards();
+        ArrayList<Card> playedCards = this.getPlayedCards();
         int sciencePoints;
         int gearCount = 0 ;
         int tabletCount = 0;
@@ -129,21 +130,21 @@ public class Player {
         if (!cardReq.equals("")) {
             int count = 0;
             if (card.includesLeft()) {
-                for (Card c : this.neighbors.left.house.getPlayedCards()) {
+                for (Card c : this.neighbors.left.getPlayedCards()) {
                     if ((cardReq.equals("Resource") && c.isResource()) || (cardReq.equals("Commerce") && c.isCommerce())) {
                         count++;
                     }
                 }
             }
             if (card.includesRight()) {
-                for (Card c : this.neighbors.right.house.getPlayedCards()) {
+                for (Card c : this.neighbors.right.getPlayedCards()) {
                     if ((cardReq.equals("Resource") && c.isResource()) || (cardReq.equals("Commerce") && c.isCommerce())) {
                         count++;
                     }
                 }
             }
             if (card.includesSelf()) {
-                for (Card c : this.house.getPlayedCards()) {
+                for (Card c : this.getPlayedCards()) {
                     if ((cardReq.equals("Resource") && c.isResource()) || (cardReq.equals("Commerce") && c.isCommerce())) {
                         count++;
                     }
@@ -195,7 +196,7 @@ public class Player {
     }
 
     public ArrayList<Card> getPlayedScience(){
-        ArrayList<Card> playedCards = house.getPlayedCards();
+        ArrayList<Card> playedCards = getPlayedCards();
         ArrayList<Card> playedScience;
         playedScience = new ArrayList<Card>();
 
@@ -319,5 +320,11 @@ public class Player {
             left = new TradingAgreement();
             right = new TradingAgreement();
         }
+    }
+    public ArrayList<Card> getPlayedCards(){
+        if( playedCards == null) {
+            playedCards = new ArrayList<>();
+        }
+        return playedCards;
     }
 }

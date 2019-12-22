@@ -18,6 +18,8 @@ public class Resource extends Card {
         this.type = new String[type.length];
         for( int i = 0; i < type.length; i++)
             this.type[i] = type[i];
+
+        this.cardType = "resource";
     }
 
     public Resource(String name, int cardFreq, int age, Cost cost, String imagePath,
@@ -29,6 +31,7 @@ public class Resource extends Card {
             this.resourcesList[i] = resourcesList[i];
 
         this.type = null;
+        this.cardType = "resource";
     }
 
     @Override

@@ -5,6 +5,7 @@ import backend.app.constants;
 import backend.controllers.GameEngine;
 import backend.models.*;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 
@@ -25,7 +26,10 @@ public class GameHost {
     public ServerSocket serverSocket;
     public boolean isReceiving = true;
     public String serverIP="";
+
     private Gson gson;
+    private Gson playerGson;
+
 
     private HashMap<Integer, Integer> requests;
 
@@ -34,6 +38,10 @@ public class GameHost {
         gson = new Gson();
         clients = new ArrayList<>();
         requests = new HashMap<>();
+
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(Player.class, new PlayerDeserializer());
+        playerGson = gsonBuilder.create();
     }
 
 
@@ -142,7 +150,7 @@ public class GameHost {
                 break;
             } case 2: { //card selected
                 serverController.cardsSelectedCount++;
-                Player player = gson.fromJson( request.get("player").getAsString(), Player.class );
+                Player player = playerGson.fromJson( request.get("player").getAsString(), Player.class );
                 serverController.updatePlayer( player, id);
                 if( serverController.cardsSelectedCount >= (clients.size())) {
                     System.out.println("Play next turn");

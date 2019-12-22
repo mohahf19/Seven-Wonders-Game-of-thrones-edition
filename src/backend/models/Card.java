@@ -3,6 +3,8 @@ package backend.models;
 import javafx.scene.paint.Color;
 
 public class Card {
+    public String cardType;
+
     public String name;
     public int cardFreq;
     public int age;

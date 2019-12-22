@@ -11,6 +11,12 @@ import javafx.stage.Stage;
 
 import com.google.gson.Gson;
 
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import java.io.File;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class Main extends Application {
 
     public static Stage window;
@@ -29,6 +35,21 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 1440, 900));
         primaryStage.show();
 
+        ExecutorService service = Executors.newFixedThreadPool(4);
+        service.execute( new Runnable() {
+            @Override
+            public void run() {
+                //playSound();
+            }
+        });
+    }
+
+    public void playSound(){
+        String musicFile = getClass().toString() + "/assets/sound/mainSound.mp3";//"/assets/sound/mainSound.mp3";
+
+        Media sound = new Media(new File(musicFile).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.play();
     }
 
     public static void initServer(){

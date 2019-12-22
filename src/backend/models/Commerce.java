@@ -40,6 +40,7 @@ public class Commerce extends Card {
 
         this.type = null; //not needed really now, leave for later
 
+        this.cardType = "commerce";
 
     }
 
