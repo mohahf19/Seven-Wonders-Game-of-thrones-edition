@@ -75,30 +75,30 @@ public class ScoreboardView extends Pane {
         // initialise labels
         militaryPointsLabel = new Label("0");
         militaryPointsLabel.setAlignment(Pos.CENTER);
-        militaryPointsLabel.setStyle("-fx-text-fill: white; -fx-font-size: 50px; -fx-background-color: red");
+        militaryPointsLabel.setStyle("-fx-text-fill: white; -fx-font-size: 50px; -fx-background-color: #A71F2B");
 
         coinPointsLabel = new Label("0");
-        coinPointsLabel.setStyle("-fx-text-fill: white; -fx-font-size: 50px; -fx-background-color: gold");
+        coinPointsLabel.setStyle("-fx-text-fill: white; -fx-font-size: 50px; -fx-background-color: #FAC64C");
         coinPointsLabel.setAlignment(Pos.CENTER);
 
         wonderPointsLabel = new Label("0");
-        wonderPointsLabel.setStyle("-fx-text-fill: white; -fx-font-size: 50px; -fx-background-color: yellow");
+        wonderPointsLabel.setStyle("-fx-text-fill: white; -fx-font-size: 50px; -fx-background-color: #FCE877");
         wonderPointsLabel.setAlignment(Pos.CENTER);
 
         civicPointsLabel = new Label("0");
-        civicPointsLabel.setStyle("-fx-text-fill: white; -fx-font-size: 50px; -fx-background-color: blue");
+        civicPointsLabel.setStyle("-fx-text-fill: white; -fx-font-size: 50px; -fx-background-color: #18688D");
         civicPointsLabel.setAlignment(Pos.CENTER);
 
         commercePointsLabel = new Label("0");
-        commercePointsLabel.setStyle("-fx-text-fill: white; -fx-font-size: 50px; -fx-background-color: brown");
+        commercePointsLabel.setStyle("-fx-text-fill: white; -fx-font-size: 50px; -fx-background-color: #B88F25");
         commercePointsLabel.setAlignment(Pos.CENTER);
 
         sciencePointsLabel = new Label("0");
-        sciencePointsLabel.setStyle("-fx-text-fill: white; -fx-font-size: 50px; -fx-background-color: green");
+        sciencePointsLabel.setStyle("-fx-text-fill: white; -fx-font-size: 50px; -fx-background-color: #137546");
         sciencePointsLabel.setAlignment(Pos.CENTER);
 
         victoryPointsLabel = new Label("0");
-        victoryPointsLabel.setStyle("-fx-text-fill: white; -fx-font-size: 50px; -fx-background-color: white");
+        victoryPointsLabel.setStyle("-fx-text-fill: white; -fx-font-size: 50px; -fx-background-color: #FAD994");
         victoryPointsLabel.setAlignment(Pos.CENTER);
 
     }

@@ -35,6 +35,7 @@ public class Player {
         return coins/3;
     }
     public int calculateWonderPoints(){
+        //TODO fix this. this calculates max wonder points
         int wonderVictory = 0;
         ArrayList<Wonder> wonders = this.house.getWonders();
         for(Wonder w: wonders)
