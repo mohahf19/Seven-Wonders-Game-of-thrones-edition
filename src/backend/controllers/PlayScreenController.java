@@ -490,7 +490,9 @@ public class PlayScreenController implements Initializable {
             @Override
             public void run() {
                 //check if new age
-                waitingAnimationSt.setVisible( false);
+                int size = Main.gameEngine.getCurrentPlayer().cards.size();
+                if( size != 7 && size != 0)
+                    waitingAnimationSt.setVisible( false);
             }});
     }
 
