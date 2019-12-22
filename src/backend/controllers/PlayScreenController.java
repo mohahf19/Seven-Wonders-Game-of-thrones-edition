@@ -20,6 +20,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 
 import javax.sound.sampled.Clip;
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -59,7 +60,7 @@ public class PlayScreenController implements Initializable {
 
     //for dragging
     private static double orgSceneX, orgSceneY, orgX, orgY, orgTranslateX, orgTranslateY;
-    private boolean isHome = true;
+    private static boolean isHome = true;
 
     private static ArrayList<Player> updatedPlayers;
 
@@ -302,110 +303,118 @@ public class PlayScreenController implements Initializable {
 
                     cv.setCursor(Cursor.HAND);
                     cv.setOnMousePressed(e ->{
-                        orgX = e.getX();
-                        orgY = e.getY();
-                        orgSceneX = e.getSceneX();
-                        orgSceneY = e.getSceneY();
-                        orgTranslateX = cv.getTranslateX();
-                        orgTranslateY = cv.getTranslateY();
-                        e.consume();
+                        if( isHome){
+                            orgX = e.getX();
+                            orgY = e.getY();
+                            orgSceneX = e.getSceneX();
+                            orgSceneY = e.getSceneY();
+                            orgTranslateX = cv.getTranslateX();
+                            orgTranslateY = cv.getTranslateY();
+                            e.consume();
+                        } else {
+                            JOptionPane.showMessageDialog( null, "Please return to home before playing your turn.", "", JOptionPane.PLAIN_MESSAGE);
+                        }
                     });
 
                     cv.setOnMouseDragged(e->{
-                        int region = decideRegion(e.getSceneX(), e.getSceneY());
-                        switch (region){
-                            case -1:
-                                cv.reset(); //do nothing
-                                break;
-                            case 0:
-                                cv.tradingLeft();
-                                break;
-                            case 1:
-                                cv.tradingRight();
-                                break;
-                            case 2:
-                                cv.playingCard();
-                                break;
-                            case 3:
-                                cv.playingWonder();
-                                break;
-                            case 4:
-                                cv.discardingCard();
-                                break;
+                        if( isHome){
+                            int region = decideRegion(e.getSceneX(), e.getSceneY());
+                            switch (region){
+                                case -1:
+                                    cv.reset(); //do nothing
+                                    break;
+                                case 0:
+                                    cv.tradingLeft();
+                                    break;
+                                case 1:
+                                    cv.tradingRight();
+                                    break;
+                                case 2:
+                                    cv.playingCard();
+                                    break;
+                                case 3:
+                                    cv.playingWonder();
+                                    break;
+                                case 4:
+                                    cv.discardingCard();
+                                    break;
+                            }
+                            cv.setTranslateX(orgTranslateX + e.getSceneX() - orgSceneX);
+                            cv.setTranslateY(orgTranslateY + e.getSceneY() - orgSceneY);
                         }
-                        cv.setTranslateX(orgTranslateX + e.getSceneX() - orgSceneX);
-                        cv.setTranslateY(orgTranslateY + e.getSceneY() - orgSceneY);
                         e.consume();
                     });
                     cv.setOnMouseReleased(e->{
-                        int region = decideRegion(e.getSceneX(), e.getSceneY());
-                        int cardIndex = cv.id;
-                        Card card = cards.get(cv.id);
-                        //0 if can't build, 1 if can without trading, 2 if left trading is required
-                        //3 if right trading
-                        int canBuild = Main.gameEngine.canBuild(cards.get(cv.id));
-                        switch (region){
-                            case -1:
-                                System.out.println("dropped nowhere important..");
-                                break;
-                            case 0:
-                                //TODO trade left
-                                System.out.println("left trading!");
-                                if(canBuild == 2){
-                                    Main.gameEngine.tradeLeft(cardIndex);
+                        if( isHome){
+                            int region = decideRegion(e.getSceneX(), e.getSceneY());
+                            int cardIndex = cv.id;
+                            Card card = cards.get(cv.id);
+                            //0 if can't build, 1 if can without trading, 2 if left trading is required
+                            //3 if right trading
+                            int canBuild = Main.gameEngine.canBuild(cards.get(cv.id));
+                            switch (region){
+                                case -1:
+                                    System.out.println("dropped nowhere important..");
+                                    break;
+                                case 0:
+                                    //TODO trade left
+                                    System.out.println("left trading!");
+                                    if(canBuild == 2){
+                                        Main.gameEngine.tradeLeft(cardIndex);
+                                        cardHolderSt.getChildren().remove(cv);
+                                        pvc.addCard(card);
+                                        waitLabelSt.setVisible( true);
+                                    } else {
+                                        cv.reset();
+                                    }
+                                    break;
+                                case 1:
+                                    //TODO trade right
+                                    System.out.println("right trading!");
+                                    if(canBuild == 3){
+                                        Main.gameEngine.tradeRight(cardIndex);
+                                        cardHolderSt.getChildren().remove(cv);
+                                        pvc.addCard(card);
+                                        waitLabelSt.setVisible( true);
+                                    } else {
+                                        cv.reset();
+                                    }
+                                    //TODO trade right
+                                    break;
+                                case 2:
+                                    System.out.println("playing card!");
+                                    if(canBuild == 1){
+                                        Main.gameEngine.playCard(cardIndex);
+                                        cardHolderSt.getChildren().remove(cv);
+                                        pvc.addCard(card);
+                                        waitLabelSt.setVisible( true);
+                                    } else {
+                                        cv.reset();
+                                    }
+                                    break;
+                                case 3:
+                                    System.out.println("building wonder!");
+                                    if (Main.gameEngine.canBuildWonder() > 0){
+                                        Main.gameEngine.buildWonder(cardIndex);
+                                        cardHolderSt.getChildren().remove(cv);
+                                        waitLabelSt.setVisible( true);
+                                    } else {
+                                        cv.reset();
+                                    }
+                                    break;
+                                case 4:
+                                    System.out.println("discarding card!");
+                                    Main.gameEngine.discardCard(cardIndex);
                                     cardHolderSt.getChildren().remove(cv);
-                                    pvc.addCard(card);
                                     waitLabelSt.setVisible( true);
-                                } else {
-                                    cv.reset();
-                                }
-                                break;
-                            case 1:
-                                //TODO trade right
-                                System.out.println("right trading!");
-                                if(canBuild == 3){
-                                    Main.gameEngine.tradeRight(cardIndex);
-                                    cardHolderSt.getChildren().remove(cv);
-                                    pvc.addCard(card);
-                                    waitLabelSt.setVisible( true);
-                                } else {
-                                    cv.reset();
-                                }
-                                //TODO trade right
-                                break;
-                            case 2:
-                                System.out.println("playing card!");
-                                if(canBuild == 1){
-                                    Main.gameEngine.playCard(cardIndex);
-                                    cardHolderSt.getChildren().remove(cv);
-                                    pvc.addCard(card);
-                                    waitLabelSt.setVisible( true);
-                                } else {
-                                    cv.reset();
-                                }
-                                break;
-                            case 3:
-                                System.out.println("building wonder!");
-                                if (Main.gameEngine.canBuildWonder() > 0){
-                                    Main.gameEngine.buildWonder(cardIndex);
-                                    cardHolderSt.getChildren().remove(cv);
-                                    waitLabelSt.setVisible( true);
-                                } else {
-                                    cv.reset();
-                                }
-                                break;
-                            case 4:
-                                System.out.println("discarding card!");
-                                Main.gameEngine.discardCard(cardIndex);
-                                cardHolderSt.getChildren().remove(cv);
-                                waitLabelSt.setVisible( true);
-                                break;
+                                    break;
+                            }
+                            System.out.println("e.getSceneX():" + e.getSceneX() + "\te.getSceneY():" +  e.getSceneY());
+                            cv.relocate(orgSceneX - orgX, orgSceneY - orgY);
+                            cv.setTranslateX(0);
+                            cv.setTranslateY(0);
+                            updateLabels();
                         }
-                        System.out.println("e.getSceneX():" + e.getSceneX() + "\te.getSceneY():" +  e.getSceneY());
-                        cv.relocate(orgSceneX - orgX, orgSceneY - orgY);
-                        cv.setTranslateX(0);
-                        cv.setTranslateY(0);
-                        updateLabels();
                         e.consume();
                     });
                     cv.update(cards.get(i));
