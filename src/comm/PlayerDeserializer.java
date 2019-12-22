@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-class PlayerDeserializer implements JsonDeserializer<Player>
+public class PlayerDeserializer implements JsonDeserializer<Player>
 {
     private static final String CLASSNAME = "CLASSNAME";
     private static final String INSTANCE  = "INSTANCE";

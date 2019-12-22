@@ -172,15 +172,8 @@ public class GameClient {
                         Type playersListType = new TypeToken<List<Player>>() {}.getType();
                         ArrayList<Player> players = playerGson.fromJson( res.get("all_players").getAsString(), playersListType );
 
-//                        JsonArray allPlayers = res.get("all_players").getAsJsonArray();
-//                        for(JsonElement j: allPlayers){
-//                            JsonArray cards = j.getAsJsonObject().get("cards").getAsJsonArray();
-//                            for( JsonElement card: cards){
-//                                System.out.println( "card is: " + gson.fromJson( card, Object.class));
-//                            }
-//                        }
-
                         engine.players = players;
+                        engine.updateNeighbors();
 
                         // call something to update all cards, all player reaources etc.
                         PlayScreenController.updateDeck( engine.getCurrentPlayer().cards);

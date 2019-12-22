@@ -21,7 +21,7 @@ public class Player {
     public Player(){
         id = 0;
         cards = null;
-        neighbors = null;
+        neighbors = new Neighbors();
         house = null;
         agreements = null;
         currentMilitaryPoints = 0;

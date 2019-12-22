@@ -3,14 +3,17 @@ package backend.controllers;
 import backend.app.Main;
 import backend.models.*;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import comm.GameClient;
+import comm.PlayerDeserializer;
 
 import java.util.ArrayList;
 
 public class GameEngine {
     public GameClient client;
     public Gson gson;
+    private Gson playerGson;
 
     public ArrayList<Player> players;
     public int currentSeason; //1=Summer, 2=Autumn, 3=Winter, 4=Spring
@@ -19,6 +22,11 @@ public class GameEngine {
 
     public GameEngine(){
         gson = new Gson();
+
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(Player.class, new PlayerDeserializer());
+        playerGson = gsonBuilder.create();
+
     }
 
 
@@ -48,6 +56,15 @@ public class GameEngine {
     public void updateScoreboard( Scoreboard scoreboard){
         this.scoreboard = scoreboard;
         PlayScreenController.updateScoreboard(scoreboard);
+    }
+    public void updateNeighbors(){
+        for( int i = 0; i < players.size(); i++){
+            Player p = players.get( i);
+            int leftIndex = (i - 1) < 0 ? (players.size() - 1) : (i - 1);
+            int rightIndex = (i + 1) > (players.size() - 1) ? 0 : (i + 1);
+            p.neighbors.left = players.get( leftIndex);
+            p.neighbors.right = players.get( rightIndex);
+        }
     }
 
     public void endGame(){
@@ -107,7 +124,7 @@ public class GameEngine {
         this.getCurrentPlayer().getCardsInHand().remove(cardIndex);
         JsonObject req = new JsonObject();
         req.addProperty("op_code", 2);
-        req.addProperty("player", gson.toJson( getCurrentPlayer()));
+        req.addProperty("player", playerGson.toJson( getCurrentPlayer()));
         Main.gameEngine.client.sendRequest( req);
     }
 
