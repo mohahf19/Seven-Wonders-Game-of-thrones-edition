@@ -62,6 +62,10 @@ public class GameEngine {
     public void updateNeighbors(){
         for( int i = 0; i < players.size(); i++){
             Player p = players.get( i);
+            int leftIndex = (i - 1) < 0 ? (players.size() - 1) : (i - 1);
+            int rightIndex = (i + 1) > (players.size() - 1) ? 0 : (i + 1);
+            p.neighbors.left = players.get( leftIndex);
+            p.neighbors.right = players.get( rightIndex);
         }
     }
 
