@@ -16,6 +16,21 @@
       </ImageView>
       <HBox fx:id="headerHolder" prefHeight="101.0" prefWidth="1440.0" />
       <HBox fx:id="wonderHolder" layoutX="240.0" layoutY="551.0" prefHeight="75.0" prefWidth="960.0" />
+      <ImageView fx:id="tick1" fitHeight="50.0" fitWidth="50.0" layoutX="1.0" layoutY="551.0" pickOnBounds="true" preserveRatio="true" translateX="490.0" visible="false">
+         <image>
+            <Image url="@../assets/gameIcons/tickIcon.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="tick2" fitHeight="50.0" fitWidth="50.0" layoutX="1.0" layoutY="551.0" pickOnBounds="true" preserveRatio="true" translateX="820.0" visible="false">
+         <image>
+            <Image url="@../assets/gameIcons/tickIcon.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="tick3" fitHeight="50.0" fitWidth="50.0" layoutX="1.0" layoutY="551.0" pickOnBounds="true" preserveRatio="true" translateX="1150.0" visible="false">
+         <image>
+            <Image url="@../assets/gameIcons/tickIcon.png" />
+         </image>
+      </ImageView>
       <AnchorPane fx:id="pvcPane" layoutX="345.0" layoutY="110.0" prefHeight="500.0" prefWidth="750.0" />
       <AnchorPane fx:id="waitLabel" layoutX="194.0" layoutY="164.0" prefHeight="555.0" prefWidth="1051.0" style="-fx-border-radius: 50;" visible="false">
          <children>
