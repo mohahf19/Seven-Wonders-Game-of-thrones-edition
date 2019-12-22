@@ -28,7 +28,7 @@ import java.util.TimerTask;
 
 public class PlayScreenController implements Initializable {
     @FXML
-    private ImageView soundButton, scoreboardButton, seasonBanner, ageButton, waitingAnimation;
+    private ImageView soundButton, scoreboardButton, seasonBanner, ageButton, homeButton, waitingAnimation;
     private static ImageView seasonBannerSt, ageButtonSt, waitingAnimationSt;
 
     @FXML
@@ -57,7 +57,7 @@ public class PlayScreenController implements Initializable {
 
     //for dragging
     private static double orgSceneX, orgSceneY, orgX, orgY, orgTranslateX, orgTranslateY;
-
+    private boolean isHome = true;
 
     CardView sampleCard;
 
@@ -107,6 +107,7 @@ public class PlayScreenController implements Initializable {
         soundButton.addEventHandler(MouseEvent.MOUSE_ENTERED, new soundMouseHoverListener());
         soundButton.addEventHandler(MouseEvent.MOUSE_EXITED, new soundMouseExitListener());
         soundButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new soundMouseClickListener());
+        homeButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new homeMouseClickListener());
         //scoreboardButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new scoreboardMouseClickListener());
 
         setHeaders(Main.gameEngine.getCurrentPlayer().id);
@@ -526,7 +527,74 @@ public class PlayScreenController implements Initializable {
         for (int i = 0; i < updatedPlayers.size(); i++) {
             PlayerSummaryView psv = new PlayerSummaryView(updatedPlayers.get(i));
             psv.update(updatedPlayers.get(i));
+            psv.addEventHandler(MouseEvent.MOUSE_CLICKED, new psvMouseClickListener(updatedPlayers.get(i).house.name));
             headerHolder.getChildren().addAll(psv);
+        }
+    }
+
+    public class psvMouseClickListener implements EventHandler<MouseEvent> {
+        private String name;
+        psvMouseClickListener(String name) {
+            this.name = name;
+        }
+        @Override
+        public void handle(MouseEvent event) {
+            event.consume();
+            try {
+                click();
+            } catch (IOException e) {
+                System.out.println("IOException");
+                e.printStackTrace();
+            }
+        }
+        public void click() throws IOException {
+            //TODO add stuff
+            if (isHome)
+                isHome = false;
+            homeButton.setVisible(true);
+            switch (name) {
+                case "Stark":
+                    System.out.println("HEADER 1");
+                    break;
+                case "Baratheon":
+                    System.out.println("HEADER 2");
+                    break;
+                case "Greyjoy":
+                    System.out.println("HEADER 3");
+                    break;
+                case "Lannister":
+                    System.out.println("HEADER 4");
+                    break;
+                case "Targaryen":
+                    System.out.println("HEADER 5");
+                    break;
+                case "Tyrell":
+                    System.out.println("HEADER 6");
+                    break;
+                case "White Walkers":
+                    System.out.println("HEADER 7");
+                    break;
+            }
+        }
+    }
+
+    public class homeMouseClickListener implements EventHandler<MouseEvent> {
+        @Override
+        public void handle(MouseEvent event) {
+            event.consume();
+            try {
+                click();
+            } catch (IOException e) {
+                System.out.println("IOException");
+                e.printStackTrace();
+            }
+        }
+        public void click() throws IOException {
+            //TODO
+            if (!isHome)
+                isHome = true;
+            homeButton.setVisible(false);
+            System.out.println("Home");
         }
     }
 
