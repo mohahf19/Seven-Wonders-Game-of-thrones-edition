@@ -33,7 +33,8 @@ public class PlayScreenController implements Initializable {
     private static ImageView seasonBannerSt, ageButtonSt, waitingAnimationSt;
 
     @FXML
-    private AnchorPane parentPane;
+    private AnchorPane parentPane, scoreboardPane;
+    private static AnchorPane scoreboardPaneSt;
 
     @FXML
     private HBox cardHolder, headerHolder, wonderHolder;
@@ -92,6 +93,7 @@ public class PlayScreenController implements Initializable {
         scoreboardHolderSt = scoreboardHolder;
         waitingAnimationSt = waitingAnimation;
         coinLabelSt = coinLabel;
+        scoreboardPaneSt = scoreboardPane;
         militaryLabelSt = militaryLabel;
 
         Image backgroundImage = new Image ("assets/scoreboardBackground.png");
@@ -664,11 +666,11 @@ public class PlayScreenController implements Initializable {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                if (scoreboardHolderSt.isVisible()) {
-                    scoreboardHolderSt.setVisible(false);
+                if (scoreboardPaneSt.isVisible()) {
+                    scoreboardPaneSt.setVisible(false);
                 }
                 else {
-                    scoreboardHolderSt.setVisible(true);
+                    scoreboardPaneSt.setVisible(true);
                 }
             }
         });
@@ -676,6 +678,6 @@ public class PlayScreenController implements Initializable {
 
     public static void endGame(){
         waitLabelSt.setVisible( false);
-        scoreboardHolderSt.setVisible( true);
+        scoreboardPaneSt.setVisible( true);
     }
 }
