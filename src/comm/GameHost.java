@@ -169,6 +169,10 @@ public class GameHost {
                     System.out.println("Play next turn");
                     serverController.playTurn();
                 }
+            } case 5:{
+                int playerId = request.get("player_id").getAsInt();
+                int cost = request.get("cost").getAsInt();
+                serverController.tradingCosts.add( new PlayerCost( playerId, cost));
             }
             default:
                 System.out.println( "Invalid opcode");

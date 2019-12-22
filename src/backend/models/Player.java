@@ -1,5 +1,8 @@
 package backend.models;
 
+import backend.app.Main;
+import com.google.gson.JsonObject;
+
 import java.util.ArrayList;
 
 import static backend.app.constants.*;
@@ -280,8 +283,9 @@ public class Player {
         for(int i = 0; i < neededResources.size(); i++){
             cost = cost + agreement.getCost(neededResources.get(i));
         }
-
         System.out.println("Cost of " + neededResources + " is " + cost);
+
+        Main.gameEngine.notifyTrade( player, cost);
     }
 
     private ArrayList<Integer> factorizeResources(int res){
