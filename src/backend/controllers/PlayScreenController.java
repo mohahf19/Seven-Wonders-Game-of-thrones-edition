@@ -47,7 +47,7 @@ public class PlayScreenController implements Initializable {
     private static AnchorPane waitLabelSt;
 
     @FXML
-    private static Label waitingText, coinLabel, militaryLabel;
+    private Label waitingText, coinLabel, militaryLabel;
     private static Label coinLabelSt, militaryLabelSt;
 
     @FXML
@@ -101,7 +101,7 @@ public class PlayScreenController implements Initializable {
         scoreboardHolderSt.setCacheHint(CacheHint.SPEED);
 
         waitLabel.setStyle("-fx-background-color: #580303; -fx-border-radius: 20;");
-//        waitingText.setStyle("-fx-font-size: 35px; -fx-text-fill: white");
+        waitingText.setStyle("-fx-font-size: 35px; -fx-text-fill: white");
 
         // Event listeners for sound button
         soundButton.addEventHandler(MouseEvent.MOUSE_ENTERED, new soundMouseHoverListener());
