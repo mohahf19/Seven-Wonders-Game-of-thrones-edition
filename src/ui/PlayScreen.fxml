@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
 <AnchorPane fx:id="parentPane" maxHeight="900.0" maxWidth="1440.0" minHeight="900.0" minWidth="1440.0" prefHeight="900.0" prefWidth="1440.0" stylesheets="/assets/PlayScreen.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="backend.controllers.PlayScreenController">
    <children>
       <ImageView fitHeight="900.0" fitWidth="1440.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
@@ -66,7 +70,53 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <VBox fx:id="scoreboardHolder" layoutX="249.0" layoutY="100.0" prefHeight="700.0" prefWidth="940.0" visible="false" />
+      <VBox fx:id="scoreboardHolder" layoutX="249.0" layoutY="100.0" prefHeight="700.0" prefWidth="940.0">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="100.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/Scoreboard%20Icons/gotIcon.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/Scoreboard%20Icons/militIcon.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/Scoreboard%20Icons/coinIcon.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/Scoreboard%20Icons/wonderIcon.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/Scoreboard%20Icons/civicIcon.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/Scoreboard%20Icons/commerceIcon.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/Scoreboard%20Icons/scienceIcon.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/Scoreboard%20Icons/victoryIcon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children></VBox>
       <ImageView fx:id="waitingAnimation" fitHeight="900.0" fitWidth="1440.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true" visible="false" />
    </children>
 </AnchorPane>
