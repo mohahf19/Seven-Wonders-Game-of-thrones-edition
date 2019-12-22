@@ -288,7 +288,7 @@ public class Player {
         Main.gameEngine.notifyTrade( player, cost);
     }
 
-    private ArrayList<Integer> factorizeResources(int res){
+    public ArrayList<Integer> factorizeResources(int res){
         ArrayList<Integer> result = new ArrayList<>();
 
         int factors[] = {RES1, RES2, RES3, RES4, RES5, RES6, RES7};
@@ -315,6 +315,13 @@ public class Player {
 
     public ArrayList<Card> getCardsInHand(){
         return this.cards;
+    }
+
+    public ArrayList<Card> getPlayedCards(){
+        if( playedCards == null) {
+            playedCards = new ArrayList<>();
+        }
+        return playedCards;
     }
 
     //private? classes
@@ -346,12 +353,14 @@ public class Player {
             left = new TradingAgreement();
             right = new TradingAgreement();
         }
-    }
-    public ArrayList<Card> getPlayedCards(){
-        if( playedCards == null) {
-            playedCards = new ArrayList<>();
+
+        public TradingAgreement getLeft() {
+            return left;
         }
-        return playedCards;
+
+        public TradingAgreement getRight() {
+            return right;
+        }
     }
 
 
