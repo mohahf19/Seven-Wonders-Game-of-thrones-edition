@@ -1,9 +1,7 @@
 package backend.controllers;
 
 import backend.app.Main;
-import backend.models.Card;
-import backend.models.Player;
-import backend.models.Scoreboard;
+import backend.models.*;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import comm.GameClient;
@@ -79,28 +77,29 @@ public class GameEngine {
         if( card == null)
             return;
 
-//        if (card.isResource()) {
-//            this.getCurrentPlayer().playResource((Resource) card);
-//        }
-//        else if (card.isMilitary()) {
-//            this.getCurrentPlayer().playMilitary((Military) card);
-//        }
-//        else if (card.isCommerce()) {
-//            this.getCurrentPlayer().playCommerce((Commerce) card);
-//        }
-//        else if (card.isScience()) {
-//            this.getCurrentPlayer().playScience((Science) card);
-//        }
-//        else if (card.isCivic()) {
-//            this.getCurrentPlayer().playCivic((Civic) card);
-//        }
-//        else if (card.isCrisis()) {
-//            this.sendWarStarted();
-//        } else {
-//            System.out.println("Failed to determine the type of the card");
-//            // do something
-//        }
+        if (card.isResource()) {
+            this.getCurrentPlayer().playResource((Resource) card);
+        }
+        else if (card.isMilitary()) {
+            this.getCurrentPlayer().playMilitary((Military) card);
+        }
+        else if (card.isCommerce()) {
+            this.getCurrentPlayer().playCommerce((Commerce) card);
+        }
+        else if (card.isScience()) {
+            this.getCurrentPlayer().playScience((Science) card);
+        }
+        else if (card.isCivic()) {
+            this.getCurrentPlayer().playCivic((Civic) card);
+        }
+        else if (card.isCrisis()) {
+            this.sendWarStarted();
+        } else {
+            System.out.println("Failed to determine the type of the card");
+            // do something
+        }
         this.getCurrentPlayer().getPlayedCards().add(card);
+        this.getCurrentPlayer().cards.remove(cardIndex);
         this.cardPlayed(cardIndex);
     }
 
@@ -135,8 +134,8 @@ public class GameEngine {
     }
 
     public int canBuild(Card card) {
-        //return getCurrentPlayer().canBuild(card);
-        return 1;
+        return getCurrentPlayer().canBuild(card);
+//        return 1;
     }
 
     //precondition: current player needs (and can) trade with left neighbor
