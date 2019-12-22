@@ -254,7 +254,7 @@ public class Player {
     }
 
     private boolean alreadyBuilt(Card card) {
-        for(Card c: house.playedCards){
+        for(Card c: getPlayedCards()){
             if (card.name.equalsIgnoreCase(c.name)){
                 return true;
             }
