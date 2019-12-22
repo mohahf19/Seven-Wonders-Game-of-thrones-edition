@@ -2,6 +2,7 @@ package comm;
 
 import backend.models.*;
 import com.google.gson.*;
+import sun.security.ec.ECDHKeyAgreement;
 
 import javax.swing.*;
 import java.lang.reflect.Type;
@@ -66,6 +67,42 @@ class PlayerDeserializer implements JsonDeserializer<Player>
             }
         }
         player.cards = cards;
+
+        try{
+            ArrayList<Card> playedCards = new ArrayList<>();
+            jo = je.getAsJsonObject().getAsJsonArray("playedCards");
+            for( JsonElement e: jo){
+                String type = e.getAsJsonObject().get("cardType").getAsString();
+                switch ( type){
+                    case "resource":
+                        cards.add( g.fromJson( e, Resource.class));
+                        break;
+                    case "military":
+                        cards.add( g.fromJson( e, Military.class));
+                        break;
+                    case "science":
+                        cards.add( g.fromJson( e, Science.class));
+                        break;
+                    case "civic":
+                        cards.add( g.fromJson( e, Civic.class));
+                        break;
+                    case "commerce":
+                        cards.add( g.fromJson( e, Commerce.class));
+                        break;
+                    case "crisis":
+                        cards.add( g.fromJson( e, Crisis.class));
+                        break;
+                    default:
+                        System.out.println("Invalid card");
+                        break;
+
+                }
+            }
+            player.playedCards = playedCards;
+        } catch ( Exception e){
+            player.playedCards = new ArrayList<>();
+        }
+
 
         return player;
     }
