@@ -211,13 +211,17 @@ public class Player {
 
     //return 0 if can't build, 1 if can without trading, 2 if left trading is required
     //3 if right trading
-    public int canBuild(Card card){
-        Cost cost = card.getCost();
+    public int canBuild(Card card) {
         //if card is already built, then you can't build it.
-        if (alreadyBuilt(card)){
+        if (alreadyBuilt(card)) {
             return 0;
         }
+        Cost cost = card.getCost();
 
+        return canBuild(cost);
+    }
+
+    public int canBuild(Cost cost) {
         CostResult result = house.canAfford(cost);
         
         int canBuild = 0;

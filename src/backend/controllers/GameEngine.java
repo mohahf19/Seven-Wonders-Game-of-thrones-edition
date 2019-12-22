@@ -220,7 +220,21 @@ public class GameEngine {
         //if trade is not required, return 1
         //if trade is required, return 0.
         //otherwise, return 0
-        return 1;
+        Wonder wonderToBuild = null;
+        for (Wonder wonder : this.getCurrentPlayer().house.wonders) {
+            if (!wonder.isBuilt()) {
+                wonderToBuild = wonder;
+                break;
+            }
+        }
+        if (wonderToBuild == null)
+            return 0;
+
+        int ret = this.getCurrentPlayer().canBuild(wonderToBuild.getCost());
+        if (ret == 1)
+            return 1;
+        else
+            return 0;
     }
 
     public String getCoins(){
