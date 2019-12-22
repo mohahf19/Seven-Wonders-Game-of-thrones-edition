@@ -4,10 +4,11 @@ import backend.app.constants;
 import backend.controllers.GameEngine;
 import backend.controllers.PlayScreenController;
 import backend.controllers.WaitScreenController;
-import backend.models.Card;
 import backend.models.Player;
 import backend.models.Scoreboard;
-import com.google.gson.*;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 import javax.swing.*;
@@ -109,7 +110,7 @@ public class GameClient {
     public void sendRequest( JsonObject request){
         try{
             out.println( gson.toJson( request));
-            System.out.println( "Sent from client" + gson.toJson( request));
+//            System.out.println( "Sent from client" + gson.toJson( request));
         } catch (Exception e) {
             System.out.println("Exception on client");
             System.out.println( e.getStackTrace()[0].getLineNumber()  + e.toString());
@@ -127,7 +128,7 @@ public class GameClient {
 
             while (true) {
                 String response = in.readLine();
-                System.out.println("data received on client: " + response);
+//                System.out.println("data received on client: " + response);
 
                 JsonObject res = gson.fromJson( response, JsonObject.class);
 

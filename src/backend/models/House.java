@@ -1,5 +1,7 @@
 package backend.models;
 
+import backend.app.Main;
+
 import java.util.ArrayList;
 
 import static backend.app.constants.*;
@@ -95,10 +97,15 @@ public class House {
         return string;
     }
 
-    private String[] getPlayedStructures(){
+    private ArrayList<String> getPlayedStructures(){
+        ArrayList<String> result = new ArrayList<>();
+        if(Main.gameEngine.getPlayedCards() != null) {
+            for (Card card : Main.gameEngine.getPlayedCards()) {
+                result.add(card.name);
+            }
+        }
         //TODO Implement this
-        String[] stucts = {"card1", "card2", "card3"};
-        return stucts;
+        return result;
     }
 
     //returns 0,- if can't, 1,- if it can be built without trading, 2,remaining
@@ -112,10 +119,10 @@ public class House {
         boolean canAffordMoney = cost.getCoins() <= coins;
 
         //check cost.getPrereq()
-        String[] availStructs = getPlayedStructures();
-        for(int i = 0; i < availStructs.length; i++){
-            if(cost.getPrereq().equals(availStructs[i])){
-                System.out.println("Can be built because " + availStructs[i] + " is already built.");
+        ArrayList<String> availStructs = getPlayedStructures();
+        for(int i = 0; i < availStructs.size(); i++){
+            if(cost.getPrereq().equals(availStructs.get(i))){
+                System.out.println("Can be built because " + availStructs.get(i) + " is already built.");
                 result.code = 1;
                 return result;
             }
@@ -128,7 +135,6 @@ public class House {
                 System.out.println("Can build with " + factorResources(resourcesList.get(i)));
                 pay(cost);
                 result.code = 1;
-                return result;
             } else {
                 int gcd = gcd(resourcesList.get(i), cost.getResources());
                 int remaining = cost.getResources() / gcd;
@@ -137,8 +143,8 @@ public class House {
                 System.out.println("To use [" + factorResources(resourcesList.get(i)) + "], it requires " + countPrimes(remaining)
                     +" more resource(s) which is/are " + remaining +" = [" + factorResources(remaining) +"]");
                 result.set(2, remaining);
-                return result;
             }
+            return result;
         }
         return result;
     }
