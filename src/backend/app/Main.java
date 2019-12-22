@@ -1,6 +1,7 @@
 package backend.app;
 
 import backend.controllers.GameEngine;
+import backend.controllers.SoundController;
 import comm.ServerController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -24,7 +25,7 @@ public class Main extends Application {
     public static int state = 0; //0 for client, 1 for server;
     public static ServerController serverController = null;
     public static GameEngine gameEngine = null;
-    public static Clip clip = null;
+
 
     //testing
     double orgSceneX, orgSceneY, orgTranslateX, orgTranslateY;
@@ -42,31 +43,7 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 1440, 900));
         primaryStage.show();
 
-//        ExecutorService service = Executors.newFixedThreadPool(4);
-//        service.execute( new Runnable() {
-//            @Override
-//            public void run() {
-//                playSound();
-//            }
-//        });
-        playSound();
-    }
-
-    public void playSound(){
-        new Thread(new Runnable() {
-            public void run() {
-                try{
-                    File f = new File("src/assets/sound/mainSound.wav");
-                    InputStream in = new BufferedInputStream(new FileInputStream(f));
-                    clip = AudioSystem.getClip();
-                    AudioInputStream inputStream = AudioSystem.getAudioInputStream(in);
-                    clip.open(inputStream);
-                    clip.loop(Clip.LOOP_CONTINUOUSLY);
-                } catch (Exception e){
-                    System.out.println("Media Exception: " + e);
-                }
-            }
-        }).start();
+        SoundController.playMainSound();
     }
 
     public static void initServer(){

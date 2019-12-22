@@ -675,15 +675,7 @@ public class PlayScreenController implements Initializable {
             }
         }
         public void click() throws IOException {
-
-            if( Main.clip != null && Main.clip.isRunning()) {
-                Main.clip.stop();
-            }
-            else if( Main.clip != null){
-                Main.clip.loop( Clip.LOOP_CONTINUOUSLY);
-            }
-
-
+            SoundController.toggleMainSound();
         }
     }
 
