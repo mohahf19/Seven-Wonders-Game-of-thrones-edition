@@ -123,6 +123,8 @@ public class PlayScreenController implements Initializable {
         pvc = new PlayedCardView();
 
         pvcPane.getChildren().add(pvc);
+        
+        updateLabels();
 
         //don't change anything below
         notifyViewLoaded();
@@ -325,6 +327,8 @@ public class PlayScreenController implements Initializable {
                                     Main.gameEngine.tradeLeft(cardIndex);
                                     cardHolderSt.getChildren().remove(cv);
                                     pvc.addCard(card);
+                                } else {
+                                    cv.reset();
                                 }
                                 break;
                             case 1:
@@ -334,6 +338,8 @@ public class PlayScreenController implements Initializable {
                                     Main.gameEngine.tradeRight(cardIndex);
                                     cardHolderSt.getChildren().remove(cv);
                                     pvc.addCard(card);
+                                } else {
+                                    cv.reset();
                                 }
                                 //TODO trade right
                                 break;
@@ -343,6 +349,8 @@ public class PlayScreenController implements Initializable {
                                     Main.gameEngine.playCard(cardIndex);
                                     cardHolderSt.getChildren().remove(cv);
                                     pvc.addCard(card);
+                                } else {
+                                    cv.reset();
                                 }
                                 break;
                             case 3:
@@ -350,8 +358,9 @@ public class PlayScreenController implements Initializable {
                                 if (Main.gameEngine.canBuildWonder() > 0){
                                     Main.gameEngine.buildWonder(cardIndex);
                                     cardHolderSt.getChildren().remove(cv);
+                                } else {
+                                    cv.reset();
                                 }
-                                //TODO play wonder here
                                 break;
                             case 4:
                                 System.out.println("discarding card!");
@@ -363,7 +372,7 @@ public class PlayScreenController implements Initializable {
                         cv.relocate(orgSceneX - orgX, orgSceneY - orgY);
                         cv.setTranslateX(0);
                         cv.setTranslateY(0);
-                        updateUI();
+                        updateLabels();
                         e.consume();
                     });
                     cv.update(cards.get(i));
@@ -373,7 +382,7 @@ public class PlayScreenController implements Initializable {
         });
     }
 
-    private static void updateUI() {
+    private static void updateLabels() {
         coinLabelSt.setText(Main.gameEngine.getCoins());
         militaryLabelSt.setText(Main.gameEngine.getShields());
     }
