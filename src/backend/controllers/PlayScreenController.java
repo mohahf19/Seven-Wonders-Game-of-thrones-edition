@@ -28,7 +28,7 @@ import java.util.TimerTask;
 
 public class PlayScreenController implements Initializable {
     @FXML
-    private ImageView soundButton, scoreboardButton, seasonBanner, ageButton, waitingAnimation;
+    private ImageView soundButton, scoreboardButton, seasonBanner, ageButton, homeButton, waitingAnimation;
     private static ImageView seasonBannerSt, ageButtonSt, waitingAnimationSt;
 
     @FXML
@@ -57,7 +57,9 @@ public class PlayScreenController implements Initializable {
 
     //for dragging
     private static double orgSceneX, orgSceneY, orgX, orgY, orgTranslateX, orgTranslateY;
+    private boolean isHome = true;
 
+    private static ArrayList<Player> updatedPlayers;
 
     CardView sampleCard;
 
@@ -107,6 +109,7 @@ public class PlayScreenController implements Initializable {
         soundButton.addEventHandler(MouseEvent.MOUSE_ENTERED, new soundMouseHoverListener());
         soundButton.addEventHandler(MouseEvent.MOUSE_EXITED, new soundMouseExitListener());
         soundButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new soundMouseClickListener());
+        homeButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new homeMouseClickListener());
         //scoreboardButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new scoreboardMouseClickListener());
 
         setHeaders(Main.gameEngine.getCurrentPlayer().id);
@@ -345,7 +348,8 @@ public class PlayScreenController implements Initializable {
                             case 2:
                                 System.out.println("playing card!");
                                 if(canBuild == 1){
-                                    Main.gameEngine.playCard(cardIndex);
+//                                    Main.gameEngine.playCard(cardIndex);
+                                    Main.gameEngine.getPlayedCards().add(card);
                                     cardHolderSt.getChildren().remove(cv);
                                     pvc.addCard(card);
                                 } else {
@@ -507,7 +511,7 @@ public class PlayScreenController implements Initializable {
     public void setHeaders(int userID) {
         headerHolder.setAlignment(Pos.CENTER);
 
-        ArrayList<Player> updatedPlayers = new ArrayList<>();
+        updatedPlayers = new ArrayList<>();
         Player user, userleft, userright;
         user = Main.gameEngine.players.get(userID);
 
@@ -526,7 +530,52 @@ public class PlayScreenController implements Initializable {
         for (int i = 0; i < updatedPlayers.size(); i++) {
             PlayerSummaryView psv = new PlayerSummaryView(updatedPlayers.get(i));
             psv.update(updatedPlayers.get(i));
+            psv.addEventHandler(MouseEvent.MOUSE_CLICKED, new psvMouseClickListener(i));
             headerHolder.getChildren().addAll(psv);
+        }
+    }
+
+    public class psvMouseClickListener implements EventHandler<MouseEvent> {
+        int id;
+        psvMouseClickListener(int i ){
+            id = i;
+        }
+        @Override
+        public void handle(MouseEvent event) {
+            event.consume();
+            try {
+                click();
+            } catch (IOException e) {
+                System.out.println("IOException");
+                e.printStackTrace();
+            }
+        }
+        public void click() throws IOException {
+            //TODO add stuff
+            if (isHome)
+                isHome = false;
+            homeButton.setVisible(true);
+            pvc.display(PlayScreenController.updatedPlayers.get(id).playedCards);
+        }
+    }
+
+    public class homeMouseClickListener implements EventHandler<MouseEvent> {
+        @Override
+        public void handle(MouseEvent event) {
+            event.consume();
+            try {
+                click();
+            } catch (IOException e) {
+                System.out.println("IOException");
+                e.printStackTrace();
+            }
+        }
+        public void click() throws IOException {
+            //TODO
+            if (!isHome)
+                isHome = true;
+            homeButton.setVisible(false);
+            pvc.display(Main.gameEngine.getPlayedCards());
         }
     }
 
@@ -577,7 +626,7 @@ public class PlayScreenController implements Initializable {
         }
         public void click() throws IOException {
             waitLabelSt.setVisible( true);
-            Main.gameEngine.playCard( 0);
+            Main.gameEngine.discardCard( 0);
 
         }
     }

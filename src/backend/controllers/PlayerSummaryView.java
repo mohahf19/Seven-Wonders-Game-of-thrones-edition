@@ -123,6 +123,10 @@ public class PlayerSummaryView extends Pane {
         shieldsLabel.setText(""+22);
     }
 
+//    public static String getHouseName() {
+//        return  this.nameLabel.getText();
+//    }
+
     @Override protected double computeMinWidth(double height){
         return 240;
     }

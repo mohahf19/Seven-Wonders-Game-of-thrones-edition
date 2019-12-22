@@ -25,6 +25,9 @@ public class Main extends Application {
     public static ServerController serverController = null;
     public static GameEngine gameEngine = null;
 
+    //testing
+    double orgSceneX, orgSceneY, orgTranslateX, orgTranslateY;
+
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -32,6 +35,9 @@ public class Main extends Application {
         //sets up the stage
         Parent root = FXMLLoader.load(getClass().getResource(fxmlPaths.mainMenu));
         primaryStage.setTitle("Seven Houses");
+
+
+
         primaryStage.setScene(new Scene(root, 1440, 900));
         primaryStage.show();
 
@@ -77,8 +83,8 @@ public class Main extends Application {
     }
 
 
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
         launch(args);
     }
 

@@ -135,7 +135,7 @@ public class GameEngine {
 
     public int canBuild(Card card) {
         //return getCurrentPlayer().canBuild(card);
-        return 0;
+        return 1;
     }
 
     //precondition: current player needs (and can) trade with left neighbor
@@ -172,5 +172,13 @@ public class GameEngine {
 
     public String getShields(){
         return "" + getCurrentPlayer().getShieldCount();
+    }
+
+    public ArrayList<Card> getCards(){
+        return getCurrentPlayer().cards;
+    }
+
+    public ArrayList<Card> getPlayedCards(){
+        return getCurrentPlayer().getPlayedCards();
     }
 }
