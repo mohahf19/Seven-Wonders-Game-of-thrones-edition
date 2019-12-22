@@ -59,11 +59,15 @@ public class GameEngine {
     }
 
     public void discardCard(int cardIndex) {
+        //TODO: remove the card from the cards arraylist
         this.getCurrentPlayer().house.coins += 3;
         this.cardPlayed(cardIndex);
     }
 
     public void buildWonder(int cardIndex) {
+        //TODO this must support trading for wonder's resources
+        //this card must not appear in the playedCard arraylist
+        //remember to remove the card from the cards array list
         this.getCurrentPlayer().house.buildWonder();
         this.cardPlayed(cardIndex);
     }
@@ -129,4 +133,44 @@ public class GameEngine {
 
     }
 
+    public int canBuild(Card card) {
+        //return getCurrentPlayer().canBuild(card);
+        return 0;
+    }
+
+    //precondition: current player needs (and can) trade with left neighbor
+    public void tradeLeft(int index) {
+        Card card = getCurrentPlayer().cards.get(index);
+        //TODO trade with left
+        playCard(index);
+        //TODO add the played card to the playedCard array
+        //TODO remove the played card from the cards array
+        //TODO pay left
+    }
+
+    //precondition: current player needs (and can) trade with right neighbor
+    public void tradeRight(int index) {
+        Card card = getCurrentPlayer().cards.get(index);
+        //TODO trade with right
+        playCard(index);
+        //TODO add the played card to the playedCard array
+        //TODO remove the played card from the cards array
+        //TODO pay right
+    }
+
+    public int canBuildWonder() {
+        //TODO check if wonder needs to be traded for.
+        //if trade is not required, return 1
+        //if trade is required, return 0.
+        //otherwise, return 0
+        return 1;
+    }
+
+    public String getCoins(){
+        return "" + getCurrentPlayer().getCoins();
+    }
+
+    public String getShields(){
+        return "" + getCurrentPlayer().getShieldCount();
+    }
 }
