@@ -3,7 +3,8 @@ package backend.models;
 import java.util.ArrayList;
 
 import static backend.app.constants.*;
-import static backend.models.Numbers.*;
+import static backend.models.Numbers.countPrimes;
+import static backend.models.Numbers.gcd;
 
 public class House {
     public String name;
@@ -103,7 +104,7 @@ public class House {
     //returns 0,- if can't, 1,- if it can be built without trading, 2,remaining
     // if it requires trading for the remaining resources (using CostResult class)
     public CostResult canAfford(Cost cost){
-        CostResult result = new CostResult(0,0);
+        CostResult result = new CostResult(0,1);
         System.out.println("Required: " + cost.getCoins() + " money and ["
                 + factorResources(cost.getResources()) + "] or " + cost.getPrereq());
 
