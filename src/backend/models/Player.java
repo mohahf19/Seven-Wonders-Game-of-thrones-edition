@@ -1,10 +1,9 @@
 package backend.models;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static backend.app.constants.*;
-import static java.lang.Math.*;
+import static java.lang.Math.min;
 
 public class Player {
     public int id;
@@ -206,10 +205,14 @@ public class Player {
         return playedScience;
     }
 
-    //return 0 if can't build, 1 if can without trading, 2 if trading is required
-    public int canBuild(Cost cost){ //TODO change this to Card instead of Cost
-        //if it was card, just do Cost cost = card.getCost();
-        //TODO Check card name
+    //return 0 if can't build, 1 if can without trading, 2 if left trading is required
+    //3 if right trading
+    public int canBuild(Card card){
+        Cost cost = card.getCost();
+        //if card is already built, then you can't build it.
+        if (alreadyBuilt(card)){
+            return 0;
+        }
 
         CostResult result = house.canAfford(cost);
         
@@ -237,7 +240,7 @@ public class Player {
                     if (right.code == 1){
                         System.out.println("Can trade with right!");
                         pay(neighbors.right, agreements.right, remaining);
-                        canBuild = 2;
+                        canBuild = 3;
                     } else{
                         canBuild = 0;
                         System.out.println("Trading did not work:(");
@@ -247,6 +250,15 @@ public class Player {
         }
         return canBuild;
 
+    }
+
+    private boolean alreadyBuilt(Card card) {
+        for(Card c: house.playedCards){
+            if (card.name.equalsIgnoreCase(c.name)){
+                return true;
+            }
+        }
+        return false;
     }
 
     private void pay(Player player, TradingAgreement agreement, int remaining) {
