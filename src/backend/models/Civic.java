@@ -12,6 +12,7 @@ public class Civic extends Card {
         super(name, cardFreq, age, cost, constants.path +"civic.jpg", iconPath, constants.path +"blue.jpg", chain1, chain2);
         this.victoryPoint = victoryPoint;
         this.seasonalEffect = seasonalEffect;
+        this.cardType = "civic";
     }
 
     public int getSeasonalEffect() {

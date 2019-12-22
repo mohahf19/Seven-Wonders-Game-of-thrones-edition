@@ -7,6 +7,8 @@ public class Crisis extends Card {
                   String iconPath, String backPath, int crisisID){
         super(name, 1, 3, cost, imagePath, iconPath, backPath, "","");
         this.crisisID = crisisID;
+
+        this.cardType = "crisis";
     }
 
     @Override
