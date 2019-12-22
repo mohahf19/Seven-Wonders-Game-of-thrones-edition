@@ -38,7 +38,7 @@ public class PlayScreenController implements Initializable {
 
     @FXML
     private HBox cardHolder, headerHolder, wonderHolder;
-    private static HBox cardHolderSt;
+    private static HBox cardHolderSt, headerHolderSt;
 
     @FXML
     private VBox scoreboardHolder;
@@ -74,6 +74,28 @@ public class PlayScreenController implements Initializable {
                     ((ScoreboardView) v).updateView(scoreboard.scores.get(count));
                     count++;
                 }
+
+                updatedPlayers = new ArrayList<>();
+                Player user, userleft, userright;
+                user = Main.gameEngine.players.get(Main.gameEngine.getCurrentPlayer().id);
+
+                userleft = Main.gameEngine.players.get((((Main.gameEngine.getCurrentPlayer().id - 1) % Main.gameEngine.players.size()) +
+                        Main.gameEngine.players.size()) % Main.gameEngine.players.size());
+                userright = Main.gameEngine.players.get((Main.gameEngine.getCurrentPlayer().id + 1) % Main.gameEngine.players.size());
+
+                updatedPlayers.add(userleft);
+                for (int i = 0; i < Main.gameEngine.players.size(); i++) {
+                    if (Main.gameEngine.players.get(i) != user && Main.gameEngine.players.get(i) != userright && Main.gameEngine.players.get(i) != userleft) {
+                        updatedPlayers.add(Main.gameEngine.players.get(i));
+                    }
+                }
+                updatedPlayers.add(userright);
+
+                count = 0;
+                for (Node v : headerHolderSt.getChildren()) {
+                    ((PlayerSummaryView) v).update(updatedPlayers.get(count));
+                    count++;
+                }
             }});
     }
 
@@ -95,6 +117,7 @@ public class PlayScreenController implements Initializable {
         coinLabelSt = coinLabel;
         scoreboardPaneSt = scoreboardPane;
         militaryLabelSt = militaryLabel;
+        headerHolderSt = headerHolder;
 
         Image backgroundImage = new Image ("assets/scoreboardBackground.png");
         scoreboardHolder.setBackground(new Background(new BackgroundImage(backgroundImage,BackgroundRepeat.REPEAT,
@@ -366,6 +389,7 @@ public class PlayScreenController implements Initializable {
                                 if (Main.gameEngine.canBuildWonder() > 0){
                                     Main.gameEngine.buildWonder(cardIndex);
                                     cardHolderSt.getChildren().remove(cv);
+                                    waitLabelSt.setVisible( true);
                                 } else {
                                     cv.reset();
                                 }
@@ -374,6 +398,7 @@ public class PlayScreenController implements Initializable {
                                 System.out.println("discarding card!");
                                 Main.gameEngine.discardCard(cardIndex);
                                 cardHolderSt.getChildren().remove(cv);
+                                waitLabelSt.setVisible( true);
                                 break;
                         }
                         System.out.println("e.getSceneX():" + e.getSceneX() + "\te.getSceneY():" +  e.getSceneY());
@@ -464,9 +489,10 @@ public class PlayScreenController implements Initializable {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                if( Main.gameEngine.getCurrentPlayer().cards.size() == 0){
+                //check if new age
+                int size = Main.gameEngine.getCurrentPlayer().cards.size();
+                if( size != 7 && size != 0)
                     waitingAnimationSt.setVisible( false);
-                }
             }});
     }
 
@@ -649,15 +675,7 @@ public class PlayScreenController implements Initializable {
             }
         }
         public void click() throws IOException {
-
-            if( Main.clip != null && Main.clip.isRunning()) {
-                Main.clip.stop();
-            }
-            else if( Main.clip != null){
-                Main.clip.loop( Clip.LOOP_CONTINUOUSLY);
-            }
-
-
+            SoundController.toggleMainSound();
         }
     }
 

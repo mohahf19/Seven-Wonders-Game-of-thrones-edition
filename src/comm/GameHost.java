@@ -163,6 +163,8 @@ public class GameHost {
             } case 4: { //crisis card played
                 serverController.militaryConflictCount++;
                 serverController.cardsSelectedCount++;
+                Player player = playerGson.fromJson( request.get("player").getAsString(), Player.class );
+                serverController.updatePlayer( player, id);
                 if( serverController.cardsSelectedCount >= (clients.size())) {
                     System.out.println("Play next turn");
                     serverController.playTurn();

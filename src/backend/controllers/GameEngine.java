@@ -75,6 +75,7 @@ public class GameEngine {
 
     public void showMilitaryConflict(){
         PlayScreenController.showMilitaryConflict();
+        SoundController.playBattleSound();
         new Thread(new Runnable() {
             public void run() {
                 new Timer().schedule(new TimerTask() {
@@ -101,7 +102,6 @@ public class GameEngine {
     }
 
     public void discardCard(int cardIndex) {
-        //TODO: remove the card from the cards arraylist
         this.getCurrentPlayer().house.coins += 3;
         this.cardPlayed(cardIndex);
     }
@@ -119,31 +119,35 @@ public class GameEngine {
         if( card == null)
             return;
 
-        if (card.isResource()) {
-            this.getCurrentPlayer().playResource((Resource) card);
-        }
-        else if (card.isMilitary()) {
-            this.getCurrentPlayer().playMilitary((Military) card);
-        }
-        else if (card.isCommerce()) {
-            this.getCurrentPlayer().playCommerce((Commerce) card);
-        }
-        else if (card.isScience()) {
-            this.getCurrentPlayer().playScience((Science) card);
-        }
-        else if (card.isCivic()) {
-            this.getCurrentPlayer().playCivic((Civic) card);
-        }
-        else if (card.isCrisis()) {
-            this.getCurrentPlayer().getPlayedCards().add(card);
-            this.startMilitaryConflict( cardIndex);
-            return;
-        } else {
-            System.out.println("Failed to determine the type of the card");
-            // do something
-        }
         this.getCurrentPlayer().getPlayedCards().add(card);
-        this.cardPlayed(cardIndex);
+        this.startMilitaryConflict( cardIndex);
+        return;
+
+//        if (card.isResource()) {
+//            this.getCurrentPlayer().playResource((Resource) card);
+//        }
+//        else if (card.isMilitary()) {
+//            this.getCurrentPlayer().playMilitary((Military) card);
+//        }
+//        else if (card.isCommerce()) {
+//            this.getCurrentPlayer().playCommerce((Commerce) card);
+//        }
+//        else if (card.isScience()) {
+//            this.getCurrentPlayer().playScience((Science) card);
+//        }
+//        else if (card.isCivic()) {
+//            this.getCurrentPlayer().playCivic((Civic) card);
+//        }
+//        else if (card.isCrisis()) {
+//            this.getCurrentPlayer().getPlayedCards().add(card);
+//            this.startMilitaryConflict( cardIndex);
+//            return;
+//        } else {
+//            System.out.println("Failed to determine the type of the card");
+//            // do something
+//        }
+//        this.getCurrentPlayer().getPlayedCards().add(card);
+//        this.cardPlayed(cardIndex);
     }
 
     public void cardPlayed(int cardIndex) {
@@ -215,7 +219,21 @@ public class GameEngine {
         //if trade is not required, return 1
         //if trade is required, return 2.
         //otherwise, return 0
-        return 1;
+        Wonder wonderToBuild = null;
+        for (Wonder wonder : this.getCurrentPlayer().house.wonders) {
+            if (!wonder.isBuilt()) {
+                wonderToBuild = wonder;
+                break;
+            }
+        }
+        if (wonderToBuild == null)
+            return 0;
+
+        int ret = this.getCurrentPlayer().canBuild(wonderToBuild.getCost());
+        if (ret == 1)
+            return 1;
+        else
+            return 0;
     }
 
     public String getCoins(){
