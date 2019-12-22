@@ -4,6 +4,7 @@ import backend.app.Main;
 import backend.models.*;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import comm.GameClient;
 import comm.PlayerDeserializer;
@@ -248,6 +249,15 @@ public class GameEngine {
             return ret;
         else
             return 2;
+    }
+
+    public void notifyTrade(Player p, int cost){
+
+        JsonObject req = new JsonObject();
+        req.addProperty("op_code", 5);
+        req.addProperty("player_id", p.id);
+        req.addProperty("cost", cost);
+        Main.gameEngine.client.sendRequest( req);
     }
 
     public String getCoins(){

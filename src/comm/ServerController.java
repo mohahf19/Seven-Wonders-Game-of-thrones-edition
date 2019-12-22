@@ -33,6 +33,8 @@ public class ServerController {
 
     public boolean firstTurnOfAge = false;
 
+    public static ArrayList<PlayerCost> tradingCosts;
+
 
 
     public ServerController(){
@@ -42,6 +44,7 @@ public class ServerController {
         gsonBuilder.registerTypeAdapter(Player.class, new PlayerDeserializer());
         playerGson = gsonBuilder.create();
 
+
         initData();
     }
 
@@ -50,6 +53,7 @@ public class ServerController {
         players = new ArrayList<>();
         allHouses = new ArrayList<>();
         ages = new ArrayList<>();
+        tradingCosts = new ArrayList<>();
 
         //populate houses
         populateHouses();
@@ -353,6 +357,12 @@ public class ServerController {
     }
 
     public void updateScoreboard(){
+        //updating trading costs for neighbors
+        for( PlayerCost p: tradingCosts){
+            players.get( p.playerId).house.coins += p.cost;
+        }
+        tradingCosts.clear();
+
         for( int i = 0; i < players.size(); i++){
             Player currPlayer = players.get( i);
 
