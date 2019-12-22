@@ -8,7 +8,6 @@ import com.google.gson.JsonObject;
 import comm.GameClient;
 import comm.PlayerDeserializer;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -214,7 +213,7 @@ public class GameEngine {
     public int canBuildWonder() {
         //TODO check if wonder needs to be traded for.
         //if trade is not required, return 1
-        //if trade is required, return 0.
+        //if trade is required, return 2.
         //otherwise, return 0
         Wonder wonderToBuild = null;
         for (Wonder wonder : this.getCurrentPlayer().house.wonders) {
