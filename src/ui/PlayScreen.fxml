@@ -70,7 +70,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="scoreboardPane" layoutX="250.0" layoutY="120.0" prefHeight="700.0" prefWidth="940.0">
+      <AnchorPane fx:id="scoreboardPane" layoutX="250.0" layoutY="120.0" prefHeight="700.0" prefWidth="940.0" visible="false">
          <HBox prefHeight="100.0" prefWidth="200.0">
             <children>
                <ImageView fitHeight="100.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true">
