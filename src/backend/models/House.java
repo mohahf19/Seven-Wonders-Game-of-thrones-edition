@@ -10,7 +10,6 @@ public class House {
     public ArrayList<Integer> resourcesList; //1 means no resources
     public ArrayList<Wonder> wonders;
     public int militaryShields;
-    public ArrayList<Card> playedCards;
     public int coins;
     public int buff;
     public int nerf;
@@ -23,7 +22,6 @@ public class House {
         resourcesList = new ArrayList<>();
         //1 represents no resources
         resourcesList.add(1);
-        playedCards = new ArrayList<>();
         militaryShields = 0;
         addCoins(3);
 
@@ -174,13 +172,6 @@ public class House {
         return militaryShields;
     }
 
-
-
-    public ArrayList<Card> getPlayedCards() {
-        if( playedCards == null)
-            return new ArrayList<>();
-        return playedCards;
-    }
 
     public int getCoins() {
         return coins;

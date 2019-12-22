@@ -9,6 +9,8 @@ public class Military extends Card{
                     String iconPath, String backPath, String chain1, String chain2, int numberOfShields){
         super(name, cardFreq, age, cost, constants.path +"military.jpg", iconPath, constants.path +"red.jpg", chain1, chain2);
         this.numberOfShields = numberOfShields;
+
+        this.cardType = "military";
     }
 
     @Override

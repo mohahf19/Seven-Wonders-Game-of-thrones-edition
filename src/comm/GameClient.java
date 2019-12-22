@@ -4,10 +4,10 @@ import backend.app.constants;
 import backend.controllers.GameEngine;
 import backend.controllers.PlayScreenController;
 import backend.controllers.WaitScreenController;
+import backend.models.Card;
 import backend.models.Player;
 import backend.models.Scoreboard;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
+import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 
 import javax.swing.*;
@@ -34,11 +34,16 @@ public class GameClient {
     public int id = -1;
 
     private Gson gson;
+    private Gson playerGson;
 
     public GameClient( String server, GameEngine engine) {
         this.engine = engine;
         serverAddress = server;
         gson = new Gson();
+
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(Player.class, new PlayerDeserializer());
+        playerGson = gsonBuilder.create();
     }
     public void startClient(){
         initClient();
@@ -146,6 +151,7 @@ public class GameClient {
                     } case 1: { //receive players first time
                         Type playersListType = new TypeToken<List<Player>>() {}.getType();
                         ArrayList<Player> players = gson.fromJson( res.get("all_players").getAsString(), playersListType );
+
                         engine.players = players;
                         System.out.println( "Houses updated: " + players.size());
 
@@ -164,7 +170,16 @@ public class GameClient {
                         break;
                     } case 3: { //update players
                         Type playersListType = new TypeToken<List<Player>>() {}.getType();
-                        ArrayList<Player> players = gson.fromJson( res.get("all_players").getAsString(), playersListType );
+                        ArrayList<Player> players = playerGson.fromJson( res.get("all_players").getAsString(), playersListType );
+
+//                        JsonArray allPlayers = res.get("all_players").getAsJsonArray();
+//                        for(JsonElement j: allPlayers){
+//                            JsonArray cards = j.getAsJsonObject().get("cards").getAsJsonArray();
+//                            for( JsonElement card: cards){
+//                                System.out.println( "card is: " + gson.fromJson( card, Object.class));
+//                            }
+//                        }
+
                         engine.players = players;
 
                         // call something to update all cards, all player reaources etc.

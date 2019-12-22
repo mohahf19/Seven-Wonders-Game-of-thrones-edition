@@ -2,6 +2,7 @@ package comm;
 
 import backend.models.*;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
@@ -18,6 +19,7 @@ public class ServerController {
 
     public GameHost host;
     private Gson gson;
+    private Gson playerGson;
 
     public ArrayList<Player> players;
     public ArrayList<House> allHouses;
@@ -31,8 +33,15 @@ public class ServerController {
 
     public boolean firstTurnOfAge = false;
 
+
+
     public ServerController(){
         gson = new Gson();
+
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(Player.class, new PlayerDeserializer());
+        playerGson = gsonBuilder.create();
+
         initData();
     }
 

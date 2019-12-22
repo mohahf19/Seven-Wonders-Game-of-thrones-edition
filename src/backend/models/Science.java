@@ -9,6 +9,7 @@ public class Science extends Card{
         super(name, cardFreq, age, cost, constants.path +"science.jpg", iconPath, constants.path +"green.jpg", chain1, chain2);
 
         this.type = type;
+        this.cardType = "science";
     }
 
     @Override

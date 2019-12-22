@@ -99,9 +99,7 @@ public class GameEngine {
             System.out.println("Failed to determine the type of the card");
             // do something
         }
-        if( this.getCurrentPlayer().house.playedCards == null)
-            this.getCurrentPlayer().house.playedCards = new ArrayList<>();
-        this.getCurrentPlayer().house.playedCards.add(card);
+        this.getCurrentPlayer().getPlayedCards().add(card);
         this.cardPlayed(cardIndex);
     }
 
