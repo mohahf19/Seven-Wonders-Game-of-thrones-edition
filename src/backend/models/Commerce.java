@@ -73,4 +73,7 @@ public class Commerce extends Card {
         return cardReq;
     }
 
+    @Override
+    public boolean isCommerce(){return true;};
+
 }

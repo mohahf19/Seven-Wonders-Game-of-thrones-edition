@@ -2,7 +2,6 @@ package backend.controllers;
 
 import backend.app.Main;
 import backend.models.Card;
-import backend.models.Deck;
 import backend.models.Player;
 import backend.models.Scoreboard;
 import com.google.gson.JsonObject;
@@ -22,7 +21,6 @@ import javafx.scene.layout.*;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.Timer;
@@ -49,7 +47,13 @@ public class PlayScreenController implements Initializable {
     private static AnchorPane waitLabelSt;
 
     @FXML
-    private Label waitingText, coinLabel, militaryLabel;
+    private static Label waitingText, coinLabel, militaryLabel;
+    private static Label coinLabelSt, militaryLabelSt;
+
+    @FXML
+    private AnchorPane pvcPane;
+
+    private static PlayedCardView pvc;
 
     //for dragging
     private static double orgSceneX, orgSceneY, orgX, orgY, orgTranslateX, orgTranslateY;
@@ -77,12 +81,15 @@ public class PlayScreenController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //static walkaround
         seasonBannerSt = seasonBanner;
         ageButtonSt = ageButton;
         cardHolderSt = cardHolder;
         waitLabelSt = waitLabel;
         scoreboardHolderSt = scoreboardHolder;
         waitingAnimationSt = waitingAnimation;
+        coinLabelSt = coinLabel;
+        militaryLabelSt = militaryLabel;
 
         Image backgroundImage = new Image ("assets/scoreboardBackground.png");
         scoreboardHolder.setBackground(new Background(new BackgroundImage(backgroundImage,BackgroundRepeat.REPEAT,
@@ -94,7 +101,7 @@ public class PlayScreenController implements Initializable {
         scoreboardHolderSt.setCacheHint(CacheHint.SPEED);
 
         waitLabel.setStyle("-fx-background-color: #580303; -fx-border-radius: 20;");
-        waitingText.setStyle("-fx-font-size: 35px; -fx-text-fill: white");
+//        waitingText.setStyle("-fx-font-size: 35px; -fx-text-fill: white");
 
         // Event listeners for sound button
         soundButton.addEventHandler(MouseEvent.MOUSE_ENTERED, new soundMouseHoverListener());
@@ -113,6 +120,9 @@ public class PlayScreenController implements Initializable {
                 initScoreboard();
             }
         },1000);
+        pvc = new PlayedCardView();
+
+        pvcPane.getChildren().add(pvc);
 
         //don't change anything below
         notifyViewLoaded();
@@ -270,6 +280,7 @@ public class PlayScreenController implements Initializable {
                         orgTranslateY = cv.getTranslateY();
                         e.consume();
                     });
+
                     cv.setOnMouseDragged(e->{
                         int region = decideRegion(e.getSceneX(), e.getSceneY());
                         switch (region){
@@ -298,6 +309,11 @@ public class PlayScreenController implements Initializable {
                     });
                     cv.setOnMouseReleased(e->{
                         int region = decideRegion(e.getSceneX(), e.getSceneY());
+                        int cardIndex = cv.id;
+                        Card card = cards.get(cv.id);
+                        //0 if can't build, 1 if can without trading, 2 if left trading is required
+                        //3 if right trading
+                        int canBuild = Main.gameEngine.canBuild(cards.get(cv.id));
                         switch (region){
                             case -1:
                                 System.out.println("dropped nowhere important..");
@@ -305,33 +321,49 @@ public class PlayScreenController implements Initializable {
                             case 0:
                                 //TODO trade left
                                 System.out.println("left trading!");
-                                cardHolderSt.getChildren().remove(cv);
+                                if(canBuild == 2){
+                                    Main.gameEngine.tradeLeft(cardIndex);
+                                    cardHolderSt.getChildren().remove(cv);
+                                    pvc.addCard(card);
+                                }
                                 break;
                             case 1:
+                                //TODO trade right
                                 System.out.println("right trading!");
-                                cardHolderSt.getChildren().remove(cv);
+                                if(canBuild == 3){
+                                    Main.gameEngine.tradeRight(cardIndex);
+                                    cardHolderSt.getChildren().remove(cv);
+                                    pvc.addCard(card);
+                                }
                                 //TODO trade right
                                 break;
                             case 2:
                                 System.out.println("playing card!");
-                                cardHolderSt.getChildren().remove(cv);
-                                //TODO play card here
+                                if(canBuild == 1){
+                                    Main.gameEngine.playCard(cardIndex);
+                                    cardHolderSt.getChildren().remove(cv);
+                                    pvc.addCard(card);
+                                }
                                 break;
                             case 3:
                                 System.out.println("building wonder!");
-                                cardHolderSt.getChildren().remove(cv);
+                                if (Main.gameEngine.canBuildWonder() > 0){
+                                    Main.gameEngine.buildWonder(cardIndex);
+                                    cardHolderSt.getChildren().remove(cv);
+                                }
                                 //TODO play wonder here
                                 break;
                             case 4:
                                 System.out.println("discarding card!");
+                                Main.gameEngine.discardCard(cardIndex);
                                 cardHolderSt.getChildren().remove(cv);
-                                //TODO discard card for coin here
                                 break;
                         }
                         System.out.println("e.getSceneX():" + e.getSceneX() + "\te.getSceneY():" +  e.getSceneY());
                         cv.relocate(orgSceneX - orgX, orgSceneY - orgY);
                         cv.setTranslateX(0);
                         cv.setTranslateY(0);
+                        updateUI();
                         e.consume();
                     });
                     cv.update(cards.get(i));
@@ -339,6 +371,11 @@ public class PlayScreenController implements Initializable {
                 }
             }
         });
+    }
+
+    private static void updateUI() {
+        coinLabelSt.setText(Main.gameEngine.getCoins());
+        militaryLabelSt.setText(Main.gameEngine.getShields());
     }
 
 
