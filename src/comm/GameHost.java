@@ -157,9 +157,16 @@ public class GameHost {
                     serverController.playTurn();
                 }
                 break;
-            } case 3: {
+            } case 3: { //playScreen initialized
                 serverController.viewInitialized();
                 break;
+            } case 4: { //crisis card played
+                serverController.militaryConflictCount++;
+                serverController.cardsSelectedCount++;
+                if( serverController.cardsSelectedCount >= (clients.size())) {
+                    System.out.println("Play next turn");
+                    serverController.playTurn();
+                }
             }
             default:
                 System.out.println( "Invalid opcode");

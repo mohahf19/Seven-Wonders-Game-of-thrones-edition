@@ -11,9 +11,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.sql.Time;
+import java.util.*;
 
 public class ServerController {
 
@@ -30,6 +29,7 @@ public class ServerController {
     public int currentSeason;
 
     public int cardsSelectedCount = 0;
+    public int militaryConflictCount = 0;
 
     public boolean firstTurnOfAge = false;
 
@@ -194,27 +194,70 @@ public class ServerController {
     }
 
     public void playTurn(){
+        //check military conflict
+        if( militaryConflictCount > 0){
+            startMilitaryConflict(new Callback() {
+                @Override
+                public void onCallback() {
+                    boolean cont = shuffleCards();
+                    if( cont){
+                        //go to next turn
+                        cardsSelectedCount = 0;
+                        changeSeason();
 
+                        //update houses
+                        sendHouses();
 
-        //shuffle cards around
-        boolean cont = shuffleCards();
-        if( cont){
-            //go to next turn
-            cardsSelectedCount = 0;
-            changeSeason();
+                        //update the scoreboard and send it to clients
+                        updateScoreboard();
 
-            //update houses
-            sendHouses();
-
-            //update the scoreboard and send it to clients
-            updateScoreboard();
-
-            firstTurnOfAge = false;
+                        firstTurnOfAge = false;
+                    } else {
+                        //go to next age
+                        startMilitaryConflict(new Callback() {
+                            @Override
+                            public void onCallback() {
+                                incrementAge();
+                            }
+                        });
+                    }
+                }
+            });
+            for( int i = 1; i < militaryConflictCount; i++){
+                startMilitaryConflict(new Callback() {
+                    @Override
+                    public void onCallback() {
+                        //do nothing
+                    }
+                });
+            }
+            militaryConflictCount = 0;
         } else {
-            //go to next age
-            incrementAge();
-        }
+            militaryConflictCount = 0;
+            //shuffle cards around
+            boolean cont = shuffleCards();
+            if( cont){
+                //go to next turn
+                cardsSelectedCount = 0;
+                changeSeason();
 
+                //update houses
+                sendHouses();
+
+                //update the scoreboard and send it to clients
+                updateScoreboard();
+
+                firstTurnOfAge = false;
+            } else {
+                //go to next age
+                startMilitaryConflict(new Callback() {
+                    @Override
+                    public void onCallback() {
+                        incrementAge();
+                    }
+                });
+            }
+        }
     }
 
     public void sendHouseJoined(){
@@ -254,7 +297,7 @@ public class ServerController {
         this.players.set( id, player);
     }
 
-    public void startMilitaryConflict(){
+    public void startMilitaryConflict( Callback c){
         int additionPoint = (currentAge * 2) + 1;
 
         for( int i = 0; i < players.size(); i++){
@@ -289,6 +332,24 @@ public class ServerController {
             players.get( i).house.militaryShields += shieldChange; //baratheon and white walkers buff and nerfs
         }
         updateScoreboard();
+        militaryConflictEnded( c);
+    }
+
+    public void militaryConflictEnded( Callback c){
+        for( int i = 0; i < host.clients.size(); i++){
+
+            JsonObject outOb = new JsonObject();
+            outOb.addProperty( "op_code", 8);
+
+            host.sendRequest( i, outOb);
+        }
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                c.onCallback();
+            }
+        }, 3000);
+
     }
 
     public void updateScoreboard(){
@@ -328,6 +389,10 @@ public class ServerController {
             scoreboard = new Scoreboard( players.size());
             incrementAge();
         }
+    }
+
+    public interface Callback{
+        public void onCallback();
     }
 }
 

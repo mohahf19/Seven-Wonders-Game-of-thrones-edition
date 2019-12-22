@@ -8,7 +8,10 @@ import com.google.gson.JsonObject;
 import comm.GameClient;
 import comm.PlayerDeserializer;
 
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class GameEngine {
     public GameClient client;
@@ -71,8 +74,31 @@ public class GameEngine {
         PlayScreenController.endGame();
     }
 
-    public void sendWarStarted(){
-        // TODO: fill this
+    public void showMilitaryConflict(){
+        PlayScreenController.showMilitaryConflict();
+        new Thread(new Runnable() {
+            public void run() {
+                new Timer().schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        PlayScreenController.hideMilitaryConflict();
+                    }
+                }, 3000);
+            }
+        }).start();
+
+    }
+    public void startMilitaryConflict( int cardIndex){
+        this.getCurrentPlayer().cards.remove(cardIndex);
+
+        getCurrentPlayer().neighbors.left = null;
+        getCurrentPlayer().neighbors.right = null;
+
+        JsonObject req = new JsonObject();
+        req.addProperty("op_code", 4);
+        req.addProperty("player", gson.toJson( getCurrentPlayer()));
+
+        Main.gameEngine.client.sendRequest( req);
     }
 
     public void discardCard(int cardIndex) {
@@ -110,7 +136,9 @@ public class GameEngine {
             this.getCurrentPlayer().playCivic((Civic) card);
         }
         else if (card.isCrisis()) {
-            this.sendWarStarted();
+            this.getCurrentPlayer().getPlayedCards().add(card);
+            this.startMilitaryConflict( cardIndex);
+            return;
         } else {
             System.out.println("Failed to determine the type of the card");
             // do something

@@ -449,6 +449,25 @@ public class PlayScreenController implements Initializable {
         });
     }
 
+    public static void showMilitaryConflict(){
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                waitingAnimationSt.setVisible( true);
+                Image image = new Image("assets/militaryConflict/militaryConflict.png");
+                waitingAnimationSt.setImage(image);
+            }});
+    }
+    public static void hideMilitaryConflict(){
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                if( Main.gameEngine.getCurrentPlayer().cards.size() == 0){
+                    waitingAnimationSt.setVisible( false);
+                }
+            }});
+    }
+
     public static void updateAgeImage( int currAge) {
         Platform.runLater(new Runnable() {
             @Override
