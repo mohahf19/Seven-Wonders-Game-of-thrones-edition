@@ -464,9 +464,8 @@ public class PlayScreenController implements Initializable {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                if( Main.gameEngine.getCurrentPlayer().cards.size() == 0){
-                    waitingAnimationSt.setVisible( false);
-                }
+                //check if new age
+                waitingAnimationSt.setVisible( false);
             }});
     }
 

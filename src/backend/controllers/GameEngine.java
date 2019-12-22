@@ -120,6 +120,10 @@ public class GameEngine {
         if( card == null)
             return;
 
+//        this.getCurrentPlayer().getPlayedCards().add(card);
+//        this.startMilitaryConflict( cardIndex);
+//        return;
+
         if (card.isResource()) {
             this.getCurrentPlayer().playResource((Resource) card);
         }
