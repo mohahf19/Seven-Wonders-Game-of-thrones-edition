@@ -102,7 +102,6 @@ public class GameEngine {
     }
 
     public void discardCard(int cardIndex) {
-        //TODO: remove the card from the cards arraylist
         this.getCurrentPlayer().house.coins += 3;
         this.cardPlayed(cardIndex);
     }
