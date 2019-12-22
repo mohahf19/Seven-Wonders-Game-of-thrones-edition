@@ -348,7 +348,7 @@ public class PlayScreenController implements Initializable {
                             case 2:
                                 System.out.println("playing card!");
                                 if(canBuild == 1){
-//                                    Main.gameEngine.playCard(cardIndex);
+                                    Main.gameEngine.playCard(cardIndex);
                                     Main.gameEngine.getPlayedCards().add(card);
                                     cardHolderSt.getChildren().remove(cv);
                                     pvc.addCard(card);
