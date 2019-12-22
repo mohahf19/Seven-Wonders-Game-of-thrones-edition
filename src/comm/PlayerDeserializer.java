@@ -75,22 +75,22 @@ public class PlayerDeserializer implements JsonDeserializer<Player>
                 String type = e.getAsJsonObject().get("cardType").getAsString();
                 switch ( type){
                     case "resource":
-                        cards.add( g.fromJson( e, Resource.class));
+                        playedCards.add( g.fromJson( e, Resource.class));
                         break;
                     case "military":
-                        cards.add( g.fromJson( e, Military.class));
+                        playedCards.add( g.fromJson( e, Military.class));
                         break;
                     case "science":
-                        cards.add( g.fromJson( e, Science.class));
+                        playedCards.add( g.fromJson( e, Science.class));
                         break;
                     case "civic":
-                        cards.add( g.fromJson( e, Civic.class));
+                        playedCards.add( g.fromJson( e, Civic.class));
                         break;
                     case "commerce":
-                        cards.add( g.fromJson( e, Commerce.class));
+                        playedCards.add( g.fromJson( e, Commerce.class));
                         break;
                     case "crisis":
-                        cards.add( g.fromJson( e, Crisis.class));
+                        playedCards.add( g.fromJson( e, Crisis.class));
                         break;
                     default:
                         System.out.println("Invalid card");
