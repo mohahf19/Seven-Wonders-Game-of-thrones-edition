@@ -8,7 +8,6 @@ import com.google.gson.JsonObject;
 import comm.GameClient;
 import comm.PlayerDeserializer;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -76,6 +75,7 @@ public class GameEngine {
 
     public void showMilitaryConflict(){
         PlayScreenController.showMilitaryConflict();
+        SoundController.playBattleSound();
         new Thread(new Runnable() {
             public void run() {
                 new Timer().schedule(new TimerTask() {
