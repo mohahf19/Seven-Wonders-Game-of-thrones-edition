@@ -119,10 +119,6 @@ public class GameEngine {
         if( card == null)
             return;
 
-//        this.getCurrentPlayer().getPlayedCards().add(card);
-//        this.startMilitaryConflict( cardIndex);
-//        return;
-
         if (card.isResource()) {
             this.getCurrentPlayer().playResource((Resource) card);
         }
@@ -191,17 +187,16 @@ public class GameEngine {
 
     public int canBuild(Card card) {
         return getCurrentPlayer().canBuild(card);
-//        return 1;
     }
 
     //precondition: current player needs (and can) trade with left neighbor
     public void tradeLeft(int index) {
         Card card = getCurrentPlayer().cards.get(index);
         //TODO trade with left
-        playCard(index);
-        //TODO add the played card to the playedCard array
+        //playCard(index);
         //TODO remove the played card from the cards array
         //TODO pay left
+        payTrade(0, card.getCost());
     }
 
     //precondition: current player needs (and can) trade with right neighbor
@@ -209,15 +204,34 @@ public class GameEngine {
         Card card = getCurrentPlayer().cards.get(index);
         //TODO trade with right
         playCard(index);
-        //TODO add the played card to the playedCard array
         //TODO remove the played card from the cards array
         //TODO pay right
+        payTrade(1, card.getCost());
+    }
+
+    public void payTrade(int neighbor, Cost cost) {
+        // 0 - left
+        // 1 - right
+        CostResult costResult = this.getCurrentPlayer().house.canAfford(cost);
+        ArrayList<Integer> resourcesToBuy = this.getCurrentPlayer().factorizeResources(costResult.remaining);
+        int payment = 0;
+        for (Integer res : resourcesToBuy) {
+            if (neighbor == 0)
+                payment += this.getCurrentPlayer().agreements.getLeft().getCost(res);
+            else
+                payment += this.getCurrentPlayer().agreements.getRight().getCost(res);
+        }
+        this.getCurrentPlayer().house.addCoins(-1 * payment);
+        // if neighbor == 0
+        //     notify server about the payment to the left neighbor
+        // else
+        //     notify server about the payment to the right neighbor
     }
 
     public int canBuildWonder() {
         //TODO check if wonder needs to be traded for.
         //if trade is not required, return 1
-        //if trade is required, return 0.
+        //if trade is required, return 2.
         //otherwise, return 0
         Wonder wonderToBuild = null;
         for (Wonder wonder : this.getCurrentPlayer().house.wonders) {
@@ -230,10 +244,10 @@ public class GameEngine {
             return 0;
 
         int ret = this.getCurrentPlayer().canBuild(wonderToBuild.getCost());
-        if (ret == 1)
-            return 1;
+        if (ret <= 1)
+            return ret;
         else
-            return 0;
+            return 2;
     }
 
     public String getCoins(){
