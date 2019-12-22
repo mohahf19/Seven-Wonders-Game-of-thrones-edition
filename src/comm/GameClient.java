@@ -156,8 +156,10 @@ public class GameClient {
                         System.out.println( "Houses updated: " + players.size());
 
                         ArrayList<String> houses = new ArrayList<>();
+                        houses.add( engine.getCurrentPlayer().house.name);
                         for( Player a: engine.players){
-                            houses.add( a.house.name);
+                            if( a != engine.getCurrentPlayer())
+                                houses.add( a.house.name);
                         }
                         WaitScreenController.updateHouses( houses);
 
