@@ -645,7 +645,6 @@ public class PlayScreenController implements Initializable {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-
                 if (scoreboardHolderSt.isVisible()) {
                     scoreboardHolderSt.setVisible(false);
                 }
