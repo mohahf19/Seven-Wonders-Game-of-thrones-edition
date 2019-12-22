@@ -1,7 +1,6 @@
 package backend.app;
 
 import backend.controllers.GameEngine;
-import backend.models.House;
 import comm.ServerController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -9,13 +8,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import com.google.gson.Gson;
 
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import java.io.BufferedInputStream;
 import java.io.File;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.io.FileInputStream;
+import java.io.InputStream;
 
 public class Main extends Application {
 
@@ -35,30 +35,36 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 1440, 900));
         primaryStage.show();
 
-        ExecutorService service = Executors.newFixedThreadPool(4);
-        service.execute( new Runnable() {
-            @Override
-            public void run() {
-                //playSound();
-            }
-        });
+//        ExecutorService service = Executors.newFixedThreadPool(4);
+//        service.execute( new Runnable() {
+//            @Override
+//            public void run() {
+//                playSound();
+//            }
+//        });
+        playSound();
     }
 
     public void playSound(){
-        String musicFile = getClass().toString() + "/assets/sound/mainSound.mp3";//"/assets/sound/mainSound.mp3";
-
-        Media sound = new Media(new File(musicFile).toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(sound);
-        mediaPlayer.play();
+        new Thread(new Runnable() {
+            public void run() {
+                try{
+                    File f = new File("src/assets/sound/mainSound.wav");
+                    InputStream in = new BufferedInputStream(new FileInputStream(f));
+                    Clip clip = AudioSystem.getClip();
+                    AudioInputStream inputStream = AudioSystem.getAudioInputStream(in);
+                    clip.open(inputStream);
+                    clip.loop(Clip.LOOP_CONTINUOUSLY);
+                } catch (Exception e){
+                    System.out.println("Media Exception: " + e);
+                }
+            }
+        }).start();
     }
 
     public static void initServer(){
         serverController = new ServerController();
         gameEngine = new GameEngine();
-//        House lannister = gameEngine.initHouse("lannister");
-//        Gson gson = new Gson();
-//        String json = gson.toJson(lannister);
-//        System.out.println(json);
         state = 1;
         serverController.initServer();
     }
