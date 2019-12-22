@@ -30,7 +30,7 @@ import java.util.TimerTask;
 
 public class PlayScreenController implements Initializable {
     @FXML
-    private ImageView soundButton, scoreboardButton, seasonBanner, ageButton, homeButton, waitingAnimation;
+    private ImageView soundButton, scoreboardButton, seasonBanner, ageButton, homeButton, waitingAnimation, tick1, tick2, tick3;
     private static ImageView seasonBannerSt, ageButtonSt, waitingAnimationSt;
 
     @FXML
