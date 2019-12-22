@@ -23,7 +23,9 @@ public class Player {
         cards = null;
         neighbors = new Neighbors();
         house = null;
-        agreements = null;
+        agreements = new TradingAgreements();
+        agreements.left = new TradingAgreement();
+        agreements.right = new TradingAgreement();
         currentMilitaryPoints = 0;
     }
 

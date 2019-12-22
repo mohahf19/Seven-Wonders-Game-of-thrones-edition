@@ -120,7 +120,12 @@ public class GameEngine {
     }
 
     public void cardPlayed(int cardIndex) {
-        this.getCurrentPlayer().getCardsInHand().remove(cardIndex);
+        System.out.println("CARDPLAYED CAR, size: " + this.getCurrentPlayer().cards.size());
+
+        this.getCurrentPlayer().cards.remove(cardIndex);
+
+        System.out.println("AFTER CALL, size: " + this.getCurrentPlayer().cards.size());
+
         getCurrentPlayer().neighbors.left = null;
         getCurrentPlayer().neighbors.right = null;
 
