@@ -389,6 +389,7 @@ public class PlayScreenController implements Initializable {
                                 if (Main.gameEngine.canBuildWonder() > 0){
                                     Main.gameEngine.buildWonder(cardIndex);
                                     cardHolderSt.getChildren().remove(cv);
+                                    waitLabelSt.setVisible( true);
                                 } else {
                                     cv.reset();
                                 }
@@ -397,6 +398,7 @@ public class PlayScreenController implements Initializable {
                                 System.out.println("discarding card!");
                                 Main.gameEngine.discardCard(cardIndex);
                                 cardHolderSt.getChildren().remove(cv);
+                                waitLabelSt.setVisible( true);
                                 break;
                         }
                         System.out.println("e.getSceneX():" + e.getSceneX() + "\te.getSceneY():" +  e.getSceneY());
