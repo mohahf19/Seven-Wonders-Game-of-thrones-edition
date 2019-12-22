@@ -28,8 +28,8 @@ public class PlayerSummaryView extends Pane {
         initComponents();
 
         nameLabel.setText(p.house.name);
-        coinsLabel.setText("" + 22);
-        shieldsLabel.setText("" + 22);
+        coinsLabel.setText("" + p.house.coins);
+        shieldsLabel.setText("" + p.house.militaryShields);
 
         // Initializing images
         Image image;
@@ -119,8 +119,9 @@ public class PlayerSummaryView extends Pane {
 
     //updates this view
     public void update(Player p){
-        coinsLabel.setText(""+ 22);
-        shieldsLabel.setText(""+22);
+        System.out.println(p.house.name + " has this many coins: " + p.house.coins);
+        coinsLabel.setText(""+ p.house.coins);
+        shieldsLabel.setText(""+p.house.militaryShields);
     }
 
 //    public static String getHouseName() {
