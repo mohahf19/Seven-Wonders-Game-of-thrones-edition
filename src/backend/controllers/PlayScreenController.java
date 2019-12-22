@@ -19,6 +19,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 
+import javax.sound.sampled.Clip;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -329,6 +330,7 @@ public class PlayScreenController implements Initializable {
                                     Main.gameEngine.tradeLeft(cardIndex);
                                     cardHolderSt.getChildren().remove(cv);
                                     pvc.addCard(card);
+                                    waitLabelSt.setVisible( true);
                                 } else {
                                     cv.reset();
                                 }
@@ -340,6 +342,7 @@ public class PlayScreenController implements Initializable {
                                     Main.gameEngine.tradeRight(cardIndex);
                                     cardHolderSt.getChildren().remove(cv);
                                     pvc.addCard(card);
+                                    waitLabelSt.setVisible( true);
                                 } else {
                                     cv.reset();
                                 }
@@ -352,6 +355,7 @@ public class PlayScreenController implements Initializable {
                                     Main.gameEngine.getPlayedCards().add(card);
                                     cardHolderSt.getChildren().remove(cv);
                                     pvc.addCard(card);
+                                    waitLabelSt.setVisible( true);
                                 } else {
                                     cv.reset();
                                 }
@@ -625,8 +629,14 @@ public class PlayScreenController implements Initializable {
             }
         }
         public void click() throws IOException {
-            waitLabelSt.setVisible( true);
-            Main.gameEngine.discardCard( 0);
+
+            if( Main.clip != null && Main.clip.isRunning()) {
+                Main.clip.stop();
+            }
+            else if( Main.clip != null){
+                Main.clip.loop( Clip.LOOP_CONTINUOUSLY);
+            }
+
 
         }
     }

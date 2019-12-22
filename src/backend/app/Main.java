@@ -24,6 +24,7 @@ public class Main extends Application {
     public static int state = 0; //0 for client, 1 for server;
     public static ServerController serverController = null;
     public static GameEngine gameEngine = null;
+    public static Clip clip = null;
 
     //testing
     double orgSceneX, orgSceneY, orgTranslateX, orgTranslateY;
@@ -57,7 +58,7 @@ public class Main extends Application {
                 try{
                     File f = new File("src/assets/sound/mainSound.wav");
                     InputStream in = new BufferedInputStream(new FileInputStream(f));
-                    Clip clip = AudioSystem.getClip();
+                    clip = AudioSystem.getClip();
                     AudioInputStream inputStream = AudioSystem.getAudioInputStream(in);
                     clip.open(inputStream);
                     clip.loop(Clip.LOOP_CONTINUOUSLY);
