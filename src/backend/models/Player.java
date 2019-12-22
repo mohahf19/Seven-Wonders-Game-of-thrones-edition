@@ -222,9 +222,11 @@ public class Player {
         switch(result.code) {
             case 0:
                 System.out.println("cannot build.");
+                break;
             case 1:
                 System.out.println("can build without trading.");
                 canBuild = 1;
+                break;
             case 2:
                 System.out.println("can build if trading works.");
                 int remaining = result.remaining;
@@ -247,6 +249,7 @@ public class Player {
                         System.out.println("Trading did not work:(");
                     }
                 }
+                break;
 
         }
         return canBuild;
