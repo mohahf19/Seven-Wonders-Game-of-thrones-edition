@@ -116,7 +116,6 @@ public class GameEngine {
             // do something
         }
         this.getCurrentPlayer().getPlayedCards().add(card);
-        this.getCurrentPlayer().cards.remove(cardIndex);
         this.cardPlayed(cardIndex);
     }
 
