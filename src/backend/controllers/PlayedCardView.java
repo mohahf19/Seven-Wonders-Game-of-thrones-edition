@@ -53,8 +53,10 @@ public class PlayedCardView extends HBox {
     }
 
     private void populateCategories(ArrayList<Card> cards) {
-        for(Card card: cards){
-            placeInCorrectCategory(card);
+        if (cards != null) {
+            for (Card card : cards) {
+                placeInCorrectCategory(card);
+            }
         }
     }
 
@@ -104,4 +106,17 @@ public class PlayedCardView extends HBox {
         return 450;
     }
 
+    public void display(ArrayList<Card> cards) {
+        clearAll();
+        populateCategories(cards);
+    }
+
+    private void clearAll() {
+        resources.getChildren().clear();
+        science.getChildren().clear();
+        civic.getChildren().clear();
+        military.getChildren().clear();
+        commerce.getChildren().clear();
+        crisis.getChildren().clear();
+    }
 }

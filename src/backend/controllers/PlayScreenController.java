@@ -59,6 +59,8 @@ public class PlayScreenController implements Initializable {
     private static double orgSceneX, orgSceneY, orgX, orgY, orgTranslateX, orgTranslateY;
     private boolean isHome = true;
 
+    private static ArrayList<Player> updatedPlayers;
+
     CardView sampleCard;
 
     public static void updateScoreboard(Scoreboard scoreboard) {
@@ -346,7 +348,8 @@ public class PlayScreenController implements Initializable {
                             case 2:
                                 System.out.println("playing card!");
                                 if(canBuild == 1){
-                                    Main.gameEngine.playCard(cardIndex);
+//                                    Main.gameEngine.playCard(cardIndex);
+                                    Main.gameEngine.getPlayedCards().add(card);
                                     cardHolderSt.getChildren().remove(cv);
                                     pvc.addCard(card);
                                 } else {
@@ -508,7 +511,7 @@ public class PlayScreenController implements Initializable {
     public void setHeaders(int userID) {
         headerHolder.setAlignment(Pos.CENTER);
 
-        ArrayList<Player> updatedPlayers = new ArrayList<>();
+        updatedPlayers = new ArrayList<>();
         Player user, userleft, userright;
         user = Main.gameEngine.players.get(userID);
 
@@ -527,15 +530,15 @@ public class PlayScreenController implements Initializable {
         for (int i = 0; i < updatedPlayers.size(); i++) {
             PlayerSummaryView psv = new PlayerSummaryView(updatedPlayers.get(i));
             psv.update(updatedPlayers.get(i));
-            psv.addEventHandler(MouseEvent.MOUSE_CLICKED, new psvMouseClickListener(updatedPlayers.get(i).house.name));
+            psv.addEventHandler(MouseEvent.MOUSE_CLICKED, new psvMouseClickListener(i));
             headerHolder.getChildren().addAll(psv);
         }
     }
 
     public class psvMouseClickListener implements EventHandler<MouseEvent> {
-        private String name;
-        psvMouseClickListener(String name) {
-            this.name = name;
+        int id;
+        psvMouseClickListener(int i ){
+            id = i;
         }
         @Override
         public void handle(MouseEvent event) {
@@ -552,29 +555,7 @@ public class PlayScreenController implements Initializable {
             if (isHome)
                 isHome = false;
             homeButton.setVisible(true);
-            switch (name) {
-                case "Stark":
-                    System.out.println("HEADER 1");
-                    break;
-                case "Baratheon":
-                    System.out.println("HEADER 2");
-                    break;
-                case "Greyjoy":
-                    System.out.println("HEADER 3");
-                    break;
-                case "Lannister":
-                    System.out.println("HEADER 4");
-                    break;
-                case "Targaryen":
-                    System.out.println("HEADER 5");
-                    break;
-                case "Tyrell":
-                    System.out.println("HEADER 6");
-                    break;
-                case "White Walkers":
-                    System.out.println("HEADER 7");
-                    break;
-            }
+            pvc.display(PlayScreenController.updatedPlayers.get(id).playedCards);
         }
     }
 
@@ -594,7 +575,7 @@ public class PlayScreenController implements Initializable {
             if (!isHome)
                 isHome = true;
             homeButton.setVisible(false);
-            System.out.println("Home");
+            pvc.display(Main.gameEngine.getPlayedCards());
         }
     }
 
@@ -645,7 +626,7 @@ public class PlayScreenController implements Initializable {
         }
         public void click() throws IOException {
             waitLabelSt.setVisible( true);
-            Main.gameEngine.playCard( 0);
+            Main.gameEngine.discardCard( 0);
 
         }
     }
