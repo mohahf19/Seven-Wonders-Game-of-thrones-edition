@@ -4,7 +4,6 @@ import backend.app.Main;
 import backend.models.*;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import comm.GameClient;
 import comm.PlayerDeserializer;
@@ -117,6 +116,7 @@ public class GameEngine {
 
     public void playCard( int cardIndex){
         Card card = getCurrentPlayer().cards.get( cardIndex);
+        getCurrentPlayer().house.coins -= card.cost.coins;
         if( card == null)
             return;
 

@@ -166,7 +166,7 @@ public class House {
     }
 
     private void pay(Cost cost) {
-        coins = coins - cost.getCoins();
+        //coins = coins - cost.getCoins();
     }
 
     public void addCoins(int coins){
