@@ -4,7 +4,6 @@ import backend.app.Main;
 import backend.models.Card;
 import backend.models.Player;
 import backend.models.Scoreboard;
-import backend.models.Wonder;
 import com.google.gson.JsonObject;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -20,7 +19,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 
-import javax.sound.sampled.Clip;
 import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
@@ -109,6 +107,7 @@ public class PlayScreenController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        idLabel.setAlignment(Pos.CENTER);
         //static walkaround
         seasonBannerSt = seasonBanner;
         ageButtonSt = ageButton;
