@@ -2,7 +2,6 @@ package backend.controllers;
 
 import backend.app.Main;
 import backend.app.fxmlPaths;
-import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,14 +10,13 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-import javafx.scene.image.ImageView;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -126,6 +124,15 @@ public class WaitScreenController implements Initializable {
         WaitScreenController.labels.add( house4);
         WaitScreenController.labels.add( house5);
         WaitScreenController.labels.add( house6);
+
+        house0.setAlignment(Pos.CENTER);
+        house1.setAlignment(Pos.CENTER);
+        house2.setAlignment(Pos.CENTER);
+        house3.setAlignment(Pos.CENTER);
+        house4.setAlignment(Pos.CENTER);
+        house5.setAlignment(Pos.CENTER);
+        house6.setAlignment(Pos.CENTER);
+
 
         WaitScreenController.images.add( image0);
         WaitScreenController.images.add( image1);
