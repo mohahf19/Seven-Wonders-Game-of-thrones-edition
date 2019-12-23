@@ -100,13 +100,13 @@ public class ServerController {
     public void populateAges(){
 
         try{
-//            Deck deck1 = new Deck( players.size(), 1);
-//            Deck deck2= new Deck( players.size(), 2);
-//            Deck deck3 = new Deck( players.size(), 3);
+            Deck deck1 = new Deck( players.size(), 1);
+            Deck deck2= new Deck( players.size(), 2);
+            Deck deck3 = new Deck( players.size(), 3);
 
-            Deck deck1 = new Deck( 3, 1);
-            Deck deck2= new Deck( 3, 2);
-            Deck deck3 = new Deck( 3, 3);
+//            Deck deck1 = new Deck( 3, 1);
+//            Deck deck2= new Deck( 3, 2);
+//            Deck deck3 = new Deck( 3, 3);
 
             Collections.shuffle(deck1.getCards());
             Collections.shuffle(deck2.getCards());
