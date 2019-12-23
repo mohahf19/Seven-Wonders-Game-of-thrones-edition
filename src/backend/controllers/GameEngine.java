@@ -193,21 +193,15 @@ public class GameEngine {
     //precondition: current player needs (and can) trade with left neighbor
     public void tradeLeft(int index) {
         Card card = getCurrentPlayer().cards.get(index);
-        //TODO trade with left
-        playCard(index);
-        //TODO remove the played card from the cards array
-        //TODO pay left
         payTrade(0, card.getCost());
+        playCard(index);
     }
 
     //precondition: current player needs (and can) trade with right neighbor
     public void tradeRight(int index) {
         Card card = getCurrentPlayer().cards.get(index);
-        //TODO trade with right
-        playCard(index);
-        //TODO remove the played card from the cards array
-        //TODO pay right
         payTrade(1, card.getCost());
+        playCard(index);
     }
 
     public void payTrade(int neighbor, Cost cost) {
@@ -229,7 +223,7 @@ public class GameEngine {
                 notifyTrade( rightIndex,  payment);
             }
         }
-        this.getCurrentPlayer().house.addCoins(-1 * payment);
+        this.getCurrentPlayer().house.addCoins((-1 * payment));
     }
 
     public int canBuildWonder() {
