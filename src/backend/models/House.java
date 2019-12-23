@@ -159,7 +159,7 @@ public class House {
                 this.victoryPoints += wonder.getVictoryPoints();
                 this.coins += wonder.getCoins();
                 wonder.build();
-                playedWonders.add(wonder);
+                getPlayedWonders().add(wonder);
                 break;
             }
         }

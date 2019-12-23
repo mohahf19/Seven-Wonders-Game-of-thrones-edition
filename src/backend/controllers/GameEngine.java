@@ -232,7 +232,7 @@ public class GameEngine {
         //if trade is required, return 2.
         //otherwise, return 0
         Wonder wonderToBuild = null;
-        for (Wonder wonder : this.getCurrentPlayer().house.wonders) {
+        for (Wonder wonder : this.getCurrentPlayer().house.getWonders()) {
             if (!wonder.isBuilt()) {
                 wonderToBuild = wonder;
                 break;

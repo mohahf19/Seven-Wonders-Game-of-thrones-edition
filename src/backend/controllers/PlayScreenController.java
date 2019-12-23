@@ -443,13 +443,13 @@ public class PlayScreenController implements Initializable {
                                     if (Main.gameEngine.canBuildWonder() > 0){
                                         Main.gameEngine.buildWonder(cardIndex);
                                         cardHolderSt.getChildren().remove(cv);
-                                        if (Main.gameEngine.getCurrentPlayer().house.wonders.get(0).built) {
+                                        if (Main.gameEngine.getCurrentPlayer().house.getWonders().get(0).built) {
                                             tick1St.setVisible(true);
                                         }
-                                        if (Main.gameEngine.getCurrentPlayer().house.wonders.get(1).built) {
+                                        if (Main.gameEngine.getCurrentPlayer().house.getWonders().get(1).built) {
                                             tick2St.setVisible(true);
                                         }
-                                        if (Main.gameEngine.getCurrentPlayer().house.wonders.get(2).built) {
+                                        if (Main.gameEngine.getCurrentPlayer().house.getWonders().get(2).built) {
                                             tick3St.setVisible(true);
                                         }
                                         waitLabelSt.setVisible( true);
