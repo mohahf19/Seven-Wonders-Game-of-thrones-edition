@@ -216,7 +216,7 @@ public class PlayScreenController implements Initializable {
         wonderHolder.setSpacing(30);
         Image image;
         ImageView iv;
-        switch (Main.gameEngine.players.get(0).house.name) {
+        switch (Main.gameEngine.getCurrentPlayer().house.name) {
             case "Stark":
                 image = new Image("assets/wonders/starkWonder1.png");
                 iv = new ImageView();
@@ -230,7 +230,7 @@ public class PlayScreenController implements Initializable {
                 iv = new ImageView();
                 iv.setImage(image);
                 wonderHolder.getChildren().addAll(iv);
-                idLabel.setText(" Stark");
+                idLabel.setText("Stark");
                 break;
             case "Baratheon":
                 image = new Image("assets/wonders/baratheonWonder1.png");
@@ -245,7 +245,7 @@ public class PlayScreenController implements Initializable {
                 iv = new ImageView();
                 iv.setImage(image);
                 wonderHolder.getChildren().addAll(iv);
-                idLabel.setText(" Baratheon");
+                idLabel.setText("Baratheon");
                 break;
             case "Greyjoy":
                 image = new Image("assets/wonders/greyjoyWonder1.png");
@@ -260,7 +260,7 @@ public class PlayScreenController implements Initializable {
                 iv = new ImageView();
                 iv.setImage(image);
                 wonderHolder.getChildren().addAll(iv);
-                idLabel.setText(" Greyjoy");
+                idLabel.setText("Greyjoy");
                 break;
             case "Lannister":
                 image = new Image("assets/wonders/lannisterWonder1.png");
@@ -275,7 +275,7 @@ public class PlayScreenController implements Initializable {
                 iv = new ImageView();
                 iv.setImage(image);
                 wonderHolder.getChildren().addAll(iv);;
-                idLabel.setText(" Lannister");
+                idLabel.setText("Lannister");
                 break;
             case "Targaryen":
                 image = new Image("assets/wonders/targaryenWonder1.png");
@@ -290,7 +290,7 @@ public class PlayScreenController implements Initializable {
                 iv = new ImageView();
                 iv.setImage(image);
                 wonderHolder.getChildren().addAll(iv);
-                idLabel.setText(" Targaryen");
+                idLabel.setText("Targaryen");
                 break;
             case "Tyrell":
                 image = new Image("assets/wonders/tyrellWonder1.png");
@@ -305,7 +305,7 @@ public class PlayScreenController implements Initializable {
                 iv = new ImageView();
                 iv.setImage(image);
                 wonderHolder.getChildren().addAll(iv);
-                idLabel.setText(" Tyrell");
+                idLabel.setText("Tyrell");
                 break;
             case "White Walkers":
                 image = new Image("assets/wonders/whitewalkersWonder1.png");
@@ -320,7 +320,7 @@ public class PlayScreenController implements Initializable {
                 iv = new ImageView();
                 iv.setImage(image);
                 wonderHolder.getChildren().addAll(iv);
-                idLabel.setText(" White Walkers");
+                idLabel.setText("White Walkers");
                 break;
         }
     }
