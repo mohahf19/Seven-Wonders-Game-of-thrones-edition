@@ -334,7 +334,7 @@ public class PlayScreenController implements Initializable {
                 waitLabelSt.setVisible( false);
 
                 cardHolderSt.setAlignment(Pos.CENTER);
-                cardHolderSt.setSpacing(5);
+                cardHolderSt.setSpacing(15);
 
                 //clear previous cards
                 cardHolderSt.getChildren().clear();

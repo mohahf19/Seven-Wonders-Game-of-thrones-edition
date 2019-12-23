@@ -11,7 +11,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.lang.reflect.Type;
-import java.sql.Time;
 import java.util.*;
 
 public class ServerController {
@@ -377,7 +376,8 @@ public class ServerController {
             scoreboard.scores.get( i).set( scoreboard.COMMERCE_POINTS_INDEX, currPlayer.calculateCommercePoints());
             scoreboard.scores.get( i).set( scoreboard.SCIENCE_POINTS_INDEX, currPlayer.calculateSciencePoints());
             scoreboard.scores.get( i).set( scoreboard.CIVIC_POINTS_INDEX, currPlayer.calculateCivicPoints());
-            scoreboard.scores.get( i).set( scoreboard.VICTORY_POINTS_INDEX, currPlayer.calculateVictoryPoints());
+            scoreboard.scores.get( i).set( scoreboard.VICTORY_POINTS_INDEX,
+                    currPlayer.currentMilitaryPoints + currPlayer.calculateVictoryPoints());
         }
 
         sendScoreboard();

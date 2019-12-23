@@ -100,6 +100,11 @@ public class CardView extends Pane {
         statusImageView.setFitHeight(200);
         status = -1;
 
+        //if borders
+        affordableImageView = new ImageView();
+        affordableImageView.setFitHeight(214);
+        affordableImageView.setFitWidth(164);
+
         topPane.getChildren().add(backImageView);
         topPane.getChildren().add(iconImageView);
 
@@ -253,6 +258,7 @@ public class CardView extends Pane {
         chain1Label.resizeRelocate(60, 127, 90, 20);
         chain2Label.resizeRelocate(60, 150, 90, 20);
         cardNameLabel.resizeRelocate(0, 175, 150, 20);
+        affordableImageView.resizeRelocate(-7, -7, 164, 214);
     }
 
     public void reset() {
