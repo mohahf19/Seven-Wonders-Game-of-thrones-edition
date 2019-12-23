@@ -4,6 +4,7 @@ import backend.app.Main;
 import backend.models.Card;
 import backend.models.Player;
 import backend.models.Scoreboard;
+import backend.models.Wonder;
 import com.google.gson.JsonObject;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -31,7 +32,7 @@ import java.util.TimerTask;
 public class PlayScreenController implements Initializable {
     @FXML
     private ImageView soundButton, scoreboardButton, seasonBanner, ageButton, homeButton, waitingAnimation, tick1, tick2, tick3;
-    private static ImageView seasonBannerSt, ageButtonSt, waitingAnimationSt;
+    private static ImageView seasonBannerSt, ageButtonSt, waitingAnimationSt, tick1St, tick2St, tick3St;
 
     @FXML
     private AnchorPane parentPane, scoreboardPane;
@@ -119,6 +120,9 @@ public class PlayScreenController implements Initializable {
         scoreboardPaneSt = scoreboardPane;
         militaryLabelSt = militaryLabel;
         headerHolderSt = headerHolder;
+        tick1St = tick1;
+        tick2St = tick2;
+        tick3St = tick3;
 
         Image backgroundImage = new Image ("assets/scoreboardBackground.png");
         scoreboardHolder.setBackground(new Background(new BackgroundImage(backgroundImage,BackgroundRepeat.REPEAT,
@@ -397,6 +401,15 @@ public class PlayScreenController implements Initializable {
                                     if (Main.gameEngine.canBuildWonder() > 0){
                                         Main.gameEngine.buildWonder(cardIndex);
                                         cardHolderSt.getChildren().remove(cv);
+                                        if (Main.gameEngine.getCurrentPlayer().house.wonders.get(0).built) {
+                                            tick1St.setVisible(true);
+                                        }
+                                        if (Main.gameEngine.getCurrentPlayer().house.wonders.get(1).built) {
+                                            tick2St.setVisible(true);
+                                        }
+                                        if (Main.gameEngine.getCurrentPlayer().house.wonders.get(2).built) {
+                                            tick3St.setVisible(true);
+                                        }
                                         waitLabelSt.setVisible( true);
                                     } else {
                                         cv.reset();
