@@ -575,7 +575,7 @@ public class PlayScreenController implements Initializable {
             public void run() {
                 //check if new age
                 int size = Main.gameEngine.getCurrentPlayer().cards.size();
-                if( size != 6 && size != 0)
+                if((size < 7 && size > 1) || (size <= 1 && Main.gameEngine.currentAge == 3))
                     waitingAnimationSt.setVisible( false);
             }});
     }
@@ -781,6 +781,7 @@ public class PlayScreenController implements Initializable {
     }
 
     public static void endGame(){
+        System.out.println("End game");
         waitLabelSt.setVisible( false);
         scoreboardPaneSt.setVisible( true);
     }

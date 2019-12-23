@@ -158,8 +158,8 @@ public class ServerController {
             ArrayList<Card> cards = ages.get( currentAge).getDeck().getCards();
             int start = 0;
             for( int i = 0; i < players.size(); i++){
-                players.get( i).cards = new ArrayList<>( cards.subList( start, start + 6));
-                start += 6;
+                players.get( i).cards = new ArrayList<>( cards.subList( start, start + 7));
+                start += 7;
             }
             return true;
         } else {
@@ -167,7 +167,7 @@ public class ServerController {
                 ArrayList<Card> cardsTemp = players.get( 0).cards;
 
                 //proceed to next age
-                if( cardsTemp.size() == 0)
+                if( cardsTemp.size() == 1)
                     return false;
 
                 ArrayList<Card> cardsTemp2 = null;
@@ -182,7 +182,7 @@ public class ServerController {
                 ArrayList<Card> cardsTemp = players.get( players.size() - 1).cards;
 
                 //proceed to next age
-                if( cardsTemp.size() == 0)
+                if( cardsTemp.size() == 1)
                     return false;
 
                 ArrayList<Card> cardsTemp2 = null;

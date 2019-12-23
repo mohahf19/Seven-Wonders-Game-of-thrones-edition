@@ -208,6 +208,7 @@ public class GameClient {
                         break;
                     } case 8: { //military conflict ended
                         engine.showMilitaryConflict();
+                        break;
                     }
                     default: {
                         System.out.println( "Client: Invalid opcode");
