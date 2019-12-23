@@ -19,8 +19,8 @@ public class SoundController {
         new Thread(new Runnable() {
             public void run() {
                 try{
-                    File f = new File("src/assets/sound/mainSound.wav");
-                    InputStream in = new BufferedInputStream(new FileInputStream(f));
+                    InputStream n = getClass().getResourceAsStream("/assets/sound/mainSound.wav");
+                    InputStream in = new BufferedInputStream( n);
                     clip = AudioSystem.getClip();
                     AudioInputStream inputStream = AudioSystem.getAudioInputStream(in);
                     clip.open(inputStream);
@@ -56,8 +56,8 @@ public class SoundController {
         new Thread(new Runnable() {
             public void run() {
                 try{
-                    File f = new File("src/assets/sound/battleSound.wav");
-                    InputStream in = new BufferedInputStream(new FileInputStream(f));
+                    InputStream n = getClass().getResourceAsStream("/assets/sound/battleSound.wav");
+                    InputStream in = new BufferedInputStream( n);
                     battleClip = AudioSystem.getClip();
                     AudioInputStream inputStream = AudioSystem.getAudioInputStream(in);
                     battleClip.open(inputStream);

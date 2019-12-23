@@ -6,10 +6,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.lang.reflect.Type;
 import java.util.*;
 
@@ -78,11 +75,12 @@ public class ServerController {
 
         Type houseListType = new TypeToken<List<House>>() {}.getType();
         try {
-            FileReader fr = new FileReader(new File("src/assets/houses.json"));
-            ArrayList<House> houses = gson.fromJson( new BufferedReader(fr) , houseListType );
+            InputStream n = getClass().getResourceAsStream("/assets/houses.json");
+            InputStreamReader in = new InputStreamReader( n, "UTF-8");
+            ArrayList<House> houses = gson.fromJson( in , houseListType );
             System.out.println( "Houses found " + houses.size());
             allHouses = houses;
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
             System.out.println("File not found exception");
             e.printStackTrace();
         }

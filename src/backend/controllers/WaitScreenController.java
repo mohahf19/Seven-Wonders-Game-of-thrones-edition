@@ -17,6 +17,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -43,7 +44,11 @@ public class WaitScreenController implements Initializable {
 
     @FXML
     private void startGame(){
-        Main.serverController.startGame();
+        if( Main.serverController != null && Main.serverController.players.size() > 2){
+            Main.serverController.startGame();
+        } else {
+            JOptionPane.showMessageDialog( null, "Atleast 3 players needed to play game.", "", JOptionPane.PLAIN_MESSAGE);
+        }
     }
 
     public static void showMainScreen(){
