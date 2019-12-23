@@ -340,9 +340,9 @@ public class ServerController {
                 currentMil --;
                 if (players.get( i).house.name.equalsIgnoreCase("white walkers") || players.get( i).house.name.equalsIgnoreCase("baratheon"))
                     shieldChange--;
-                if (players.get( i).house.name.equalsIgnoreCase("tyrell") || players.get( i).house.name.equalsIgnoreCase("greyjoy"))
+                else if (players.get( i).house.name.equalsIgnoreCase("tyrell") || players.get( i).house.name.equalsIgnoreCase("greyjoy"))
                     coinChange--;
-                if(players.get( i).house.name.equalsIgnoreCase("stark") && players.get( nextIndex).house.name.equalsIgnoreCase("lannister"))
+                else if(players.get( i).house.name.equalsIgnoreCase("stark") && players.get( nextIndex).house.name.equalsIgnoreCase("lannister"))
                     starkFlag=1;
             }
             if( players.get( i).house.militaryShields > players.get( prevIndex).house.militaryShields){
@@ -355,9 +355,9 @@ public class ServerController {
                 currentMil--;
                 if (players.get( i).house.name.equalsIgnoreCase("white walkers") || players.get( i).house.name.equalsIgnoreCase("baratheon"))
                     shieldChange--;
-                if (players.get( i).house.name.equalsIgnoreCase("tyrell") || players.get( i).house.name.equalsIgnoreCase("greyjoy"))
+                else if (players.get( i).house.name.equalsIgnoreCase("tyrell") || players.get( i).house.name.equalsIgnoreCase("greyjoy"))
                     coinChange--;
-                if(players.get( i).house.name.equalsIgnoreCase("stark") && players.get( prevIndex).house.name.equalsIgnoreCase("lannister"))
+                else if(players.get( i).house.name.equalsIgnoreCase("stark") && players.get( prevIndex).house.name.equalsIgnoreCase("lannister"))
                     starkFlag=1;
             }
             players.get( i).currentMilitaryPoints += currentMil;
