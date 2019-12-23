@@ -81,7 +81,9 @@ public class ServerController {
             FileReader fr = new FileReader(new File("src/assets/houses.json"));
             ArrayList<House> houses = gson.fromJson( new BufferedReader(fr) , houseListType );
             for(House h: houses){
-                //TODO init buffs/nerfs
+                if(h.name.equalsIgnoreCase("tyrell"))//house buff tyrell
+                    h.addCoins(3);
+
                 if(h.name.equalsIgnoreCase("lannister")) //House buff lannister
                     h.addCoins(3);
 
@@ -320,37 +322,54 @@ public class ServerController {
 
     public void startMilitaryConflict( Callback c){
         int additionPoint = (currentAge * 2) + 1;
-
+        int starkFlag = 0;
         for( int i = 0; i < players.size(); i++){
             int currentMil = 0;
             int shieldChange = 0;
+            int coinChange = 0;
             int prevIndex = (i - 1) >= 0 ? (i - 1) : (players.size() - 1);
             int nextIndex = (i + 1) < players.size() ? (i + 1) : 0;
 
             if( players.get( i).house.militaryShields > players.get( nextIndex).house.militaryShields){
                 currentMil += additionPoint;
-                if( players.get(i).house.name.equalsIgnoreCase("white walkers"))
+                if( players.get(i).house.name.equalsIgnoreCase("white walkers") || players.get( i).house.name.equalsIgnoreCase("baratheon"))
                     shieldChange++;
+                else if (players.get( i).house.name.equalsIgnoreCase("stark") || players.get( i).house.name.equalsIgnoreCase("greyjoy"))
+                    coinChange++;
             }
             else if( players.get( i).house.militaryShields < players.get( nextIndex).house.militaryShields)
             {
                 currentMil --;
                 if (players.get( i).house.name.equalsIgnoreCase("white walkers") || players.get( i).house.name.equalsIgnoreCase("baratheon"))
                     shieldChange--;
+                else if (players.get( i).house.name.equalsIgnoreCase("tyrell") || players.get( i).house.name.equalsIgnoreCase("greyjoy"))
+                    coinChange--;
+                else if(players.get( i).house.name.equalsIgnoreCase("stark") && players.get( nextIndex).house.name.equalsIgnoreCase("lannister"))
+                    starkFlag=1;
             }
             if( players.get( i).house.militaryShields > players.get( prevIndex).house.militaryShields){
                 currentMil += additionPoint;
-                if( players.get(i).house.name.equalsIgnoreCase("white walkers"))
+                if( players.get(i).house.name.equalsIgnoreCase("white walkers") || players.get( i).house.name.equalsIgnoreCase("baratheon"))
                     shieldChange++;
+                else if (players.get( i).house.name.equalsIgnoreCase("stark") || players.get( i).house.name.equalsIgnoreCase("greyjoy"))
+                    coinChange++;
             }
             else if( players.get( i).house.militaryShields < players.get( prevIndex).house.militaryShields)
             {
                 currentMil--;
                 if (players.get( i).house.name.equalsIgnoreCase("white walkers") || players.get( i).house.name.equalsIgnoreCase("baratheon"))
                     shieldChange--;
+                else if (players.get( i).house.name.equalsIgnoreCase("tyrell") || players.get( i).house.name.equalsIgnoreCase("greyjoy"))
+                    coinChange--;
+                else if(players.get( i).house.name.equalsIgnoreCase("stark") && players.get( prevIndex).house.name.equalsIgnoreCase("lannister"))
+                    starkFlag=1;
             }
             players.get( i).currentMilitaryPoints += currentMil;
             players.get( i).house.militaryShields += shieldChange; //baratheon and white walkers buff and nerfs
+            players.get( i).house.addCoins(coinChange);
+            if( starkFlag == 1)
+                players.get( i).house.militaryShields = 0;
+
         }
         updateScoreboard();
         militaryConflictEnded( c);
