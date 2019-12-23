@@ -285,7 +285,6 @@ public class Player {
         }
         System.out.println("Cost of " + neededResources + " is " + cost);
 
-        Main.gameEngine.notifyTrade( player, cost);
     }
 
     public ArrayList<Integer> factorizeResources(int res){
