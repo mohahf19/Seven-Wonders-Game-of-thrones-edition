@@ -219,18 +219,17 @@ public class GameEngine {
         for (Integer res : resourcesToBuy) {
             if (neighbor == 0) {
                 payment += this.getCurrentPlayer().agreements.getLeft().getCost(res);
-                notifyTrade( getCurrentPlayer().neighbors.left,  payment);
+                int leftIndex = (getCurrentPlayer().id - 1) < 0 ? (players.size() - 1) : (getCurrentPlayer().id - 1);
+                notifyTrade( leftIndex,  payment);
             }
             else {
                 payment += this.getCurrentPlayer().agreements.getRight().getCost(res);
-                notifyTrade( getCurrentPlayer().neighbors.right,  payment);
+
+                int rightIndex = (getCurrentPlayer().id + 1) > (players.size() - 1) ? 0 : (getCurrentPlayer().id + 1);
+                notifyTrade( rightIndex,  payment);
             }
         }
         this.getCurrentPlayer().house.addCoins(-1 * payment);
-        // if neighbor == 0
-        //     notify server about the payment to the left neighbor
-        // else
-        //     notify server about the payment to the right neighbor
     }
 
     public int canBuildWonder() {
@@ -255,11 +254,11 @@ public class GameEngine {
             return 2;
     }
 
-    public void notifyTrade(Player p, int cost){
+    public void notifyTrade(int p, int cost){
 
         JsonObject req = new JsonObject();
         req.addProperty("op_code", 5);
-        req.addProperty("player_id", p.id);
+        req.addProperty("player_id", p);
         req.addProperty("cost", cost);
         Main.gameEngine.client.sendRequest( req);
     }
