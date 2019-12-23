@@ -46,6 +46,12 @@ public class House {
         this.buff = buff;
         this.nerf = nerf;
         this.victoryPoints = 0;
+
+        if(name.equalsIgnoreCase("lannister")) //House buff lannister
+            addCoins(3);
+
+        if(name.equalsIgnoreCase("targaryen")) //House buff targaryen
+            militaryShields++;
     }
 
     public void addResource(ArrayList<Integer> newRes){
