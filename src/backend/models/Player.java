@@ -3,6 +3,7 @@ package backend.models;
 import java.util.ArrayList;
 
 import static backend.app.constants.*;
+import static backend.models.Numbers.gcd;
 import static java.lang.Math.min;
 
 public class Player {
@@ -32,7 +33,12 @@ public class Player {
     //methods
     public int calculateCoinPoints(){
         int coins = this.house.coins;
-        return coins/3;
+        if (coins <0){
+            return coins;
+        } else{
+            return coins/3;
+        }
+
     }
     public int calculateWonderPoints(){
         //TODO fix this. this calculates max wonder points
@@ -239,28 +245,34 @@ public class Player {
                 break;
             case 2:
                 System.out.println("can build if trading works.");
-                int remaining = result.remaining;
-                //TODO allow for trading with left _and_ right at the same time:
-                // for now, we can only trade with either
+                for(int i = 0; i < house.resourcesList.size(); i++){
+                    System.out.println("For resource: " + factorizeResources(house.resourcesList.get(i))+ ":");
+                    int gcd = gcd(house.resourcesList.get(i), cost.getResources());
+                    int remaining = cost.getResources() / gcd;
+                    System.out.println("We need to trade for: " + factorizeResources(remaining));
 
-                TradingResult left = attemptTrade(neighbors.left, remaining);
-                if (left.code == 1){
-                    System.out.println("Can trade with left!");
-                    pay(neighbors.left, agreements.left, remaining); //server needs to do
-                    canBuild = 2;
-                } else{
-                    TradingResult right = attemptTrade(neighbors.right, remaining);
-                    if (right.code == 1){
-                        System.out.println("Can trade with right!");
-                        pay(neighbors.right, agreements.right, remaining);
-                        canBuild = 3;
+                    TradingResult left = attemptTrade(neighbors.left, remaining);
+                    System.out.println(neighbors.left.getResources());
+                    if (left.code == 1){
+                        System.out.println("Can trade with left!");
+                        pay(neighbors.left, agreements.left, remaining); //server needs to do
+                        canBuild = 2;
+                        return canBuild;
                     } else{
-                        canBuild = 0;
-                        System.out.println("Trading did not work:(");
+                        TradingResult right = attemptTrade(neighbors.right, remaining);
+                        if (right.code == 1){
+                            System.out.println("Can trade with right!");
+                            pay(neighbors.right, agreements.right, remaining);
+                            canBuild = 3;
+                            return canBuild;
+                        } else{
+                            canBuild = 0;
+                            System.out.println("Trading did not work:(");
+                        }
                     }
+
                 }
                 break;
-
         }
         return canBuild;
 
@@ -304,6 +316,7 @@ public class Player {
         ArrayList<Integer> availResources = neighbor.house.getResourcesList();
         TradingResult result = new TradingResult();
         for(int i = 0; i < availResources.size(); i++){
+            System.out.println("Neighbor has: " + factorizeResources(availResources.get(i)) + " for " + factorizeResources(res));
             if (availResources.get(i) % res == 0){
                 //then the resource is available to trade
                 result.code = 1;

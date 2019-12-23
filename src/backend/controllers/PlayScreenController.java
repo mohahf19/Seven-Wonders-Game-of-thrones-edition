@@ -395,6 +395,7 @@ public class PlayScreenController implements Initializable {
                     cv.setOnMouseReleased(e->{
                         if( isHome){
                             int region = decideRegion(e.getSceneX(), e.getSceneY());
+                            System.out.println("Card dropped in region: " + region);
                             int cardIndex = cv.id;
                             Card card = cards.get(cv.id);
                             //0 if can't build, 1 if can without trading, 2 if left trading is required
@@ -405,7 +406,6 @@ public class PlayScreenController implements Initializable {
                                     System.out.println("dropped nowhere important..");
                                     break;
                                 case 0:
-                                    //TODO trade left
                                     System.out.println("left trading!");
                                     if(canBuild == 2){
                                         Main.gameEngine.tradeLeft(cardIndex);
@@ -417,7 +417,6 @@ public class PlayScreenController implements Initializable {
                                     }
                                     break;
                                 case 1:
-                                    //TODO trade right
                                     System.out.println("right trading!");
                                     if(canBuild == 3){
                                         Main.gameEngine.tradeRight(cardIndex);
@@ -427,7 +426,6 @@ public class PlayScreenController implements Initializable {
                                     } else {
                                         cv.reset();
                                     }
-                                    //TODO trade right
                                     break;
                                 case 2:
                                     System.out.println("playing card!");
@@ -685,7 +683,6 @@ public class PlayScreenController implements Initializable {
             }
         }
         public void click() throws IOException {
-            //TODO add stuff
             if (isHome)
                 isHome = false;
             homeButton.setVisible(true);
@@ -706,7 +703,6 @@ public class PlayScreenController implements Initializable {
             }
         }
         public void click() throws IOException {
-            //TODO
             if (!isHome)
                 isHome = true;
             homeButton.setVisible(false);
