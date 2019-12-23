@@ -433,6 +433,7 @@ public class PlayScreenController implements Initializable {
                     cv.update(cards.get(i));
                     cardHolderSt.getChildren().addAll(cv);
                 }
+                updateLabels();
             }
         });
     }
