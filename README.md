@@ -21,11 +21,9 @@ At the end of each age, military conflicts between neighbors are resolved by com
 
 Extra Features:
 -
-- Online games (with up to 6 players)
-- Offline games (with up to 6 bots) 
-- Mixed games (with bots and online players)
+- Online games (with up to 7 players)
 - Debts concept (negative money) 
-- Seasons concept (every turn is a season) 
+- Seasons concept (every turn is a different season) 
 - House specific restrictions: 
      - House Lannister must always pay their debt, otherwise they lose points after the age is over
      - When House Martel loses a military fight, they lose 2x the points
