@@ -557,7 +557,7 @@ public class PlayScreenController implements Initializable {
             public void run() {
                 //check if new age
                 int size = Main.gameEngine.getCurrentPlayer().cards.size();
-                if( size != 7 && size != 0)
+                if( size != 6 && size != 0)
                     waitingAnimationSt.setVisible( false);
             }});
     }

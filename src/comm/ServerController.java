@@ -157,8 +157,8 @@ public class ServerController {
             ArrayList<Card> cards = ages.get( currentAge).getDeck().getCards();
             int start = 0;
             for( int i = 0; i < players.size(); i++){
-                players.get( i).cards = new ArrayList<>( cards.subList( start, start + 7));
-                start += 7;
+                players.get( i).cards = new ArrayList<>( cards.subList( start, start + 6));
+                start += 6;
             }
             return true;
         } else {
