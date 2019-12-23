@@ -181,7 +181,7 @@ public class PlayScreenController implements Initializable {
                 initialResource.setImage(image);
                 break;
             case "Lannister":
-                image = new Image("assets/initialResources/lannisterInitial.png");
+                image = new Image("assets/initialResources/lannisterInitail.png");
                 initialResource.setImage(image);
                 break;
             case "Targaryen":
@@ -693,6 +693,7 @@ public class PlayScreenController implements Initializable {
                 isHome = true;
             homeButton.setVisible(false);
             pvc.display(Main.gameEngine.getPlayedCards());
+            initializeResource(Main.gameEngine.players.get(0).house.name);
         }
     }
 
