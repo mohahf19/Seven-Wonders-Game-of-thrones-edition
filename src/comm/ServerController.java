@@ -340,7 +340,7 @@ public class ServerController {
             else if( players.get( i).house.militaryShields < players.get( nextIndex).house.militaryShields)
             {
                 currentMil --;
-                if (players.get( i).house.name.equalsIgnoreCase("white walkers") || players.get( i).house.name.equalsIgnoreCase("baratheon"))
+                if (players.get( i).house.name.equalsIgnoreCase("white walkers") ||  players.get( i).house.name.equalsIgnoreCase("targaryen") || players.get( i).house.name.equalsIgnoreCase("baratheon"))
                     shieldChange--;
                 else if (players.get( i).house.name.equalsIgnoreCase("tyrell") || players.get( i).house.name.equalsIgnoreCase("greyjoy"))
                     coinChange--;
@@ -357,7 +357,7 @@ public class ServerController {
             else if( players.get( i).house.militaryShields < players.get( prevIndex).house.militaryShields)
             {
                 currentMil--;
-                if (players.get( i).house.name.equalsIgnoreCase("white walkers") || players.get( i).house.name.equalsIgnoreCase("baratheon"))
+                if (players.get( i).house.name.equalsIgnoreCase("white walkers") ||  players.get( i).house.name.equalsIgnoreCase("targaryen") || players.get( i).house.name.equalsIgnoreCase("baratheon"))
                     shieldChange--;
                 else if (players.get( i).house.name.equalsIgnoreCase("tyrell") || players.get( i).house.name.equalsIgnoreCase("greyjoy"))
                     coinChange--;
