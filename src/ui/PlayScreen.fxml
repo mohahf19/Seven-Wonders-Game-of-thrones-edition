@@ -32,16 +32,6 @@
          </image>
       </ImageView>
       <AnchorPane fx:id="pvcPane" layoutX="345.0" layoutY="110.0" prefHeight="500.0" prefWidth="750.0" />
-      <AnchorPane fx:id="waitLabel" layoutX="194.0" layoutY="164.0" prefHeight="555.0" prefWidth="1051.0" style="-fx-border-radius: 50;" visible="false">
-         <children>
-            <Label fx:id="waitingText" layoutX="325.0" layoutY="240.0" prefHeight="75.0" prefWidth="477.0" text="Waiting for other players..." />
-            <ImageView fitHeight="75.0" fitWidth="76.0" layoutX="249.0" layoutY="240.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/animations/eclipseLoad.gif" />
-               </image>
-            </ImageView>
-         </children>
-      </AnchorPane>
       <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="38.0" layoutY="551.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/screenIcons/userCoins.png" />
@@ -81,6 +71,16 @@
             <ImageView fx:id="homeButton" fitHeight="90.0" fitWidth="90.0" layoutX="1353.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@../assets/homeIcon.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="waitLabel" layoutX="194.0" layoutY="164.0" prefHeight="555.0" prefWidth="1051.0" style="-fx-border-radius: 50;" visible="false">
+         <children>
+            <Label fx:id="waitingText" layoutX="325.0" layoutY="240.0" prefHeight="75.0" prefWidth="477.0" text="Waiting for other players..." />
+            <ImageView fitHeight="75.0" fitWidth="76.0" layoutX="249.0" layoutY="240.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/animations/eclipseLoad.gif" />
                </image>
             </ImageView>
          </children>
