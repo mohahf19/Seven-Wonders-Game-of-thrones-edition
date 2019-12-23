@@ -194,7 +194,7 @@ public class GameEngine {
     public void tradeLeft(int index) {
         Card card = getCurrentPlayer().cards.get(index);
         //TODO trade with left
-        //playCard(index);
+        playCard(index);
         //TODO remove the played card from the cards array
         //TODO pay left
         payTrade(0, card.getCost());
@@ -217,10 +217,14 @@ public class GameEngine {
         ArrayList<Integer> resourcesToBuy = this.getCurrentPlayer().factorizeResources(costResult.remaining);
         int payment = 0;
         for (Integer res : resourcesToBuy) {
-            if (neighbor == 0)
+            if (neighbor == 0) {
                 payment += this.getCurrentPlayer().agreements.getLeft().getCost(res);
-            else
+                notifyTrade( getCurrentPlayer().neighbors.left,  payment);
+            }
+            else {
                 payment += this.getCurrentPlayer().agreements.getRight().getCost(res);
+                notifyTrade( getCurrentPlayer().neighbors.right,  payment);
+            }
         }
         this.getCurrentPlayer().house.addCoins(-1 * payment);
         // if neighbor == 0
