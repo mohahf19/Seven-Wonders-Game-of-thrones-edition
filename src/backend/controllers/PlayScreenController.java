@@ -395,6 +395,7 @@ public class PlayScreenController implements Initializable {
                     cv.setOnMouseReleased(e->{
                         if( isHome){
                             int region = decideRegion(e.getSceneX(), e.getSceneY());
+                            System.out.println("Card dropped in region: " + region);
                             int cardIndex = cv.id;
                             Card card = cards.get(cv.id);
                             //0 if can't build, 1 if can without trading, 2 if left trading is required

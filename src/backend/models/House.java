@@ -143,6 +143,7 @@ public class House {
                 System.out.println("Can build with " + factorResources(resourcesList.get(i)));
                 pay(cost);
                 result.code = 1;
+                return result;
             } else {
                 int gcd = gcd(resourcesList.get(i), cost.getResources());
                 int remaining = cost.getResources() / gcd;
