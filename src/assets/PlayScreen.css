@@ -52,3 +52,13 @@
     -fx-stroke-width: 2;
     -fx-stroke-type: outside;
 }
+
+#idLabel {
+    -fx-text-fill: white;
+    -fx-background-color: black;
+}
+
+#idLabel .text {
+    -fx-font-size: 20;
+    -fx-font-family: Georgia;
+}
