@@ -37,7 +37,7 @@ public class Player {
     public int calculateWonderPoints(){
         //TODO fix this. this calculates max wonder points
         int wonderVictory = 0;
-        ArrayList<Wonder> wonders = this.house.getWonders();
+        ArrayList<Wonder> wonders = this.house.getPlayedWonders();
         for(Wonder w: wonders)
             wonderVictory += w.getVictoryPoints();
         return wonderVictory;

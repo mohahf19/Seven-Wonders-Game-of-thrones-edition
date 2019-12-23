@@ -12,6 +12,7 @@ public class House {
     public String name;
     public ArrayList<Integer> resourcesList; //1 means no resources
     public ArrayList<Wonder> wonders;
+    public ArrayList<Wonder> playedWonders;
     public int militaryShields;
     public int coins;
     public int buff;
@@ -39,6 +40,7 @@ public class House {
         this.name = name;
         this.resourcesList = resourcesList;
         this.wonders = wonders;
+        this.playedWonders = new ArrayList<>();
         this.militaryShields = militaryShields;
         this.coins = 3;
         this.buff = buff;
@@ -157,6 +159,7 @@ public class House {
                 this.victoryPoints += wonder.getVictoryPoints();
                 this.coins += wonder.getCoins();
                 wonder.build();
+                playedWonders.add(wonder);
                 break;
             }
         }
@@ -195,4 +198,10 @@ public class House {
     public ArrayList<Wonder> getWonders() {
         return wonders;
     }
+
+    public ArrayList<Wonder> getPlayedWonders() {
+
+        return playedWonders;
+    }
+
 }
