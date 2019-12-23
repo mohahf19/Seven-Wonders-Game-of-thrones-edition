@@ -127,6 +127,18 @@ public class GameHost {
         return false;
     }
 
+    public void quitHost(){
+        try {
+            clients = null;
+            if( serverSocket != null){
+                serverSocket.close();
+            }
+        } catch (Exception e) {
+            System.out.println("Exception killing server");
+        }
+
+    }
+
     public void receiveRequest( int id, JsonObject request){
 
         if( requests.containsKey( id))

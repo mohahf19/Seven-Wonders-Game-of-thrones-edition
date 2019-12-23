@@ -2,6 +2,7 @@ package backend.controllers;
 
 import backend.app.Main;
 import backend.app.fxmlPaths;
+import comm.ServerController;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -52,11 +53,6 @@ public class WaitScreenController implements Initializable {
     }
 
     public static void showMainScreen(){
-//        Platform.runLater(new Runnable() {
-//            @Override
-//            public void run() {
-//            }
-//        });
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
@@ -96,8 +92,17 @@ public class WaitScreenController implements Initializable {
 
     @FXML
     private void exitGame(ActionEvent ae){
-        //add an alert
         try {
+            if( Main.state == 1){
+                Main.serverController.host.quitHost();
+                Main.gameEngine.client.quitGame();
+                Main.serverController = null;
+                Main.gameEngine = null;
+            } else {
+                Main.gameEngine.client.quitGame();
+                Main.gameEngine = null;
+            }
+
             Stage stage = (Stage) ((Node) ae.getSource()).getScene().getWindow();
             Parent page = FXMLLoader.load(getClass().getResource(fxmlPaths.mainMenu));
             stage.getScene().setRoot(page);

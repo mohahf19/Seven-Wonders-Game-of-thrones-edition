@@ -220,4 +220,17 @@ public class GameClient {
             System.out.println( e.getStackTrace()[0].getLineNumber()  + e.toString());
         }
     }
+
+    public void quitGame(){
+        try{
+            if( socket != null)
+                socket.close();
+            if( in != null)
+                in.close();
+            if( out != null)
+                out.close();
+        } catch ( Exception e){
+            System.out.println("Client not closed");
+        }
+    }
 }
