@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import static backend.models.Numbers.arr;
 
 public class Deck {
-    int o = 2;
-    int w = 3;
-    int c = 5;
-    int so = 7;
-    int d = 11;
-    int p = 13;
-    int si = 17;
+    static int o = 2;
+    static int w = 3;
+    static int c = 5;
+    static int so = 7;
+    static int d = 11;
+    static int p = 13;
+    static int si = 17;
     public boolean direction; //true for cw, false for ccw
     public ArrayList<Card> cards;
 
