@@ -158,7 +158,7 @@ public class PlayScreenController implements Initializable {
         pvcPane.getChildren().add(pvc);
         
         updateLabels();
-        initializeResource(Main.gameEngine.players.get(0).house.name);
+        initializeResource(Main.gameEngine.getCurrentPlayer().house.name);
 
         //don't change anything below
         notifyViewLoaded();
@@ -693,7 +693,7 @@ public class PlayScreenController implements Initializable {
                 isHome = true;
             homeButton.setVisible(false);
             pvc.display(Main.gameEngine.getPlayedCards());
-            initializeResource(Main.gameEngine.players.get(0).house.name);
+            initializeResource(Main.gameEngine.getCurrentPlayer().house.name);
         }
     }
 
