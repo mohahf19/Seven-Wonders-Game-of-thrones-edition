@@ -80,6 +80,14 @@ public class ServerController {
         try {
             FileReader fr = new FileReader(new File("src/assets/houses.json"));
             ArrayList<House> houses = gson.fromJson( new BufferedReader(fr) , houseListType );
+            for(House h: houses){
+                //TODO init buffs/nerfs
+                if(h.name.equalsIgnoreCase("lannister")) //House buff lannister
+                    h.addCoins(3);
+
+                if(h.name.equalsIgnoreCase("targaryen")) //House buff targaryen
+                    h.militaryShields++;
+            }
             System.out.println( "Houses found " + houses.size());
             allHouses = houses;
         } catch (FileNotFoundException e) {

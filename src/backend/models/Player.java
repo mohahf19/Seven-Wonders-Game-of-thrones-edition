@@ -268,7 +268,6 @@ public class Player {
 
                 }
                 break;
-
         }
         return canBuild;
 
