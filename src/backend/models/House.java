@@ -196,11 +196,14 @@ public class House {
     }
 
     public ArrayList<Wonder> getWonders() {
+        if( wonders == null)
+            wonders = new ArrayList<>();
         return wonders;
     }
 
     public ArrayList<Wonder> getPlayedWonders() {
-
+        if( playedWonders == null)
+            playedWonders = new ArrayList<>();
         return playedWonders;
     }
 

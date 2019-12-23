@@ -53,13 +53,14 @@ public class ClientThread implements Runnable {
     }
 
     public void run() {
+        String input = "";
         try {
             while (isRunning) {
                 if (!in.ready())
                     continue;
 
                 if( Main.state == 1){
-                    String input = in.readLine();
+                    input = in.readLine();
                     JsonObject ob =  gson.fromJson( input, JsonObject.class);
 //                    System.out.println("data received on server: " + input);
                     host.receiveRequest( id, ob);
@@ -71,6 +72,7 @@ public class ClientThread implements Runnable {
             socket.close();
         } catch (Exception e) {
             System.out.print("Exception in thread: ");
+            System.out.println( input);
             System.out.print(" | line: " + e.getLocalizedMessage());
             System.out.println(e.toString());
         }

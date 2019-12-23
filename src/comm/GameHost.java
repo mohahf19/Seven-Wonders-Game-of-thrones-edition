@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
+import jdk.nashorn.internal.runtime.ECMAException;
 
 import java.awt.image.ImageProducer;
 import java.io.IOException;
@@ -159,6 +160,8 @@ public class GameHost {
                 break;
             } case 3: { //playScreen initialized
                 serverController.viewInitialized();
+
+
                 break;
             } case 4: { //crisis card played
                 serverController.militaryConflictCount++;

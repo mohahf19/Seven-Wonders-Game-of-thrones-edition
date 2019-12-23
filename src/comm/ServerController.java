@@ -128,6 +128,7 @@ public class ServerController {
 
             playTurn();
 
+
         } else {
             //game ended
             updateScoreboard();
@@ -240,6 +241,7 @@ public class ServerController {
             militaryConflictCount = 0;
             //shuffle cards around
             boolean cont = shuffleCards();
+
             if( cont){
                 //go to next turn
                 cardsSelectedCount = 0;
@@ -365,6 +367,7 @@ public class ServerController {
 
     public void updateScoreboard(){
 
+
         for( int i = 0; i < players.size(); i++){
             Player currPlayer = players.get( i);
 
@@ -376,6 +379,7 @@ public class ServerController {
             scoreboard.scores.get( i).set( scoreboard.CIVIC_POINTS_INDEX, currPlayer.calculateCivicPoints());
             scoreboard.scores.get( i).set( scoreboard.VICTORY_POINTS_INDEX, currPlayer.calculateVictoryPoints());
         }
+
         sendScoreboard();
     }
 
@@ -397,6 +401,7 @@ public class ServerController {
         cardsSelectedCount++;
         if (cardsSelectedCount >= players.size()){
             cardsSelectedCount = 0;
+
             populateAges();
             scoreboard = new Scoreboard( players.size());
             incrementAge();
