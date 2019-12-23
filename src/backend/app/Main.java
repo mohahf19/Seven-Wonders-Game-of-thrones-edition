@@ -9,6 +9,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -30,6 +31,8 @@ public class Main extends Application {
         window = primaryStage;
         //sets up the stage
         Parent root = FXMLLoader.load(getClass().getResource(fxmlPaths.mainMenu));
+
+        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream( "/assets/gameLogo.png")));
         primaryStage.setTitle("Seven Houses");
 
 
