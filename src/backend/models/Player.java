@@ -33,7 +33,12 @@ public class Player {
     //methods
     public int calculateCoinPoints(){
         int coins = this.house.coins;
-        return coins/3;
+        if (coins <0){
+            return coins;
+        } else{
+            return coins/3;
+        }
+
     }
     public int calculateWonderPoints(){
         //TODO fix this. this calculates max wonder points

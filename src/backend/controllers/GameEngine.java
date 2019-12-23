@@ -107,9 +107,6 @@ public class GameEngine {
     }
 
     public void buildWonder(int cardIndex) {
-        //TODO this must support trading for wonder's resources
-        //this card must not appear in the playedCard arraylist
-        //remember to remove the card from the cards array list
         this.getCurrentPlayer().house.buildWonder();
         this.cardPlayed(cardIndex);
     }
@@ -226,11 +223,11 @@ public class GameEngine {
         this.getCurrentPlayer().house.addCoins((-1 * payment));
     }
 
+    //if trade is not required, return 1
+    //if trade is required, return 2.
+    //otherwise, return 0
     public int canBuildWonder() {
-        //TODO check if wonder needs to be traded for.
-        //if trade is not required, return 1
-        //if trade is required, return 2.
-        //otherwise, return 0
+
         Wonder wonderToBuild = null;
         for (Wonder wonder : this.getCurrentPlayer().house.getWonders()) {
             if (!wonder.isBuilt()) {

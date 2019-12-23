@@ -87,6 +87,7 @@ public class ServerController {
 
                 if(h.name.equalsIgnoreCase("targaryen")) //House buff targaryen
                     h.militaryShields++;
+
             }
             System.out.println( "Houses found " + houses.size());
             allHouses = houses;
