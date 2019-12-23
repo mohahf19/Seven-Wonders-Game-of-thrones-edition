@@ -20,6 +20,7 @@ public class CardView extends Pane {
     private ImageView iconImageView;
     private ImageView backImageView;
     private ImageView statusImageView;
+    private ImageView affordableImageView;
     private Label prereqCardLabel;
     private Label cardNameLabel;
     private Label chain1Label;
@@ -52,6 +53,10 @@ public class CardView extends Pane {
         topPane.getChildren().add(backImageView);
         topPane.getChildren().add(iconImageView);
 
+        affordableImageView = new ImageView();
+        affordableImageView.setFitHeight(200);
+        affordableImageView.setFitWidth(150);
+
 
         prereqCardLabel = new Label("prereqCards");
         cardNameLabel = new Label("cardName");
@@ -64,7 +69,7 @@ public class CardView extends Pane {
 
     private void addChildren() {
         this.getChildren().addAll(cardImageView, topPane, prereqCardLabel,
-                cardNameLabel, chain1Label, chain2Label, prereqHBox, statusImageView);
+                cardNameLabel, chain1Label, chain2Label, prereqHBox, affordableImageView, statusImageView);
     }
 
 
@@ -290,5 +295,21 @@ public class CardView extends Pane {
             status = 4;
             statusImageView.setImage(new Image(constants.path + "discardCard.png"));
         }
+    }
+
+    public String getName() {
+        return cardNameLabel.getText();
+    }
+
+    public void setPlayable(){
+        affordableImageView.setImage(new Image(constants.path + "green.png"));
+    }
+
+    public void setUnPlayable(){
+        affordableImageView.setImage(new Image(constants.path + "red.png"));
+    }
+
+    public void setTradeable(){
+        affordableImageView.setImage(new Image(constants.path + "yellow.png"));
     }
 }

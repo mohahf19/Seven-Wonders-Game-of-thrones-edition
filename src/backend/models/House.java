@@ -146,7 +146,7 @@ public class House {
                     +" more resource(s) which is/are " + remaining +" = [" + factorResources(remaining) +"]");
                 result.set(2, remaining);
             }
-            return result;
+            System.out.println("Resources index: " + i + "\nTotal resources: " + resourcesList.size());
         }
         return result;
     }

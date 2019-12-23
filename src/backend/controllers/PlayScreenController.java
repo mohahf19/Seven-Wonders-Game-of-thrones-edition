@@ -342,7 +342,9 @@ public class PlayScreenController implements Initializable {
                 System.out.println( "Cards geldi");
 
                 for (int i = 0; i < cards.size(); i++) {
+                    int color = Main.gameEngine.canBuild(cards.get(i));
                     CardView cv = new CardView(cards.get(i), i);
+                    color(cv, color);
 //                    int res = Main.gameEngine.getCurrentPlayer().canBuild(cards.get(i).cost);
 //                    cv.setDisable(res == 0);
 //                    System.out.println("can build " + cards.get(i).name + ": " + res);
@@ -478,6 +480,23 @@ public class PlayScreenController implements Initializable {
                 updateLabels();
             }
         });
+    }
+
+    private static void color(CardView cv, int canBuild) {
+        System.out.println("Coloring card " + cv.getName() + " with " + canBuild);
+        switch (canBuild){
+            case 0:
+                cv.setUnPlayable();
+                break;
+            case 1:
+                cv.setPlayable();
+                break;
+            case 2:
+            case 3:
+                cv.setTradeable();
+                break;
+        }
+
     }
 
     private static void updateLabels() {
