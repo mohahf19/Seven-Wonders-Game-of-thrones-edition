@@ -61,6 +61,7 @@ Project Reports
 * Analysis report - Iteration 2 (https://docs.google.com/document/d/1hhkHqqsefcUl_u-FM5Z9C15gwI98NyCVBrvYvEKK3b4/edit?usp=sharing)
 * Design report - Iteration 2 (https://docs.google.com/document/d/1nClTG69dTttaX0hqQJCWpyag6HMt4QrlcQqoeCRomHU/edit?usp=sharing)
 * Final report - Iteration 2 (https://docs.google.com/document/d/1_CgVbAPR-8l5FWki8pQhAdJLG_o84irEtmfN4uBOdv0/edit?usp=sharing)
+* Demo Video - Iteration 2 (https://youtu.be/ZpjKGeUjbzY)
 
 Meeting Hours
 -
