@@ -29,13 +29,14 @@ public class Numbers {
         return counter;
     }
 
+    //precondition: res > 0
     public static ArrayList<Integer> factorizeResources(int res){
         ArrayList<Integer> result = new ArrayList<>(7);
 
-        if (res == Deck.si*Deck.d*Deck.p){
-            System.out.println("building forum probably...");
-        }
+
+        System.out.println("factorizing this: " + res);
         int factors[] = {RES1, RES2, RES3, RES4, RES5, RES6, RES7};
+
         for(int i = 0; i < factors.length; i++){
             while (res % factors[i] == 0){ //2
                 result.add(factors[i]);

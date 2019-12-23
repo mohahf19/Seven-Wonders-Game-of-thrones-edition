@@ -56,7 +56,7 @@ public class Commerce extends Card {
         return resourceList;
     }
 
-    public ArrayList<Integer> getTradeRes() {
+    public ArrayList<Integer>  getTradeRes() {
         return factorizeResources(tradeRes);
     }
 

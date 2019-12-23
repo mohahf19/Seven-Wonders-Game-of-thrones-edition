@@ -1,8 +1,5 @@
 package backend.models;
 
-import backend.app.Main;
-import com.google.gson.JsonObject;
-
 import java.util.ArrayList;
 
 import static backend.app.constants.*;
@@ -167,10 +164,12 @@ public class Player {
             this.house.coins += card.getCoins();
 
         // trading effetcs
-        ArrayList<Integer> tradeRes = card.getTradeRes();
-        for (Integer res : tradeRes) {
-            if (card.includesLeft()) agreements.left.setCost(res, 1);
-            if (card.includesRight()) agreements.right.setCost(res, 1);
+        if(card.tradeRes != 0) {
+            ArrayList<Integer> tradeRes = card.getTradeRes();
+            for (int i = 0; i < tradeRes.size(); i++) {
+                    if (card.includesLeft()) agreements.left.setCost(tradeRes.get(i), 1);
+                    if (card.includesRight()) agreements.right.setCost(tradeRes.get(i), 1);
+            }
         }
 
     }
