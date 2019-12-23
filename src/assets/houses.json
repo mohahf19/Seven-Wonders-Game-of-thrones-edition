@@ -1,0 +1,324 @@
+[
+    {
+        "name": "Lannister",
+        "resourcesList": [13],
+        "wonders": [
+            {
+                "cost": {
+                    "coins": 0,
+                    "prereq": "",
+                    "resources": 25
+                },
+                "resources": [1],
+                "coins": 0,
+                "militaryShields": 0,
+                "victoryPoints": 3,
+                "built": false
+            },
+            {
+                "cost": {
+                    "coins": 0,
+                    "prereq": "",
+                    "resources": 9
+                },
+                "resources": [1],
+                "coins": 9,
+                "militaryShields": 0,
+                "victoryPoints": 0,
+                "built": false
+            },
+            {
+                "cost": {
+                    "coins": 0,
+                    "prereq": "",
+                    "resources": 169
+                },
+                "resources": [1],
+                "coins": 0,
+                "militaryShields": 0,
+                "victoryPoints": 7,
+                "built": false
+            }
+        ],
+        "militaryShields": 0,
+        "coins": 3,
+        "buff": 0,
+        "nerf": 0
+    },
+    {
+        "name": "Tyrell",
+        "resourcesList": [5],
+        "wonders": [
+            {
+                "cost": {
+                    "coins": 0,
+                    "prereq": "",
+                    "resources": 25
+                },
+                "resources": [1],
+                "coins": 0,
+                "militaryShields": 0,
+                "victoryPoints": 3,
+                "built": false
+            },
+            {
+                "cost": {
+                    "coins": 0,
+                    "prereq": "",
+                    "resources": 27
+                },
+                "resources": [11, 13, 17],
+                "coins": 0,
+                "militaryShields": 0,
+                "victoryPoints": 0,
+                "built": false
+            },
+            {
+                "cost": {
+                    "coins": 0,
+                    "prereq": "",
+                    "resources": 625
+                },
+                "resources": [1],
+                "coins": 0,
+                "militaryShields": 0,
+                "victoryPoints": 7,
+                "built": false
+            }
+        ],
+        "militaryShields": 0,
+        "coins": 3,
+        "buff": 1,
+        "nerf": 1
+    },
+    {
+        "name": "Stark",
+        "resourcesList": [17],
+        "wonders": [
+            {
+                "cost": {
+                    "coins": 0,
+                    "prereq": "",
+                    "resources": 25
+                },
+                "resources": [1],
+                "coins": 0,
+                "militaryShields": 0,
+                "victoryPoints": 3,
+                "built": false
+            },
+            {
+                "cost": {
+                    "coins": 0,
+                    "prereq": "",
+                    "resources": 8
+                },
+                "resources": [1],
+                "coins": 0,
+                "militaryShields": 2,
+                "victoryPoints": 0,
+                "built": false
+            },
+            {
+                "cost": {
+                    "coins": 0,
+                    "prereq": "",
+                    "resources": 169
+                },
+                "resources": [1],
+                "coins": 0,
+                "militaryShields": 0,
+                "victoryPoints": 7,
+                "built": false
+            }
+        ],
+        "militaryShields": 0,
+        "coins": 3,
+        "buff": 2,
+        "nerf": 2
+    },
+    {
+        "name": "Targaryen",
+        "resourcesList": [11],
+        "wonders": [
+            {
+                "cost": {
+                    "coins": 0,
+                    "prereq": "",
+                    "resources": 49
+                },
+                "resources": [1],
+                "coins": 0,
+                "militaryShields": 0,
+                "victoryPoints": 3,
+                "built": false
+            },
+            {
+                "cost": {
+                    "coins": 0,
+                    "prereq": "",
+                    "resources": 27
+                },
+                "resources": [1],
+                "coins": 0,
+                "militaryShields": 0,
+                "victoryPoints": 5,
+                "built": false
+            },
+            {
+                "cost": {
+                    "coins": 0,
+                    "prereq": "",
+                    "resources": 2401
+                },
+                "resources": [1],
+                "coins": 0,
+                "militaryShields": 0,
+                "victoryPoints": 7,
+                "built": false
+            }
+        ],
+        "militaryShields": 0,
+        "coins": 3,
+        "buff": 3,
+        "nerf": 3
+    },
+    {
+        "name": "Greyjoy",
+        "resourcesList": [5],
+        "wonders": [
+            {
+                "cost": {
+                    "coins": 0,
+                    "prereq": "",
+                    "resources": 49
+                },
+                "resources": [1],
+                "coins": 0,
+                "militaryShields": 0,
+                "victoryPoints": 3,
+                "built": false
+            },
+            {
+                "cost": {
+                    "coins": 0,
+                    "prereq": "",
+                    "resources": 4
+                },
+                "resources": [2, 3, 5, 7],
+                "coins": 0,
+                "militaryShields": 0,
+                "victoryPoints": 0,
+                "built": false
+            },
+            {
+                "cost": {
+                    "coins": 0,
+                    "prereq": "",
+                    "resources": 121
+                },
+                "resources": [1],
+                "coins": 0,
+                "militaryShields": 0,
+                "victoryPoints": 7,
+                "built": false
+            }
+        ],
+        "militaryShields": 0,
+        "coins": 3,
+        "buff": 4,
+        "nerf": 4
+    },
+    {
+        "name": "Baratheon",
+        "resourcesList": [7],
+        "wonders": [
+            {
+                "cost": {
+                    "coins": 0,
+                    "prereq": "",
+                    "resources": 10
+                },
+                "resources": [1],
+                "coins": 0,
+                "militaryShields": 0,
+                "victoryPoints": 3,
+                "built": false
+            },
+            {
+                "cost": {
+                    "coins": 0,
+                    "prereq": "",
+                    "resources": 63
+                },
+                "resources": [1],
+                "coins": 3,
+                "militaryShields": 0,
+                "victoryPoints": 3,
+                "built": false
+            },
+            {
+                "cost": {
+                    "coins": 0,
+                    "prereq": "",
+                    "resources": 3575
+                },
+                "resources": [1],
+                "coins": 0,
+                "militaryShields": 0,
+                "victoryPoints": 7,
+                "built": false
+            }
+        ],
+        "militaryShields": 0,
+        "coins": 3,
+        "buff": 5,
+        "nerf": 5
+    },
+    {
+        "name": "White Walkers",
+        "resourcesList": [2],
+        "wonders": [
+            {
+                "cost": {
+                    "coins": 0,
+                    "prereq": "",
+                    "resources": 9
+                },
+                "resources": [1],
+                "coins": 0,
+                "militaryShields": 0,
+                "victoryPoints": 3,
+                "built": false
+            },
+            {
+                "cost": {
+                    "coins": 0,
+                    "prereq": "",
+                    "resources": 49
+                },
+                "resources": [1],
+                "coins": 0,
+                "militaryShields": 0,
+                "victoryPoints": 5,
+                "built": false
+            },
+            {
+                "cost": {
+                    "coins": 0,
+                    "prereq": "",
+                    "resources": 2057
+                },
+                "resources": [1],
+                "coins": 0,
+                "militaryShields": 0,
+                "victoryPoints": 7,
+                "built": false
+            }
+        ],
+        "militaryShields": 0,
+        "coins": 3,
+        "buff": 6,
+        "nerf": 6
+    }
+]

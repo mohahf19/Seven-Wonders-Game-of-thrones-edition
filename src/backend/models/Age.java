@@ -1,11 +1,13 @@
 package backend.models;
 
 public class Age {
-    private Deck deck;
-    private int seasonalEvents;
+    public Deck deck;
+    public int seasonalEvents;
 
-    public Deck getDeck(int noOfPlayers, int age){
-
+    public Age( Deck deck){
+        this.deck = deck;
+    }
+    public Deck getDeck(){
         return deck;
     }
 }

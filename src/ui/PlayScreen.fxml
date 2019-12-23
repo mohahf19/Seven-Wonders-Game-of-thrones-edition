@@ -1,16 +1,140 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="backend.controllers.PlayScreenController">
+<AnchorPane fx:id="parentPane" maxHeight="900.0" maxWidth="1440.0" minHeight="900.0" minWidth="1440.0" prefHeight="900.0" prefWidth="1440.0" stylesheets="/assets/PlayScreen.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="backend.controllers.PlayScreenController">
    <children>
-      <ImageView fitHeight="760.0" fitWidth="1080.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="900.0" fitWidth="1440.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/playscreen.jpeg" />
+            <Image url="@../assets/playscreen.jpg" />
          </image>
       </ImageView>
+      <HBox fx:id="headerHolder" prefHeight="101.0" prefWidth="1440.0" />
+      <HBox fx:id="wonderHolder" layoutX="240.0" layoutY="551.0" prefHeight="75.0" prefWidth="960.0" />
+      <ImageView fx:id="tick1" fitHeight="50.0" fitWidth="50.0" layoutX="1.0" layoutY="551.0" pickOnBounds="true" preserveRatio="true" translateX="490.0" visible="false">
+         <image>
+            <Image url="@../assets/gameIcons/tickIcon.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="tick2" fitHeight="50.0" fitWidth="50.0" layoutX="1.0" layoutY="551.0" pickOnBounds="true" preserveRatio="true" translateX="820.0" visible="false">
+         <image>
+            <Image url="@../assets/gameIcons/tickIcon.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="tick3" fitHeight="50.0" fitWidth="50.0" layoutX="1.0" layoutY="551.0" pickOnBounds="true" preserveRatio="true" translateX="1150.0" visible="false">
+         <image>
+            <Image url="@../assets/gameIcons/tickIcon.png" />
+         </image>
+      </ImageView>
+      <AnchorPane fx:id="pvcPane" layoutX="345.0" layoutY="110.0" prefHeight="500.0" prefWidth="750.0" />
+      <ImageView fx:id="initialResource" fitHeight="40.0" fitWidth="120.0" layoutX="67.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="38.0" layoutY="551.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/screenIcons/userCoins.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="136.0" layoutY="551.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/screenIcons/userShields.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="75.0" fitWidth="91.0" layoutX="1280.0" layoutY="551.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/screenIcons/discardCard.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="coinLabel" layoutX="38.0" layoutY="551.0" prefHeight="0.0" prefWidth="75.0" style="-fx-alignment: center; -fx-font-size: 50; -fx-text-fill: white;" text="0" />
+      <Label fx:id="militaryLabel" layoutX="136.0" layoutY="552.0" prefHeight="0.0" prefWidth="75.0" style="-fx-alignment: center; -fx-font-size: 50; -fx-text-fill: white;" text="0" />
+      <AnchorPane fx:id="bottomAnchorPS" layoutX="-1.0" layoutY="640.0" prefHeight="257.0" prefWidth="1442.0">
+         <children>
+            <AnchorPane fx:id="leftContainer" maxHeight="400.0" prefHeight="259.0" prefWidth="151.0">
+               <children>
+                  <ImageView fx:id="seasonBanner" fitHeight="200.0" fitWidth="65.0" layoutX="76.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="soundButton" fitHeight="95.0" fitWidth="65.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/volume.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="ageButton" fitHeight="95.0" fitWidth="65.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="idLabel" layoutY="15.0" maxHeight="32.0" maxWidth="151.0" minWidth="151.0" prefHeight="32.0" prefWidth="151.0" text="Label" />
+               </children>
+            </AnchorPane>
+            <ImageView fx:id="scoreboardButton" fitHeight="90.0" fitWidth="90.0" layoutX="1353.0" layoutY="169.0" onMouseClicked="#showScoreboard" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/award.jpg" />
+               </image>
+            </ImageView>
+            <HBox fx:id="cardHolder" layoutX="188.0" layoutY="28.0" prefHeight="202.0" prefWidth="1124.0" />
+            <ImageView fx:id="homeButton" fitHeight="90.0" fitWidth="90.0" layoutX="1353.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../assets/homeIcon.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="waitLabel" layoutX="194.0" layoutY="164.0" prefHeight="555.0" prefWidth="1051.0" style="-fx-border-radius: 50;" visible="false">
+         <children>
+            <Label fx:id="waitingText" layoutX="325.0" layoutY="240.0" prefHeight="75.0" prefWidth="477.0" text="Waiting for other players..." />
+            <ImageView fitHeight="75.0" fitWidth="76.0" layoutX="249.0" layoutY="240.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/animations/eclipseLoad.gif" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="scoreboardPane" layoutX="250.0" layoutY="120.0" prefHeight="700.0" prefWidth="940.0" visible="false">
+         <HBox prefHeight="100.0" prefWidth="200.0">
+            <children>
+               <ImageView fitHeight="100.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../assets/Scoreboard%20Icons/gotIcon.png" />
+                  </image>
+               </ImageView>
+               <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../assets/Scoreboard%20Icons/militIcon.png" />
+                  </image>
+               </ImageView>
+               <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../assets/Scoreboard%20Icons/coinIcon.png" />
+                  </image>
+               </ImageView>
+               <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../assets/Scoreboard%20Icons/wonderIcon.png" />
+                  </image>
+               </ImageView>
+               <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../assets/Scoreboard%20Icons/civicIcon.png" />
+                  </image>
+               </ImageView>
+               <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../assets/Scoreboard%20Icons/commerceIcon.png" />
+                  </image>
+               </ImageView>
+               <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../assets/Scoreboard%20Icons/scienceIcon.png" />
+                  </image>
+               </ImageView>
+               <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../assets/Scoreboard%20Icons/victoryIcon.png" />
+                  </image>
+               </ImageView>
+            </children>
+         </HBox>
+         <VBox fx:id="scoreboardHolder" layoutY="100.0" prefHeight="600.0" prefWidth="940.0" />
+      </AnchorPane>
+
+      <ImageView fx:id="waitingAnimation" fitHeight="900.0" fitWidth="1440.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true" visible="false" />
    </children>
 </AnchorPane>

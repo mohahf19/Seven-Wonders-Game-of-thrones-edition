@@ -7,15 +7,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-import javafx.scene.image.ImageView;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -42,7 +43,7 @@ public class WaitScreenController implements Initializable {
 
     @FXML
     private void startGame(){
-        Main.game.conn.startGameRequest();
+        Main.serverController.startGame();
     }
 
     public static void showMainScreen(){
@@ -60,11 +61,11 @@ public class WaitScreenController implements Initializable {
                     stage.getScene().setRoot(page);
                     stage.sizeToScene();
                 }catch (Exception e){
+                    System.out.println("Exception");
                     e.printStackTrace();
                 }
             }
         });
-
     }
 
     public static void updateHouses(ArrayList<String> houses){
@@ -75,6 +76,7 @@ public class WaitScreenController implements Initializable {
                     for(  int i = 0; i < 7; i++){
                         if( i < houses.size()){
                             labels.get(i).setText( "" + houses.get(i));
+                            //labels.get(i).setAlignment(Pos.CENTER);
                             images.get(i).setImage( new Image( "/assets/" + houses.get(i) + ".jpg"));
                             images.get(i).setVisible( true);
                         } else {
@@ -96,18 +98,19 @@ public class WaitScreenController implements Initializable {
             stage.getScene().setRoot(page);
             stage.sizeToScene();
         } catch (Exception e){
+            System.out.println("Exception");
             e.printStackTrace();
         }
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        if (Main.game.conn.server == null) {
+        if (Main.serverController == null) {
             startGameButton.setVisible(false);
             ipText.setVisible( false);
             ipLabel.setVisible( false);
         } else {
-            ipText.setText( "" + Main.game.conn.server.serverIP);
+            ipText.setText( "" + Main.serverController.host.serverIP);
             ipText.setVisible( true);
             ipText.setEditable( true);
             ipText.setDisable( false);
@@ -121,6 +124,15 @@ public class WaitScreenController implements Initializable {
         WaitScreenController.labels.add( house4);
         WaitScreenController.labels.add( house5);
         WaitScreenController.labels.add( house6);
+
+        house0.setAlignment(Pos.CENTER);
+        house1.setAlignment(Pos.CENTER);
+        house2.setAlignment(Pos.CENTER);
+        house3.setAlignment(Pos.CENTER);
+        house4.setAlignment(Pos.CENTER);
+        house5.setAlignment(Pos.CENTER);
+        house6.setAlignment(Pos.CENTER);
+
 
         WaitScreenController.images.add( image0);
         WaitScreenController.images.add( image1);

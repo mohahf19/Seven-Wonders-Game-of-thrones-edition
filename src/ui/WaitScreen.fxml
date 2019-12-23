@@ -9,22 +9,22 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="760.0" prefWidth="1080.0" stylesheets="/assets/WaitScreen.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="backend.controllers.WaitScreenController">
+<AnchorPane maxHeight="900.0" maxWidth="1440.0" minHeight="900.0" minWidth="1440.0" prefHeight="900.0" prefWidth="1440.0" stylesheets="/assets/WaitScreen.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="backend.controllers.WaitScreenController">
    <children>
-      <ImageView fitHeight="760.0" fitWidth="1080.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ImageView fitHeight="900.0" fitWidth="1440.0" opacity="0.8" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="192.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@../assets/waitingbg.jpg" />
          </image></ImageView>
-      <Pane layoutX="51.0" layoutY="85.0" prefHeight="420.0" prefWidth="150.0">
+      <Pane layoutX="54.0" layoutY="95.0" prefHeight="420.0" prefWidth="150.0">
          <children>
             <ImageView fx:id="image0" fitHeight="361.0" fitWidth="150.0" layoutX="3.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/loadingPlayer.jpg" />
                </image></ImageView>
-            <Label fx:id="house0" alignment="CENTER" contentDisplay="CENTER" layoutX="13.0" maxWidth="125" prefHeight="58.0" prefWidth="150.0" />
+            <Label fx:id="house0" alignment="CENTER" contentDisplay="CENTER" layoutX="13.0" maxWidth="125.0" prefHeight="58.0" prefWidth="145.0" />
          </children>
       </Pane>
-      <HBox layoutX="264.0" layoutY="160.0" prefHeight="344.0" prefWidth="755.0">
+      <HBox layoutX="468.0" layoutY="172.0" prefHeight="344.0" prefWidth="755.0">
          <children>
             <Pane prefHeight="335.0" prefWidth="125.0">
                <children>
@@ -33,7 +33,7 @@
                         <Image url="@../assets/loadingPlayerSmall.jpg" />
                      </image>
                   </ImageView>
-                  <Label fx:id="house1" layoutX="10.0" prefHeight="48.0" prefWidth="106.0" text="" />
+                  <Label fx:id="house1" layoutX="10.0" prefHeight="48.0" prefWidth="106.0" text="" textAlignment="CENTER" />
                </children>
             </Pane>
             <Pane prefHeight="335.0" prefWidth="125.0">
@@ -43,7 +43,7 @@
                         <Image url="@../assets/loadingPlayerSmall.jpg" />
                      </image>
                   </ImageView>
-                  <Label fx:id="house2" layoutX="10.0" prefHeight="48.0" prefWidth="106.0" text="" />
+                  <Label fx:id="house2" layoutX="10.0" prefHeight="48.0" prefWidth="106.0" text="" textAlignment="CENTER" />
                </children>
             </Pane>
             <Pane prefHeight="335.0" prefWidth="125.0">
@@ -53,7 +53,7 @@
                         <Image url="@../assets/loadingPlayerSmall.jpg" />
                      </image>
                   </ImageView>
-                  <Label fx:id="house3" layoutX="10.0" prefHeight="48.0" prefWidth="106.0" text="" />
+                  <Label fx:id="house3" layoutX="10.0" prefHeight="48.0" prefWidth="106.0" text="" textAlignment="CENTER" />
                </children>
             </Pane>
             <Pane prefHeight="335.0" prefWidth="125.0">
@@ -63,7 +63,7 @@
                         <Image url="@../assets/loadingPlayerSmall.jpg" />
                      </image>
                   </ImageView>
-                  <Label fx:id="house4" layoutX="10.0" prefHeight="48.0" prefWidth="106.0" text="" />
+                  <Label fx:id="house4" layoutX="10.0" prefHeight="48.0" prefWidth="106.0" text="" textAlignment="CENTER" />
                </children>
             </Pane>
             <Pane prefHeight="335.0" prefWidth="125.0">
@@ -73,7 +73,7 @@
                         <Image url="@../assets/loadingPlayerSmall.jpg" />
                      </image>
                   </ImageView>
-                  <Label fx:id="house5" layoutX="10.0" prefHeight="48.0" prefWidth="106.0" text="" />
+                  <Label fx:id="house5" layoutX="10.0" prefHeight="48.0" prefWidth="106.0" text="" textAlignment="CENTER" />
                </children>
             </Pane>
             <Pane prefHeight="335.0" prefWidth="125.0">
@@ -83,20 +83,20 @@
                         <Image url="@../assets/loadingPlayerSmall.jpg" />
                      </image>
                   </ImageView>
-                  <Label fx:id="house6" layoutX="10.0" prefHeight="48.0" prefWidth="106.0" text="" />
+                  <Label fx:id="house6" layoutX="10.0" prefHeight="48.0" prefWidth="106.0" text="" textAlignment="CENTER" />
                </children>
             </Pane>
          </children>
       </HBox>
-      <AnchorPane fx:id="bottomAnchorPane" layoutY="517.0" prefHeight="265.0" prefWidth="1080.0">
+      <AnchorPane fx:id="bottomAnchorPane" layoutY="634.0" prefHeight="265.0" prefWidth="1440.0">
          <children>
-            <Button fx:id="startGameButton" layoutX="402.0" layoutY="39.0" mnemonicParsing="false" onAction="#startGame" prefHeight="67.0" prefWidth="270.0" text="START GAME" />
-            <Button fx:id="exitGameButton" layoutX="449.0" layoutY="138.0" mnemonicParsing="false" onAction="#exitGame" prefHeight="67.0" prefWidth="176.0" text="QUIT" />
+            <Button fx:id="startGameButton" layoutX="585.0" layoutY="38.0" mnemonicParsing="false" onAction="#startGame" prefHeight="67.0" prefWidth="270.0" text="START GAME" />
+            <Button fx:id="exitGameButton" layoutX="632.0" layoutY="137.0" mnemonicParsing="false" onAction="#exitGame" prefHeight="67.0" prefWidth="176.0" text="QUIT" />
             <TextField fx:id="ipText" layoutX="14.0" layoutY="205.0" prefHeight="29.0" prefWidth="116.0" />
             <Label fx:id="ipLabel" layoutX="14.0" layoutY="175.0" prefHeight="29.0" prefWidth="91.0" text="SERVER IP:" />
          </children>
       </AnchorPane>
-      <HBox layoutX="522.0" layoutY="85.0" prefHeight="51.0" prefWidth="407.0">
+      <HBox layoutX="642.0" layoutY="85.0" prefHeight="51.0" prefWidth="407.0">
          <children>
             <ImageView fitHeight="54.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true">
                <image>

@@ -3,12 +3,16 @@ package backend.controllers;
 import backend.app.Main;
 import backend.app.fxmlPaths;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.*;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -27,7 +31,7 @@ public class MainScreenController implements Initializable  {
     private AnchorPane menuParent;
 
     @FXML
-    private ImageView backgroundImageView;
+    private ImageView backgroundImageView, soundButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -52,7 +56,7 @@ public class MainScreenController implements Initializable  {
 //        }
         try {
 
-            Main.game.conn.initServer();
+            Main.initServer();
 
             //AnchorPane pane = FXMLLoader.load(getClass().getResource(fxmlPaths.waitMenu));
             //menuParent.getChildren().setAll(pane);
@@ -65,6 +69,7 @@ public class MainScreenController implements Initializable  {
 
 
         } catch (Exception e) {
+            System.out.println( "Exception");
             e.printStackTrace();
         }
     }
@@ -78,7 +83,7 @@ public class MainScreenController implements Initializable  {
             return;
         } else{
             String ip = IPTextField.getText();
-            Main.game.conn.initClient( ip);
+            Main.initClient( ip);
 
             try {
                 Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow();
@@ -86,6 +91,7 @@ public class MainScreenController implements Initializable  {
                 stage.getScene().setRoot(page);
                 stage.sizeToScene();
             } catch (IOException e) {
+                System.out.println("IOException");
                 e.printStackTrace();
             }
 

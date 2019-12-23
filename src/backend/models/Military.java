@@ -1,12 +1,24 @@
 package backend.models;
 
-import javafx.scene.paint.Color;
+import backend.app.constants;
 
 public class Military extends Card{
-    private int numberOfShields;
+    public int numberOfShields;
 
-    public Military(String name, int[] cardFreq, int age, Cost cost, Color color, String imagePath, int numberOfShields){
-        super(name, cardFreq, age, cost, color, imagePath);
+    public Military(String name, int cardFreq, int age, Cost cost, String imagePath,
+                    String iconPath, String backPath, String chain1, String chain2, int numberOfShields){
+        super(name, cardFreq, age, cost, constants.path +"military.jpg", iconPath, constants.path +"red.jpg", chain1, chain2);
         this.numberOfShields = numberOfShields;
+
+        this.cardType = "military";
+    }
+
+    @Override
+    public boolean isMilitary(){
+        return true;
+    }
+
+    public int getNumberOfShields() {
+        return numberOfShields;
     }
 }

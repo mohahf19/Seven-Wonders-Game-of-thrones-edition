@@ -1,15 +1,21 @@
 package backend.models;
 
-import javafx.scene.paint.Color;
-
+import backend.app.constants;
 public class Science extends Card{
-    private String[] type;
+    public String type;
 
-    public Science(String name, int[] cardFreq, int age, Cost cost, Color color, String imagePath, String[] type){
-        super(name, cardFreq, age, cost, color, imagePath);
+    public Science(String name, int cardFreq, int age, Cost cost, String imagePath,
+                   String iconPath, String backPath, String chain1, String chain2, String type){
+        super(name, cardFreq, age, cost, constants.path +"science.jpg", iconPath, constants.path +"green.jpg", chain1, chain2);
 
-        this.type = new String[type.length];
-        for(int i = 0; i < type.length; i++)
-            this.type[i] = type[i];
+        this.type = type;
+        this.cardType = "science";
     }
+
+    @Override
+    public boolean isScience(){
+        return true;
+    }
+
+    public String getType(){ return type;}
 }

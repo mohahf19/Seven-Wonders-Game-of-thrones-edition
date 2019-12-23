@@ -1,0 +1,64 @@
+#bottomAnchorPS {
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+}
+
+#leftContainer {
+    -fx-background-color: #0c0d11;
+    -border-radius: 10px;
+}
+
+#cardHolder.label {
+    -fx-background-color: white;
+    -fx-text-fill: red;
+}
+
+#headerHolder {
+    -fx-background-color: black;
+}
+
+#headerHolder .text {
+    -fx-stroke: black;
+    -fx-stroke-width: 1;
+    -fx-stroke-type: outside;
+}
+
+#headerHolder .ImageView {
+    -fx-stroke: black;
+}
+
+#scoreboardHolder .text {
+    -fx-alignment: center;
+    -fx-stroke: black;
+    -fx-stroke-type: outside;
+}
+
+#scoreboardHolder {
+    -fx-border-color: black;
+    /*-fx-background-image: "file:///C:/Users/Bilal/Desktop/scoreboardBackground.png";*/
+}
+
+#scoreboardHolder .label {
+    -fx-border-color: black;
+}
+
+#coinLabel .text {
+    -fx-stroke: black;
+    -fx-stroke-width: 2;
+    -fx-stroke-type: outside;
+}
+
+#militaryLabel .text {
+    -fx-stroke: black;
+    -fx-stroke-width: 2;
+    -fx-stroke-type: outside;
+}
+
+#idLabel {
+    -fx-text-fill: white;
+    -fx-background-color: black;
+}
+
+#idLabel .text {
+    -fx-font-size: 20;
+    -fx-font-family: Georgia;
+}
