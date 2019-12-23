@@ -154,6 +154,7 @@ public class GameClient {
                         ArrayList<Player> players = gson.fromJson( res.get("all_players").getAsString(), playersListType );
 
                         engine.players = players;
+                        engine.getCurrentPlayer().id = id;
                         System.out.println( "Houses updated: " + players.size());
 
                         ArrayList<String> houses = new ArrayList<>();
@@ -176,6 +177,7 @@ public class GameClient {
                         ArrayList<Player> players = playerGson.fromJson( res.get("all_players").getAsString(), playersListType );
 
                         engine.players = players;
+                        engine.getCurrentPlayer().id = id;
                         engine.updateNeighbors();
 
                         // call something to update all cards, all player reaources etc.

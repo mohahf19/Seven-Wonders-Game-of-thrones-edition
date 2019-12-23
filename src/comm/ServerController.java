@@ -276,6 +276,13 @@ public class ServerController {
     }
 
     public void sendHouses(){
+        //updating trading costs for neighbors
+        for( PlayerCost p: tradingCosts){
+            players.get( p.playerId).house.coins += p.cost;
+            System.out.println( "Player cost: " + p.playerId + "cost: " + p.cost);
+        }
+        tradingCosts.clear();
+
         for( int i = 0; i < host.clients.size(); i++){
 
             JsonObject outOb = new JsonObject();
@@ -357,11 +364,6 @@ public class ServerController {
     }
 
     public void updateScoreboard(){
-        //updating trading costs for neighbors
-        for( PlayerCost p: tradingCosts){
-            players.get( p.playerId).house.coins += p.cost;
-        }
-        tradingCosts.clear();
 
         for( int i = 0; i < players.size(); i++){
             Player currPlayer = players.get( i);
