@@ -31,7 +31,7 @@ import java.util.TimerTask;
 
 public class PlayScreenController implements Initializable {
     @FXML
-    private ImageView soundButton, scoreboardButton, seasonBanner, ageButton, homeButton, waitingAnimation, tick1, tick2, tick3;
+    private ImageView soundButton, scoreboardButton, seasonBanner, ageButton, homeButton, waitingAnimation, tick1, tick2, tick3, initialResource;
     private static ImageView seasonBannerSt, ageButtonSt, waitingAnimationSt, tick1St, tick2St, tick3St;
 
     @FXML
@@ -51,7 +51,7 @@ public class PlayScreenController implements Initializable {
     private static AnchorPane waitLabelSt;
 
     @FXML
-    private Label waitingText, coinLabel, militaryLabel;
+    private Label waitingText, coinLabel, militaryLabel, idLabel;
     private static Label coinLabelSt, militaryLabelSt;
 
     @FXML
@@ -158,11 +158,47 @@ public class PlayScreenController implements Initializable {
         pvcPane.getChildren().add(pvc);
         
         updateLabels();
+        initializeResource(Main.gameEngine.players.get(0).house.name);
 
         //don't change anything below
         notifyViewLoaded();
     }
 
+
+    public void initializeResource(String name) {
+        Image image;
+        switch (name) {
+            case "Stark":
+                image = new Image("assets/initialResources/starkInitial.png");
+                initialResource.setImage(image);
+                break;
+            case "Baratheon":
+                image = new Image("assets/initialResources/baratheonInitial.png");
+                initialResource.setImage(image);
+                break;
+            case "Greyjoy":
+                image = new Image("assets/initialResources/greyjoyInitial.png");
+                initialResource.setImage(image);
+                break;
+            case "Lannister":
+                image = new Image("assets/initialResources/lannisterInitial.png");
+                initialResource.setImage(image);
+                break;
+            case "Targaryen":
+                image = new Image("assets/initialResources/targaryenInitial.png");
+                initialResource.setImage(image);
+                break;
+            case "Tyrell":
+                image = new Image("assets/initialResources/tyrellInitial.png");
+                initialResource.setImage(image);
+                break;
+            case "White Walkers":
+                image = new Image("assets/initialResources/whiteInitial.png");
+                initialResource.setImage(image);
+                break;
+        }
+
+    }
 
     public void initScoreboard() {
         Platform.runLater(new Runnable() {
@@ -195,6 +231,7 @@ public class PlayScreenController implements Initializable {
                 iv = new ImageView();
                 iv.setImage(image);
                 wonderHolder.getChildren().addAll(iv);
+                idLabel.setText(" Stark");
                 break;
             case "Baratheon":
                 image = new Image("assets/wonders/baratheonWonder1.png");
@@ -209,6 +246,7 @@ public class PlayScreenController implements Initializable {
                 iv = new ImageView();
                 iv.setImage(image);
                 wonderHolder.getChildren().addAll(iv);
+                idLabel.setText(" Baratheon");
                 break;
             case "Greyjoy":
                 image = new Image("assets/wonders/greyjoyWonder1.png");
@@ -223,6 +261,7 @@ public class PlayScreenController implements Initializable {
                 iv = new ImageView();
                 iv.setImage(image);
                 wonderHolder.getChildren().addAll(iv);
+                idLabel.setText(" Greyjoy");
                 break;
             case "Lannister":
                 image = new Image("assets/wonders/lannisterWonder1.png");
@@ -237,6 +276,7 @@ public class PlayScreenController implements Initializable {
                 iv = new ImageView();
                 iv.setImage(image);
                 wonderHolder.getChildren().addAll(iv);;
+                idLabel.setText(" Lannister");
                 break;
             case "Targaryen":
                 image = new Image("assets/wonders/targaryenWonder1.png");
@@ -251,6 +291,7 @@ public class PlayScreenController implements Initializable {
                 iv = new ImageView();
                 iv.setImage(image);
                 wonderHolder.getChildren().addAll(iv);
+                idLabel.setText(" Targaryen");
                 break;
             case "Tyrell":
                 image = new Image("assets/wonders/tyrellWonder1.png");
@@ -265,6 +306,7 @@ public class PlayScreenController implements Initializable {
                 iv = new ImageView();
                 iv.setImage(image);
                 wonderHolder.getChildren().addAll(iv);
+                idLabel.setText(" Tyrell");
                 break;
             case "White Walkers":
                 image = new Image("assets/wonders/whitewalkersWonder1.png");
@@ -279,6 +321,7 @@ public class PlayScreenController implements Initializable {
                 iv = new ImageView();
                 iv.setImage(image);
                 wonderHolder.getChildren().addAll(iv);
+                idLabel.setText(" White Walkers");
                 break;
         }
     }
@@ -629,6 +672,7 @@ public class PlayScreenController implements Initializable {
                 isHome = false;
             homeButton.setVisible(true);
             pvc.display(PlayScreenController.updatedPlayers.get(id).playedCards);
+            initializeResource(PlayScreenController.updatedPlayers.get(id).house.name);
         }
     }
 
