@@ -334,6 +334,8 @@ public class ServerController {
                 currentMil += additionPoint;
                 if( players.get(i).house.name.equalsIgnoreCase("white walkers") || players.get( i).house.name.equalsIgnoreCase("baratheon"))
                     shieldChange++;
+                else if (players.get( i).house.name.equalsIgnoreCase("stark") || players.get( i).house.name.equalsIgnoreCase("greyjoy"))
+                    coinChange++;
             }
             else if( players.get( i).house.militaryShields < players.get( nextIndex).house.militaryShields)
             {
@@ -349,6 +351,8 @@ public class ServerController {
                 currentMil += additionPoint;
                 if( players.get(i).house.name.equalsIgnoreCase("white walkers") || players.get( i).house.name.equalsIgnoreCase("baratheon"))
                     shieldChange++;
+                else if (players.get( i).house.name.equalsIgnoreCase("stark") || players.get( i).house.name.equalsIgnoreCase("greyjoy"))
+                    coinChange++;
             }
             else if( players.get( i).house.militaryShields < players.get( prevIndex).house.militaryShields)
             {
