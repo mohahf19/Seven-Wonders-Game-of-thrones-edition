@@ -29,7 +29,7 @@ import java.util.TimerTask;
 
 public class PlayScreenController implements Initializable {
     @FXML
-    private ImageView soundButton, scoreboardButton, seasonBanner, ageButton, homeButton, waitingAnimation, tick1, tick2, tick3, initialResource;
+    private ImageView soundButton, scoreboardButton, seasonBanner, ageButton, homeButton, quitButton, waitingAnimation, tick1, tick2, tick3, initialResource;
     private static ImageView seasonBannerSt, ageButtonSt, waitingAnimationSt, tick1St, tick2St, tick3St;
 
     @FXML
@@ -140,6 +140,9 @@ public class PlayScreenController implements Initializable {
         soundButton.addEventHandler(MouseEvent.MOUSE_EXITED, new soundMouseExitListener());
         soundButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new soundMouseClickListener());
         homeButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new homeMouseClickListener());
+        quitButton.addEventHandler(MouseEvent.MOUSE_ENTERED, new quitMouseHoverListener());
+        quitButton.addEventHandler(MouseEvent.MOUSE_EXITED, new quitMouseExitListener());
+        quitButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new quitMouseClickListener());
         //scoreboardButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new scoreboardMouseClickListener());
 
         setHeaders(Main.gameEngine.getCurrentPlayer().id);
@@ -745,6 +748,40 @@ public class PlayScreenController implements Initializable {
         }
     }
 
+    public class quitMouseHoverListener implements EventHandler<MouseEvent> {
+        @Override
+        public void handle(MouseEvent event) {
+            event.consume();
+            try {
+                hover();
+            } catch (IOException e) {
+                System.out.println( "IOException");
+                e.printStackTrace();
+            }
+        }
+        public void hover() throws IOException {
+            Image image = new Image("assets/screenIcons/quitButtonHigh.png", true);
+            quitButton.setImage(image);
+        }
+    }
+
+    public class quitMouseExitListener implements EventHandler<MouseEvent> {
+        @Override
+        public void handle(MouseEvent event) {
+            event.consume();
+            try {
+                hover();
+            } catch (IOException e) {
+                System.out.println( "IOException");
+                e.printStackTrace();
+            }
+        }
+        public void hover() throws IOException {
+            Image image = new Image("assets/screenIcons/quitButton.png", true);
+            quitButton.setImage(image);
+        }
+    }
+
     public class soundMouseClickListener implements EventHandler<MouseEvent> {
         @Override
         public void handle(MouseEvent event) {
@@ -758,6 +795,22 @@ public class PlayScreenController implements Initializable {
         }
         public void click() throws IOException {
             SoundController.toggleMainSound();
+        }
+    }
+
+    public class quitMouseClickListener implements EventHandler<MouseEvent> {
+        @Override
+        public void handle(MouseEvent event) {
+            event.consume();
+            try {
+                click();
+            } catch (IOException e) {
+                System.out.println("IOException");
+                e.printStackTrace();
+            }
+        }
+        public void click() throws IOException {
+            // TODO add quit game stuff
         }
     }
 
