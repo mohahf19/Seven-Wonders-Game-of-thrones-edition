@@ -12,10 +12,15 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 public class Main extends Application {
 
     public static Stage window;
+
+    public static Parent waitScreen;
+    public static Parent mainScreen;
+    public static Parent playScreen;
 
     public static int state = 0; //0 for client, 1 for server;
     public static ServerController serverController = null;
@@ -30,13 +35,13 @@ public class Main extends Application {
 
         window = primaryStage;
         //sets up the stage
-        Parent root = FXMLLoader.load(getClass().getResource(fxmlPaths.mainMenu));
+        mainScreen = FXMLLoader.load(getClass().getResource(fxmlPaths.mainMenu));
 
         primaryStage.getIcons().add(new Image(getClass().getResourceAsStream( "/assets/gameLogo.png")));
         primaryStage.setTitle("Seven Houses");
 
 
-        primaryStage.setScene(new Scene(root, 1440, 900));
+        primaryStage.setScene(new Scene(mainScreen, 1440, 900));
         primaryStage.show();
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 
@@ -52,12 +57,14 @@ public class Main extends Application {
     }
 
     public static void initServer(){
+        System.gc();
         serverController = new ServerController();
         gameEngine = new GameEngine();
         state = 1;
         serverController.initServer();
     }
     public static void initClient( String ip){
+        System.gc();
         gameEngine = new GameEngine();
         serverController = null;
         state = 0;

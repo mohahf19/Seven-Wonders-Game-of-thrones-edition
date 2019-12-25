@@ -100,13 +100,13 @@ public class ServerController {
     public void populateAges(){
 
         try{
-            Deck deck1 = new Deck( players.size(), 1);
-            Deck deck2= new Deck( players.size(), 2);
-            Deck deck3 = new Deck( players.size(), 3);
+//            Deck deck1 = new Deck( players.size(), 1);
+//            Deck deck2= new Deck( players.size(), 2);
+//            Deck deck3 = new Deck( players.size(), 3);
 
-//            Deck deck1 = new Deck( 3, 1);
-//            Deck deck2= new Deck( 3, 2);
-//            Deck deck3 = new Deck( 3, 3);
+            Deck deck1 = new Deck( 3, 1);
+            Deck deck2= new Deck( 3, 2);
+            Deck deck3 = new Deck( 3, 3);
 
             Collections.shuffle(deck1.getCards());
             Collections.shuffle(deck2.getCards());
@@ -119,6 +119,15 @@ public class ServerController {
             System.out.println( "EXCEPTION::::" + e.toString() + e.getStackTrace());
         }
 
+    }
+
+    public void quitGame(){
+        for( int i = 0; i < host.clients.size(); i++){
+            JsonObject outOb = new JsonObject();
+            outOb.addProperty( "op_code", 999);
+
+            host.sendRequest( i, outOb);
+        }
     }
 
     public void incrementAge(){

@@ -77,4 +77,15 @@ public class ClientThread implements Runnable {
             System.out.println(e.toString());
         }
     }
+
+    public void closeThread(){
+        try{
+            isRunning = false;
+            in.close();
+            out.close();
+            socket.close();
+        } catch ( Exception e) {
+            System.out.println("Exception" + e);
+        }
+    }
 }
