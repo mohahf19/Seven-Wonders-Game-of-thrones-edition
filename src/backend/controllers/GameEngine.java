@@ -1,13 +1,20 @@
 package backend.controllers;
 
 import backend.app.Main;
+import backend.app.fxmlPaths;
 import backend.models.*;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import comm.GameClient;
 import comm.PlayerDeserializer;
+import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -268,5 +275,39 @@ public class GameEngine {
 
     public ArrayList<Card> getPlayedCards(){
         return getCurrentPlayer().getPlayedCards();
+    }
+
+    public void requestQuitGame(){
+        JsonObject req = new JsonObject();
+        req.addProperty("op_code", 6);
+        Main.gameEngine.client.sendRequest( req);
+    }
+    public void quitGame(){
+        //Do something to quit game
+        JOptionPane.showMessageDialog( null, "Game ended  because a player quit the game.", "", JOptionPane.PLAIN_MESSAGE);
+        if( Main.state == 0){
+            //is client
+            Main.gameEngine.client.quitGame();
+            Main.gameEngine = null;
+        } else {
+            //is server
+            Main.gameEngine.client.quitGame();
+            Main.serverController.host.quitHost();
+            Main.serverController = null;
+            Main.gameEngine = null;
+        }
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+
+                    Stage stage = (Stage) Main.window.getScene().getWindow();
+                    stage.getScene().setRoot(Main.mainScreen);
+                    stage.sizeToScene();
+                } catch (Exception e){
+                    System.out.println("Exception");
+                    e.printStackTrace();
+                }
+            }});
     }
 }

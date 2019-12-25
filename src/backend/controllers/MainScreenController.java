@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.nio.FloatBuffer;
 import java.util.ResourceBundle;
 
 import backend.app.fxmlPaths;
@@ -49,8 +50,9 @@ public class MainScreenController implements Initializable  {
             Main.initServer();
             //get the stage
             Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow();
-            Parent page = FXMLLoader.load(getClass().getResource(fxmlPaths.waitMenu));
-            stage.getScene().setRoot(page);
+            if( Main.waitScreen == null)
+                Main.waitScreen = FXMLLoader.load(getClass().getResource(fxmlPaths.waitMenu));
+            stage.getScene().setRoot(Main.waitScreen);
             stage.sizeToScene();
 
         } catch (Exception e) {

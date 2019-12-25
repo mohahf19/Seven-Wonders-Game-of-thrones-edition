@@ -34,6 +34,8 @@ public class GameClient {
 
     public int id = -1;
 
+    public boolean isRunning = true;
+
     private Gson gson;
     private Gson playerGson;
 
@@ -95,7 +97,7 @@ public class GameClient {
             out = new PrintWriter(socket.getOutputStream(), true);
 
         } catch (IOException e) {
-            System.out.println("IO Exception:\n" + e);
+            System.out.println("IOO Exception:\n" + e);
             return;
         }
     }
@@ -112,7 +114,7 @@ public class GameClient {
             out.println( gson.toJson( request));
 //            System.out.println( "Sent from client" + gson.toJson( request));
         } catch (Exception e) {
-            System.out.println("Exception on client");
+            System.out.println("Exception on client2");
             System.out.println( e.getStackTrace()[0].getLineNumber()  + e.toString());
         }
     }
@@ -126,7 +128,7 @@ public class GameClient {
             ob.addProperty("op_code", 0);
             out.println( gson.toJson( ob));
 
-            while (true) {
+            while (isRunning) {
                 String response = in.readLine();
 //                System.out.println("data received on client: " + response);
 
@@ -209,26 +211,41 @@ public class GameClient {
                     } case 8: { //military conflict ended
                         engine.showMilitaryConflict();
                         break;
+                    } case 999: { //Server or client ended game
+                        engine.quitGame();
+                        break;
                     }
                     default: {
                         System.out.println( "Client: Invalid opcode");
                     }
                 }
             }
+
+            //kill the client
+            if( out != null)
+                out.close();
+            if( socket != null)
+                socket.close();
+            out = null;
+            socket = null;
+            in = null;
         } catch (Exception e) {
-            System.out.println("Exception on client");
+            System.out.println("Exception on client1" + e);
             System.out.println( e.getStackTrace()[0].getLineNumber()  + e.toString());
         }
     }
 
     public void quitGame(){
         try{
-            if( socket != null)
-                socket.close();
-            if( in != null)
-                in.close();
+            isRunning = false;
             if( out != null)
                 out.close();
+            if( socket != null)
+                socket.close();
+            out = null;
+            socket = null;
+            in = null;
+
         } catch ( Exception e){
             System.out.println("Client not closed");
         }

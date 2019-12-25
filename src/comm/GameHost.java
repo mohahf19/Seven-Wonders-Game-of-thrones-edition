@@ -63,9 +63,9 @@ public class GameHost {
             addCurrentClient( "" + serverSocket.getInetAddress().getHostAddress());
 
 
-            while (isReceiving ) {
+            while (isReceiving  && !serverSocket.isClosed()) {
                 Socket socket = serverSocket.accept();
-                if( clients.size() < 7) {
+                if( clients.size() < 7 && !serverSocket.isClosed()) {
                     clients.add(new ClientThread(clients.size(), socket, this));
 
                     serverController.initHouse();
@@ -81,6 +81,8 @@ public class GameHost {
                     out.println( gson.toJson(outOb));
                 }
             }
+            isReceiving = false;
+            serverSocket.close();
         } catch (IOException e) {
             System.out.println("IO Exception:" + e);
         } catch (NumberFormatException e) {
@@ -129,10 +131,16 @@ public class GameHost {
 
     public void quitHost(){
         try {
+            isReceiving = false;
+            for( int i = 0; i < clients.size(); i++){
+                clients.get( i).closeThread();
+            }
             clients = null;
             if( serverSocket != null){
                 serverSocket.close();
             }
+            System.gc();
+            System.out.println("Killed");
         } catch (Exception e) {
             System.out.println("Exception killing server");
         }
@@ -189,6 +197,9 @@ public class GameHost {
                 int playerId = request.get("player_id").getAsInt();
                 int cost = request.get("cost").getAsInt();
                 serverController.tradingCosts.add( new PlayerCost( playerId, cost));
+                break;
+            } case 6: {
+                serverController.quitGame();
                 break;
             }
             default:

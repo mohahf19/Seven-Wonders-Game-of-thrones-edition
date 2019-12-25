@@ -39,9 +39,9 @@ public class WaitScreenController implements Initializable {
     @FXML
     private TextField ipText;
 
-    public static ArrayList<Label> labels = new ArrayList<>();
+    public static ArrayList<Label> labels;
 
-    public static ArrayList<ImageView> images = new ArrayList<>();
+    public static ArrayList<ImageView> images;
 
     @FXML
     private void startGame(){
@@ -58,8 +58,9 @@ public class WaitScreenController implements Initializable {
             public void run() {
                 try{
                     Stage stage = (Stage) Main.window;
-                    Parent page = FXMLLoader.load(getClass().getResource(fxmlPaths.playMenu));
-                    stage.getScene().setRoot(page);
+                    if( Main.playScreen == null)
+                        Main.playScreen = FXMLLoader.load(getClass().getResource(fxmlPaths.playMenu));
+                    stage.getScene().setRoot(Main.playScreen);
                     stage.sizeToScene();
                 }catch (Exception e){
                     System.out.println("Exception");
@@ -93,20 +94,7 @@ public class WaitScreenController implements Initializable {
     @FXML
     private void exitGame(ActionEvent ae){
         try {
-            if( Main.state == 1){
-                Main.serverController.host.quitHost();
-                Main.gameEngine.client.quitGame();
-                Main.serverController = null;
-                Main.gameEngine = null;
-            } else {
-                Main.gameEngine.client.quitGame();
-                Main.gameEngine = null;
-            }
-
-            Stage stage = (Stage) ((Node) ae.getSource()).getScene().getWindow();
-            Parent page = FXMLLoader.load(getClass().getResource(fxmlPaths.mainMenu));
-            stage.getScene().setRoot(page);
-            stage.sizeToScene();
+           Main.gameEngine.requestQuitGame();
         } catch (Exception e){
             System.out.println("Exception");
             e.printStackTrace();
@@ -115,6 +103,8 @@ public class WaitScreenController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        labels = new ArrayList<>();
+        images = new ArrayList<>();
         if (Main.serverController == null) {
             startGameButton.setVisible(false);
             ipText.setVisible( false);
