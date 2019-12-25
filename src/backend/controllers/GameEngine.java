@@ -109,7 +109,11 @@ public class GameEngine {
     }
 
     public void discardCard(int cardIndex) {
-        this.getCurrentPlayer().house.coins += 3;
+        if( this.currentSeason == 3 && (this.getCurrentPlayer().house.name.equalsIgnoreCase("stark") || this.getCurrentPlayer().house.name.equalsIgnoreCase("white walkers")))
+            this.getCurrentPlayer().house.coins += 5;
+        else
+            this.getCurrentPlayer().house.coins += 3;
+
         this.cardPlayed(cardIndex);
     }
 
