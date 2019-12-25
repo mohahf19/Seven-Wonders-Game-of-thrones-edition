@@ -277,7 +277,7 @@ public class GameEngine {
         return getCurrentPlayer().getPlayedCards();
     }
 
-    public void requestQuitGame(){
+    public static void requestQuitGame(){
         JsonObject req = new JsonObject();
         req.addProperty("op_code", 6);
         Main.gameEngine.client.sendRequest( req);

@@ -811,7 +811,7 @@ public class PlayScreenController implements Initializable {
             }
         }
         public void click() throws IOException {
-            // TODO add quit game stuff
+            GameEngine.requestQuitGame();
         }
     }
 
