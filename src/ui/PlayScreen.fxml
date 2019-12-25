@@ -33,7 +33,7 @@
       </ImageView>
       <AnchorPane fx:id="pvcPane" layoutX="345.0" layoutY="110.0" prefHeight="500.0" prefWidth="750.0" />
       <ImageView fx:id="initialResource" fitHeight="40.0" fitWidth="120.0" layoutX="67.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="quitButton" fitHeight="50.0" fitWidth="100.0" layoutX="1330.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="quitButton" onMouseClicked="#quitGameClicked" fitHeight="50.0" fitWidth="100.0" layoutX="1330.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/screenIcons/quitButton.png" />
          </image>

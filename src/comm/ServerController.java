@@ -415,6 +415,12 @@ public class ServerController {
                     currPlayer.currentMilitaryPoints + currPlayer.calculateVictoryPoints());
         }
 
+        Collections.sort(scoreboard.scores, new Comparator<ArrayList<Integer>>() {
+            public int compare(ArrayList<Integer> total1, ArrayList<Integer> total2) {
+                return Integer.compare( total2.get( scoreboard.VICTORY_POINTS_INDEX), total1.get( scoreboard.VICTORY_POINTS_INDEX));
+            }
+        });
+
         sendScoreboard();
     }
 

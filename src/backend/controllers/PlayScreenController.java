@@ -6,6 +6,7 @@ import backend.models.Player;
 import backend.models.Scoreboard;
 import com.google.gson.JsonObject;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -143,8 +144,6 @@ public class PlayScreenController implements Initializable {
         homeButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new homeMouseClickListener());
         quitButton.addEventHandler(MouseEvent.MOUSE_ENTERED, new quitMouseHoverListener());
         quitButton.addEventHandler(MouseEvent.MOUSE_EXITED, new quitMouseExitListener());
-        quitButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new quitMouseClickListener());
-        //scoreboardButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new scoreboardMouseClickListener());
 
         setHeaders(Main.gameEngine.getCurrentPlayer().id);
         displayWonder();
@@ -799,20 +798,9 @@ public class PlayScreenController implements Initializable {
         }
     }
 
-    public class quitMouseClickListener implements EventHandler<MouseEvent> {
-        @Override
-        public void handle(MouseEvent event) {
-            event.consume();
-            try {
-                click();
-            } catch (IOException e) {
-                System.out.println("IOException");
-                e.printStackTrace();
-            }
-        }
-        public void click() throws IOException {
-            GameEngine.requestQuitGame();
-        }
+    @FXML
+    public void quitGameClicked(){
+        GameEngine.requestQuitGame();
     }
 
     @FXML
