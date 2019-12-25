@@ -50,8 +50,7 @@ public class MainScreenController implements Initializable  {
             Main.initServer();
             //get the stage
             Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow();
-            if( Main.waitScreen == null)
-                Main.waitScreen = FXMLLoader.load(getClass().getResource(fxmlPaths.waitMenu));
+            Main.waitScreen = FXMLLoader.load(getClass().getResource(fxmlPaths.waitMenu));
             stage.getScene().setRoot(Main.waitScreen);
             stage.sizeToScene();
 

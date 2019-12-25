@@ -58,8 +58,7 @@ public class WaitScreenController implements Initializable {
             public void run() {
                 try{
                     Stage stage = (Stage) Main.window;
-                    if( Main.playScreen == null)
-                        Main.playScreen = FXMLLoader.load(getClass().getResource(fxmlPaths.playMenu));
+                    Main.playScreen = FXMLLoader.load(getClass().getResource(fxmlPaths.playMenu));
                     stage.getScene().setRoot(Main.playScreen);
                     stage.sizeToScene();
                 }catch (Exception e){
@@ -103,6 +102,8 @@ public class WaitScreenController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        System.out.println("Initilialized");
+
         labels = new ArrayList<>();
         images = new ArrayList<>();
         if (Main.serverController == null) {
