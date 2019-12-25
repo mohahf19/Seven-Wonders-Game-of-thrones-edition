@@ -86,12 +86,14 @@ public class MainScreenController implements Initializable  {
     @FXML
     private void howToPlay(){
         howToPlayImage.setVisible(true);
+        backgroundImageView.setOpacity(0.8);
 
     }
 
     @FXML
     private void howToPlayClose(){
         howToPlayImage.setVisible(false);
+        backgroundImageView.setOpacity(1.0);
     }
 
 
