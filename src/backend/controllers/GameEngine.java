@@ -1,7 +1,6 @@
 package backend.controllers;
 
 import backend.app.Main;
-import backend.app.fxmlPaths;
 import backend.models.*;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -9,9 +8,6 @@ import com.google.gson.JsonObject;
 import comm.GameClient;
 import comm.PlayerDeserializer;
 import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.stage.Stage;
 
 import javax.swing.*;
@@ -288,7 +284,7 @@ public class GameEngine {
     }
     public void quitGame(){
         //Do something to quit game
-        JOptionPane.showMessageDialog( null, "Game ended  because a player quit the game.", "", JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog( null, "Game ended because a player quit the game.", "", JOptionPane.PLAIN_MESSAGE);
         if( Main.state == 0){
             //is client
             Main.gameEngine.client.quitGame();
