@@ -19,7 +19,7 @@ public class Scoreboard {
         for( int i = 0; i < numOfPlayers; i++){
             scores.add( new ArrayList<>());
 
-            for( int j = 0; j < 7; j++){
+            for( int j = 0; j < 8; j++){
                 scores.get( i).add( 0);
             }
         }

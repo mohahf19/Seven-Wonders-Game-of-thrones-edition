@@ -411,8 +411,8 @@ public class ServerController {
             scoreboard.scores.get( i).set( scoreboard.COMMERCE_POINTS_INDEX, currPlayer.calculateCommercePoints());
             scoreboard.scores.get( i).set( scoreboard.SCIENCE_POINTS_INDEX, currPlayer.calculateSciencePoints());
             scoreboard.scores.get( i).set( scoreboard.CIVIC_POINTS_INDEX, currPlayer.calculateCivicPoints());
-            scoreboard.scores.get( i).set( scoreboard.VICTORY_POINTS_INDEX,
-                    currPlayer.currentMilitaryPoints + currPlayer.calculateVictoryPoints());
+            scoreboard.scores.get( i).set( scoreboard.VICTORY_POINTS_INDEX, currPlayer.calculateVictoryPoints());
+            scoreboard.scores.get( i).set( 7, i);
         }
 
         Collections.sort(scoreboard.scores, new Comparator<ArrayList<Integer>>() {

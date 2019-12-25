@@ -111,7 +111,7 @@ public class Player {
 
     public int calculateVictoryPoints(){
         return calculateCivicPoints() + calculateCoinPoints() + calculateCommercePoints()
-                + calculateSciencePoints() + calculateWonderPoints();
+                + calculateSciencePoints() + calculateWonderPoints() + currentMilitaryPoints;
     }
 
     // play card methods

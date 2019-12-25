@@ -1,5 +1,6 @@
 package backend.controllers;
 
+import backend.app.Main;
 import backend.models.Player;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
@@ -111,6 +112,39 @@ public class ScoreboardView extends Pane {
         commercePointsLabel.setText(""+ data.get(4));
         sciencePointsLabel.setText(""+ data.get(5));
         victoryPointsLabel.setText(""+ data.get(6));
+
+        Image image;
+        Main.gameEngine.players.get(data.get(7)).house.name.toLowerCase();
+        switch (Main.gameEngine.players.get(data.get(7)).house.name.toLowerCase()) {
+            case "stark":
+                image = new Image("assets/Headers/starkTop.jpg", true);
+                playerBanner.setImage(image);
+                break;
+            case "baratheon":
+                image = new Image("assets/Headers/baratheonTop.jpg", true);
+                playerBanner.setImage(image);
+                break;
+            case "greyjoy":
+                image = new Image("assets/Headers/greyjoyTop.jpg", true);
+                playerBanner.setImage(image);
+                break;
+            case "lannister":
+                image = new Image("assets/Headers/lannisterTop.jpg", true);
+                playerBanner.setImage(image);
+                break;
+            case "targaryen":
+                image = new Image("assets/Headers/targaryenTop.jpg", true);
+                playerBanner.setImage(image);
+                break;
+            case "tyrell":
+                image = new Image("assets/Headers/tyrellTop.jpg", true);
+                playerBanner.setImage(image);
+                break;
+            case "white walkers":
+                image = new Image("assets/Headers/whiteTop.jpg", true);
+                playerBanner.setImage(image);
+                break;
+        }
 
     }
 
