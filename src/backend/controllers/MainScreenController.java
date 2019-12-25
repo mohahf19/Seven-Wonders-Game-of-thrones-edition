@@ -34,7 +34,7 @@ public class MainScreenController implements Initializable  {
     private AnchorPane menuParent;
 
     @FXML
-    private ImageView backgroundImageView, soundButton;
+    private ImageView backgroundImageView, soundButton, howToPlayImage;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -80,8 +80,19 @@ public class MainScreenController implements Initializable  {
                 System.out.println("IOException");
                 e.printStackTrace();
             }
-
-
         }
     }
+
+    @FXML
+    private void howToPlay(){
+        howToPlayImage.setVisible(true);
+
+    }
+
+    @FXML
+    private void howToPlayClose(){
+        howToPlayImage.setVisible(false);
+    }
+
+
 }

@@ -21,7 +21,7 @@
                <image>
                   <Image url="@../assets/loadingPlayer.jpg" />
                </image></ImageView>
-            <Label fx:id="house0" alignment="CENTER" contentDisplay="CENTER" layoutX="13.0" maxWidth="125.0" prefHeight="58.0" prefWidth="145.0" />
+            <Label fx:id="house0" alignment="CENTER" contentDisplay="CENTER" layoutX="13.0" maxWidth="125.0" prefHeight="58.0" prefWidth="145.0" visible="false" />
          </children>
       </Pane>
       <HBox layoutX="468.0" layoutY="172.0" prefHeight="344.0" prefWidth="755.0">
@@ -33,7 +33,7 @@
                         <Image url="@../assets/loadingPlayerSmall.jpg" />
                      </image>
                   </ImageView>
-                  <Label fx:id="house1" layoutX="10.0" prefHeight="48.0" prefWidth="106.0" text="" textAlignment="CENTER" />
+                  <Label fx:id="house1" layoutX="10.0" prefHeight="48.0" prefWidth="106.0" text="" textAlignment="CENTER" visible="false" />
                </children>
             </Pane>
             <Pane prefHeight="335.0" prefWidth="125.0">
@@ -43,7 +43,7 @@
                         <Image url="@../assets/loadingPlayerSmall.jpg" />
                      </image>
                   </ImageView>
-                  <Label fx:id="house2" layoutX="10.0" prefHeight="48.0" prefWidth="106.0" text="" textAlignment="CENTER" />
+                  <Label fx:id="house2" layoutX="10.0" prefHeight="48.0" prefWidth="106.0" text="" textAlignment="CENTER" visible="false" />
                </children>
             </Pane>
             <Pane prefHeight="335.0" prefWidth="125.0">
@@ -53,7 +53,7 @@
                         <Image url="@../assets/loadingPlayerSmall.jpg" />
                      </image>
                   </ImageView>
-                  <Label fx:id="house3" layoutX="10.0" prefHeight="48.0" prefWidth="106.0" text="" textAlignment="CENTER" />
+                  <Label fx:id="house3" layoutX="10.0" prefHeight="48.0" prefWidth="106.0" text="" textAlignment="CENTER" visible="false" />
                </children>
             </Pane>
             <Pane prefHeight="335.0" prefWidth="125.0">
@@ -63,7 +63,7 @@
                         <Image url="@../assets/loadingPlayerSmall.jpg" />
                      </image>
                   </ImageView>
-                  <Label fx:id="house4" layoutX="10.0" prefHeight="48.0" prefWidth="106.0" text="" textAlignment="CENTER" />
+                  <Label fx:id="house4" layoutX="10.0" prefHeight="48.0" prefWidth="106.0" text="" textAlignment="CENTER" visible="false" />
                </children>
             </Pane>
             <Pane prefHeight="335.0" prefWidth="125.0">
@@ -73,7 +73,7 @@
                         <Image url="@../assets/loadingPlayerSmall.jpg" />
                      </image>
                   </ImageView>
-                  <Label fx:id="house5" layoutX="10.0" prefHeight="48.0" prefWidth="106.0" text="" textAlignment="CENTER" />
+                  <Label fx:id="house5" layoutX="10.0" prefHeight="48.0" prefWidth="106.0" text="" textAlignment="CENTER" visible="false" />
                </children>
             </Pane>
             <Pane prefHeight="335.0" prefWidth="125.0">
@@ -83,7 +83,7 @@
                         <Image url="@../assets/loadingPlayerSmall.jpg" />
                      </image>
                   </ImageView>
-                  <Label fx:id="house6" layoutX="10.0" prefHeight="48.0" prefWidth="106.0" text="" textAlignment="CENTER" />
+                  <Label fx:id="house6" layoutX="10.0" prefHeight="48.0" prefWidth="106.0" text="" textAlignment="CENTER" visible="false" />
                </children>
             </Pane>
          </children>
