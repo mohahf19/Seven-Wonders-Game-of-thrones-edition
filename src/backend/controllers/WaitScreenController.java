@@ -45,7 +45,7 @@ public class WaitScreenController implements Initializable {
 
     @FXML
     private void startGame(){
-        if( Main.serverController != null && Main.serverController.players.size() > 0){
+        if( Main.serverController != null && Main.serverController.players.size() > 2){
             Main.serverController.startGame();
         } else {
             JOptionPane.showMessageDialog( null, "Atleast 3 players needed to play game.", "", JOptionPane.PLAIN_MESSAGE);
