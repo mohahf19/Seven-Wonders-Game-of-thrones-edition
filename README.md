@@ -19,24 +19,6 @@ At the end of each age, military conflicts between neighbors are resolved by com
 
 
 
-Extra Features:
--
-- Online games (with up to 7 players)
-- Debts concept (negative money) 
-- Seasons concept (every turn is a different season) 
-- House specific restrictions: 
-     - House Lannister must always pay their debt, otherwise they lose points after the age is over
-     - When House Martel loses a military fight, they lose 2x the points
-     - .. and others
-- House specific buffs:
-     - House Lannister starts with more coins than the other houses. 
-     - House Stark’s resource production gets increased in winter.
-     - House Targaryen’s third level buff is the ability to initiate the military battle instantly 
-     - .. and others
-- Crisis cards (red wedding, battle of the bastards..) that affects all the other houses, yet gives negative points for the initiating house
-
-
-
 Similar Games
 -
 **Seven Wonders**: https://en.boardgamearena.com/gamepanel?game=sevenwonders
@@ -46,24 +28,13 @@ Similar Games
 Group Members (Group 3H):octocat:
 -
 * Ezgi Yavuz - 21703837
-* Khasmamad Shabanovi - 21701333
-* Mohamad Fakhouri - 21701546
-* Muhammad Bilal Bin Khalid - 21701834
-* Muhammad Arham Khan - 21701848
+* Khasmamad Shabanovi
+* Mohamad Fakhouri
+* Muhammad Bilal Bin Khalid
+* Muhammad Arham Khan
 
 Project Reports
 -
-<!-- * Meeting logs (https://docs.google.com/document/d/1KHDaEGL2wuBWDOTVSXKjNZrzDGbuNsmYzWiBNqTS7R8/edit?usp=sharing) -->
-* Analysis report - Iteration 1 (https://docs.google.com/document/d/1zzNRjimXX3anvpJFdu71uZBagSHUhafEGbjzhTYFWC0/edit#bookmark=id.gjdgxs)
-* Design report - Iteration 1 (https://docs.google.com/document/d/10CA2ClHLebMrD_YgMoRLdTaxTc7mKKpuhcwzNlMOZtc/edit?usp=sharing)
-* Final Report - Iteration 1 (https://docs.google.com/document/d/1v5vXJPxiZu9rwimLI8zI8eaRYx2aReyxkKaxteO7ZSk/edit?usp=sharing)
-* Demo Video - Iteration 1 (https://youtu.be/CmG82wYNCgE)
-* Analysis report - Iteration 2 (https://docs.google.com/document/d/1hhkHqqsefcUl_u-FM5Z9C15gwI98NyCVBrvYvEKK3b4/edit?usp=sharing)
-* Design report - Iteration 2 (https://docs.google.com/document/d/1nClTG69dTttaX0hqQJCWpyag6HMt4QrlcQqoeCRomHU/edit?usp=sharing)
-* Final report - Iteration 2 (https://docs.google.com/document/d/1_CgVbAPR-8l5FWki8pQhAdJLG_o84irEtmfN4uBOdv0/edit?usp=sharing)
-* Demo Video - Iteration 2 (https://youtu.be/ZpjKGeUjbzY)
-
-Meeting Hours
--
-* Wednesday 10.40-12.40
-* Sunday 10.40-12.40
+* Analysis report (https://docs.google.com/document/d/1hhkHqqsefcUl_u-FM5Z9C15gwI98NyCVBrvYvEKK3b4/edit?usp=sharing)
+* Design report (https://docs.google.com/document/d/1nClTG69dTttaX0hqQJCWpyag6HMt4QrlcQqoeCRomHU/edit?usp=sharing)
+* Final report  (https://docs.google.com/document/d/1_CgVbAPR-8l5FWki8pQhAdJLG_o84irEtmfN4uBOdv0/edit?usp=sharing)
