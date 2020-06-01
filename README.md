@@ -27,7 +27,7 @@ Similar Games
 
 Group Members (Group 3H):octocat:
 -
-* Ezgi Yavuz - 21703837
+* Ezgi Yavuz
 * Khasmamad Shabanovi
 * Mohamad Fakhouri
 * Muhammad Bilal Bin Khalid
